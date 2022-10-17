@@ -1,6 +1,6 @@
 ---
 permalink: /meet-the-team/
-title: "Data"
+title: "Meet the Team "
 excerpt: "This is a page about our team"
 author_profile: true
 redirect_from: 
@@ -8,8 +8,7 @@ redirect_from:
   - "/meet-the-team.html"
 ---
 
-Meet the Team 
-======
+
 This is a page which details the team.
 
 Professor John Mohan

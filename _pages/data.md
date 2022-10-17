@@ -8,7 +8,4 @@ redirect_from:
   - "/data.html"
 ---
 
-Data
-======
-
 This is a page which details the database.
