@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Welcome to the home of the UK Third Sector Database! We are an [ESRC funded group](https://gtr.ukri.org/projects?ref=ES%2FX000524%2F1) of collaborators seeking to improve data infrastructure surrounding the UK's third sector and civil society more generally. The grant is entitled "Improving Access to and Use of Organisation-Level Data on the Third Sector and Civil Society". On this page you can find:
+Welcome to the home of the UK Third Sector Database! We are an [ESRC funded group](https://gtr.ukri.org/projects?ref=ES%2FX000524%2F1) of collaborators seeking to improve data infrastructure surrounding the UK's third sector and civil society more generally. The grant is entitled "Improving Access to and Use of Organisation-Level Data on the Third Sector and Civil Society" (Project Reference: ES/X000524/1). On this page you can find:
 
 * [Data](https://uk-third-sector-database.github.io/data): This page details both how you can access the data related to this project, and how it was created.
 
