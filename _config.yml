@@ -83,7 +83,12 @@ author:
   name             : "The UK Third Sector Database"
   avatar           : "profile.png"
   bio              : "This is the homepage for the UK Third Sector Database, funded by the ESRC"
-  location         : "Birmingham>Sterling>West Scotland>Southampton>Oxford"
+  location:
+    - "Birmingham"
+    - "Sterling"
+    - "West Scotland"
+    - "Southampton"
+    - "Oxford"
   employer         :
   email            :
   uri              :
