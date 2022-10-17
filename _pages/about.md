@@ -14,8 +14,8 @@ Welcome to the home of the UK Third Sector Database! We are an ESRC funded group
 
 * [Blog-posts](https://uk-third-sector-database.github.io/year-archive): This page contains a number of blog posts that we write in the process of creating the database.
 
-* [Talks](https://uk-third-sector-database.github.io/talks): This page details all of the talks that we give in relation to this work.
+* [Talks](https://uk-third-sector-database.github.io/talks): This page details all the talks that we give in relation to this work.
 
-* [Publications](https://uk-third-sector-database.github.io/publications): This does page lists all of the publications that we write during the period of the grant, both directly and indirectly related to this project.
+* [Publications](https://uk-third-sector-database.github.io/publications): This page lists all of the publications that we write during the period of the grant, both directly and indirectly related to this project.
  
 * [About-the-team](https://uk-third-sector-database.github.io//meet-the-team/): This page provides detailed information on all members of the team.
