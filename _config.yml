@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "The UK Third Sector Database"
-  avatar           : "charity-data-logo.png"
+  avatar           : "profile.png"
   bio              : "This is the homepage for the UK Third Sector Database, funded by the ESRC"
   location         : "United Kingdom"
   employer         :
