@@ -1,7 +1,7 @@
 ---
 permalink: /
 title: "Welcome to the home of the UK Third Sector Database!"
-excerpt: "About me"
+excerpt: "About Us"
 author_profile: true
 redirect_from: 
   - /about/
