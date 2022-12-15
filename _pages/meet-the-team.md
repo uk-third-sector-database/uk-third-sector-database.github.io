@@ -25,7 +25,7 @@ Dr David Clifford
 
 Dr Diarmuid McDonnell 
 -----------
-[Diarmuid McDonnel](https://research-portal.uws.ac.uk/en/persons/diarmuid-mcdonnell) is a Lecturer in the School of Education and Social Sciences at the University of West Scotland. He publishes research which examines a number of interrelated topics concerning the nonprofit/charity sector: including funding sources and networks, and overseas activities. Find him on Twitter [here](https://twitter.com/diarmuidmc?lang=en), and on GitHub [here](https://github.com/DiarmuidM).
+[Diarmuid McDonnell](https://research-portal.uws.ac.uk/en/persons/diarmuid-mcdonnell) is a Lecturer in the School of Education and Social Sciences at the University of West Scotland. He publishes research which examines a number of interrelated topics concerning the nonprofit/charity sector: including funding sources and networks, and overseas activities. Find him on Twitter [here](https://twitter.com/diarmuidmc?lang=en), and on GitHub [here](https://github.com/DiarmuidM).
 
 Dr Charles Rahal
 -----------
