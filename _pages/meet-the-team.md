@@ -23,9 +23,9 @@ Dr David Clifford
 -----------
 [David Clifford](https://www.southampton.ac.uk/people/5x6lwp/doctor-david-clifford) is an Associate Professor at the University of Southampton where he pursues research interests at the interface of demography and social policy, with a particular focus on the voluntary sector and volunteering. Find him on Twitter [here](https://twitter.com/numbersdavid?lang=en-GB).
 
-Dr Diarmuid Mcdonnell 
+Dr Diarmuid McDonnell 
 -----------
-[Diarmuid Mcdonnel](https://research-portal.uws.ac.uk/en/persons/diarmuid-mcdonnell) publishes research which examines a number of interrelated topics concerning the nonprofit/charity sector. He is a Lecturer in the School of Education and Social Sciences at the University of West Scotland. Find him on Twitter [here](https://twitter.com/diarmuidmc?lang=en), and on GitHub [here](https://github.com/DiarmuidM).
+[Diarmuid McDonnel](https://research-portal.uws.ac.uk/en/persons/diarmuid-mcdonnell) is a Lecturer in the School of Education and Social Sciences at the University of West Scotland. He publishes research which examines a number of interrelated topics concerning the nonprofit/charity sector: including funding sources and networks, and overseas activities. Find him on Twitter [here](https://twitter.com/diarmuidmc?lang=en), and on GitHub [here](https://github.com/DiarmuidM).
 
 Dr Charles Rahal
 -----------
