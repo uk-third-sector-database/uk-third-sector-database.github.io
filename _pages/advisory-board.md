@@ -9,8 +9,6 @@ redirect_from:
 ---
 
 
-## Advisory Board
-
 Advisory Board Person One
 -----------
 Person One
