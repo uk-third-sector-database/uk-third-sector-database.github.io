@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-This is a page which details the team.
+## Investigators
 
 Professor John Mohan
 -----------
@@ -30,3 +30,5 @@ Dr Diarmuid McDonnell
 Dr Charles Rahal
 -----------
 [Charles Rahal](https://crahal.github.io/) is a Computational Social Scientist who analyzes unstructured data with new methodological tools, with interests in but not limited to the Third Sector. He is a Senior Departmental Research Lecturer at the Leverhulme Centre for Demographic Science at the Univeristy of Oxford. Find him on GitHub [here](https://github.com/crahal).
+
+## Research Fellows
