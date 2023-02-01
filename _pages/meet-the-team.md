@@ -37,9 +37,18 @@ Dr Charles Rahal
 -----------
 Alan is a political scientist with an interest in political campaigns, political advertising, and electoral politics more broadly. He is currently a research fellow on the [Open Elections](https://www.openelections.co.uk/) project at the University of Nottingham and has also worked on projects focusing on the financial vulnerability of third sector organisations and [healthy ageing](https://www.hagis.scot/) in Scotland.
 
+**Fiona Couper Kenney**
+-----------
+[To be Completed]
+
 ## Project Administration
 
 **Viv Close**
 -----------
 Viv joined the University of Birmingham as Senior Project Administrator for the Third Sector Research Council (TSRC) in January 2023 bringing experience of managing admin teams, stakeholder engagement and process mapping. More recently, Viv worked for almost 4 years in community development for a CIC in Birmingham.
 
+## External Collaborators
+
+**David Kane**
+-----------
+[To be Completed]
