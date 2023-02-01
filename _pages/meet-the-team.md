@@ -35,7 +35,7 @@ Dr Charles Rahal
 
 **Alan Duggan**
 -----------
-Alan is a political scientist with an interest in political campaigns, political advertising, and electoral politics more broadly. He is currently a research fellow on the [Open Elections](https://www.openelections.co.uk/) project at the University of Nottingham and has also worked on projects focusing on the financial vulnerability of third sector organisations and [healthy ageing](https://www.hagis.scot/) in Scotland.
+[Alan](https://twitter.com/aduggan) is a political scientist with an interest in political campaigns, political advertising, and electoral politics more broadly. He is currently a research fellow on the [Open Elections](https://www.openelections.co.uk/) project at the University of Nottingham and has also worked on projects focusing on the financial vulnerability of third sector organisations and [healthy ageing](https://www.hagis.scot/) in Scotland.
 
 **Fiona Couper Kenney**
 -----------
