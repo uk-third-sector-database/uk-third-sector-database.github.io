@@ -32,3 +32,14 @@ Dr Charles Rahal
 [Charles Rahal](https://crahal.github.io/) is a Computational Social Scientist who analyzes unstructured data with new methodological tools, with interests in but not limited to the Third Sector. He is a Senior Departmental Research Lecturer at the Leverhulme Centre for Demographic Science at the Univeristy of Oxford. Find him on GitHub [here](https://github.com/crahal).
 
 ## Research Fellows
+
+**Alan Duggan**
+-----------
+Alan is a political scientist with an interest in political campaigns, political advertising, and electoral politics more broadly. He is currently a research fellow on the [Open Elections](https://www.openelections.co.uk/) project at the University of Nottingham and has also worked on projects focusing on the financial vulnerability of third sector organisations and [healthy ageing](https://www.hagis.scot/) in Scotland.
+
+## Project Administration
+
+**Viv Close**
+-----------
+Viv joined the University of Birmingham as Senior Project Administrator for the Third Sector Research Council (TSRC) in January 2023 bringing experience of managing admin teams, stakeholder engagement and process mapping. More recently, Viv worked for almost 4 years in community development for a CIC in Birmingham.
+
