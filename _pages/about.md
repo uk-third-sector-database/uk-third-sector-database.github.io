@@ -3,7 +3,7 @@ permalink: /
 title: "Welcome to the home of the UK Third Sector Database!"
 excerpt: "About Us"
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
@@ -17,5 +17,7 @@ Welcome to the home of the UK Third Sector Database! We are an [ESRC funded grou
 * [Talks](https://uk-third-sector-database.github.io/talks): This page details all the talks that we give in relation to this work.
 
 * [Publications](https://uk-third-sector-database.github.io/publications): This page lists all of the publications that we write during the period of the grant, both directly and indirectly related to this project.
- 
-* [About-the-team](https://uk-third-sector-database.github.io//meet-the-team/): This page provides detailed information on all members of the team.
+
+* [Advisory Board](http://localhost:4000/advisory-board/): This page provides detailed information on all members of our advisory board.
+
+* [Meet the Team](https://uk-third-sector-database.github.io//meet-the-team/): This page provides detailed information on all members of the team.

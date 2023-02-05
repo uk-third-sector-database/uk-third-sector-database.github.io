@@ -1,24 +1,45 @@
 {% include base_path %}
 
-<div class="page__footer-follow">
-  <ul class="social-icons">
-    {% if site.data.ui-text[site.locale].follow_label %}
-      <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
-    {% endif %}
-    {% if site.twitter.username %}
-      <li><a href="https://twitter.com/{{ site.twitter.username }}"><i class="fab fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-    {% endif %}
-    {% if site.facebook.username %}
-      <li><a href="https://facebook.com/{{ site.facebook.username }}"><i class="fab fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
-    {% endif %}
-    {% if site.author.github %}
-      <li><a href="http://github.com/{{ site.author.github }}"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
-    {% endif %}
-    {% if site.author.bitbucket %}
-      <li><a href="http://bitbucket.org/{{ site.author.bitbucket }}"><i class="fab fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
-    {% endif %}
-    <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
-  </ul>
-</div>
+<head>
+    <style>
+    {
+        box-sizing: border-box;
+    }
+    /* Set additional styling options for the columns*/
+    .column {
+    float: left;
+    width: 50%;
+    }
 
-<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    </style>
+ </head>
+ <body>
+    <div class="row">
+        <div class="column" style="background-color:#FFFFFF;">
+            <a href="/sitemap/">Sitemap</a>
+            {% include base_path %}
+            <div class="page__footer-follow">
+              <ul class="social-icons">
+                  <li><a href="https://twitter.com/johnfmohan"><i class="fab fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+                  <li><a href="http://github.com/{{ site.author.github }}"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
+              </ul>
+            </div>
+
+<div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.The project is funded by the <a href="https://www.ukri.org/councils/esrc/" rel="nofollow">ESRC</a>.</div>
+        </div>
+        <div class="column" style="background-color:#FFFFFF;">
+            <a href="https://www.birmingham.ac.uk/research/tsrc/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/TSRC.jpg?raw=true" alt="TSRC" width = "192.83" height="65" hspace="7">
+            <a href="https://www.southampton.ac.uk/research/areas/social-statistics-demography"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/southampton.png?raw=true" alt="Southampton" width="65.02" height="52.5" hspace="7">
+            <a href="https://www.demographicscience.ox.ac.uk/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/oxford.png?raw=true" alt="Oxford" width="68" height="85" hspace="7">
+            <a href="https://www.stir.ac.uk/research/hub/organisation/62497"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/stirling.png?raw=true" alt="Stirling" width="65", height="65" hspace="7">
+            <a href="https://www.uws.ac.uk/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/west_scotland.png?raw=true" alt="West Scotland" width="75" height="86.25" hspace="7">
+        </div>
+    </div>
+ </body>
+</html>
+
