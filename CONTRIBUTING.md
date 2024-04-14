@@ -1,5 +1,31 @@
-Contributions are welcome! Please add issues and make pull requests. There are no stupid questions. All ideas are welcome. This is a volunteer project. Be excellent to each other.
+The website is built as a GitHub page. The code for that is available in a GitHub repository on the project's organisational account at:
 
-Fork from master and go from there. This repository is intended to remain a generic, ready-to-fork template that demonstrates the features of academicpages.
+https://github.com/uk-third-sector-database/uk-third-sector-database.github.io
 
-If you make a pull request and change code, please make sure there is a closed issue tagged with 'code change' that has some comment linking to either the single commit (if the change was just one commit) or a diff comparing before/after the change (see [issue 21](https://github.com/academicpages/academicpages.github.io/issues/21) for example). This is so that those who have forked this repo and modified it for their purposes can more easily patch bugs and new features.
+The website is hosted at http://uk-third-sector-database.io/. This redirects from uk-third-sector-database.github.io via the CNAME file.
+
+To update the website, you will need a GitHub account, and be invited as a collaborator to the GitHub repository which builds the website (or, alternatively, to make a 'fork' and then do a 'pull request').
+
+The website itself is a fork of ['Academic Pages'](https://github.com/academicpages/academicpages.github.io).
+
+If you want to publish a blog post, simply put a new .md file in the _posts repository (i.e. [here](https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/tree/master/_posts). It should begin with a preamble such as:
+
+```
+---
+title: 'Building a UK Third Sector Database'
+date: 2023-01-30
+permalink: /posts/2023/001/blog-post-1/
+tags:
+  - third sector
+  - charity data
+  - civil society
+---
+```
+
+To edit the 'Advisory Board' section (which needs updating), you should edit the 'advisory-form.md' file in the '_pages' directory (i.e. [here](https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/_pages/advisory-board.md)).
+
+To update the 'Team' section which may or may not be out of date, you should edit the 'meet-the-team.md' file in the '_pages' subdirectory, i.e. [here](http://uk-third-sector-database.io//meet-the-team/).
+
+These should be the three most commonly edited things. If you would like to edit other pages on the site, these can either be found in a subdirectory of the root directory (i.e. './_talks/*' for a subdirectory of talks, or the '_posts' subdirectory, as above), or for pages which don't index multiple things (i.e. an index of blog posts, talks, etc), in the '_pages' subdirectory as above.
+
+Delighted for all/any questions, or for people to raise 'issues' as a mechanism for things they want adding.
