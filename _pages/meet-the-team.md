@@ -43,9 +43,9 @@ Fiona Couper Kenney has a background in maths and probablistic modelling, with c
 
 ## Project Administration
 
-**Viv Close**
+**Annabel Young**
 -----------
-Viv joined the University of Birmingham as Senior Project Administrator for the Third Sector Research Council (TSRC) in January 2023 bringing experience of managing admin teams, stakeholder engagement and process mapping. More recently, Viv worked for almost 4 years in community development for a CIC in Birmingham.
+Annabel, based at the University of Stirling, joined the team as Project Coordinator in January 2024. She has many years of project managment and administration experience in IT and most recently in research projects.
 
 ## External Collaborators
 
