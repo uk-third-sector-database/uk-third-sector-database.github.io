@@ -8,7 +8,4 @@ redirect_from:
   - "/data.html"
 ---
 
-This is a page which details the database.
-
-
-<a href="files/example.csv" download>Download File</a>
+This is a page which details the database. Test file download: <a href="../files/example.csv" download>Download File</a>
