@@ -23,7 +23,7 @@ such as 'Also Known As' names, previous addresses.
 + public\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
 
 ## Download spine files 
-These three files can be downloaded using this link: <a href="../files/tso-spine-files-4Jun24.zip" download>Download zipped csv files.</a>
+These three files can be downloaded using this link: <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/main/spine_bash_script.sh" download>Download zipped csv files.</a>
 
 
 ## Data dictionaries
@@ -41,7 +41,7 @@ The file containing the list of unique organisations comprising the third sector
 | postcode          | Postcode matching full address as defined above                                             |
 | registerdate      | Earliest registration date found in records for this organisation across all sources        |
 | removeddate       | Latest dissolution date found in records for this organisation across all sources           |
-|||
+
 
 ### Supplementary information
 File of supplementary data for organisations, public_spine.supplementary.csv, contains the following fields:
@@ -56,7 +56,7 @@ File of supplementary data for organisations, public_spine.supplementary.csv, co
 | postcode          | Alternative address                                     |
 | registerdate      | Alternative registration date                           |
 | removeddate       | Alternative removed / dissolved date                    |
-|||
+
 
 ### Matches
 Matches between organisations are listed in file public_spine.matches.csv, using the following fields:
@@ -71,5 +71,5 @@ Matches between organisations are listed in file public_spine.matches.csv, using
 | orgB_source        | Original source of organisation B                                                                          |
 | orgB_uid           | UID created for organisation B                                                                             |
 | match_type         | Type of match (e.g. by name, by companyid)                                                                 |
-|||
+
 
