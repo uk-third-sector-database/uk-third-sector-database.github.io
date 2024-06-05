@@ -9,3 +9,6 @@ redirect_from:
 ---
 
 This is a page which details the database.
+
+
+<a href="files/example.csv" download>Download File</a>
