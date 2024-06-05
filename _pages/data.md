@@ -8,7 +8,7 @@ redirect_from:
   - "/data.html"
 ---
 
-# Spine of all third sector organisations
+## Spine of all third sector organisations
 
 The initial data product of this project is a spine of all UK third sector organisations, their names, addresses and dates of registration (and dissolution where relevant).
 Additionally, where organisations are found in more than one register, we provide a file listing these linkages. Data relating to alternative names and addresses is also
@@ -23,10 +23,8 @@ such as 'Also Known As' names, previous addresses.
 + public\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
 
 ## Download spine files 
-These three files can be downloaded using these links: 
-+ <a href="../files/tso-spine-4Jun24.zip" download>Download zipped organisational spine csv.</a>
-+ <a href="../files/tso-supp-4Jun24.zip" download>Download zipped supplementary information csv.</a>
-+ <a href="../files/tso-matches-4Jun24.zip" download>Download zipped matches file csv.</a>
+These three files can be downloaded using this link: <a href="../files/tso-spine-files-4Jun24.zip" download>Download zipped csv files.</a>
+
 
 ## Data dictionaries
 
