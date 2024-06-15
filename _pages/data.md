@@ -1,7 +1,7 @@
 ---
 permalink: /data/
 title: "Data"
-excerpt: "This is a page about our database"
+excerpt: "Read about - and download - the data here"
 author_profile: true
 redirect_from: 
   - "/data"
