@@ -39,7 +39,7 @@ Dr Charles Rahal
 
 **Fiona Couper Kenney**
 -----------
-Fiona Couper Kenney has a background in maths and probablistic modelling, with current research interests in equity in education. She is currently [pursuing a PhD](https://www.ed.ac.uk/profile/fiona-couper-kenney-student) in Education at the University of Edinburgh.
+Fiona Couper Kenney has a background in maths and probablistic modelling, with research interests in equity in education.
 
 ## Project Administration
 

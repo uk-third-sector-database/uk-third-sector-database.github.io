@@ -23,7 +23,7 @@ such as 'Also Known As' names, previous addresses.
 + public\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
 
 ## Download spine files 
-These three files can be downloaded using this link:  <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files-4Jun24.zip?download=" download>Download zipped csv files.</a>
+These three files can be downloaded using this link:  <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.zip?download=" download>Download zipped csv files.</a>
 
 ## Data dictionaries
 
