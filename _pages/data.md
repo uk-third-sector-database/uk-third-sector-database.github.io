@@ -24,8 +24,8 @@ such as 'Also Known As' names, previous addresses.
 
 ## Download spine files 
 These three files can be downloaded using these links:  
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.16-7-24.zip?download=" download>Download zipped csv files: Release #2 (16-7-24).</a>
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.4-7-24.zip?download=" download>Download zipped csv files : Release #2 (4-7-24).</a>
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.16-7-24.zip?download=" download>Download zipped csv files : Release #2 (16-7-24).</a>
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.4-7-24.zip?download=" download>Download zipped csv files : Release #1 (4-7-24).</a>
 
 ## Data dictionaries
 
