@@ -41,14 +41,14 @@ Dr Charles Rahal
 -----------
 Fiona Couper Kenney has a background in maths and probablistic modelling, with research interests in equity in education.
 
+**Stacey McNicol**
+-----------
+Stacey McNicol 
+
 ## Project Administration
 
 **Annabel Young**
 -----------
 Annabel, based at the University of Stirling, joined the team as Project Coordinator in January 2024. She has many years of project managment and administration experience in IT and most recently in research projects.
 
-## External Collaborators
 
-**David Kane**
------------
-[To be Completed]

@@ -13,8 +13,8 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Advisory Board"
-    url: /advisory-board/
+#  - title: "Advisory Board"
+#    url: /advisory-board/
 
   - title: "Meet the Team"
     url: /meet-the-team/
