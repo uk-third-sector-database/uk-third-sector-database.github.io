@@ -43,7 +43,8 @@ Fiona Couper Kenney has a background in maths and probablistic modelling, with r
 
 **Stacey McNicol**
 -----------
-Stacey McNicol 
+Stacey is a quantitative researcher who has mainly focussed on the use of longitudinal data to answer health and social science questions.
+
 
 ## Project Administration
 
