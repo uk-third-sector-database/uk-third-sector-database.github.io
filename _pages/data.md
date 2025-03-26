@@ -25,7 +25,7 @@ such as 'Also Known As' names, previous addresses.
 The zip file includes release notes and a 
 
 ## Download spine files 
-The most recent release of the dataset can be downloaded using this links:  
+The most recent release of the dataset can be downloaded using this link:  
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/new-build-spine/tso-spine-files.March2025.zip?download=" download> Download March 2025 release. </a>
 
 <!-- The early releases can be added to the website using these links: 
