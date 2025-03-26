@@ -22,12 +22,17 @@ The organisational spine consists of three csv files:
 such as 'Also Known As' names, previous addresses. 
 + public\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
 
+The zip file includes release notes and a 
+
 ## Download spine files 
-These three files can be downloaded using these links:  
+The most recent release of the dataset can be downloaded using this links:  
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/new-build-spine/tso-spine-files.March2025.zip?download=" download> Download March 2025 release. </a>
+
+<!-- The early releases can be added to the website using these links: 
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.30-9-24.zip?download=" download>Download zipped csv files : Release #3 (30-9-24).</a>
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.16-7-24.zip?download=" download>Download zipped csv files : Release #2 (16-7-24).</a>
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.4-7-24.zip?download=" download>Download zipped csv files : Release #1 (4-7-24).</a>
-
+-->
 ## Data dictionaries
 
 ### Main organisational spine
@@ -43,6 +48,7 @@ The file containing the list of unique organisations comprising the third sector
 | postcode          | Postcode matching full address as defined above                                             |
 | registerdate      | Earliest registration date found in records for this organisation across all sources        |
 | removeddate       | Latest dissolution date found in records for this organisation across all sources           |
+| is_cic            | Flag indicating if the organisation is a Community Interest Company                        |
 
 
 ### Supplementary information
