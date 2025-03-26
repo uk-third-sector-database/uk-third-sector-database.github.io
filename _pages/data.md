@@ -22,7 +22,7 @@ The organisational spine consists of three csv files:
 such as 'Also Known As' names, previous addresses. 
 + public\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
 
-The zip file includes release notes and a 
+The zip file includes release notes and file builder.pdf which details the data sources and process used to create the dataset.
 
 ## Download spine files 
 The most recent release of the dataset can be downloaded using this link:  
