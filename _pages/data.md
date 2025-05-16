@@ -26,7 +26,8 @@ The zip file includes release notes and file builder.pdf which details the data 
 
 ## Download spine files 
 The most recent release of the dataset can be downloaded using this link:  
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/new-build-spine/tso-spine-files.March2025.zip?download=" download> Download March 2025 release. </a>
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/new-build-spine/tso-spine-files.May2025.zip?download=" download> Download March 2025 release. </a>
+
 
 <!-- The early releases can be added to the website using these links: 
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.30-9-24.zip?download=" download>Download zipped csv files : Release #3 (30-9-24).</a>
@@ -36,7 +37,7 @@ The most recent release of the dataset can be downloaded using this link:
 ## Data dictionaries
 
 ### Main organisational spine
-The file containing the list of unique organisations comprising the third sector, public_spine.spine.csv, contains the following fields:
+The file containing the list of unique organisations comprising the third sector and civil society, public_spine.spine.csv, contains the following fields:
 
 | Fieldname         | Notes                                                                                       |
 |-------------------|--------------------------------------------------------------------------------------------|
@@ -48,6 +49,7 @@ The file containing the list of unique organisations comprising the third sector
 | postcode          | Postcode matching full address as defined above                                             |
 | registerdate      | Earliest registration date found in records for this organisation across all sources        |
 | removeddate       | Latest dissolution date found in records for this organisation across all sources           |
+| source_register   | Source of the data, e.g. Charity Commission for England and Wales                           |
 | is_cic            | Flag indicating if the organisation is a Community Interest Company                        |
 
 
@@ -64,6 +66,7 @@ File of supplementary data for organisations, public_spine.supplementary.csv, co
 | postcode          | Alternative address                                     |
 | registerdate      | Alternative registration date                           |
 | removeddate       | Alternative removed / dissolved date                    |
+| source_register   | Source of the data, e.g. Charity Commission for England and Wales  |
 
 
 ### Matches
