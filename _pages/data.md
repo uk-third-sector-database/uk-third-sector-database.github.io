@@ -24,10 +24,12 @@ such as 'Also Known As' names, previous addresses.
 
 The zip file includes release notes and file builder.pdf which details the data sources and process used to create the dataset.
 
-## Download spine files 
-The most recent release of the dataset can be downloaded using this link:  
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/new-build-spine/tso-spine-files.May2025.zip?download=" download> Download March 2025 release. </a>
+## Download resources
+The most recent release of the dataset of organisations can be downloaded using this link:  
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/new-build-spine/tso-spine-files.May2025.zip?download=" download> Download March 2025 release of spine files. </a>
 
+Financial history data mapped to the spine can be downloaded using this link:
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/new-build-spine/finhist_files.zip?download="download> Download June 2025 release of financial history data. </a>
 
 <!-- The early releases can be added to the website using these links: 
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.30-9-24.zip?download=" download>Download zipped csv files : Release #3 (30-9-24).</a>
