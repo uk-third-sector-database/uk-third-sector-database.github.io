@@ -17,15 +17,16 @@ collated for completeness.
 
 The organisational spine consists of three csv files: 
 
-+ public\_spine.spine.csv contains a row for each organisation considered to make up the UK's thrid sector, with name, address and date details. 
-+ public\_spine.supplementary.csv contains any name, address and date information associated with an organsiation which is additional to what is in the spine, 
-such as 'Also Known As' names, previous addresses. 
-+ public\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
++ TSCS\_spine.spine.csv contains a row for each organisation considered to make up the UK's non-profit sector, with name, address and date details. 
++ TSCS\_spine.supplementary.csv contains any name, address and date information associated with an organisation which is additional to what is in the spine, such as 'Also Known As' names, previous addresses. 
++ TSCS\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
 
-The zip file includes release notes and file builder.pdf which details the data sources and process used to create the dataset.
+The zip file includes release notes and file tscs_database_builder.pdf which details the data sources and process used to create the dataset.
 
 ## Download resources
 The most recent release of the dataset of organisations can be downloaded using this link:  
++ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/refs/heads/main/tso-spine-files.Sept25.zip?download=" download> Download Sept 2025 release of spine files</a>. This contains organisations registered up until February 2025, and is released as a correction to July 2025 files, adding various linkages but no new organisations.
+
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/main/tso-spine-files.July2025.zip?download=" download> Download July 2025 release of spine files</a>.
 
 Financial history data mapped to the spine can be downloaded using this link:
@@ -39,14 +40,14 @@ Financial history data mapped to the spine can be downloaded using this link:
 ## Data dictionaries
 
 ### Main organisational spine
-The file containing the list of unique organisations comprising the third sector and civil society, public_spine.spine.csv, contains the following fields:
+The file containing the list of unique organisations comprising the third sector and civil society, TSCS_spine.spine.csv, contains the following fields:
 
 | Fieldname         | Notes                                                                                       |
 |-------------------|--------------------------------------------------------------------------------------------|
 | uid               | UID created for each source, e.g. GB-CHC-1234                                              |
 | organisationname  | Name as primary in source                                                                  |
 | normalisedname    | Name normalised to capitalise, remove extra spaces and punctuation - to aid matching        |
-| fulladdress       | Full address as found in source with highest precendence across any matched organisations   |
+| fulladdress       | Full address as found in source with highest precedence across any matched organisations   |
 | city              | City matching full address as defined above                                                 |
 | postcode          | Postcode matching full address as defined above                                             |
 | registerdate      | Earliest registration date found in records for this organisation across all sources        |
@@ -56,7 +57,7 @@ The file containing the list of unique organisations comprising the third sector
 
 
 ### Supplementary information
-File of supplementary data for organisations, public_spine.supplementary.csv, contains the following fields:
+File of supplementary data for organisations, TSCS_spine.supplementary.csv, contains the following fields:
 
 | Fieldname         | Notes                                                    |
 |-------------------|----------------------------------------------------------|
@@ -72,7 +73,7 @@ File of supplementary data for organisations, public_spine.supplementary.csv, co
 
 
 ### Matches
-Matches between organisations are listed in file public_spine.matches.csv, using the following fields:
+Matches between organisations are listed in file TSCS_spine.matches.csv, using the following fields:
 
 | Fieldname          | Notes                                                                                                     |
 |--------------------|-----------------------------------------------------------------------------------------------------------|
