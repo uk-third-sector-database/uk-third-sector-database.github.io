@@ -28,10 +28,12 @@ The most recent release of the dataset of organisations can be downloaded using 
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/refs/heads/main/tso-spine-files.Dec2025.zip?download=" download> Download Dec 2025 release of spine files</a>. This contains organisations registered up until November 2025.
 <!--
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/main/tso-spine-files.July2025.zip?download=" download> Download July 2025 release of spine files</a>.
+-->
 
 Financial history data mapped to the spine can be downloaded using this link:
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/main/finhist_files.zip?download=" download> Download June 2025 release of financial history data</a>.
 
+<!--
  The early releases can be added to the website using these links: 
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.30-9-24.zip?download=" download>Download zipped csv files : Release #3 (30-9-24).</a>
 + <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.16-7-24.zip?download=" download>Download zipped csv files : Release #2 (16-7-24).</a>
