@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Welcome to the home of the UK Third Sector Database!"
+title: "The UK Third and Civil Society Sector Database"
 excerpt: "About Us"
 author_profile: true
 redirect_from:
@@ -8,14 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-Welcome to the home of the UK Third Sector Database! We are an [ESRC funded group](https://gtr.ukri.org/projects?ref=ES%2FX000524%2F1) of collaborators seeking to improve data infrastructure surrounding the UK's third sector and civil society more generally. The grant is entitled "Improving Access to and Use of Organisation-Level Data on the Third Sector and Civil Society" (Project Reference: ES/X000524/1). On this page you can find:
+Welcome to the home of the UK Third and Civil Society Sector Database! We are a collaborative group of researchers acting to improve the data infrastructure for understanding and studying the third and civil society sectors in the UK. Our work collects, refines, links and publishes data on third and civil society organisations from a range of official and administrative sources. These [data resources](https://uk-third-sector-database.github.io/data/) can be used to identify geographic and temporal shifts in which types of organisations are founded and dissolved; long-run financial performance and sustainability for a wide variety of third and civil society sector organisations; and the intensity and extensity of the sector's participation in UK public procurement markets. This work was funded by the Economic and Social Research Council [("Improving Access to and Use of Organisation-Level Data on the Third Sector and Civil Society")](https://gtr.ukri.org/projects?ref=ES/X000524/1) and Department for Culture, Media & Sport ("Mapping and Understanding the UK Civil Society Sector").
 
-* [Data](https://uk-third-sector-database.github.io/data): This page details both how you can access the data related to this project, and how it was created.
-
-* [Blog-posts](https://uk-third-sector-database.github.io/year-archive): This page contains a number of blog posts that we write in the process of creating the database.
-
-* [Talks](https://uk-third-sector-database.github.io/talks): This page details all the talks that we give in relation to this work.
-
-* [Publications](https://uk-third-sector-database.github.io/publications): This page lists all of the publications that we write during the period of the grant, both directly and indirectly related to this project.
-
-* [Meet the Team](https://uk-third-sector-database.github.io//meet-the-team/): This page provides detailed information on all members of the team.
+We welcome feedback and suggestions for improvements: please contact [Dr Diarmuid McDonnell](mailto:diarmuid@brawdata.com).

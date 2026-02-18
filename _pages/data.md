@@ -1,88 +1,27 @@
 ---
 permalink: /data/
-title: "Data"
+title: "Mapping and analysing the third and civil society sectors"
 excerpt: "Read about - and download - the data here"
 author_profile: true
-redirect_from: 
+redirect_from:
   - "/data"
   - "/data.html"
 ---
 
-## Spine of all third sector organisations
+## About our data
 
-The initial data product of this project is a spine of all UK third sector organisations, their names, addresses and dates of registration (and dissolution where relevant).
-Additionally, where organisations are found in more than one register, we provide a file listing these linkages. Data relating to alternative names and addresses is also
-collated for completeness.
+This project produces a range of open data resources that support research on the UK's third sector and civil society. These resources include a comprehensive register of organisations drawn from multiple regulatory sources, longitudinal financial records for charities and nonprofit companies, and records of public procurement contracts awarded to civil society organisations. All datasets are linked through a common organisational identifier, enabling cross-resource analysis.
 
+## Data resources
 
-The organisational spine consists of three csv files: 
+| Name | Description | Guidance | Version | Download |
+|------|-------------|----------|---------|----------|
+| TCSS Organisation Register | A deduplicated register of all UK third sector and civil society organisations, compiled from charity regulators, Companies House and mutual registers. Includes names, addresses, registration dates and cross-register linkages. | [Guidance notes](https://uk-third-sector-database.github.io/_posts/2024/001/blog-post-3/) | Dec 2025 | [Download](https://github.com/uk-third-sector-database/tso-database-builder/raw/refs/heads/main/tso-spine-files.Dec2025.zip?download=) |
+| Charity Financial Records | Longitudinal financial data for registered charities, including income, expenditure and balance sheet items, mapped to the organisational register. | Coming soon | Jun 2025 | [Download](https://github.com/uk-third-sector-database/tso-database-builder/blob/main/finhist_files.zip?download=) |
+| Nonprofit Financial Records | Financial data for Community Interest Companies and other nonprofit companies, extracted from accounts filed at Companies House. | Coming soon | Coming soon | Coming soon |
+| TCSS Procurement Records | Records of public procurement contracts and grants awarded to third sector and civil society organisations, drawn from open contracting and grants data. | Coming soon | Coming soon | Coming soon |
 
-+ TSCS\_spine.spine.csv contains a row for each organisation considered to make up the UK's non-profit sector, with name, address and date details. 
-+ TSCS\_spine.supplementary.csv contains any name, address and date information associated with an organisation which is additional to what is in the spine, such as 'Also Known As' names, previous addresses. 
-+ TSCS\_spine.matches.csv lists the organisations which are linked or matched according to our searches, along with the type of match. 
+*Last edited: 18 February 2026. TCSS = Third and Civil Society Sectors.*
 
-The zip file includes release notes and file tscs_database_builder.pdf which details the data sources and process used to create the dataset.
-
-## Download resources
-The most recent release of the dataset of organisations can be downloaded using this link:  
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/refs/heads/main/tso-spine-files.Dec2025.zip?download=" download> Download Dec 2025 release of spine files</a>. This contains organisations registered up until November 2025.
-
-Financial history data mapped to the spine can be downloaded using this link:
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/main/finhist_files.zip?download=" download> Download June 2025 release of financial history data</a>.
-
-<!--
- The early releases can be added to the website using these links: 
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.30-9-24.zip?download=" download>Download zipped csv files : Release #3 (30-9-24).</a>
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.16-7-24.zip?download=" download>Download zipped csv files : Release #2 (16-7-24).</a>
-+ <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/main/tso-spine-files.4-7-24.zip?download=" download>Download zipped csv files : Release #1 (4-7-24).</a>
--->
-## Data dictionaries
-
-### Main organisational spine
-The file containing the list of unique organisations comprising the third sector and civil society, TSCS_spine.spine.csv, contains the following fields:
-
-| Fieldname         | Notes                                                                                       |
-|-------------------|--------------------------------------------------------------------------------------------|
-| uid               | UID created for each source, e.g. GB-CHC-1234                                              |
-| organisationname  | Name as primary in source                                                                  |
-| normalisedname    | Name normalised to capitalise, remove extra spaces and punctuation - to aid matching        |
-| fulladdress       | Full address as found in source with highest precedence across any matched organisations   |
-| city              | City matching full address as defined above                                                 |
-| postcode          | Postcode matching full address as defined above                                             |
-| registerdate      | Earliest registration date found in records for this organisation across all sources        |
-| removeddate       | Latest dissolution date found in records for this organisation across all sources           |
-| source_register   | Source of the data, e.g. Charity Commission for England and Wales                           |
-| is_cic            | Flag indicating if the organisation is a Community Interest Company                        |
-
-
-### Supplementary information
-File of supplementary data for organisations, TSCS_spine.supplementary.csv, contains the following fields:
-
-| Fieldname         | Notes                                                    |
-|-------------------|----------------------------------------------------------|
-| uid               | UID created for each source using source and id from original source |
-| organisationname  | Alternative name                                        |
-| normalisedname    | (Alt name normalised)                                   |
-| fulladdress       | Alternative address                                     |
-| city              | Alternative address                                     |
-| postcode          | Alternative address                                     |
-| registerdate      | Alternative registration date                           |
-| removeddate       | Alternative removed / dissolved date                    |
-| source_register   | Source of the data, e.g. Charity Commission for England and Wales  |
-
-
-### Matches
-Matches between organisations are listed in file TSCS_spine.matches.csv, using the following fields:
-
-| Fieldname          | Notes                                                                                                     |
-|--------------------|-----------------------------------------------------------------------------------------------------------|
-| uid                | UID created for each source, matches table  - if match is unambiguous; blank otherwise |
-| orgA_id_in_source  | ID in original source, for matched organisation A                                                           |
-| orgA_source        | Original source of organisation A                                                                          |
-| orgA_uid           | UID created for organisation A                                                                             |
-| orgB_id_in_source  | ID in original source, for matched organisation B                                                           |
-| orgB_source        | Original source of organisation B                                                                          |
-| orgB_uid           | UID created for organisation B                                                                             |
-| match_type         | Type of match (e.g. by name, by companyid)                                                                 |
 
 
