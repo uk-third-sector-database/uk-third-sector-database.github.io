@@ -17,7 +17,7 @@ Professor John Mohan
 
 Professor Alasdair Rutherford 
 -----------
-[Alasdair Rutherford](https://www.brawdata.com/our-team) is a Director of [Braw Data Ltd](https://www.brawdata.com/our-team) and an Honorary Professor at the [University of Stirling](https://www.stir.ac.uk/people/255778). His research focus is the analysis of administrative and survey data in the fields of health, social care and the third sector. Find him on GitHub [here](https://github.com/a1asdair).
+[Alasdair Rutherford](https://www.brawdata.com/our-team) is a Director of Braw Data Ltd and an Honorary Professor at the [University of Stirling](https://www.stir.ac.uk/people/255778). His research focus is the analysis of administrative and survey data in the fields of health, social care and the third sector. Find him on GitHub [here](https://github.com/a1asdair).
 
 Dr David Clifford
 -----------
@@ -25,7 +25,7 @@ Dr David Clifford
 
 Dr Diarmuid McDonnell
 -----------
-[Diarmuid McDonnell](https://www.brawdata.com/our-team) is a Director of [Braw Data Ltd](https://www.brawdata.com/our-team) and a Visiting Fellow at [Gradel Institute of Charity, New College, Oxford](https://www.gradelinstituteofcharity.co.uk/diarmuid-mcdonnell). His research focuses on the geographic distribution of civil society activity, both across the UK and overseas. He is a former Reader in Social Statistics at the University of the West of Scotland. Find him on GitHub [here](https://github.com/DiarmuidM).
+[Diarmuid McDonnell](https://www.brawdata.com/our-team) is a Director of Braw Data Ltd and a Visiting Fellow at [Gradel Institute of Charity, New College, Oxford](https://www.gradelinstituteofcharity.co.uk/diarmuid-mcdonnell). His research focuses on the geographic distribution of civil society activity, both across the UK and overseas. He is a former Reader in Social Statistics at the University of the West of Scotland. Find him on GitHub [here](https://github.com/DiarmuidM).
 
 Dr Charles Rahal
 -----------
