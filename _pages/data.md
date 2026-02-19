@@ -14,7 +14,7 @@ This project produces a range of open data resources that support research on th
 
 ## Data resources
 
-<div style="font-size: 1.2em;">
+<div style="font-size: 1.2em;" markdown="1">
 
 | Name | Description | Guidance | Version | Download |
 |------|-------------|----------|---------|----------|
