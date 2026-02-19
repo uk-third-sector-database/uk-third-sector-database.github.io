@@ -17,15 +17,15 @@ Professor John Mohan
 
 Professor Alasdair Rutherford 
 -----------
-[Alasdair Rutherford](https://www.stir.ac.uk/people/255778) is a Professor of Social Statistics at the University of Stirling. His research focus is the analysis of administrative and survey data in the fields of health, social care and the third sector. Find him on GitHub [here](https://github.com/a1asdair).
+[Alasdair Rutherford](https://www.brawdata.com/our-team) is a Director of [Braw Data Ltd](https://www.brawdata.com/our-team) and an Honorary Professor at the [University of Stirling](https://www.stir.ac.uk/people/255778). His research focus is the analysis of administrative and survey data in the fields of health, social care and the third sector. Find him on GitHub [here](https://github.com/a1asdair).
 
 Dr David Clifford
 -----------
 [David Clifford](https://www.southampton.ac.uk/people/5x6lwp/doctor-david-clifford) is an Associate Professor at the University of Southampton where he pursues research interests at the interface of demography and social policy, with a particular focus on the voluntary sector and volunteering.
 
-Dr Diarmuid McDonnell 
+Dr Diarmuid McDonnell
 -----------
-[Diarmuid McDonnell](https://research-portal.uws.ac.uk/en/persons/diarmuid-mcdonnell) is a Lecturer in the School of Education and Social Sciences at the University of West Scotland. He publishes research which examines a number of interrelated topics concerning the nonprofit/charity sector: including funding sources and networks, and overseas activities. Find him on GitHub [here](https://github.com/DiarmuidM).
+[Diarmuid McDonnell](https://www.brawdata.com/our-team) is a Director of [Braw Data Ltd](https://www.brawdata.com/our-team) and a Visiting Fellow at [Gradel Institute of Charity, New College, Oxford](https://www.gradelinstituteofcharity.co.uk/diarmuid-mcdonnell). His research focuses on the geographic distribution of civil society activity, both across the UK and overseas. He is a former Reader in Social Statistics at the University of the West of Scotland. Find him on GitHub [here](https://github.com/DiarmuidM).
 
 Dr Charles Rahal
 -----------
