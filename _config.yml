@@ -80,9 +80,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "The UK Third Sector Database"
+  name             : "The UK Third and Civil Society Sector Database"
   avatar           : "charity-data-logo.png"
-  bio              : "This is the homepage for the UK Third Sector Database, funded by the ESRC"
+  bio              : "This is the homepage for the UK Third and Civil Society Sector Database, funded by the ESRC and DCMS"
   location         : "United Kingdom"
   employer         :
   email            :
