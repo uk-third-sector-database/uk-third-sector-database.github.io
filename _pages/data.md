@@ -20,8 +20,10 @@ This project produces a range of open data resources that support research on th
 |------|-------------|----------|---------|----------|
 | TCSS Organisation Register | A deduplicated register of all UK third sector and civil society organisations, compiled from charity regulators, Companies House and mutual registers. Includes names, addresses, registration dates and cross-register linkages. | <a href="https://uk-third-sector-database.github.io/_posts/2024/001/blog-post-3/" target="_blank">Guidance notes</a> | Dec 2025 | <a href="https://github.com/uk-third-sector-database/tso-database-builder/raw/refs/heads/main/tso-spine-files.Dec2025.zip?download=" target="_blank">Download</a> |
 | Charity Financial Records | Longitudinal financial data for registered charities, including income, expenditure and balance sheet items, mapped to the organisational register. | Coming soon | Jun 2025 | <a href="https://github.com/uk-third-sector-database/tso-database-builder/blob/main/finhist_files.zip?download=" target="_blank">Download</a> |
-| Nonprofit Financial Records | Financial data for Community Interest Companies and other nonprofit companies, extracted from accounts filed at Companies House. | Coming soon | Coming soon | Coming soon |
-| TCSS Procurement Records | Records of public procurement contracts and grants awarded to third sector and civil society organisations, drawn from open contracting and grants data. | Coming soon | Coming soon | Coming soon |
+| Nonprofit Financial Records | Financial data for Community Interest Companies and other nonprofit companies, extracted from accounts filed at Companies House. | Coming soon | 31 March 2026 | Coming soon |
+| CIC 36 Forms | Descriptions of beneficiaries, activities and use of surplus from incorporation documents of Community Interest Companies. | Coming soon | 31 March 2026 | Coming soon |
+| Nonprofit Board of Directors | Organisation-level summaries of the boards of directors of Community Interest Companies and other nonprofit companies, extracted from official filings to Companies House. | Coming soon | 31 March 2026 | Coming soon |
+| TCSS Procurement Records | Records of public procurement contracts and grants awarded to third sector and civil society organisations, drawn from open contracting and grants data. | Coming soon | 31 March 2026 | Coming soon |
 
 </div>
 
