@@ -1,20 +1,20 @@
 # main links
 main:
 
-  - title: "Blog Posts"
-    url: /year-archive/
-
   - title: "Data"
     url: /data/
 
-  - title: "Talks"
-    url: /talks/
+  - title: "Meet the Team"
+    url: /meet-the-team/
 
   - title: "Publications"
     url: /publications/
 
+  - title: "Updates"
+    url: /year-archive/
+
+  - title: "Talks"
+    url: /talks/
+
 #  - title: "Advisory Board"
 #    url: /advisory-board/
-
-  - title: "Meet the Team"
-    url: /meet-the-team/

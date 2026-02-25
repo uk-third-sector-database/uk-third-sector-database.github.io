@@ -33,22 +33,22 @@ Dr Charles Rahal
 
 ## Research Fellows
 
-**Alan Duggan**
+Dr Alan Duggan
 -----------
 Alan is a political scientist with an interest in political campaigns, political advertising, and electoral politics more broadly. He is currently a research fellow on the [Open Elections](https://www.openelections.co.uk/) project at the University of Nottingham and has also worked on projects focusing on the financial vulnerability of third sector organisations and [healthy ageing](https://www.hagis.scot/) in Scotland.
 
-**Fiona Couper Kenney**
+Dr Fiona Couper Kenney
 -----------
 Fiona Couper Kenney has a background in maths and probablistic modelling, with research interests in equity in education.
 
-**Stacey McNicol**
+Dr Stacey McNicol
 -----------
 Stacey is a quantitative researcher who has mainly focussed on the use of longitudinal data to answer health and social science questions.
 
 
 ## Project Administration
 
-**Annabel Young**
+Annabel Young
 -----------
 Annabel, based at the University of Stirling, joined the team as Project Coordinator in January 2024. She has many years of project managment and administration experience in IT and most recently in research projects.
 
