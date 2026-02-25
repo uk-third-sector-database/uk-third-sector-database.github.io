@@ -17,6 +17,9 @@
     }
     .column-right {
     width: 60%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
     }
 
     .row:after {
@@ -28,7 +31,7 @@
  </head>
  <body>
     <div class="row">
-        <div class="column column-left" style="background-color:#FFFFFF;">
+        <div class="column column-left">
             <a href="/sitemap/">Sitemap</a>
             {% include base_path %}
             <div class="page__footer-follow">
@@ -39,13 +42,13 @@
 
 <div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>. The project was funded by the <a href="https://www.ukri.org/councils/esrc/" rel="nofollow">ESRC</a> and DCMS.</div>
         </div>
-        <div class="column column-right" style="background-color:#FFFFFF;">
-            <a href="https://www.birmingham.ac.uk/research/tsrc/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/TSRC.jpg?raw=true" alt="TSRC" width="145" height="49" hspace="5">
-            <a href="https://www.southampton.ac.uk/research/areas/social-statistics-demography"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/southampton.png?raw=true" alt="Southampton" width="49" height="40" hspace="5">
-            <a href="https://www.demographicscience.ox.ac.uk/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/oxford.png?raw=true" alt="Oxford" width="51" height="64" hspace="5">
-            <a href="https://www.stir.ac.uk/research/hub/organisation/62497"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/stirling.png?raw=true" alt="Stirling" width="49" height="49" hspace="5">
-            <a href="https://www.uws.ac.uk/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/west_scotland.png?raw=true" alt="West Scotland" width="56" height="65" hspace="5">
-            <a href="https://www.brawdata.com/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/brawdata.png?raw=true" alt="Braw Data" width="64" height="56" hspace="5">
+        <div class="column column-right">
+            <a href="https://www.birmingham.ac.uk/research/tsrc/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/TSRC.jpg?raw=true" alt="TSRC" width="145" height="49" hspace="5"></a>
+            <a href="https://www.southampton.ac.uk/research/areas/social-statistics-demography"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/southampton.png?raw=true" alt="Southampton" width="49" height="40" hspace="5"></a>
+            <a href="https://www.demographicscience.ox.ac.uk/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/oxford.png?raw=true" alt="Oxford" width="51" height="64" hspace="5"></a>
+            <a href="https://www.stir.ac.uk/research/hub/organisation/62497"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/stirling.png?raw=true" alt="Stirling" width="49" height="49" hspace="5"></a>
+            <a href="https://www.uws.ac.uk/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/west_scotland.png?raw=true" alt="West Scotland" width="56" height="65" hspace="5"></a>
+            <a href="https://www.brawdata.com/"><img src="https://github.com/uk-third-sector-database/uk-third-sector-database.github.io/blob/master/images/website/brawdata.png?raw=true" alt="Braw Data" width="64" height="56" hspace="5"></a>
         </div>
     </div>
  </body>
