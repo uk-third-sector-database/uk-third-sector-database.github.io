@@ -27,6 +27,8 @@ This project produces a range of open data resources that support research on th
 
 </div>
 
+*Last edited: 26 February 2026. TCSS = Third and Civil Society Sectors.*
+
 ## Disclaimer
 
 Data resources are provided "as is" for research and analysis purposes. The project team does not guarantee the accuracy or completeness of the source data. Issues with the underlying data should be directed to the original data owners; the relevant regulators are listed in each dataset's guidance notes.
@@ -40,8 +42,6 @@ Data resources are provided "as is" for research and analysis purposes. The proj
 ## Collaboration
 
 We welcome collaboration with researchers interested in using the data for their own analyses, or in contributing to the project's data infrastructure. If you are interested in working together, please contact Dr Diarmuid McDonnell at [diarmuid@brawdata.com](mailto:diarmuid@brawdata.com).
-
-*Last edited: 26 February 2026. TCSS = Third and Civil Society Sectors.*
 
 
 
