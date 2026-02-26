@@ -39,7 +39,7 @@ Data resources are provided "as is" for research and analysis purposes. The proj
 
 ## Collaboration
 
-We welcome collaboration with researchers interested in using the data for their own analyses, or in contributing to the project's data infrastructure. If you are interested in working together, please get in touch using the contact details on this page.
+We welcome collaboration with researchers interested in using the data for their own analyses, or in contributing to the project's data infrastructure. If you are interested in working together, please contact Dr Diarmuid McDonnell at [diarmuid@brawdata.com](mailto:diarmuid@brawdata.com).
 
 *Last edited: 26 February 2026. TCSS = Third and Civil Society Sectors.*
 
