@@ -27,7 +27,21 @@ This project produces a range of open data resources that support research on th
 
 </div>
 
-*Last edited: 25 February 2026. TCSS = Third and Civil Society Sectors.*
+## Disclaimer
+
+Data resources are provided "as is" for research and analysis purposes. The project team does not guarantee the accuracy or completeness of the source data. Issues with the underlying data should be directed to the original data owners; the relevant regulators are listed in each dataset's guidance notes.
+
+## Use cases and limitations
+
+**Intended uses**: Academic research, policy analysis, understanding sector patterns (geography, finances, employment), and cross-sector linkage analysis.
+
+**Limitations**: No individual contact information is included; address fields in the Organisation Register are sourced from publicly available regulatory data. Detailed use cases and limitations are provided in each dataset's guidance notes.
+
+## Collaboration
+
+We welcome collaboration with researchers interested in using the data for their own analyses, or in contributing to the project's data infrastructure. If you are interested in working together, please get in touch using the contact details on this page.
+
+*Last edited: 26 February 2026. TCSS = Third and Civil Society Sectors.*
 
 
 
