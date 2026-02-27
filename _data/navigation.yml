@@ -4,14 +4,14 @@ main:
   - title: "Data"
     url: /data/
 
+  - title: "Training"
+    url: /training/
+
   - title: "Publications"
     url: /publications/
 
   - title: "Updates"
     url: /year-archive/
-
-  - title: "Training"
-    url: /training/
 
   - title: "Meet the Team"
     url: /meet-the-team/
