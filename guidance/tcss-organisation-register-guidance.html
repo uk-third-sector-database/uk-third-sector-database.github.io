@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UK Civil Society Organisation Register &mdash; Dataset Guide</title>
+
+<!-- Google Fonts: Lora + Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Bootstrap 3 CSS -->
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
+
+<!-- jQuery UI (for tocify) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+/>
+
+<!-- tocify CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/stylesheets/jquery.tocify.min.css"
+/>
+
+<style>
+/* ================================================================
+   Base
+   ================================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #222222;
+  background: #F7F9FA;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================================================
+   Typography
+   ================================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+  color: #1A6B7C;
+  font-weight: 600;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.55em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.1em; color: #2A9D8F; }
+h5 { font-size: 1em; color: #555555; }
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #2672B0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 90%;
+  background: #F0F5F7;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #1A6B7C;
+}
+
+pre {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #dde4ea;
+  margin: 2em 0;
+}
+
+blockquote {
+  border-left: 4px solid #1A6B7C;
+  margin: 1.2em 0;
+  padding: 10px 20px;
+  background: #f8fafb;
+  color: #333;
+  font-size: 0.95em;
+}
+
+/* ================================================================
+   Layout
+   ================================================================ */
+.main-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.toc-content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* ================================================================
+   Collapsible TOC Sidebar
+   ================================================================ */
+#TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1500;
+  width: 280px;
+  background-color: #1A6B7C;
+  padding: 3.5rem 1.2rem 1.5rem 1.2rem;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#TOC.open {
+  transform: translateX(0);
+}
+
+.toc-toggle {
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1600;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #1A6B7C;
+  background: #F0F5F7;
+  color: #1A6B7C;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: left 0.3s ease, background 0.2s;
+  line-height: 1;
+}
+
+.toc-toggle:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.toc-toggle.shifted {
+  left: 292px;
+}
+
+.toc-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1400;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.toc-overlay.open {
+  display: block;
+}
+
+/* tocify overrides (dark sidebar) */
+.tocify {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tocify ul, .tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.tocify-header {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tocify-subheader {
+  font-size: 0.9em;
+  padding-left: 14px !important;
+}
+
+.tocify .tocify-item {
+  padding: 6px 12px;
+  border-left: 3px solid transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 4px;
+}
+
+.tocify .tocify-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify .tocify-item.active {
+  border-left-color: #E9C46A;
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ================================================================
+   Header / Title Block
+   ================================================================ */
+#header {
+  text-align: left;
+  padding: 30px 0 20px;
+  border-bottom: 3px solid #1A6B7C;
+  margin-bottom: 30px;
+}
+
+#header h1.title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #1A6B7C;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+#header h3.subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15em;
+  font-weight: 400;
+  color: #5A7A8A;
+  margin: 0 0 4px 0;
+}
+
+#header h4.date {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+}
+
+/* ================================================================
+   gt-style Tables
+   ================================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.92em;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+thead th {
+  background: #1A6B7C;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #1A6B7C;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #eef1f5;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #F0F5F7;
+}
+
+tbody tr:hover {
+  background: #e6eff4;
+}
+
+td.numeric, th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  caption-side: top;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #1A6B7C;
+  padding: 8px 0;
+  text-align: left;
+}
+
+/* ================================================================
+   Stat Cards
+   ================================================================ */
+.stat-cards {
+  display: flex;
+  gap: 18px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 170px;
+  background: #ffffff;
+  border-left: 4px solid #2A9D8F;
+  padding: 18px 20px;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card .number {
+  font-size: 1.9em;
+  font-weight: 700;
+  color: #1A6B7C;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.stat-card .label {
+  font-size: 0.88em;
+  color: #555555;
+  font-weight: 500;
+}
+
+/* ================================================================
+   Figure Containers
+   ================================================================ */
+.figure-container {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.figure-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.figure-caption {
+  font-size: 0.88em;
+  color: #5A7A8A;
+  margin-top: 8px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ================================================================
+   Coverage Bars
+   ================================================================ */
+.coverage-bar-container {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.coverage-item {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.coverage-item .cov-label {
+  font-size: 0.85em;
+  color: #555555;
+  margin-bottom: 8px;
+}
+
+.coverage-item .cov-bar {
+  height: 10px;
+  background: #e8eef4;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.coverage-item .cov-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1A6B7C, #2A9D8F);
+  border-radius: 5px;
+}
+
+.coverage-item .cov-pct {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #1A6B7C;
+}
+
+/* ================================================================
+   Callout Boxes
+   ================================================================ */
+.callout {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.callout-info {
+  background: #eef6fa;
+  border-left-color: #2672B0;
+  color: #1a4a6b;
+}
+
+.callout-warning {
+  background: #fef9ec;
+  border-left-color: #e6a817;
+  color: #7a5c0b;
+}
+
+.callout-tip {
+  background: #eef8f3;
+  border-left-color: #2A9D8F;
+  color: #1a5c4a;
+}
+
+/* ================================================================
+   Section Level Styles
+   ================================================================ */
+.section.level1 {
+  margin-top: 40px;
+  padding-top: 10px;
+}
+
+.section.level1 > h1 {
+  border-bottom: 3px solid #2A9D8F;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.section.level2 {
+  margin-top: 28px;
+}
+
+.section.level3 {
+  margin-top: 20px;
+}
+
+/* ================================================================
+   Footer
+   ================================================================ */
+.report-footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #dde4ea;
+  color: #555555;
+  font-size: 0.9em;
+}
+
+.report-footer em {
+  color: #5A7A8A;
+}
+
+/* ================================================================
+   Accessibility Panel
+   ================================================================ */
+.a11y-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1050;
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #F0F5F7;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.a11y-btn:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.a11y-panel {
+  position: fixed;
+  top: 62px;
+  right: 12px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  padding: 18px 20px 14px;
+  min-width: 180px;
+  display: none;
+}
+
+.a11y-panel.open {
+  display: block;
+}
+
+.a11y-panel label {
+  color: #1A6B7C;
+  font-weight: 600;
+  font-size: 0.93em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.size-btns {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.size-btns button {
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 4px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.size-btns button:hover,
+.size-btns button.active {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.contrast-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Font size classes */
+body.font-medium {
+  font-size: 18px;
+}
+body.font-medium h1 { font-size: 2.3em; }
+body.font-medium h2 { font-size: 1.75em; }
+body.font-medium h3 { font-size: 1.4em; }
+body.font-medium table { font-size: 1em; }
+
+body.font-large {
+  font-size: 22px;
+}
+body.font-large h1 { font-size: 2.5em; }
+body.font-large h2 { font-size: 1.9em; }
+body.font-large h3 { font-size: 1.55em; }
+body.font-large table { font-size: 1.1em; }
+
+/* High contrast mode */
+body.high-contrast {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast h4,
+body.high-contrast h5,
+body.high-contrast h6 {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header {
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast #header h1.title {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header h3.subtitle {
+  color: #a0c4d8;
+}
+
+body.high-contrast a {
+  color: #7ab8e0;
+}
+
+body.high-contrast table {
+  background: #242444;
+  box-shadow: none;
+}
+
+body.high-contrast thead th {
+  background: #2a3a5e;
+  color: #e0e0e0;
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast tbody td {
+  border-bottom-color: #3a3a5e;
+  color: #e0e0e0;
+}
+
+body.high-contrast tbody tr:nth-child(even) {
+  background: #2a2a4e;
+}
+
+body.high-contrast tbody tr:hover {
+  background: #3a3a6e;
+}
+
+body.high-contrast .stat-card {
+  background: #242444;
+  border-left-color: #7ab8e0;
+  box-shadow: none;
+}
+
+body.high-contrast .stat-card .number {
+  color: #7ab8e0;
+}
+
+body.high-contrast .stat-card .label {
+  color: #b0b0c0;
+}
+
+body.high-contrast .callout {
+  background: #242444;
+  color: #d0d0e0;
+}
+
+body.high-contrast .callout-info {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .coverage-item {
+  background: #242444;
+  border-color: #3a3a5e;
+}
+
+body.high-contrast .coverage-item .cov-bar {
+  background: #3a3a5e;
+}
+
+body.high-contrast .coverage-item .cov-pct {
+  color: #7ab8e0;
+}
+
+body.high-contrast #TOC {
+  background-color: #0d0d1a;
+}
+
+body.high-contrast .toc-toggle {
+  background: #252540;
+  color: #7ab8e0;
+  border-color: #7ab8e0;
+}
+
+body.high-contrast .toc-toggle:hover {
+  background: #7ab8e0;
+  color: #1a1a2e;
+}
+
+body.high-contrast .tocify .tocify-item {
+  color: #b0b0c0;
+}
+
+body.high-contrast .tocify .tocify-item:hover,
+body.high-contrast .tocify .tocify-item.active {
+  color: #7ab8e0;
+  background: #2a2a4e;
+}
+
+body.high-contrast .tocify .tocify-item.active {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .report-footer,
+body.high-contrast .report-footer em {
+  color: #a0a0b0;
+}
+
+body.high-contrast code {
+  background: #2a2a4e;
+  color: #7ab8e0;
+}
+
+body.high-contrast blockquote {
+  border-left-color: #7ab8e0;
+  color: #d0d0e0;
+}
+
+body.high-contrast .figure-caption {
+  color: #a0c4d8;
+}
+
+/* ================================================================
+   Print Styles
+   ================================================================ */
+@media print {
+  #TOC,
+  .toc-toggle,
+  .toc-overlay {
+    display: none !important;
+  }
+
+  .toc-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tab-content > .tab-pane {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .nav-tabs {
+    display: none !important;
+  }
+
+  .tab-content > .tab-pane::before {
+    content: attr(data-tab-title);
+    display: block;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #1A6B7C;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+
+  body {
+    font-size: 12px;
+    background: #fff;
+    color: #000;
+  }
+
+  table {
+    box-shadow: none;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .stat-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .figure-container img {
+    box-shadow: none;
+    max-width: 80%;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .a11y-btn, .a11y-panel {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   Responsive
+   ================================================================ */
+@media (max-width: 767px) {
+  #header h1.title {
+    font-size: 1.6em;
+  }
+
+  .stat-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stat-card {
+    min-width: 100%;
+  }
+
+  table {
+    font-size: 0.82em;
+  }
+
+  thead th,
+  tbody td {
+    padding: 6px 8px;
+  }
+
+  .main-container {
+    padding: 0 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- TOC Toggle + Overlay -->
+<button class="toc-toggle" onclick="toggleTOC()" title="Table of contents" aria-label="Toggle table of contents">&#9776;</button>
+<div class="toc-overlay" id="tocOverlay" onclick="toggleTOC()"></div>
+<div id="TOC" class="tocify"></div>
+
+<!-- Accessibility Panel -->
+<button class="a11y-btn" onclick="toggleA11yPanel()" title="Accessibility options" aria-label="Accessibility options">Aa</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility settings">
+  <label>Text size</label>
+  <div class="size-btns">
+    <button onclick="setFontSize('default')" id="fs-default" class="active">A</button>
+    <button onclick="setFontSize('medium')" id="fs-medium">A+</button>
+    <button onclick="setFontSize('large')" id="fs-large">A++</button>
+  </div>
+  <div class="contrast-toggle">
+    <input type="checkbox" id="contrastToggle" onchange="toggleContrast()">
+    <label for="contrastToggle" style="margin:0; font-weight:500;">High contrast</label>
+  </div>
+</div>
+
+<div class="main-container">
+    <div class="toc-content">
+
+      <!-- Title Block -->
+      <div id="header">
+        <h1 class="title toc-ignore">UK Civil Society Organisation Register</h1>
+        <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
+        <h4 class="date toc-ignore">March 2026</h4>
+      </div>
+
+      <!-- ============================================================
+           PART 1: DATA GUIDE
+           ============================================================ -->
+
+      <!-- Section 1: Overview -->
+      <div class="section level1">
+        <h1>1. Overview</h1>
+
+        <p>This dataset is a deduplicated register of every formally registered civil society organisation in the United Kingdom. It was produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> (TCSS) project, which collects, processes, and links public administrative data on civil society organisations across the United Kingdom.</p>
+
+        <p>The Organisation Register &mdash; referred to as the &ldquo;Data Spine&rdquo; &mdash; brings together records from ten UK regulatory bodies into a single dataset. Each organisation receives a unique identifier (UID) that enables records to be linked across data sources. A matching algorithm identifies organisations that appear in more than one register and links them under a single UID, producing a comprehensive, deduplicated picture of the sector.</p>
+
+        <p>The register is distributed as a set of four CSV files that together describe the organisations, their cross-register links, and their industrial classifications. All data in the register are derived from openly available public sources.</p>
+      </div>
+
+      <!-- Section 2: What is the Organisation Register? -->
+      <div class="section level1">
+        <h1>2. What is the Organisation Register?</h1>
+
+        <p>The UK civil society sector is governed by a patchwork of regulatory bodies. Charities in England and Wales are registered with the Charity Commission for England and Wales (CCEW); charities in Scotland with the Office of the Scottish Charity Regulator (OSCR); and charities in Northern Ireland with the Charity Commission for Northern Ireland (CCNI). Companies &mdash; including Community Interest Companies, charitable companies, and other nonprofits limited by guarantee &mdash; are registered at Companies House. Co-operatives and mutual societies appear on the Co-operatives UK register and the FCA Mutuals Public Register. Sector-specific bodies such as the Care Quality Commission, Care Inspectorate Scotland, and the social housing regulators in England and Scotland maintain further records.</p>
+
+        <p>Many organisations appear in more than one of these registers. A charity incorporated as a company limited by guarantee, for example, will have records at both a charity commission and Companies House. Without linkage, these appear as separate entities, leading to double-counting and fragmented analysis.</p>
+
+        <p>The Organisation Register solves this problem by:</p>
+
+        <ul>
+          <li>Ingesting data from all ten source registers</li>
+          <li>Normalising names, addresses, and dates into a common format</li>
+          <li>Running a matching algorithm to identify duplicate records across registers</li>
+          <li>Assigning a single UID to each unique organisation</li>
+          <li>Storing primary records in the spine file and alternative records in the supplementary file</li>
+        </ul>
+
+        <p>The result is the first comprehensive, deduplicated listing of UK civil society organisations available as open data. Further details of the construction methodology are available in the <a href="https://uk-third-sector-database.github.io/_posts/2024/001/blog-post-3/">Spine Builder documentation</a> and the project&rsquo;s <a href="https://github.com/uk-third-sector-database">GitHub repository</a>.</p>
+      </div>
+
+      <!-- Section 3: Dataset Contents -->
+      <div class="section level1">
+        <h1>3. Dataset Contents</h1>
+
+        <div class="stat-cards">
+          <div class="stat-card"><span class="number">770,923</span><span class="label">Organisations</span></div>
+          <div class="stat-card"><span class="number">10</span><span class="label">Source Registers</span></div>
+          <div class="stat-card"><span class="number">125,624</span><span class="label">Cross-Register Links</span></div>
+          <div class="stat-card"><span class="number">377,530</span><span class="label">Currently Active</span></div>
+        </div>
+
+        <p>The register is distributed as four CSV files:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Records</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>TSCS_spine.spine.csv</code></td>
+              <td class="numeric">770,923</td>
+              <td>The deduplicated organisation register &mdash; one row per unique organisation</td>
+            </tr>
+            <tr>
+              <td><code>TSCS_spine.supplementary.csv</code></td>
+              <td class="numeric">872,100</td>
+              <td>Alternative names, addresses, and dates from other source registers</td>
+            </tr>
+            <tr>
+              <td><code>TSCS_spine.matches.csv</code></td>
+              <td class="numeric">125,624</td>
+              <td>Cross-register links between duplicate records, with match type</td>
+            </tr>
+            <tr>
+              <td><code>TSCS_spine.SIC_codes.csv</code></td>
+              <td class="numeric">668,280</td>
+              <td>Standard Industrial Classification codes from Companies House</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Organisation Types</h3>
+
+        <p>The Data Spine classifies organisations into four main types: Charity, CIC, Co-operative/Mutual, and Other. Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.3% are charities).</p>
+
+        <p>Panel A shows the four main types. Panel B disaggregates the &lsquo;Other&rsquo; category into meaningful subtypes using Companies House SIC (Standard Industrial Classification) codes and organisation name patterns. The classification applies SIC division codes (the first two digits of the primary SIC code) alongside keyword matching on organisation names, using a priority ordering to resolve ambiguities.</p>
+
+        <p>Property management companies account for 15.2% of all active organisations in England but less than 2% elsewhere, reflecting the prevalence of residential leasehold structures. The residual &lsquo;Other Company Limited By Guarantee&rsquo; category remains the largest subtype among dissolved organisations, particularly in Northern Ireland (23.4%).</p>
+
+        <div style="margin: 24px 0; overflow-x: auto;">
+          <table style="min-width: 700px;">
+            <thead>
+              <tr>
+                <th colspan="9" style="text-align: center; font-family: 'Lora', Georgia, serif; font-size: 1.1em; background: #1A6B7C; color: #fff;">Table 1: Civil society organisations by type, country, and status</th>
+              </tr>
+              <tr>
+                <th colspan="9" style="text-align: center; font-size: 0.88em; font-weight: 400; background: #1A6B7C; color: rgba(255,255,255,0.85); border-bottom: 2px solid #1A6B7C;">Panel A: column percentages within each status-country group. Panel B: column percentages within the &lsquo;Other&rsquo; category.</th>
+              </tr>
+              <tr>
+                <th rowspan="2"></th>
+                <th colspan="4" style="text-align: center; border-bottom: 1px solid #dde4ea;">Active</th>
+                <th colspan="4" style="text-align: center; border-left: 2px solid #dde4ea; border-bottom: 1px solid #dde4ea;">Dissolved</th>
+              </tr>
+              <tr>
+                <th class="numeric">England</th>
+                <th class="numeric">N.&nbsp;Ireland</th>
+                <th class="numeric">Scotland</th>
+                <th class="numeric">Wales</th>
+                <th class="numeric" style="border-left: 2px solid #dde4ea;">England</th>
+                <th class="numeric">N.&nbsp;Ireland</th>
+                <th class="numeric">Scotland</th>
+                <th class="numeric">Wales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="9" style="font-weight: 700; background: #e6eff4; color: #1A6B7C; padding: 6px 14px;">Panel A: Organisation type</td>
+              </tr>
+              <tr>
+                <td>Community Interest Company</td>
+                <td class="numeric">11.8%</td>
+                <td class="numeric">5.5%</td>
+                <td class="numeric">6.8%</td>
+                <td class="numeric">11.9%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">9.0%</td>
+                <td class="numeric">13.6%</td>
+                <td class="numeric">6.2%</td>
+                <td class="numeric">8.3%</td>
+              </tr>
+              <tr>
+                <td>Charity</td>
+                <td class="numeric">49.5%</td>
+                <td class="numeric">65.9%</td>
+                <td class="numeric">78.3%</td>
+                <td class="numeric">55.4%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">50.0%</td>
+                <td class="numeric">27.6%</td>
+                <td class="numeric">73.4%</td>
+                <td class="numeric">57.6%</td>
+              </tr>
+              <tr>
+                <td>Co-operative / Mutual</td>
+                <td class="numeric">3.0%</td>
+                <td class="numeric">4.1%</td>
+                <td class="numeric">2.9%</td>
+                <td class="numeric">5.2%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">3.7%</td>
+                <td class="numeric">2.3%</td>
+                <td class="numeric">2.6%</td>
+                <td class="numeric">4.7%</td>
+              </tr>
+              <tr>
+                <td>Other</td>
+                <td class="numeric">35.6%</td>
+                <td class="numeric">24.4%</td>
+                <td class="numeric">12.0%</td>
+                <td class="numeric">27.5%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">37.3%</td>
+                <td class="numeric">56.6%</td>
+                <td class="numeric">17.7%</td>
+                <td class="numeric">29.5%</td>
+              </tr>
+              <tr>
+                <td colspan="9" style="font-weight: 700; background: #e6eff4; color: #1A6B7C; padding: 6px 14px;">Panel B: Subtypes of &lsquo;Other&rsquo; (% within Other)</td>
+              </tr>
+              <tr>
+                <td>Property Management</td>
+                <td class="numeric">15.2%</td>
+                <td class="numeric">0.4%</td>
+                <td class="numeric">1.9%</td>
+                <td class="numeric">1.8%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">5.6%</td>
+                <td class="numeric">0.3%</td>
+                <td class="numeric">1.8%</td>
+                <td class="numeric">1.3%</td>
+              </tr>
+              <tr>
+                <td>Education</td>
+                <td class="numeric">5.1%</td>
+                <td class="numeric">3.2%</td>
+                <td class="numeric">5.2%</td>
+                <td class="numeric">3.3%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">4.3%</td>
+                <td class="numeric">3.3%</td>
+                <td class="numeric">3.3%</td>
+                <td class="numeric">2.3%</td>
+              </tr>
+              <tr>
+                <td>Sports Club</td>
+                <td class="numeric">3.1%</td>
+                <td class="numeric">0.9%</td>
+                <td class="numeric">6.1%</td>
+                <td class="numeric">2.1%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">2.7%</td>
+                <td class="numeric">0.7%</td>
+                <td class="numeric">3.0%</td>
+                <td class="numeric">1.5%</td>
+              </tr>
+              <tr>
+                <td>Religious Organisation</td>
+                <td class="numeric">2.6%</td>
+                <td class="numeric">3.1%</td>
+                <td class="numeric">3.5%</td>
+                <td class="numeric">3.6%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">1.5%</td>
+                <td class="numeric">0.4%</td>
+                <td class="numeric">1.3%</td>
+                <td class="numeric">1.8%</td>
+              </tr>
+              <tr>
+                <td>Social Work</td>
+                <td class="numeric">2.7%</td>
+                <td class="numeric">5.1%</td>
+                <td class="numeric">5.3%</td>
+                <td class="numeric">2.7%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">2.6%</td>
+                <td class="numeric">1.6%</td>
+                <td class="numeric">4.3%</td>
+                <td class="numeric">2.8%</td>
+              </tr>
+              <tr>
+                <td>Arts &amp; Culture</td>
+                <td class="numeric">2.2%</td>
+                <td class="numeric">1.2%</td>
+                <td class="numeric">3.5%</td>
+                <td class="numeric">2.3%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">2.2%</td>
+                <td class="numeric">0.6%</td>
+                <td class="numeric">3.0%</td>
+                <td class="numeric">2.6%</td>
+              </tr>
+              <tr>
+                <td>Membership Organisation</td>
+                <td class="numeric">1.7%</td>
+                <td class="numeric">2.5%</td>
+                <td class="numeric">3.9%</td>
+                <td class="numeric">2.3%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">2.5%</td>
+                <td class="numeric">2.7%</td>
+                <td class="numeric">3.9%</td>
+                <td class="numeric">3.2%</td>
+              </tr>
+              <tr>
+                <td>Health</td>
+                <td class="numeric">1.1%</td>
+                <td class="numeric">3.2%</td>
+                <td class="numeric">2.3%</td>
+                <td class="numeric">1.4%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">1.5%</td>
+                <td class="numeric">1.1%</td>
+                <td class="numeric">2.2%</td>
+                <td class="numeric">1.4%</td>
+              </tr>
+              <tr>
+                <td>Housing</td>
+                <td class="numeric">0.9%</td>
+                <td class="numeric">2.7%</td>
+                <td class="numeric">3.3%</td>
+                <td class="numeric">1.3%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">0.6%</td>
+                <td class="numeric">0.4%</td>
+                <td class="numeric">1.3%</td>
+                <td class="numeric">0.5%</td>
+              </tr>
+              <tr>
+                <td>Other CLG</td>
+                <td class="numeric">65.5%</td>
+                <td class="numeric">77.7%</td>
+                <td class="numeric">65.0%</td>
+                <td class="numeric">79.3%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">76.4%</td>
+                <td class="numeric">89.0%</td>
+                <td class="numeric">75.9%</td>
+                <td class="numeric">82.6%</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Spine, Companies House SIC codes.</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- 3.1 Spine file -->
+        <div class="section level2">
+          <h2>3.1 Organisation Register (Spine)</h2>
+
+          <p>The main file contains one row per unique organisation. Where an organisation appears in multiple registers, the record from the highest-precedence source is used (see <a href="#source-precedence">Section A2</a>). Fields include the organisation name, registered address, registration and removal dates, source register, and a flag indicating whether the organisation is a Community Interest Company.</p>
+
+          <h3>Field Descriptions</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>uid</code></td>
+                <td>Unique identifier for each organisation, constructed from the source code and original ID (e.g. <code>GB-CHC-200009</code>, <code>GB-COH-00686799</code>)</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>organisationname</code></td>
+                <td>Primary name of the organisation as recorded by the source register</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>normalisedname</code></td>
+                <td>Name normalised to uppercase with extra spaces and punctuation removed, used for matching</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>fulladdress</code></td>
+                <td>Full registered address as found in the highest-precedence source</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>city</code></td>
+                <td>City or town from the registered address</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>postcode</code></td>
+                <td>UK postcode of the registered address</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>registerdate</code></td>
+                <td>Earliest registration date found across all sources for this organisation (dd/mm/yyyy)</td>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td><code>removeddate</code></td>
+                <td>Latest dissolution or removal date found across all sources; blank if currently active (dd/mm/yyyy)</td>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td><code>source_register</code></td>
+                <td>Name of the source register providing the primary record (e.g. &ldquo;Charity Commission for England and Wales&rdquo;)</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>is_cic</code></td>
+                <td>Boolean flag indicating whether the organisation is a Community Interest Company (<code>True</code>/<code>False</code>)</td>
+                <td>Boolean</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Sample Data</h3>
+
+          <p>The table below shows one example organisation from each of the eight primary source registers, plus two Community Interest Companies.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>uid</th>
+                <th>organisationname</th>
+                <th>postcode</th>
+                <th>registerdate</th>
+                <th>source_register</th>
+                <th>is_cic</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>GB-CHC-200009</code></td>
+                <td>THE RALPH LEVY CHARITABLE COMPANY LIMITED</td>
+                <td>W1U 2AY</td>
+                <td>17/03/1961</td>
+                <td>Charity Commission for England and Wales</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-SC-SC000001</code></td>
+                <td>Stoneyburn Community Education Centre Assoc</td>
+                <td>EH47 8BN</td>
+                <td>26/06/1986</td>
+                <td>Scottish Charity Register</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-NIC-100002</code></td>
+                <td>Cancer Lifeline</td>
+                <td>BT14 7PJ</td>
+                <td>04/05/2005</td>
+                <td>Charity Commission for Northern Ireland</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-COH-00004302</code></td>
+                <td>LIVERPOOL LAW SOCIETY</td>
+                <td>L3 9QJ</td>
+                <td>13/02/1869</td>
+                <td>Companies House</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-COOP-R020362</code></td>
+                <td>Uniteddiversity LLP</td>
+                <td>DT6 3LS</td>
+                <td>31/07/2002</td>
+                <td>Co-operatives</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-MPR-1231W</code></td>
+                <td>&ldquo;Sankey&rdquo; Working Men&rsquo;s Club and Institute</td>
+                <td>WS8 6JB</td>
+                <td>12/04/1937</td>
+                <td>Mutuals Public Register</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-SHR-275</code></td>
+                <td>Abronhill Housing Association Ltd</td>
+                <td></td>
+                <td></td>
+                <td>Scottish Housing Regulator</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-SHPE-C3489</code></td>
+                <td>20-20 Housing Co-operative Limited</td>
+                <td></td>
+                <td>20/07/1984</td>
+                <td>Social Housing England</td>
+                <td>False</td>
+              </tr>
+              <tr>
+                <td><code>GB-COH-00288977</code></td>
+                <td>THE POST OFFICE FELLOWSHIP OF REMEMBRANCE C.I.C</td>
+                <td>GL20 8SD</td>
+                <td>09/06/1934</td>
+                <td>Companies House</td>
+                <td>True</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-518004</code></td>
+                <td>FRIENDS OF CORONATION ROAD PLAYGROUND</td>
+                <td>B30 2SG</td>
+                <td>06/10/1986</td>
+                <td>Charity Commission for England and Wales</td>
+                <td>True</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-info">
+            <p><strong>Note:</strong> Some fields are blank where the source register does not provide that information. The Scottish Housing Regulator, for example, does not supply postcode or registration date data.</p>
+          </div>
+        </div>
+
+        <!-- 3.2 Supplementary file -->
+        <div class="section level2">
+          <h2>3.2 Supplementary Records</h2>
+
+          <p>Where an organisation has additional names, addresses, or dates from other source registers or historical data iterations, these are stored in the supplementary file. This includes &ldquo;Also Known As&rdquo; names, previous addresses, and alternative registration or removal dates. Each supplementary row is linked to the main spine record by the <code>uid</code> field.</p>
+
+          <h3>Field Descriptions</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>uid</code></td>
+                <td>Unique identifier matching the spine record; the UID from the source indicated by <code>source_register</code></td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>organisationname</code></td>
+                <td>Alternative name for the organisation</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>normalisedname</code></td>
+                <td>Normalised version of the alternative name</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>fulladdress</code></td>
+                <td>Alternative address</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>city</code></td>
+                <td>City from the alternative address</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>postcode</code></td>
+                <td>Postcode from the alternative address</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>registerdate</code></td>
+                <td>Alternative registration date (dd/mm/yyyy)</td>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td><code>removeddate</code></td>
+                <td>Alternative removal or dissolution date (dd/mm/yyyy)</td>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td><code>source_register</code></td>
+                <td>Source register from which this supplementary record was drawn</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>id_in_source</code></td>
+                <td>The organisation&rsquo;s ID in the original source register</td>
+                <td>Text</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Sample Data</h3>
+
+          <p>The example below shows supplementary records for two organisations. The charity GB-CHC-200009 has three alternative addresses from historical CCEW data, while its corresponding Companies House record (GB-COH-00686799) provides an alternative name.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>uid</th>
+                <th>organisationname</th>
+                <th>fulladdress</th>
+                <th>postcode</th>
+                <th>source_register</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>GB-CHC-200009</code></td>
+                <td></td>
+                <td>5-6 DOWN STREET, LONDON</td>
+                <td>W1J 7AH</td>
+                <td>Charity Commission for England and Wales</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200009</code></td>
+                <td></td>
+                <td>14 CHESTERFIELD STREET, LONDON</td>
+                <td>W1J 5JN</td>
+                <td>Charity Commission for England and Wales</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200009</code></td>
+                <td></td>
+                <td>116 PICCADILLY, LONDON</td>
+                <td>W1J 7BJ</td>
+                <td>Charity Commission for England and Wales</td>
+              </tr>
+              <tr>
+                <td><code>GB-COH-00686799</code></td>
+                <td>RALPH LEVY CHARITABLE COMPANY LIMITED(THE)</td>
+                <td>1 HINDE STREET, HINDE STREET</td>
+                <td></td>
+                <td>Companies House</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200012</code></td>
+                <td>WRESTLINGWORTH CHURCH &amp; POORS CHARITY</td>
+                <td></td>
+                <td></td>
+                <td>Charity Commission for England and Wales</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-tip">
+            <p><strong>Tip:</strong> The supplementary file can be joined to the spine on <code>uid</code>. However, note that each spine UID may have multiple supplementary rows &mdash; one for each alternative name, address, or date found across source registers. The relationship is one-to-many.</p>
+          </div>
+        </div>
+
+        <!-- 3.3 Matches file -->
+        <div class="section level2">
+          <h2>3.3 Cross-Register Matches</h2>
+
+          <p>The matches file records every link identified between organisations across different source registers. Each row represents a pair of matched records, with the UIDs, source IDs, and source registers for both sides of the match, along with the method used to establish the link.</p>
+
+          <h3>Field Descriptions</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>uid</code></td>
+                <td>UID of the primary (higher-precedence) organisation; blank if the match is unambiguous</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>orgA_id_in_source</code></td>
+                <td>ID in the original source for Organisation A</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>orgA_source</code></td>
+                <td>Source register code for Organisation A (e.g. <code>ccew</code>, <code>CH</code>)</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>orgA_uid</code></td>
+                <td>UID assigned to Organisation A</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>orgB_id_in_source</code></td>
+                <td>ID in the original source for Organisation B</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>orgB_source</code></td>
+                <td>Source register code for Organisation B</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>orgB_uid</code></td>
+                <td>UID assigned to Organisation B</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>match_type</code></td>
+                <td>Method used to identify the match (see <a href="#match-types">Section A3</a>)</td>
+                <td>Text</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Sample Data</h3>
+
+          <p>Each row links two organisation records from different sources (or, occasionally, the same source). The example rows below illustrate the main match types.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>orgA_uid</th>
+                <th>orgA_source</th>
+                <th>orgB_uid</th>
+                <th>orgB_source</th>
+                <th>match_type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>GB-CHC-200009</code></td>
+                <td>ccew</td>
+                <td><code>GB-COH-00686799</code></td>
+                <td>CH</td>
+                <td>companyid - id_in_source</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200103</code></td>
+                <td>ccew</td>
+                <td><code>GB-SHPE-A2072</code></td>
+                <td>socialhousingengland</td>
+                <td>ftc</td>
+              </tr>
+              <tr>
+                <td><code>GB-SC-SC000015</code></td>
+                <td>OSCR</td>
+                <td><code>GB-COH-SC114294</code></td>
+                <td>CH</td>
+                <td>oscr</td>
+              </tr>
+              <tr>
+                <td><code>GB-SC-SC033518</code></td>
+                <td>OSCR</td>
+                <td><code>GB-COOP-R009306</code></td>
+                <td>CoOps</td>
+                <td>companyid - coop mutual</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200453</code></td>
+                <td>ccew</td>
+                <td><code>GB-CQC-1-151675564</code></td>
+                <td>carequalitycommission</td>
+                <td>name - care</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200103</code></td>
+                <td>ccew</td>
+                <td><code>GB-SHPE-A2072</code></td>
+                <td>socialhousingengland</td>
+                <td>name - housing</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-200124</code></td>
+                <td>ccew</td>
+                <td><code>GB-CHC-285317</code></td>
+                <td>ccew</td>
+                <td>companyid - companyid</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Match Type Distribution</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Match Type</th>
+                <th class="numeric">Count</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ftc</code></td>
+                <td class="numeric">69,439</td>
+                <td>Find That Charity lookup table (includes historic re-registrations)</td>
+              </tr>
+              <tr>
+                <td><code>companyid - id_in_source</code></td>
+                <td class="numeric">36,617</td>
+                <td>Charity register links to Companies House via company number</td>
+              </tr>
+              <tr>
+                <td><code>companyid - coop mutual</code></td>
+                <td class="numeric">10,452</td>
+                <td>Co-operative/mutual registered number links to Companies House</td>
+              </tr>
+              <tr>
+                <td><code>oscr</code></td>
+                <td class="numeric">4,295</td>
+                <td>OSCR cross-border flag or company identifier matching</td>
+              </tr>
+              <tr>
+                <td><code>name - care</code></td>
+                <td class="numeric">3,651</td>
+                <td>Normalised name match with CQC or Care Inspectorate Scotland</td>
+              </tr>
+              <tr>
+                <td><code>name - housing</code></td>
+                <td class="numeric">802</td>
+                <td>Normalised name match with housing regulators</td>
+              </tr>
+              <tr>
+                <td><code>companyid - companyid</code></td>
+                <td class="numeric">368</td>
+                <td>Two charities sharing the same Companies House company number</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3.4 SIC codes file -->
+        <div class="section level2">
+          <h2>3.4 SIC Codes</h2>
+
+          <p>Standard Industrial Classification (SIC) codes for organisations registered at Companies House. Each organisation may have one or more SIC codes, so the relationship to the spine is one-to-many. SIC codes enable classification of organisations by industry sector.</p>
+
+          <h3>Field Descriptions</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>uid</code></td>
+                <td>Organisation UID (matches the spine record; Companies House UIDs use the <code>GB-COH-</code> prefix)</td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>SIC</code></td>
+                <td>Five-digit SIC code (e.g. <code>94120</code> for &ldquo;Activities of professional membership organisations&rdquo;)</td>
+                <td>Text</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-info">
+            <p><strong>Note:</strong> SIC codes are only available for organisations with a Companies House registration. To link SIC codes to charities and other non-company organisations, join via the matches file to find the corresponding Companies House record.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Coverage & Composition -->
+      <div class="section level1">
+        <h1>4. Coverage &amp; Composition</h1>
+
+        <p>The register covers 770,923 organisations, of which 377,530 (49.0%) are currently active (no removal date) and 393,393 (51.0%) are dissolved or removed.</p>
+
+        <h3>Organisations by Source Register</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Source Register</th>
+              <th class="numeric">Organisations</th>
+              <th class="numeric">% of Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Charity Commission for England and Wales</td>
+              <td class="numeric">350,640</td>
+              <td class="numeric">45.5%</td>
+            </tr>
+            <tr>
+              <td>Companies House</td>
+              <td class="numeric">325,169</td>
+              <td class="numeric">42.2%</td>
+            </tr>
+            <tr>
+              <td>Scottish Charity Register</td>
+              <td class="numeric">53,342</td>
+              <td class="numeric">6.9%</td>
+            </tr>
+            <tr>
+              <td>Mutuals Public Register</td>
+              <td class="numeric">32,139</td>
+              <td class="numeric">4.2%</td>
+            </tr>
+            <tr>
+              <td>Charity Commission for Northern Ireland</td>
+              <td class="numeric">8,243</td>
+              <td class="numeric">1.1%</td>
+            </tr>
+            <tr>
+              <td>Co-operatives</td>
+              <td class="numeric">651</td>
+              <td class="numeric">0.1%</td>
+            </tr>
+            <tr>
+              <td>Social Housing England</td>
+              <td class="numeric">627</td>
+              <td class="numeric">0.1%</td>
+            </tr>
+            <tr>
+              <td>Scottish Housing Regulator</td>
+              <td class="numeric">112</td>
+              <td class="numeric">&lt;0.1%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <p><strong>Note on source counts:</strong> These figures count the number of organisations whose <em>primary</em> record comes from each source. An organisation matched across registers appears only once, under its highest-precedence source. The Care Inspectorate Scotland and Care Quality Commission do not contribute primary records &mdash; they only appear in the matches file where they link to an existing spine record.</p>
+        </div>
+
+        <h3>Community Interest Companies</h3>
+
+        <p>Of the 770,923 organisations in the register, 72,934 (9.5%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
+
+        <h3>Companies House Company Types</h3>
+
+        <p>Organisations sourced from Companies House are filtered to include only civil-society-relevant company types. The included types and their approximate counts are:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Company Type</th>
+              <th class="numeric">Approximate Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company Limited by Guarantee</td>
+              <td class="numeric">436,900</td>
+            </tr>
+            <tr>
+              <td>Community Interest Company</td>
+              <td class="numeric">93,200</td>
+            </tr>
+            <tr>
+              <td>Charitable Incorporated Organisation</td>
+              <td class="numeric">38,300</td>
+            </tr>
+            <tr>
+              <td>Registered Society</td>
+              <td class="numeric">11,000</td>
+            </tr>
+            <tr>
+              <td>Scottish Charitable Incorporated Organisation</td>
+              <td class="numeric">7,000</td>
+            </tr>
+            <tr>
+              <td>Industrial and Provident Society</td>
+              <td class="numeric">160</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Excluded company types include Private Limited Companies, Public Limited Companies, Limited Partnerships, and other company forms that are not typically associated with the civil society sector. The full inclusion and exclusion criteria are listed in <a href="#company-type-inclusion">Section A4</a>.</p>
+      </div>
+
+      <!-- Section 5: Unique Identifiers -->
+      <div class="section level1">
+        <h1>5. Unique Identifiers</h1>
+
+        <p>Each organisation in the spine is assigned a UID that encodes its source register and original registration number. The UID format follows the <a href="https://org-id.guide/">org-id.guide</a> convention where possible.</p>
+
+        <h3>UID Prefix Scheme</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Prefix</th>
+              <th>Source Register</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>GB-CHC-</code></td>
+              <td>Charity Commission for England and Wales</td>
+              <td><code>GB-CHC-200009</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-SC-</code></td>
+              <td>Scottish Charity Register (OSCR)</td>
+              <td><code>GB-SC-SC003558</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-NIC-</code></td>
+              <td>Charity Commission for Northern Ireland</td>
+              <td><code>GB-NIC-100001</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-COH-</code></td>
+              <td>Companies House</td>
+              <td><code>GB-COH-00686799</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-COOP-</code></td>
+              <td>Co-operatives UK</td>
+              <td><code>GB-COOP-1234</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-MPR-</code></td>
+              <td>Mutuals Public Register (FCA)</td>
+              <td><code>GB-MPR-12345R</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-SHR-</code></td>
+              <td>Scottish Housing Regulator</td>
+              <td><code>GB-SHR-123</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-SHPE-</code></td>
+              <td>Social Housing England</td>
+              <td><code>GB-SHPE-A1234</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-CIS-</code></td>
+              <td>Care Inspectorate Scotland</td>
+              <td><code>GB-CIS-CS2012345678</code></td>
+            </tr>
+            <tr>
+              <td><code>GB-CQC-</code></td>
+              <td>Care Quality Commission</td>
+              <td><code>GB-CQC-1-123456789</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-tip">
+          <p><strong>Tip:</strong> You can parse the UID prefix to determine which source register an organisation was originally drawn from. When an organisation appears in multiple registers, the UID will correspond to the highest-precedence source (see <a href="#source-precedence">Section A2</a>).</p>
+        </div>
+      </div>
+
+      <!-- Section 6: Data Sources -->
+      <div class="section level1">
+        <h1>6. Data Sources</h1>
+
+        <p>The register draws on open data from ten UK regulatory bodies. The table below lists each source and its URL.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Charity Commission for England and Wales</td>
+              <td><a href="https://register-of-charities.charitycommission.gov.uk/en/register/full-register-download" target="_blank">register-of-charities.charitycommission.gov.uk</a></td>
+            </tr>
+            <tr>
+              <td>Scottish Charity Register (OSCR)</td>
+              <td><a href="https://www.oscr.org.uk/" target="_blank">www.oscr.org.uk</a></td>
+            </tr>
+            <tr>
+              <td>Charity Commission for Northern Ireland</td>
+              <td><a href="https://www.charitycommissionni.org.uk/" target="_blank">www.charitycommissionni.org.uk</a></td>
+            </tr>
+            <tr>
+              <td>Companies House</td>
+              <td><a href="https://download.companieshouse.gov.uk/en_output.html" target="_blank">download.companieshouse.gov.uk</a></td>
+            </tr>
+            <tr>
+              <td>Co-operatives UK</td>
+              <td><a href="https://www.uk.coop/resources/open-data" target="_blank">www.uk.coop/resources/open-data</a></td>
+            </tr>
+            <tr>
+              <td>Mutuals Public Register (FCA)</td>
+              <td><a href="https://mutuals.fca.org.uk/" target="_blank">mutuals.fca.org.uk</a></td>
+            </tr>
+            <tr>
+              <td>Scottish Housing Regulator</td>
+              <td><a href="https://www.housingregulator.gov.scot/landlord-performance/statistical-information/" target="_blank">www.housingregulator.gov.scot</a></td>
+            </tr>
+            <tr>
+              <td>Social Housing England</td>
+              <td><a href="https://www.gov.uk/government/publications/registered-providers-of-social-housing" target="_blank">gov.uk &mdash; Registered Providers</a></td>
+            </tr>
+            <tr>
+              <td>Care Inspectorate Scotland</td>
+              <td><a href="https://www.careinspectorate.com/index.php/statistics-and-analysis/data-and-analysis" target="_blank">www.careinspectorate.com</a></td>
+            </tr>
+            <tr>
+              <td>Care Quality Commission</td>
+              <td><a href="https://www.cqc.org.uk/about-us/transparency/using-cqc-data" target="_blank">www.cqc.org.uk</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The first eight sources in the table above contribute primary records to the spine. The Care Inspectorate Scotland and Care Quality Commission contribute only to the matches file &mdash; they are used to link organisations to existing spine records but do not add new organisations to the register.</p>
+      </div>
+
+      <!-- Section 7: Limitations & Caveats -->
+      <div class="section level1">
+        <h1>7. Limitations &amp; Caveats</h1>
+
+        <ul>
+          <li><strong>Scope.</strong> The register covers formally registered organisations only. Unregistered voluntary groups, informal associations, and community groups that do not appear on any regulatory register are not included.</li>
+
+          <li><strong>Coverage by jurisdiction.</strong> Coverage varies between jurisdictions. The CCNI register was established more recently than its counterparts in England, Wales, and Scotland, so the Northern Ireland data has less historical depth. CCNI also does not provide removal dates for deregistered charities.</li>
+
+          <li><strong>Missing data.</strong> Some fields are incomplete. Approximately 13,200 CCEW charity records lack address information (most were removed before 1997). Around 1,800 OSCR records lack organisation names and addresses. The <code>city</code> field is frequently blank across all sources.</li>
+
+          <li><strong>Multiple dates.</strong> A small proportion of CCEW records (3.6%) have more than one registration date. This can arise from data entry corrections, organisations that were removed and re-registered, or merged charities. The spine records the earliest registration date and latest removal date.</li>
+
+          <li><strong>Matching limitations.</strong> The deduplication algorithm identifies most cross-register duplicates but cannot guarantee perfect recall. Some genuine duplicates may remain unlinked (false negatives), particularly where organisation names differ substantially between registers or where no company number link exists. Conversely, a small number of false positive matches are possible where two genuinely distinct organisations share a normalised name.</li>
+
+          <li><strong>Point-in-time snapshot.</strong> The register reflects data as available at the time of construction. Organisations registered or removed after the data download dates will not be captured. The current release incorporates data downloaded through early 2025.</li>
+
+          <li><strong>Postcodes and geography.</strong> To link organisations to geographic areas (Local Authority, region, country), the postcode field can be joined to the National Statistics Postcode Lookup (NSPL). However, not all organisations have a valid postcode in the register.</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <p><strong>Dissolved organisations:</strong> The <code>removeddate</code> field indicates the date an organisation was dissolved, deregistered, or removed from its source register. A blank <code>removeddate</code> typically indicates the organisation is currently active, but in some cases it may reflect missing data rather than confirmed active status. Cross-referencing with the original source register is recommended for definitive status checks.</p>
+        </div>
+      </div>
+
+      <!-- Section 8: What Can You Learn? -->
+      <div class="section level1">
+        <h1>8. What Can You Learn?</h1>
+
+        <p>The Organisation Register enables a range of research and policy applications:</p>
+
+        <ul>
+          <li><strong>Sampling frame for national surveys.</strong> The deduplicated register provides the first comprehensive sampling frame that crosses legal form and organisation type within a single dataset. Researchers can draw stratified samples by organisational type, jurisdiction, geography, industrial classification, and organisational age.</li>
+
+          <li><strong>Local ecosystem analysis.</strong> By linking organisations to Local Authority areas via postcodes, the register enables analysis of how civil society provision varies across communities. Per-capita measures can be calculated by joining population estimates from the ONS mid-year estimates.</li>
+
+          <li><strong>Longitudinal tracking.</strong> The combination of registration dates, removal dates, and the linked financial datasets enables tracking of organisational lifecycles &mdash; from incorporation through growth, decline, and dissolution.</li>
+
+          <li><strong>Cross-register linkage.</strong> The UID system and matches file enable researchers to link the Organisation Register with other TCSS datasets, including charity financial records, Companies House accounts, CIC 36 community interest statements, CIC board of directors data, and public procurement records.</li>
+
+          <li><strong>Sector mapping.</strong> The SIC codes file enables industrial classification of Companies House organisations. Combined with the ICNPTSO charity classifications (available separately via the <a href="https://github.com/charity-classification/ukcat">UK Charity Activity Tags project</a>), researchers can map the full breadth of civil society activity.</li>
+        </ul>
+      </div>
+
+      <!-- Section 9: Citation & Licence -->
+      <div class="section level1">
+        <h1>9. Citation &amp; Licence</h1>
+
+        <div class="callout callout-info">
+          <p><strong>Licence:</strong> This dataset is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a> (CC BY 4.0). You are free to share, adapt, and build upon this data for any purpose, provided you give appropriate credit.</p>
+        </div>
+
+        <h3>Suggested Citation</h3>
+
+        <blockquote>
+          McDonnell et al. (2026). <em>UK Civil Society Organisation Register</em>. UK Third and Civil Society Sector Database. Available at: <a href="https://uk-third-sector-database.github.io/data/">https://uk-third-sector-database.github.io/data/</a>. Licensed under CC BY 4.0.
+        </blockquote>
+
+        <p>If you would like to learn more about this dataset and how it can be applied to your project or research programme, please contact <a href="mailto:research@brawdata.com">research@brawdata.com</a>.</p>
+      </div>
+
+      <!-- Section 10: Changelog -->
+      <div class="section level1">
+        <h1>10. Changelog</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.0</td>
+              <td>March 2026</td>
+              <td>Initial release: 770,923 organisations from 10 source registers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ============================================================
+           PART 2: TECHNICAL ANNEX
+           ============================================================ -->
+
+      <!-- Section A1: Data Processing -->
+      <div class="section level1">
+        <h1>A1. Data Processing</h1>
+
+        <p>Each source register uses different conventions for field names, encodings, date formats, and the treatment of alternative names and addresses. The pre-processing step for each source:</p>
+
+        <ol>
+          <li>Identifies the primary name and address for each organisation (choosing the most recent where multiple iterations exist)</li>
+          <li>Stores alternative names, addresses, and dates in the supplementary file</li>
+          <li>Normalises names by removing leading/trailing spaces, collapsing consecutive internal spaces, and converting to uppercase</li>
+          <li>Normalises addresses by concatenating address lines and the postcode into a single string</li>
+          <li>Converts all dates to <code>dd/mm/yyyy</code> format</li>
+        </ol>
+
+        <p>The eight primary sources are then combined into a single dataset. Organisations already present from a higher-precedence source are not duplicated; instead, any additional data is stored in the supplementary file. The project source code is available on <a href="https://github.com/uk-third-sector-database/tso-database-builder" target="_blank">GitHub</a>.</p>
+      </div>
+
+      <!-- Section A2: Source Precedence -->
+      <div class="section level1" id="source-precedence">
+        <h1>A2. Source Precedence</h1>
+
+        <p>When an organisation appears in multiple registers, the register with the highest precedence supplies the primary record (UID, name, address, dates) for the spine file. The precedence order is:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="numeric">Order</th>
+              <th>Source</th>
+              <th>Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="numeric">1</td>
+              <td>Charity Commission for England and Wales</td>
+              <td><code>CHC</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">2</td>
+              <td>Scottish Charity Register</td>
+              <td><code>SC</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">3</td>
+              <td>Charity Commission for Northern Ireland</td>
+              <td><code>NIC</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">4</td>
+              <td>Companies House</td>
+              <td><code>COH</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">5</td>
+              <td>Co-operatives</td>
+              <td><code>COOP</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">6</td>
+              <td>Mutuals Public Register</td>
+              <td><code>MPR</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">7</td>
+              <td>Scottish Housing Regulator</td>
+              <td><code>SHR</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">8</td>
+              <td>Social Housing England</td>
+              <td><code>SHPE</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">&ndash;</td>
+              <td>Care Inspectorate Scotland</td>
+              <td><code>CIS</code></td>
+            </tr>
+            <tr>
+              <td class="numeric">&ndash;</td>
+              <td>Care Quality Commission</td>
+              <td><code>CQC</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Charity registers take precedence over Companies House, meaning that a charity with a Companies House registration will have a <code>GB-CHC-</code> or <code>GB-SC-</code> UID rather than a <code>GB-COH-</code> UID. The Companies House record will appear in the supplementary and matches files.</p>
+      </div>
+
+      <!-- Section A3: Matching Algorithm -->
+      <div class="section level1" id="match-types">
+        <h1>A3. Matching Algorithm</h1>
+
+        <p>The deduplication process uses several strategies to identify organisations that appear in more than one register:</p>
+
+        <h3>Matching by Company ID</h3>
+
+        <p>The charity regulators (CCEW and OSCR) record the Companies House company number for charities that are also registered companies. This enables deterministic matching:</p>
+        <ul>
+          <li>CCEW charity records are matched to Companies House records via the company number</li>
+          <li>OSCR records with a company identifier are matched to Companies House records</li>
+          <li>Co-operatives UK records with a &ldquo;Registered Number&rdquo; are matched to the Mutuals Public Register</li>
+          <li>Where two CCEW charities share the same company number, they are linked as duplicates</li>
+        </ul>
+
+        <h3>Matching by Normalised Name</h3>
+
+        <p>Where two organisations in different registers share the same normalised name, they are tentatively matched subject to an additional condition. The match is confirmed if any of the following hold:</p>
+        <ol>
+          <li>The organisation is in CQC data and the matched core organisation is flagged as having a CQC registration in CCEW data</li>
+          <li>The organisation is in the OSCR register and has a &ldquo;cross border&rdquo; flag indicating a match is expected with CCEW</li>
+          <li>The organisation is in the Scottish Housing Regulator or Care Inspectorate Scotland, and the normalised name matches an OSCR record</li>
+          <li>The organisation is in Social Housing England or CQC, and the normalised name matches a CCEW record</li>
+        </ol>
+
+        <h3>Matching via Find That Charity</h3>
+
+        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 69,439 of the 125,624 total links.</p>
+
+        <h3>Determining the Primary Organisation</h3>
+
+        <p>Where a match occurs between organisations from different sources, the higher-precedence source provides the primary record. Where a match occurs between organisations from the <em>same</em> source:</p>
+        <ul>
+          <li>For CCEW matches, the Find That Charity lookup identifies the &ldquo;transferee&rdquo; in a re-registration; the transferee is treated as primary</li>
+          <li>Otherwise, the organisation without a removal date (i.e. still active) is primary; if both have removal dates, the one with the most recent removal date is primary</li>
+          <li>If neither has a removal date, the organisation with the earliest registration date is primary</li>
+        </ul>
+      </div>
+
+      <!-- Section A4: Company Type Inclusion -->
+      <div class="section level1" id="company-type-inclusion">
+        <h1>A4. Companies House Inclusion Criteria</h1>
+
+        <p>Companies House records are filtered to include only company types relevant to the civil society sector. The following table lists all company categories and whether they are included or excluded from the register.</p>
+
+        <h3>Included Company Types</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Company Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Charitable Incorporated Organisation</td></tr>
+            <tr><td>Community Interest Company</td></tr>
+            <tr><td>Industrial and Provident Society</td></tr>
+            <tr><td>PRI/LBG/NSC (Private, Limited by guarantee, no share capital, use of &lsquo;Limited&rsquo; exemption)</td></tr>
+            <tr><td>PRI/LTD BY GUAR/NSC (Private, limited by guarantee, no share capital)</td></tr>
+            <tr><td>Registered Society</td></tr>
+            <tr><td>Scottish Charitable Incorporated Organisation</td></tr>
+            <tr><td>Converted/Closed</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Excluded Company Types</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Company Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Private Limited Company</td></tr>
+            <tr><td>Public Limited Company</td></tr>
+            <tr><td>Limited Partnership</td></tr>
+            <tr><td>Limited Liability Partnership</td></tr>
+            <tr><td>Scottish Partnership</td></tr>
+            <tr><td>Private Unlimited Company</td></tr>
+            <tr><td>Private Unlimited</td></tr>
+            <tr><td>Investment Company with Variable Capital (Umbrella)</td></tr>
+            <tr><td>Investment Company with Variable Capital (Securities)</td></tr>
+            <tr><td>Investment Company with Variable Capital</td></tr>
+            <tr><td>PRIV LTD SECT. 30 (Private limited company, section 30 of the Companies Act)</td></tr>
+            <tr><td>Overseas Entity</td></tr>
+            <tr><td>United Kingdom Economic Interest Grouping</td></tr>
+            <tr><td>United Kingdom Societas</td></tr>
+            <tr><td>Old Public Company</td></tr>
+            <tr><td>Other Company Type</td></tr>
+            <tr><td>Protected Cell Company</td></tr>
+            <tr><td>Royal Charter Company</td></tr>
+            <tr><td>Further Education and Sixth Form College Corps</td></tr>
+            <tr><td>Other company type</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section A5: Linking to Other TCSS Datasets -->
+      <div class="section level1">
+        <h1>A5. Linking to Other TCSS Datasets</h1>
+
+        <p>The Organisation Register serves as the backbone for the wider TCSS data ecosystem. The <code>uid</code> field enables direct linkage to the following companion datasets:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>Link Field</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Charity Financial Records</td>
+              <td><code>uid</code></td>
+              <td>Longitudinal income and expenditure data for registered charities (CCEW, OSCR, CCNI)</td>
+            </tr>
+            <tr>
+              <td>Nonprofit Financial Records</td>
+              <td><code>uid</code></td>
+              <td>Companies House accounts data for CICs and other nonprofit companies</td>
+            </tr>
+            <tr>
+              <td>CIC 36 Community Interest Statements</td>
+              <td><code>uid</code></td>
+              <td>Beneficiary descriptions, activities, and surplus use statements from CIC incorporation forms</td>
+            </tr>
+            <tr>
+              <td>CIC Board of Directors</td>
+              <td><code>uid</code></td>
+              <td>Board member records for CICs from Companies House officer filings</td>
+            </tr>
+            <tr>
+              <td>Procurement Records</td>
+              <td><code>uid</code></td>
+              <td>Public procurement contracts and grants awarded to civil society organisations</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-tip">
+          <p><strong>Tip:</strong> When linking charities to Companies House financial data, use the matches file to find the corresponding <code>GB-COH-</code> UID. A charity with UID <code>GB-CHC-200009</code> may have a Companies House match at <code>GB-COH-00686799</code>, and the financial data will be keyed on the Companies House UID.</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="report-footer">
+        <p>This dataset guide was produced by the <a href="https://uk-third-sector-database.github.io/" target="_blank">UK Third and Civil Society Sector Database</a> project, funded by the <a href="https://gtr.ukri.org/projects?ref=ES/X000524/1" target="_blank">ESRC and DCMS</a>, in collaboration with the Third Sector Research Centre at the University of Birmingham and partner institutions at the Universities of Southampton, Oxford, Stirling, and the West of Scotland.</p>
+        <p><em>UK Third and Civil Society Sector Database &mdash; <a href="https://uk-third-sector-database.github.io/" target="_blank">uk-third-sector-database.github.io</a></em></p>
+      </div>
+
+    </div><!-- /.toc-content -->
+</div><!-- /.main-container -->
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<!-- Bootstrap 3 JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- tocify -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  // ----------------------------------------------------------------
+  // buildTabsets: convert div.section.tabset elements into Bootstrap
+  // 3 nav-tabs.
+  // ----------------------------------------------------------------
+  function buildTabsets() {
+    var tabsetId = 0;
+
+    $("div.section.tabset").each(function () {
+      var $container = $(this);
+
+      var parentLevel = 0;
+      for (var lvl = 1; lvl <= 6; lvl++) {
+        if ($container.hasClass("level" + lvl)) {
+          parentLevel = lvl;
+          break;
+        }
+      }
+      if (parentLevel === 0) {
+        var $heading = $container.children("h1, h2, h3, h4, h5, h6").first();
+        if ($heading.length) {
+          parentLevel = parseInt($heading.prop("tagName").replace("H", ""), 10);
+        }
+      }
+      if (parentLevel === 0) {
+        parentLevel = 1;
+      }
+
+      var childLevel = parentLevel + 1;
+      var childSelector = "div.section.level" + childLevel;
+
+      var $children = $container.children(childSelector);
+
+      if ($children.length === 0) {
+        $children = $();
+        var $next = $container.next();
+        while ($next.length && $next.is(childSelector)) {
+          $children = $children.add($next);
+          $next = $next.next();
+        }
+      }
+
+      if ($children.length === 0) {
+        return;
+      }
+
+      tabsetId++;
+      var baseId = "tabset-" + tabsetId;
+
+      var $ul = $('<ul class="nav nav-tabs" role="tablist"></ul>');
+      var $tabContent = $('<div class="tab-content"></div>');
+
+      $children.each(function (idx) {
+        var $section = $(this);
+        var $heading = $section.children("h" + childLevel).first();
+        var tabTitle = $heading.length ? $heading.text() : "Tab " + (idx + 1);
+        var paneId = baseId + "-" + (idx + 1);
+        var isActive = idx === 0;
+
+        var $li = $(
+          '<li role="presentation"' +
+            (isActive ? ' class="active"' : "") +
+            ">" +
+            '<a href="#' + paneId + '" role="tab" data-toggle="tab">' +
+            tabTitle +
+            "</a>" +
+            "</li>"
+        );
+        $ul.append($li);
+
+        $heading.remove();
+
+        $section
+          .addClass("tab-pane" + (isActive ? " active" : ""))
+          .attr("id", paneId)
+          .attr("role", "tabpanel")
+          .attr("data-tab-title", tabTitle);
+
+        $tabContent.append($section);
+      });
+
+      $container.append($ul);
+      $container.append($tabContent);
+    });
+  }
+
+  // ----------------------------------------------------------------
+  // Initialise on DOM ready
+  // ----------------------------------------------------------------
+  $(document).ready(function () {
+    buildTabsets();
+
+    if ($.fn.tocify && $("#TOC").length) {
+      $("#TOC").tocify({
+        selectors: "h1:not(.toc-ignore), h2:not(.toc-ignore), h3:not(.toc-ignore)",
+        theme: "none",
+        smoothScroll: true,
+        smoothScrollSpeed: 300,
+        highlightOnScroll: true,
+        highlightOffset: 80,
+        scrollTo: 60,
+        hashGenerator: "pretty",
+        ignoreSelector: ".toc-ignore",
+        showAndHide: true,
+        showAndHideOnScroll: true,
+        extendPage: false
+      });
+    }
+  });
+})();
+
+// ----------------------------------------------------------------
+// TOC toggle
+// ----------------------------------------------------------------
+function toggleTOC() {
+  var toc = document.getElementById("TOC");
+  var overlay = document.getElementById("tocOverlay");
+  var btn = document.querySelector(".toc-toggle");
+  if (toc) {
+    toc.classList.toggle("open");
+    overlay.classList.toggle("open");
+    btn.classList.toggle("shifted");
+  }
+}
+
+// ----------------------------------------------------------------
+// Accessibility functions
+// ----------------------------------------------------------------
+function toggleA11yPanel() {
+  document.getElementById("a11yPanel").classList.toggle("open");
+}
+
+function setFontSize(size) {
+  document.body.classList.remove("font-medium", "font-large");
+  document.querySelectorAll(".size-btns button").forEach(function(b) { b.classList.remove("active"); });
+  if (size === "medium") { document.body.classList.add("font-medium"); document.getElementById("fs-medium").classList.add("active"); }
+  else if (size === "large") { document.body.classList.add("font-large"); document.getElementById("fs-large").classList.add("active"); }
+  else { document.getElementById("fs-default").classList.add("active"); }
+  localStorage.setItem("a11y-font-size", size);
+}
+
+function toggleContrast() {
+  var on = document.getElementById("contrastToggle").checked;
+  document.body.classList.toggle("high-contrast", on);
+  localStorage.setItem("a11y-high-contrast", on ? "true" : "false");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var savedSize = localStorage.getItem("a11y-font-size");
+  if (savedSize && savedSize !== "default") setFontSize(savedSize);
+  var savedContrast = localStorage.getItem("a11y-high-contrast");
+  if (savedContrast === "true") { document.getElementById("contrastToggle").checked = true; document.body.classList.add("high-contrast"); }
+});
+</script>
+
+</body>
+</html>
