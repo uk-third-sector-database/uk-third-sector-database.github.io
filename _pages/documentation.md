@@ -16,7 +16,7 @@ Detailed guidance notes describing the contents, coverage, and production pipeli
 
 | Dataset | Format | |
 |---------|--------|-|
-| TCSS Organisation Register | <a href="/guidance/tcss-organisation-register-guidance.html" target="_blank">HTML</a> | |
+| TCSS Organisation Register | <a href="/guidance/tcss-organisation-register-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-organisation-register-guidance.pdf" target="_blank">PDF</a> |
 | CIC 36 Community Interest Statements | <a href="/guidance/tcss-cic36-forms-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-cic36-forms-guidance.pdf" target="_blank">PDF</a> |
 
 </div>
