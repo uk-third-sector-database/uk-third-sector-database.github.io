@@ -10,8 +10,8 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Updates"
-    url: /year-archive/
+  - title: "Documentation"
+    url: /documentation/
 
   - title: "Meet the Team"
     url: /meet-the-team/
