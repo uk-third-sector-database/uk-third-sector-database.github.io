@@ -1,0 +1,3106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Procurement Records — Dataset Guide</title>
+
+<!-- Google Fonts: Lora + Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Bootstrap 3 CSS -->
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
+
+<!-- jQuery UI (for tocify) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+/>
+
+<!-- tocify CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/stylesheets/jquery.tocify.min.css"
+/>
+
+<style>
+/* ================================================================
+   Base
+   ================================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #222222;
+  background: #F7F9FA;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================================================
+   Typography
+   ================================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+  color: #1A6B7C;
+  font-weight: 600;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.55em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.1em; color: #2A9D8F; }
+h5 { font-size: 1em; color: #555555; }
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #2672B0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 90%;
+  background: #F0F5F7;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #1A6B7C;
+}
+
+pre {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #dde4ea;
+  margin: 2em 0;
+}
+
+/* ================================================================
+   Layout
+   ================================================================ */
+.main-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.toc-content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* ================================================================
+   Collapsible TOC Sidebar
+   ================================================================ */
+#TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1500;
+  width: 280px;
+  background-color: #1A6B7C;
+  padding: 3.5rem 1.2rem 1.5rem 1.2rem;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#TOC.open {
+  transform: translateX(0);
+}
+
+.toc-toggle {
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1600;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #1A6B7C;
+  background: #F0F5F7;
+  color: #1A6B7C;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: left 0.3s ease, background 0.2s;
+  line-height: 1;
+}
+
+.toc-toggle:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.toc-toggle.shifted {
+  left: 292px;
+}
+
+.toc-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1400;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.toc-overlay.open {
+  display: block;
+}
+
+/* tocify overrides (dark sidebar) */
+.tocify {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tocify ul, .tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.tocify-header {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tocify-subheader {
+  font-size: 0.9em;
+  padding-left: 14px !important;
+}
+
+.tocify .tocify-item {
+  padding: 6px 12px;
+  border-left: 3px solid transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 4px;
+}
+
+.tocify .tocify-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify .tocify-item.active {
+  border-left-color: #E9C46A;
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ================================================================
+   Header / Title Block
+   ================================================================ */
+#header {
+  text-align: left;
+  padding: 30px 0 20px;
+  border-bottom: 3px solid #1A6B7C;
+  margin-bottom: 30px;
+}
+
+#header h1.title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #1A6B7C;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+#header h3.subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15em;
+  font-weight: 400;
+  color: #5A7A8A;
+  margin: 0 0 4px 0;
+}
+
+#header h4.date {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+}
+
+/* ================================================================
+   gt-style Tables
+   ================================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.92em;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+thead th {
+  background: #1A6B7C;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #1A6B7C;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #eef1f5;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #F0F5F7;
+}
+
+tbody tr:hover {
+  background: #e6eff4;
+}
+
+td.numeric, th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  caption-side: top;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #1A6B7C;
+  padding: 8px 0;
+  text-align: left;
+}
+
+/* ================================================================
+   Stat Cards
+   ================================================================ */
+.stat-cards {
+  display: flex;
+  gap: 18px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 170px;
+  background: #ffffff;
+  border-left: 4px solid #2A9D8F;
+  padding: 18px 20px;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card .number {
+  font-size: 1.9em;
+  font-weight: 700;
+  color: #1A6B7C;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.stat-card .label {
+  font-size: 0.88em;
+  color: #555555;
+  font-weight: 500;
+}
+
+/* ================================================================
+   Figure Containers
+   ================================================================ */
+.figure-container {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.figure-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.figure-caption {
+  font-size: 0.88em;
+  color: #5A7A8A;
+  margin-top: 8px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ================================================================
+   Coverage Bars
+   ================================================================ */
+.coverage-bar-container {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.coverage-item {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.coverage-item .cov-label {
+  font-size: 0.85em;
+  color: #555555;
+  margin-bottom: 8px;
+}
+
+.coverage-item .cov-bar {
+  height: 10px;
+  background: #e8eef4;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.coverage-item .cov-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1A6B7C, #2A9D8F);
+  border-radius: 5px;
+}
+
+.coverage-item .cov-pct {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #1A6B7C;
+}
+
+/* ================================================================
+   Callout Boxes
+   ================================================================ */
+.callout {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.callout-info {
+  background: #eef6fa;
+  border-left-color: #2672B0;
+  color: #1a4a6b;
+}
+
+.callout-warning {
+  background: #fef9ec;
+  border-left-color: #e6a817;
+  color: #7a5c0b;
+}
+
+.callout-tip {
+  background: #eef8f3;
+  border-left-color: #2A9D8F;
+  color: #1a5c4a;
+}
+
+/* ================================================================
+   Section Level Styles
+   ================================================================ */
+.section.level1 {
+  margin-top: 40px;
+  padding-top: 10px;
+}
+
+.section.level1 > h1 {
+  border-bottom: 3px solid #2A9D8F;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.section.level2 {
+  margin-top: 28px;
+}
+
+.section.level3 {
+  margin-top: 20px;
+}
+
+/* ================================================================
+   Footer
+   ================================================================ */
+.report-footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #dde4ea;
+  color: #555555;
+  font-size: 0.9em;
+}
+
+.report-footer em {
+  color: #5A7A8A;
+}
+
+/* ================================================================
+   Accessibility Panel
+   ================================================================ */
+.a11y-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1050;
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #F0F5F7;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.a11y-btn:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.a11y-panel {
+  position: fixed;
+  top: 62px;
+  right: 12px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  padding: 18px 20px 14px;
+  min-width: 180px;
+  display: none;
+}
+
+.a11y-panel.open {
+  display: block;
+}
+
+.a11y-panel label {
+  color: #1A6B7C;
+  font-weight: 600;
+  font-size: 0.93em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.size-btns {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.size-btns button {
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 4px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.size-btns button:hover,
+.size-btns button.active {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.contrast-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Font size classes */
+body.font-medium {
+  font-size: 18px;
+}
+body.font-medium h1 { font-size: 2.3em; }
+body.font-medium h2 { font-size: 1.75em; }
+body.font-medium h3 { font-size: 1.4em; }
+body.font-medium table { font-size: 1em; }
+
+body.font-large {
+  font-size: 22px;
+}
+body.font-large h1 { font-size: 2.5em; }
+body.font-large h2 { font-size: 1.9em; }
+body.font-large h3 { font-size: 1.55em; }
+body.font-large table { font-size: 1.1em; }
+
+/* High contrast mode */
+body.high-contrast {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast h4,
+body.high-contrast h5,
+body.high-contrast h6 {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header {
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast #header h1.title {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header h3.subtitle {
+  color: #a0c4d8;
+}
+
+body.high-contrast a {
+  color: #7ab8e0;
+}
+
+body.high-contrast table {
+  background: #242444;
+  box-shadow: none;
+}
+
+body.high-contrast thead th {
+  background: #2a3a5e;
+  color: #e0e0e0;
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast tbody td {
+  border-bottom-color: #3a3a5e;
+  color: #e0e0e0;
+}
+
+body.high-contrast tbody tr:nth-child(even) {
+  background: #2a2a4e;
+}
+
+body.high-contrast tbody tr:hover {
+  background: #3a3a6e;
+}
+
+body.high-contrast .stat-card {
+  background: #242444;
+  border-left-color: #7ab8e0;
+  box-shadow: none;
+}
+
+body.high-contrast .stat-card .number {
+  color: #7ab8e0;
+}
+
+body.high-contrast .stat-card .label {
+  color: #b0b0c0;
+}
+
+body.high-contrast .callout {
+  background: #242444;
+  color: #d0d0e0;
+}
+
+body.high-contrast .callout-info {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .coverage-item {
+  background: #242444;
+  border-color: #3a3a5e;
+}
+
+body.high-contrast .coverage-item .cov-bar {
+  background: #3a3a5e;
+}
+
+body.high-contrast .coverage-item .cov-pct {
+  color: #7ab8e0;
+}
+
+body.high-contrast #TOC {
+  background-color: #0d0d1a;
+}
+
+body.high-contrast .toc-toggle {
+  background: #252540;
+  color: #7ab8e0;
+  border-color: #7ab8e0;
+}
+
+body.high-contrast .toc-toggle:hover {
+  background: #7ab8e0;
+  color: #1a1a2e;
+}
+
+body.high-contrast .tocify .tocify-item {
+  color: #b0b0c0;
+}
+
+body.high-contrast .tocify .tocify-item:hover,
+body.high-contrast .tocify .tocify-item.active {
+  color: #7ab8e0;
+  background: #2a2a4e;
+}
+
+body.high-contrast .tocify .tocify-item.active {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .report-footer,
+body.high-contrast .report-footer em {
+  color: #a0a0b0;
+}
+
+body.high-contrast code {
+  background: #2a2a4e;
+  color: #7ab8e0;
+}
+
+body.high-contrast blockquote {
+  border-left-color: #7ab8e0;
+  color: #d0d0e0;
+}
+
+body.high-contrast .figure-caption {
+  color: #a0c4d8;
+}
+
+/* ================================================================
+   Print Styles
+   ================================================================ */
+@media print {
+  #TOC,
+  .toc-toggle,
+  .toc-overlay {
+    display: none !important;
+  }
+
+  .toc-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tab-content > .tab-pane {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .nav-tabs {
+    display: none !important;
+  }
+
+  .tab-content > .tab-pane::before {
+    content: attr(data-tab-title);
+    display: block;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #1A6B7C;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+
+  body {
+    font-size: 12px;
+    background: #fff;
+    color: #000;
+  }
+
+  table {
+    box-shadow: none;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .stat-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .figure-container img {
+    box-shadow: none;
+    max-width: 80%;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .a11y-btn, .a11y-panel {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   Responsive
+   ================================================================ */
+@media (max-width: 767px) {
+  #header h1.title {
+    font-size: 1.6em;
+  }
+
+  .stat-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stat-card {
+    min-width: 100%;
+  }
+
+  table {
+    font-size: 0.82em;
+  }
+
+  thead th,
+  tbody td {
+    padding: 6px 8px;
+  }
+
+  .main-container {
+    padding: 0 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- TOC Toggle + Overlay -->
+<button class="toc-toggle" onclick="toggleTOC()" title="Table of contents" aria-label="Toggle table of contents">&#9776;</button>
+<div class="toc-overlay" id="tocOverlay" onclick="toggleTOC()"></div>
+<div id="TOC" class="tocify"></div>
+
+<!-- Accessibility Panel -->
+<button class="a11y-btn" onclick="toggleA11yPanel()" title="Accessibility options" aria-label="Accessibility options">Aa</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility settings">
+  <label>Text size</label>
+  <div class="size-btns">
+    <button onclick="setFontSize('default')" id="fs-default" class="active">A</button>
+    <button onclick="setFontSize('medium')" id="fs-medium">A+</button>
+    <button onclick="setFontSize('large')" id="fs-large">A++</button>
+  </div>
+  <div class="contrast-toggle">
+    <input type="checkbox" id="contrastToggle" onchange="toggleContrast()">
+    <label for="contrastToggle" style="margin:0; font-weight:500;">High contrast</label>
+  </div>
+</div>
+
+<div class="main-container">
+    <div class="toc-content">
+
+      <!-- Title Block -->
+      <div id="header">
+        <h1 class="title toc-ignore">Procurement Records</h1>
+        <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
+        <h4 class="date toc-ignore">March 2026</h4>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="section level1">
+        <h1>1. Overview</h1>
+
+        <p>This dataset provides records of public procurement payments made to civil society organisations &mdash; including registered charities, community interest companies, co-operatives, and other third sector bodies &mdash; across the United Kingdom. It was produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> project, which collects, processes, and links public administrative data on civil society organisations throughout the UK.</p>
+
+        <p>The data is drawn from three open data sources: central government transparency spending data, NHS payment records, and Contracts Finder awarded contract notices. Each payment record links a public sector funder to a civil society supplier, providing a detailed picture of how public money flows to the third sector through procurement and commissioning.</p>
+
+        <p>The dataset contains 881,214 payment records covering 10,774 organisations and 1,421 public funders, spanning the period from 2010 to 2025. Together, these records offer a comprehensive view of the scale, distribution, and evolution of public procurement relationships with civil society across the UK.</p>
+
+        <div class="stat-cards">
+          <div class="stat-card"><span class="number">881,214</span><span class="label">Payment Records</span></div>
+          <div class="stat-card"><span class="number">10,774</span><span class="label">Organisations</span></div>
+          <div class="stat-card"><span class="number">1,421</span><span class="label">Public Funders</span></div>
+          <div class="stat-card"><span class="number">2010&ndash;2025</span><span class="label">Years Covered</span></div>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="section level1">
+        <h1>2. What are Procurement Records?</h1>
+
+        <p>UK public bodies are required to publish details of their spending over certain thresholds as part of government transparency commitments. This dataset draws from three open data initiatives that collect and standardise these spending records, filtered to include only payments made to civil society organisations identified in the TCSS Organisation Register.</p>
+
+        <h3>Central Government Spending</h3>
+        <p>UK government departments publish monthly CSV files of all transactions exceeding &pound;25,000 as part of HM Government&rsquo;s spending transparency commitments. These files are collected and harmonised by the <a href="https://github.com/crahal/centgovspend">centgovspend</a> project, which aggregates and cleans thousands of files from ministerial and non-ministerial departments for consistency and quality controls. Central government spending accounts for 90.3% of the records in this dataset.</p>
+
+        <h3>NHS Spending</h3>
+        <p>Payment records from NHS Trusts and Clinical Commissioning Groups (CCGs) are collected by the <a href="https://github.com/crahal/NHSSpend">NHSSpend</a> project. This covers payments exceeding &pound;25,000 made by NHS institutions across England, spanning approximately 2010 to April 2020 when data collection concluded. NHS spending accounts for 7.8% of records.</p>
+
+        <h3>Contracts Finder</h3>
+        <p><a href="https://www.contractsfinder.service.gov.uk/">Contracts Finder</a> is the UK government&rsquo;s online portal for public sector procurement opportunities and awarded contracts. Awarded contract notices are scraped by the TCSS project&rsquo;s own <a href="https://github.com/uk-third-sector-database/contracts_finder">Contracts Finder collector</a>. Unlike the payment-level data from the other two sources, Contracts Finder provides contract-level information (awarded amounts and dates). These records account for 1.9% of the dataset.</p>
+      </div>
+
+      <!-- Section 3: Dataset Contents -->
+      <div class="section level1">
+        <h1>3. Dataset Contents</h1>
+
+        <p>The dataset contains 881,214 records across 15 fields. Each row represents a single payment from a public sector funder to a civil society organisation. The fields are organised into four groups: identifiers, payment details, funder information, and summary statistics.</p>
+
+        <h3>Identifiers &amp; Organisation Info</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>uid</code></td>
+              <td>Unique organisation identifier from the TCSS Organisation Register (e.g., <code>GB-COH-12345678</code>, <code>GB-CHC-1234567</code>, <code>GB-SC-SC012345</code>)</td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>organisation_name</code></td>
+              <td>Organisation name as recorded in the source data</td>
+              <td>Text</td>
+              <td class="numeric">80.3%</td>
+            </tr>
+            <tr>
+              <td><code>supplier_id</code></td>
+              <td>Internal supplier identifier assigned during pipeline processing (e.g., <code>S192664</code>)</td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>supplier_type</code></td>
+              <td>Organisation type: <code>Charity</code>, <code>CIC</code>, <code>Co-operative/Mutual</code>, or <code>Other CSO</code></td>
+              <td>Text</td>
+              <td class="numeric">99.8%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Payment Details</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>payment_year</code></td>
+              <td>Calendar year of the payment</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>payment_date</code></td>
+              <td>Date of payment (<code>YYYY-MM-DD</code> format)</td>
+              <td>Date</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>amount</code></td>
+              <td>Payment amount in pounds sterling (&pound;); negative values indicate reversals or corrections</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>data_source</code></td>
+              <td>Source dataset: <code>Central Government</code>, <code>NHSSpend</code>, <code>Contracts Finder</code>, or <code>contractsfinder</code></td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Funder Information</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>funder_name</code></td>
+              <td>Canonical funder name (uppercase)</td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>funder_name_alt</code></td>
+              <td>Alternative funder name, where applicable</td>
+              <td>Text</td>
+              <td class="numeric">1.0%</td>
+            </tr>
+            <tr>
+              <td><code>funder_id</code></td>
+              <td>Unique funder identifier (e.g., <code>F02683</code>)</td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>funder_type</code></td>
+              <td>Funder classification: <code>UK Government</code>, <code>NHS</code>, <code>Local Government</code>, <code>Education Institution</code>, <code>CSO</code>, <code>Police, Fire and Rescue</code>, <code>Other</code>, or <code>Junk/Invalid</code></td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>funder_type_alt</code></td>
+              <td>Classification of the alternative funder name</td>
+              <td>Text</td>
+              <td class="numeric">1.3%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <p><strong>Note:</strong> The <code>funder_name_alt</code> and <code>funder_type_alt</code> fields are populated only where an alternative funder name was assigned during the classification pipeline. This primarily applies to Contracts Finder funders that were manually refined to their parent Central Government department (e.g., DVSA mapped to DFTRANSPORT).</p>
+        </div>
+
+        <h3>Summary Statistics</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>total_value_payments_to_org</code></td>
+              <td>Total value of all payments to this organisation across the full dataset (&pound;)</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>total_number_payments_to_org</code></td>
+              <td>Total number of payments to this organisation across the full dataset</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 4: Coverage & Completeness -->
+      <div class="section level1">
+        <h1>4. Coverage &amp; Completeness</h1>
+
+        <h3>Core Field Coverage</h3>
+        <p>The core fields &mdash; <code>uid</code>, <code>payment_date</code>, <code>amount</code>, and <code>data_source</code> &mdash; are present in all records. The <code>organisation_name</code> field is missing for approximately one in five records; these payments are still linked to valid organisations via <code>uid</code> and <code>supplier_id</code>.</p>
+
+        <div class="coverage-bar-container">
+          <div class="coverage-item">
+            <div class="cov-label">uid</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 100%;"></div></div>
+            <div class="cov-pct">100%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">payment_date</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 100%;"></div></div>
+            <div class="cov-pct">100%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">amount</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 100%;"></div></div>
+            <div class="cov-pct">100%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">organisation_name</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 80.3%;"></div></div>
+            <div class="cov-pct">80.3%</div>
+          </div>
+        </div>
+
+        <h3>Data Source Breakdown</h3>
+        <p>The dataset draws from four data source tags. Central government spending dominates, accounting for over 90% of all records.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th class="numeric">Records</th>
+              <th class="numeric">Unique Organisations</th>
+              <th class="numeric">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Central Government</td>
+              <td class="numeric">796,128</td>
+              <td class="numeric">7,222</td>
+              <td class="numeric">90.3%</td>
+            </tr>
+            <tr>
+              <td>NHSSpend</td>
+              <td class="numeric">68,528</td>
+              <td class="numeric">2,066</td>
+              <td class="numeric">7.8%</td>
+            </tr>
+            <tr>
+              <td>Contracts Finder</td>
+              <td class="numeric">16,558</td>
+              <td class="numeric">4,397</td>
+              <td class="numeric">1.9%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <p><strong>Note:</strong> The Contracts Finder row combines records tagged as <code>Contracts Finder</code> and <code>contractsfinder</code> in the <code>data_source</code> field, which reflect different collection batches from the same portal.</p>
+        </div>
+
+        <h3>Funder Type Distribution</h3>
+        <p>Funders are classified into eight types using a multi-layer cascade (see <a href="#a2-funder-classification">Appendix A2</a>). UK Government departments account for the vast majority of funding.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Funder Type</th>
+              <th class="numeric">Records</th>
+              <th class="numeric">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>UK Government</td>
+              <td class="numeric">801,360</td>
+              <td class="numeric">90.9%</td>
+            </tr>
+            <tr>
+              <td>NHS</td>
+              <td class="numeric">70,107</td>
+              <td class="numeric">8.0%</td>
+            </tr>
+            <tr>
+              <td>Local Government</td>
+              <td class="numeric">7,610</td>
+              <td class="numeric">0.9%</td>
+            </tr>
+            <tr>
+              <td>Education Institution</td>
+              <td class="numeric">802</td>
+              <td class="numeric">0.1%</td>
+            </tr>
+            <tr>
+              <td>Other</td>
+              <td class="numeric">573</td>
+              <td class="numeric">0.1%</td>
+            </tr>
+            <tr>
+              <td>CSO</td>
+              <td class="numeric">423</td>
+              <td class="numeric">&lt;0.1%</td>
+            </tr>
+            <tr>
+              <td>Police, Fire and Rescue</td>
+              <td class="numeric">319</td>
+              <td class="numeric">&lt;0.1%</td>
+            </tr>
+            <tr>
+              <td>Junk/Invalid</td>
+              <td class="numeric">20</td>
+              <td class="numeric">&lt;0.1%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Supplier Type Distribution</h3>
+        <p>Civil society organisations in the dataset are classified by legal form. &ldquo;Other CSO&rdquo; includes companies limited by guarantee and other third sector bodies that do not fall into the three specific categories.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Supplier Type</th>
+              <th class="numeric">Records</th>
+              <th class="numeric">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Other CSO</td>
+              <td class="numeric">610,993</td>
+              <td class="numeric">69.3%</td>
+            </tr>
+            <tr>
+              <td>Charity</td>
+              <td class="numeric">222,247</td>
+              <td class="numeric">25.2%</td>
+            </tr>
+            <tr>
+              <td>Co-operative/Mutual</td>
+              <td class="numeric">28,736</td>
+              <td class="numeric">3.3%</td>
+            </tr>
+            <tr>
+              <td>CIC</td>
+              <td class="numeric">17,576</td>
+              <td class="numeric">2.0%</td>
+            </tr>
+            <tr>
+              <td><em>(Missing)</em></td>
+              <td class="numeric">1,662</td>
+              <td class="numeric">0.2%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Year-by-Year Record Counts</h3>
+        <p>Record counts vary substantially by year, reflecting the availability of source data over time. Coverage is strongest between 2012 and 2023.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th class="numeric">Records</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2010</td><td class="numeric">5,140</td></tr>
+            <tr><td>2011</td><td class="numeric">7,892</td></tr>
+            <tr><td>2012</td><td class="numeric">52,304</td></tr>
+            <tr><td>2013</td><td class="numeric">116,804</td></tr>
+            <tr><td>2014</td><td class="numeric">166,657</td></tr>
+            <tr><td>2015</td><td class="numeric">53,970</td></tr>
+            <tr><td>2016</td><td class="numeric">29,817</td></tr>
+            <tr><td>2017</td><td class="numeric">64,218</td></tr>
+            <tr><td>2018</td><td class="numeric">63,025</td></tr>
+            <tr><td>2019</td><td class="numeric">66,216</td></tr>
+            <tr><td>2020</td><td class="numeric">59,325</td></tr>
+            <tr><td>2021</td><td class="numeric">56,297</td></tr>
+            <tr><td>2022</td><td class="numeric">61,212</td></tr>
+            <tr><td>2023</td><td class="numeric">66,446</td></tr>
+            <tr><td>2024</td><td class="numeric">10,911</td></tr>
+            <tr><td>2025</td><td class="numeric">951</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-warning">
+          <p><strong>Note:</strong> Twenty-nine records fall outside the 2010&ndash;2025 range shown above. These include a small number with implausible payment years (e.g., 1900, 2027) due to source data errors, as well as records from 2005&ndash;2009 that predate the main collection period and 19 records dated 2026 from ongoing data collection. All are retained in the dataset for transparency; users conducting temporal analysis may wish to filter to the core 2010&ndash;2025 range. The 2024 and 2025 figures are also incomplete as source data collection is ongoing.</p>
+        </div>
+
+        <h3>Organisation Register Composition</h3>
+        <p>The <code>uid</code> prefix indicates which source register each organisation originates from in the TCSS Organisation Register. Companies House registrations dominate, reflecting the large number of companies limited by guarantee and other nonprofit company forms.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Prefix</th>
+              <th>Source Register</th>
+              <th class="numeric">Records</th>
+              <th class="numeric">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>GB-COH</code></td>
+              <td>Companies House</td>
+              <td class="numeric">629,751</td>
+              <td class="numeric">71.5%</td>
+            </tr>
+            <tr>
+              <td><code>GB-CHC</code></td>
+              <td>Charity Commission for England &amp; Wales</td>
+              <td class="numeric">203,778</td>
+              <td class="numeric">23.1%</td>
+            </tr>
+            <tr>
+              <td><code>GB-COO</code></td>
+              <td>Co-operatives UK</td>
+              <td class="numeric">23,156</td>
+              <td class="numeric">2.6%</td>
+            </tr>
+            <tr>
+              <td><code>GB-SC</code></td>
+              <td>Office of the Scottish Charity Regulator</td>
+              <td class="numeric">18,623</td>
+              <td class="numeric">2.1%</td>
+            </tr>
+            <tr>
+              <td><code>GB-MPR</code></td>
+              <td>Mutuals Public Register (FCA)</td>
+              <td class="numeric">5,580</td>
+              <td class="numeric">0.6%</td>
+            </tr>
+            <tr>
+              <td><code>GB-NIC</code></td>
+              <td>Charity Commission for Northern Ireland</td>
+              <td class="numeric">183</td>
+              <td class="numeric">&lt;0.1%</td>
+            </tr>
+            <tr>
+              <td><code>GB-SHR</code></td>
+              <td>Scottish Housing Regulator</td>
+              <td class="numeric">143</td>
+              <td class="numeric">&lt;0.1%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 5: What Can You Learn? -->
+      <div class="section level1">
+        <h1>5. What Can You Learn?</h1>
+
+        <p>The procurement dataset enables a wide range of research questions about the relationship between the public sector and civil society in the United Kingdom.</p>
+
+        <h3>Research Questions</h3>
+        <ul>
+          <li><strong>Scale and trends</strong> &mdash; How much does the UK government spend with civil society organisations, and how has this changed over time?</li>
+          <li><strong>Funder analysis</strong> &mdash; Which government departments and NHS bodies are the largest funders of civil society? How does spending vary across funder types?</li>
+          <li><strong>Sectoral composition</strong> &mdash; What types of civil society organisations receive the most public procurement funding &mdash; charities, community interest companies, or co-operatives?</li>
+          <li><strong>Concentration</strong> &mdash; How concentrated is procurement spending? Do a small number of organisations receive the majority of payments?</li>
+          <li><strong>Cross-sector linkage</strong> &mdash; By linking to the TCSS Organisation Register, researchers can explore how procurement recipients differ from the broader civil society population in terms of size, age, location, and industrial classification.</li>
+        </ul>
+
+        <h3>Example: Mapping UK Civil Society Procurement</h3>
+
+        <p>The procurement dataset was used in the research report <em>Mapping and Understanding the UK Civil Society Sector</em> (McDonnell et al., 2026), which analysed the full set of payment records to characterise the flow of public money to civil society organisations. Key findings include:</p>
+
+        <ul>
+          <li><strong>UK Government dominates</strong> &mdash; UK Government departments are the largest source of public procurement spend to civil society across all organisation types, accounting for the majority of both payment volume and total value.</li>
+          <li><strong>Charities receive the largest share</strong> &mdash; Charities receive 42% of total procurement spend to civil society, reflecting their central role in public service delivery.</li>
+          <li><strong>Scale of spending</strong> &mdash; UK Government departments account for over &pound;131 billion in cumulative payments, dwarfing the NHS (&pound;15 billion), local government (&pound;8 billion), and all other funder types combined.</li>
+          <li><strong>Department-level variation</strong> &mdash; Analysis at the individual department level reveals substantial variation in how much each department spends with different types of civil society organisation, from health-focused charities receiving NHS payments to social enterprises delivering local government contracts.</li>
+        </ul>
+
+<figure><div class="gt-embed"><div id="chnloglxbz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <style>#chnloglxbz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#chnloglxbz thead, #chnloglxbz tbody, #chnloglxbz tfoot, #chnloglxbz tr, #chnloglxbz td, #chnloglxbz th {
+  border-style: none;
+}
+
+#chnloglxbz p {
+  margin: 0;
+  padding: 0;
+}
+
+#chnloglxbz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#chnloglxbz .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#chnloglxbz .gt_subtitle {
+  color: #333333;
+  font-size: 13px;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#chnloglxbz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#chnloglxbz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#chnloglxbz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#chnloglxbz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#chnloglxbz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#chnloglxbz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#chnloglxbz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#chnloglxbz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#chnloglxbz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#chnloglxbz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#chnloglxbz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#chnloglxbz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnloglxbz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#chnloglxbz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#chnloglxbz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#chnloglxbz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnloglxbz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#chnloglxbz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnloglxbz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#chnloglxbz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnloglxbz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#chnloglxbz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#chnloglxbz .gt_left {
+  text-align: left;
+}
+
+#chnloglxbz .gt_center {
+  text-align: center;
+}
+
+#chnloglxbz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#chnloglxbz .gt_font_normal {
+  font-weight: normal;
+}
+
+#chnloglxbz .gt_font_bold {
+  font-weight: bold;
+}
+
+#chnloglxbz .gt_font_italic {
+  font-style: italic;
+}
+
+#chnloglxbz .gt_super {
+  font-size: 65%;
+}
+
+#chnloglxbz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#chnloglxbz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#chnloglxbz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#chnloglxbz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#chnloglxbz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#chnloglxbz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#chnloglxbz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#chnloglxbz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#chnloglxbz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+  <table class="gt_table" style="table-layout:fixed;width:100%;" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+    <col style="width:150px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="8" class="gt_heading gt_title gt_font_normal" style>Table 4: Procurement by <abbr title="Civil Society Organisation">CSO</abbr> type and funder type</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="8" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Number of organisations, payments, and total value</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="CSO"><abbr title="Civil Society Organisation">CSO</abbr></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Education-Institution">Education Institution</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Local-Government">Local Government</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="NHS"><abbr title="National Health Service">NHS</abbr></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Other">Other</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Police,-Fire-and-Rescue">Police, Fire and Rescue</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="UK-Government">UK Government</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub"><abbr title="Community Interest Company">CIC</abbr></th>
+<td headers="stub_1_1 CSO" class="gt_row gt_left" style="white-space: nowrap;">18 orgs<br>35 payments<br>£7.1M</td>
+<td headers="stub_1_1 Education Institution" class="gt_row gt_left" style="white-space: nowrap;">14 orgs<br>21 payments<br>£1.1M</td>
+<td headers="stub_1_1 Local Government" class="gt_row gt_left" style="white-space: nowrap;">312 orgs<br>615 payments<br>£795.4M</td>
+<td headers="stub_1_1 NHS" class="gt_row gt_left" style="white-space: nowrap;">258 orgs<br>12,611 payments<br>£4721.9M</td>
+<td headers="stub_1_1 Other" class="gt_row gt_left" style="white-space: nowrap;">38 orgs<br>54 payments<br>£191.0M</td>
+<td headers="stub_1_1 Police, Fire and Rescue" class="gt_row gt_left" style="white-space: nowrap;">16 orgs<br>25 payments<br>£9.7M</td>
+<td headers="stub_1_1 UK Government" class="gt_row gt_left" style="white-space: nowrap;">267 orgs<br>3,599 payments<br>£386.6M</td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">Charity</th>
+<td headers="stub_1_2 CSO" class="gt_row gt_left" style="white-space: nowrap;">154 orgs<br>247 payments<br>£230.7M</td>
+<td headers="stub_1_2 Education Institution" class="gt_row gt_left" style="white-space: nowrap;">167 orgs<br>443 payments<br>£89.1M</td>
+<td headers="stub_1_2 Local Government" class="gt_row gt_left" style="white-space: nowrap;">1,784 orgs<br>5,353 payments<br>£5386.0M</td>
+<td headers="stub_1_2 NHS" class="gt_row gt_left" style="white-space: nowrap;">1,765 orgs<br>42,808 payments<br>£8745.4M</td>
+<td headers="stub_1_2 Other" class="gt_row gt_left" style="white-space: nowrap;">234 orgs<br>382 payments<br>£875.9M</td>
+<td headers="stub_1_2 Police, Fire and Rescue" class="gt_row gt_left" style="white-space: nowrap;">109 orgs<br>206 payments<br>£407.0M</td>
+<td headers="stub_1_2 UK Government" class="gt_row gt_left" style="white-space: nowrap;">3,798 orgs<br>171,112 payments<br>£50731.5M</td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub">Co-operative / Mutual</th>
+<td headers="stub_1_3 CSO" class="gt_row gt_left" style="white-space: nowrap;">15 orgs<br>32 payments<br>£9.4M</td>
+<td headers="stub_1_3 Education Institution" class="gt_row gt_left" style="white-space: nowrap;">9 orgs<br>17 payments<br>£3.3M</td>
+<td headers="stub_1_3 Local Government" class="gt_row gt_left" style="white-space: nowrap;">105 orgs<br>570 payments<br>£1537.6M</td>
+<td headers="stub_1_3 NHS" class="gt_row gt_left" style="white-space: nowrap;">96 orgs<br>3,607 payments<br>£557.8M</td>
+<td headers="stub_1_3 Other" class="gt_row gt_left" style="white-space: nowrap;">17 orgs<br>28 payments<br>£83.8M</td>
+<td headers="stub_1_3 Police, Fire and Rescue" class="gt_row gt_left" style="white-space: nowrap;">3 orgs<br>3 payments<br>£1.7M</td>
+<td headers="stub_1_3 UK Government" class="gt_row gt_left" style="white-space: nowrap;">141 orgs<br>24,364 payments<br>£942.2M</td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub">Other</th>
+<td headers="stub_1_4 CSO" class="gt_row gt_left" style="white-space: nowrap;">67 orgs<br>109 payments<br>£64.2M</td>
+<td headers="stub_1_4 Education Institution" class="gt_row gt_left" style="white-space: nowrap;">74 orgs<br>321 payments<br>£39.6M</td>
+<td headers="stub_1_4 Local Government" class="gt_row gt_left" style="white-space: nowrap;">415 orgs<br>1,058 payments<br>£386.7M</td>
+<td headers="stub_1_4 NHS" class="gt_row gt_left" style="white-space: nowrap;">260 orgs<br>8,232 payments<br>£1185.2M</td>
+<td headers="stub_1_4 Other" class="gt_row gt_left" style="white-space: nowrap;">72 orgs<br>109 payments<br>£65.1M</td>
+<td headers="stub_1_4 Police, Fire and Rescue" class="gt_row gt_left" style="white-space: nowrap;">24 orgs<br>85 payments<br>£20.5M</td>
+<td headers="stub_1_4 UK Government" class="gt_row gt_left" style="white-space: nowrap;">3,524 orgs<br>600,720 payments<br>£79275.8M</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="8">Source: UK Civil Society Spine, Contracts Finder and procurement data</td>
+    </tr>
+  </tfoot>
+</table>
+</div></div></figure>
+<figcaption>Table 9: Procurement by <abbr title="Civil Society Organisation">CSO</abbr> type and funder type. Each cell shows the number of organisations, payments, and total value. Source: UK Civil Society Spine, Contracts Finder and procurement data.</figcaption>
+
+<h3 id="uk-government-departments-by-cso-type">UK Government departments by <abbr title="Civil Society Organisation">CSO</abbr> type</h3>
+<p>Table 10 shows the proportion of each UK Government department's procurement spend that goes to each civil society organisation type. Departments vary considerably in where their procurement is directed. The Department for Culture, Media and Sport and the Department for International Development direct over 90% of their civil society spend to charities, while the Department for Education and the Department for Business and Trade allocate over 75% to other nonprofit companies. The Department for Work and Pensions stands out for relatively high <abbr title="Community Interest Company">CIC</abbr> (6.1%) and co-operative/mutual (7.1%) shares compared with other departments.</p>
+<figure><div class="gt-embed"><div id="wqyogwawpk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <style>#wqyogwawpk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wqyogwawpk thead, #wqyogwawpk tbody, #wqyogwawpk tfoot, #wqyogwawpk tr, #wqyogwawpk td, #wqyogwawpk th {
+  border-style: none;
+}
+
+#wqyogwawpk p {
+  margin: 0;
+  padding: 0;
+}
+
+#wqyogwawpk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wqyogwawpk .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wqyogwawpk .gt_subtitle {
+  color: #333333;
+  font-size: 13px;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wqyogwawpk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wqyogwawpk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wqyogwawpk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wqyogwawpk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wqyogwawpk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wqyogwawpk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wqyogwawpk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wqyogwawpk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wqyogwawpk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wqyogwawpk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wqyogwawpk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wqyogwawpk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqyogwawpk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wqyogwawpk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wqyogwawpk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wqyogwawpk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqyogwawpk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wqyogwawpk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqyogwawpk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wqyogwawpk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqyogwawpk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wqyogwawpk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqyogwawpk .gt_left {
+  text-align: left;
+}
+
+#wqyogwawpk .gt_center {
+  text-align: center;
+}
+
+#wqyogwawpk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wqyogwawpk .gt_font_normal {
+  font-weight: normal;
+}
+
+#wqyogwawpk .gt_font_bold {
+  font-weight: bold;
+}
+
+#wqyogwawpk .gt_font_italic {
+  font-style: italic;
+}
+
+#wqyogwawpk .gt_super {
+  font-size: 65%;
+}
+
+#wqyogwawpk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wqyogwawpk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wqyogwawpk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wqyogwawpk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wqyogwawpk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wqyogwawpk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wqyogwawpk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#wqyogwawpk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wqyogwawpk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="5" class="gt_heading gt_title gt_font_normal" style>Table 10: UK Government department procurement spend by <abbr title="Civil Society Organisation">CSO</abbr> type</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Proportion of each department's total spend to civil society by organisation type (%)</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold; border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;" scope="col" id="Charity">Charity</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="CIC"><abbr title="Community Interest Company">CIC</abbr></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Co-operative/Mutual">Co-operative / Mutual</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-weight: bold;" scope="col" id="Other-CSO">Other <abbr title="Civil Society Organisation">CSO</abbr></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">Bank of England</th>
+<td headers="stub_1_1 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">55.4%</td>
+<td headers="stub_1_1 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_1 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_1 Other CSO" class="gt_row gt_right">44.6%</td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">Cabinet Office</th>
+<td headers="stub_1_2 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">72.4%</td>
+<td headers="stub_1_2 CIC" class="gt_row gt_right">0.5%</td>
+<td headers="stub_1_2 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_2 Other CSO" class="gt_row gt_right">27.1%</td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub">Care Quality Commission</th>
+<td headers="stub_1_3 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">98.5%</td>
+<td headers="stub_1_3 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_3 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_3 Other CSO" class="gt_row gt_right">1.5%</td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub">Crown Commercial Service</th>
+<td headers="stub_1_4 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">35.9%</td>
+<td headers="stub_1_4 CIC" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_4 Co-operative/Mutual" class="gt_row gt_right">2.2%</td>
+<td headers="stub_1_4 Other CSO" class="gt_row gt_right">61.6%</td></tr>
+    <tr><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub">Defence Science &amp; Technology Laboratory</th>
+<td headers="stub_1_5 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">76.3%</td>
+<td headers="stub_1_5 CIC" class="gt_row gt_right">3.4%</td>
+<td headers="stub_1_5 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_5 Other CSO" class="gt_row gt_right">20.3%</td></tr>
+    <tr><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub">Department for Business &amp; Trade</th>
+<td headers="stub_1_6 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">17.0%</td>
+<td headers="stub_1_6 CIC" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_6 Co-operative/Mutual" class="gt_row gt_right">0.5%</td>
+<td headers="stub_1_6 Other CSO" class="gt_row gt_right">82.2%</td></tr>
+    <tr><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub">Department for Culture, Media &amp; Sport</th>
+<td headers="stub_1_7 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">98.0%</td>
+<td headers="stub_1_7 CIC" class="gt_row gt_right">0.1%</td>
+<td headers="stub_1_7 Co-operative/Mutual" class="gt_row gt_right">0.1%</td>
+<td headers="stub_1_7 Other CSO" class="gt_row gt_right">1.9%</td></tr>
+    <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub">Department for Education</th>
+<td headers="stub_1_8 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">23.3%</td>
+<td headers="stub_1_8 CIC" class="gt_row gt_right">0.1%</td>
+<td headers="stub_1_8 Co-operative/Mutual" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_8 Other CSO" class="gt_row gt_right">76.0%</td></tr>
+    <tr><th id="stub_1_9" scope="row" class="gt_row gt_left gt_stub">Department for Energy Security &amp; Net Zero</th>
+<td headers="stub_1_9 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">1.9%</td>
+<td headers="stub_1_9 CIC" class="gt_row gt_right">2.0%</td>
+<td headers="stub_1_9 Co-operative/Mutual" class="gt_row gt_right">18.8%</td>
+<td headers="stub_1_9 Other CSO" class="gt_row gt_right">77.3%</td></tr>
+    <tr><th id="stub_1_10" scope="row" class="gt_row gt_left gt_stub">Department for Environment, Food &amp; Rural Affairs</th>
+<td headers="stub_1_10 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">71.9%</td>
+<td headers="stub_1_10 CIC" class="gt_row gt_right">0.7%</td>
+<td headers="stub_1_10 Co-operative/Mutual" class="gt_row gt_right">0.6%</td>
+<td headers="stub_1_10 Other CSO" class="gt_row gt_right">26.8%</td></tr>
+    <tr><th id="stub_1_11" scope="row" class="gt_row gt_left gt_stub">Department for International Development</th>
+<td headers="stub_1_11 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">92.9%</td>
+<td headers="stub_1_11 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_11 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_11 Other CSO" class="gt_row gt_right">7.1%</td></tr>
+    <tr><th id="stub_1_12" scope="row" class="gt_row gt_left gt_stub">Department for International Trade</th>
+<td headers="stub_1_12 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">7.8%</td>
+<td headers="stub_1_12 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_12 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_12 Other CSO" class="gt_row gt_right">92.2%</td></tr>
+    <tr><th id="stub_1_13" scope="row" class="gt_row gt_left gt_stub">Department for International Trade</th>
+<td headers="stub_1_13 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">6.5%</td>
+<td headers="stub_1_13 CIC" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_13 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_13 Other CSO" class="gt_row gt_right">93.2%</td></tr>
+    <tr><th id="stub_1_14" scope="row" class="gt_row gt_left gt_stub">Department for Science, Innovation &amp; Technology</th>
+<td headers="stub_1_14 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">38.7%</td>
+<td headers="stub_1_14 CIC" class="gt_row gt_right">4.4%</td>
+<td headers="stub_1_14 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_14 Other CSO" class="gt_row gt_right">56.9%</td></tr>
+    <tr><th id="stub_1_15" scope="row" class="gt_row gt_left gt_stub">Department for Transport</th>
+<td headers="stub_1_15 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">20.9%</td>
+<td headers="stub_1_15 CIC" class="gt_row gt_right">0.1%</td>
+<td headers="stub_1_15 Co-operative/Mutual" class="gt_row gt_right">1.7%</td>
+<td headers="stub_1_15 Other CSO" class="gt_row gt_right">77.3%</td></tr>
+    <tr><th id="stub_1_16" scope="row" class="gt_row gt_left gt_stub">Department for Work &amp; Pensions</th>
+<td headers="stub_1_16 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">57.6%</td>
+<td headers="stub_1_16 CIC" class="gt_row gt_right">6.1%</td>
+<td headers="stub_1_16 Co-operative/Mutual" class="gt_row gt_right">7.1%</td>
+<td headers="stub_1_16 Other CSO" class="gt_row gt_right">29.1%</td></tr>
+    <tr><th id="stub_1_17" scope="row" class="gt_row gt_left gt_stub">Department of Health &amp; Social Care</th>
+<td headers="stub_1_17 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">82.1%</td>
+<td headers="stub_1_17 CIC" class="gt_row gt_right">0.4%</td>
+<td headers="stub_1_17 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_17 Other CSO" class="gt_row gt_right">17.5%</td></tr>
+    <tr><th id="stub_1_18" scope="row" class="gt_row gt_left gt_stub">Driver &amp; Vehicle Licensing Agency</th>
+<td headers="stub_1_18 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">21.4%</td>
+<td headers="stub_1_18 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_18 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_18 Other CSO" class="gt_row gt_right">78.6%</td></tr>
+    <tr><th id="stub_1_19" scope="row" class="gt_row gt_left gt_stub">Food Standards Agency</th>
+<td headers="stub_1_19 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">12.6%</td>
+<td headers="stub_1_19 CIC" class="gt_row gt_right">0.5%</td>
+<td headers="stub_1_19 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_19 Other CSO" class="gt_row gt_right">83.4%</td></tr>
+    <tr><th id="stub_1_20" scope="row" class="gt_row gt_left gt_stub">Foreign Office</th>
+<td headers="stub_1_20 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">93.9%</td>
+<td headers="stub_1_20 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_20 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_20 Other CSO" class="gt_row gt_right">6.0%</td></tr>
+    <tr><th id="stub_1_21" scope="row" class="gt_row gt_left gt_stub">Foreign, Commonwealth &amp; Development Office</th>
+<td headers="stub_1_21 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">84.0%</td>
+<td headers="stub_1_21 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_21 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_21 Other CSO" class="gt_row gt_right">16.0%</td></tr>
+    <tr><th id="stub_1_22" scope="row" class="gt_row gt_left gt_stub">HM Land Registry</th>
+<td headers="stub_1_22 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">0.3%</td>
+<td headers="stub_1_22 CIC" class="gt_row gt_right">5.8%</td>
+<td headers="stub_1_22 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_22 Other CSO" class="gt_row gt_right">93.8%</td></tr>
+    <tr><th id="stub_1_23" scope="row" class="gt_row gt_left gt_stub">HM Revenue &amp; Customs</th>
+<td headers="stub_1_23 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">8.7%</td>
+<td headers="stub_1_23 CIC" class="gt_row gt_right">0.1%</td>
+<td headers="stub_1_23 Co-operative/Mutual" class="gt_row gt_right">0.2%</td>
+<td headers="stub_1_23 Other CSO" class="gt_row gt_right">91.0%</td></tr>
+    <tr><th id="stub_1_24" scope="row" class="gt_row gt_left gt_stub">HM Treasury</th>
+<td headers="stub_1_24 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">5.3%</td>
+<td headers="stub_1_24 CIC" class="gt_row gt_right">0.1%</td>
+<td headers="stub_1_24 Co-operative/Mutual" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_24 Other CSO" class="gt_row gt_right">94.3%</td></tr>
+    <tr><th id="stub_1_25" scope="row" class="gt_row gt_left gt_stub">Health Education England</th>
+<td headers="stub_1_25 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">35.8%</td>
+<td headers="stub_1_25 CIC" class="gt_row gt_right">25.5%</td>
+<td headers="stub_1_25 Co-operative/Mutual" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_25 Other CSO" class="gt_row gt_right">38.5%</td></tr>
+    <tr><th id="stub_1_26" scope="row" class="gt_row gt_left gt_stub">Highways England</th>
+<td headers="stub_1_26 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">94.6%</td>
+<td headers="stub_1_26 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_26 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_26 Other CSO" class="gt_row gt_right">5.4%</td></tr>
+    <tr><th id="stub_1_27" scope="row" class="gt_row gt_left gt_stub">Home Office</th>
+<td headers="stub_1_27 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">38.2%</td>
+<td headers="stub_1_27 CIC" class="gt_row gt_right">1.4%</td>
+<td headers="stub_1_27 Co-operative/Mutual" class="gt_row gt_right">0.2%</td>
+<td headers="stub_1_27 Other CSO" class="gt_row gt_right">60.2%</td></tr>
+    <tr><th id="stub_1_28" scope="row" class="gt_row gt_left gt_stub">Homes England</th>
+<td headers="stub_1_28 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">95.0%</td>
+<td headers="stub_1_28 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_28 Co-operative/Mutual" class="gt_row gt_right">3.5%</td>
+<td headers="stub_1_28 Other CSO" class="gt_row gt_right">1.5%</td></tr>
+    <tr><th id="stub_1_29" scope="row" class="gt_row gt_left gt_stub">Institute for Apprenticeships &amp; Technical Education</th>
+<td headers="stub_1_29 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">100.0%</td>
+<td headers="stub_1_29 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_29 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_29 Other CSO" class="gt_row gt_right">0.0%</td></tr>
+    <tr><th id="stub_1_30" scope="row" class="gt_row gt_left gt_stub">Medicines &amp; Healthcare Products Regulatory Agency</th>
+<td headers="stub_1_30 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">99.6%</td>
+<td headers="stub_1_30 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_30 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_30 Other CSO" class="gt_row gt_right">0.4%</td></tr>
+    <tr><th id="stub_1_31" scope="row" class="gt_row gt_left gt_stub">Ministry of Defence</th>
+<td headers="stub_1_31 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">71.2%</td>
+<td headers="stub_1_31 CIC" class="gt_row gt_right">0.8%</td>
+<td headers="stub_1_31 Co-operative/Mutual" class="gt_row gt_right">5.0%</td>
+<td headers="stub_1_31 Other CSO" class="gt_row gt_right">22.9%</td></tr>
+    <tr><th id="stub_1_32" scope="row" class="gt_row gt_left gt_stub">Ministry of Housing, Communities &amp; Local Government</th>
+<td headers="stub_1_32 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">79.1%</td>
+<td headers="stub_1_32 CIC" class="gt_row gt_right">0.3%</td>
+<td headers="stub_1_32 Co-operative/Mutual" class="gt_row gt_right">2.1%</td>
+<td headers="stub_1_32 Other CSO" class="gt_row gt_right">18.5%</td></tr>
+    <tr><th id="stub_1_33" scope="row" class="gt_row gt_left gt_stub">Ministry of Justice</th>
+<td headers="stub_1_33 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">63.4%</td>
+<td headers="stub_1_33 CIC" class="gt_row gt_right">3.1%</td>
+<td headers="stub_1_33 Co-operative/Mutual" class="gt_row gt_right">3.3%</td>
+<td headers="stub_1_33 Other CSO" class="gt_row gt_right">30.2%</td></tr>
+    <tr><th id="stub_1_34" scope="row" class="gt_row gt_left gt_stub">Money &amp; Pensions Service</th>
+<td headers="stub_1_34 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">100.0%</td>
+<td headers="stub_1_34 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_34 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_34 Other CSO" class="gt_row gt_right">0.0%</td></tr>
+    <tr><th id="stub_1_35" scope="row" class="gt_row gt_left gt_stub"><abbr title="National Health Service">NHS</abbr> Blood &amp; Transplant</th>
+<td headers="stub_1_35 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">2.7%</td>
+<td headers="stub_1_35 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_35 Co-operative/Mutual" class="gt_row gt_right">93.9%</td>
+<td headers="stub_1_35 Other CSO" class="gt_row gt_right">3.4%</td></tr>
+    <tr><th id="stub_1_36" scope="row" class="gt_row gt_left gt_stub">Public Health England</th>
+<td headers="stub_1_36 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">59.9%</td>
+<td headers="stub_1_36 CIC" class="gt_row gt_right">10.8%</td>
+<td headers="stub_1_36 Co-operative/Mutual" class="gt_row gt_right">0.6%</td>
+<td headers="stub_1_36 Other CSO" class="gt_row gt_right">27.1%</td></tr>
+    <tr><th id="stub_1_37" scope="row" class="gt_row gt_left gt_stub">Scotland Office</th>
+<td headers="stub_1_37 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">53.8%</td>
+<td headers="stub_1_37 CIC" class="gt_row gt_right">0.2%</td>
+<td headers="stub_1_37 Co-operative/Mutual" class="gt_row gt_right">4.3%</td>
+<td headers="stub_1_37 Other CSO" class="gt_row gt_right">41.7%</td></tr>
+    <tr><th id="stub_1_38" scope="row" class="gt_row gt_left gt_stub">Sellafield Ltd</th>
+<td headers="stub_1_38 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">1.1%</td>
+<td headers="stub_1_38 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_38 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_38 Other CSO" class="gt_row gt_right">98.9%</td></tr>
+    <tr><th id="stub_1_39" scope="row" class="gt_row gt_left gt_stub">Skills Funding Agency</th>
+<td headers="stub_1_39 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">50.0%</td>
+<td headers="stub_1_39 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_39 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_39 Other CSO" class="gt_row gt_right">50.0%</td></tr>
+    <tr><th id="stub_1_40" scope="row" class="gt_row gt_left gt_stub">Transport for London</th>
+<td headers="stub_1_40 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">66.7%</td>
+<td headers="stub_1_40 CIC" class="gt_row gt_right">25.0%</td>
+<td headers="stub_1_40 Co-operative/Mutual" class="gt_row gt_right">6.5%</td>
+<td headers="stub_1_40 Other CSO" class="gt_row gt_right">1.9%</td></tr>
+    <tr><th id="stub_1_41" scope="row" class="gt_row gt_left gt_stub">UK Health Security Agency</th>
+<td headers="stub_1_41 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">1.8%</td>
+<td headers="stub_1_41 CIC" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_41 Co-operative/Mutual" class="gt_row gt_right">0.0%</td>
+<td headers="stub_1_41 Other CSO" class="gt_row gt_right">98.2%</td></tr>
+    <tr><th id="stub_1_42" scope="row" class="gt_row gt_left gt_stub">UK Research &amp; Innovation</th>
+<td headers="stub_1_42 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">42.0%</td>
+<td headers="stub_1_42 CIC" class="gt_row gt_right">20.6%</td>
+<td headers="stub_1_42 Co-operative/Mutual" class="gt_row gt_right">3.3%</td>
+<td headers="stub_1_42 Other CSO" class="gt_row gt_right">34.1%</td></tr>
+    <tr><th id="stub_1_43" scope="row" class="gt_row gt_left gt_stub">UK Shared Business Services</th>
+<td headers="stub_1_43 Charity" class="gt_row gt_right" style="border-left-width: 2px; border-left-style: solid; border-left-color: #D3D3D3;">34.3%</td>
+<td headers="stub_1_43 CIC" class="gt_row gt_right">7.1%</td>
+<td headers="stub_1_43 Co-operative/Mutual" class="gt_row gt_right">3.5%</td>
+<td headers="stub_1_43 Other CSO" class="gt_row gt_right">55.0%</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="5">Source: UK Civil Society Spine, Contracts Finder and procurement data</td>
+    </tr>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="5">Note: Includes 43 departments with total civil society spend of at least £10 million.</td>
+    </tr>
+  </tfoot>
+</table>
+</div></div></figure>
+<figcaption>Table 10: UK Government department procurement spend by civil society organisation type. Proportion of each department's total spend to civil society (%). Departments with at least £10 million total spend. Source: UK Civil Society Spine, Contracts Finder and procurement data.</figcaption>
+
+        <div class="callout callout-tip">
+          <p><strong>Tip:</strong> This dataset can be linked to the <a href="https://uk-third-sector-database.github.io/guidance/tcss-organisation-register-guidance.html">TCSS Organisation Register</a> using the <code>uid</code> field, enabling enrichment with organisation characteristics such as location, registration dates, and industrial classification codes. See <a href="#a5-linking-to-other-tcss-datasets">Appendix A5</a> for worked examples.</p>
+        </div>
+      </div>
+
+      <!-- Section 6: Limitations & Caveats -->
+      <div class="section level1">
+        <h1>6. Limitations &amp; Caveats</h1>
+
+        <h3>Threshold Bias</h3>
+        <p>The source data includes only transactions above &pound;25,000, as mandated by UK government transparency requirements. Smaller payments and grants below this threshold are not captured. This means the dataset over-represents larger contracts and under-represents routine smaller purchases, and total spending figures will understate the true volume of public procurement from civil society.</p>
+
+        <h3>Missing Organisation Names</h3>
+        <p>Approximately 19.7% of records lack an <code>organisation_name</code> value. These records are still linked to valid organisations through the <code>uid</code> and <code>supplier_id</code> fields, but the name was not always present in the source spending data. Users can recover organisation names by joining with the <a href="https://uk-third-sector-database.github.io/guidance/tcss-organisation-register-guidance.html">TCSS Organisation Register</a> on <code>uid</code>.</p>
+
+        <h3>Year Outliers</h3>
+        <p>A small number of records (22 in total) carry implausible payment years such as 1900 or 2027, resulting from errors in the source data. These records are retained for transparency. Users conducting temporal analysis should filter to the core range of 2010&ndash;2025, and may also wish to note that the 2024 and 2025 counts are incomplete as source data collection is ongoing.</p>
+
+        <h3>Duplicate and Reversal Entries</h3>
+        <p>Some records represent payment corrections or reversals, indicated by negative values in the <code>amount</code> field. These are retained to preserve the source data faithfully. Users conducting aggregate analysis should be aware that na&iuml;ve summation of amounts may overstate or understate totals; consider filtering or handling negative amounts depending on the research question.</p>
+
+        <h3>NHS Coverage Gap</h3>
+        <p>The NHSSpend data collection concluded around April 2020. NHS procurement records after this date are not included in the dataset, creating a gap in NHS-specific coverage for 2020 onwards. Central government and Contracts Finder data continue beyond this date.</p>
+
+        <h3>Supplier Matching</h3>
+        <p>Organisations in the raw payment data were matched to the TCSS Organisation Register using a combination of exact and fuzzy name matching (Jaro-Winkler similarity, threshold &ge; 0.90). Some false positives (incorrect matches) and false negatives (missed matches) are possible, particularly for organisations with common or ambiguous names. The alias resolution process (see <a href="#a3-supplier-matching--alias-resolution">Appendix A3</a>) mitigates but does not eliminate this issue.</p>
+
+        <h3>Funder Classification</h3>
+        <p>Funders are classified using a multi-layer cascade of metadata signals, external lookups, and keyword rules (see <a href="#a2-funder-classification">Appendix A2</a>). While the cascade achieves high accuracy for well-known funder types (NHS, UK Government), edge cases &mdash; particularly funders with ambiguous names or those not present in external reference databases &mdash; may be misclassified. The <code>Junk/Invalid</code> category captures clearly erroneous entries (20 records).</p>
+
+        <h3>What&rsquo;s NOT in the Data</h3>
+        <p>The dataset does not include:</p>
+        <ul>
+          <li>Contract descriptions or service categories</li>
+          <li>Geographic detail of the contract delivery location</li>
+          <li>Payments below &pound;25,000</li>
+          <li>Payments to organisations not identified in the TCSS Organisation Register</li>
+          <li>Procurement from non-civil-society suppliers (private companies, individuals, etc.)</li>
+        </ul>
+      </div>
+
+      <!-- Section 7: Citation & Licence -->
+      <div class="section level1">
+        <h1>7. Citation &amp; Licence</h1>
+
+        <div class="callout callout-info">
+          <p><strong>Licence:</strong> This dataset is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a> (CC BY 4.0). You are free to share, adapt, and build upon this data for any purpose, provided you give appropriate credit.</p>
+        </div>
+
+        <h3>Suggested Citation</h3>
+
+        <blockquote>
+          McDonnell, D. et al. (2026). <em>TCSS Procurement Records</em>. UK Third and Civil Society Sector Database. Available at: <a href="https://uk-third-sector-database.github.io/data/">https://uk-third-sector-database.github.io/data/</a>. Licensed under CC BY 4.0.
+        </blockquote>
+
+        <p>If you would like to learn more about this dataset and how it can be applied to your project or research programme, please contact <a href="mailto:research@brawdata.com">research@brawdata.com</a>.</p>
+      </div>
+
+      <!-- Section 8: Changelog -->
+      <div class="section level1">
+        <h1>8. Changelog</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Date</th>
+              <th>Changes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.0</td>
+              <td>March 2026</td>
+              <td>Initial release of the Procurement Records guidance document and dataset.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Appendices -->
+      <div class="section level1">
+        <h1>A1. Pipeline Overview</h1>
+
+        <p>The procurement dataset is produced by a six-step R preprocessing pipeline that transforms raw spending data into the final linked dataset. The pipeline is orchestrated by a single script (<code>run-all-preprocessing-pipeline.R</code>) that runs each step in sequence, skipping steps whose inputs have not changed since the last successful run.</p>
+
+        <h3>Pipeline Steps</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Script</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><code>02-build-funder-lookup.R</code></td>
+              <td>Classifies approximately 1,400 unique funders into eight types using a multi-layer cascade of metadata signals, external lookups, and keyword rules. See <a href="#a2-funder-classification">Appendix A2</a>.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><code>03-build-supplier-lookup.R</code></td>
+              <td>Matches supplier names from the raw payment data to the TCSS Organisation Register using exact and fuzzy name matching (Jaro-Winkler, threshold &ge; 0.90). Assigns a <code>uid</code> and <code>supplier_type</code> to each matched supplier.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><code>03a-generate-alias-batches.R</code></td>
+              <td>Identifies potential supplier name aliases &mdash; cases where the same organisation appears under different names &mdash; using deterministic rules. Generates review batches for manual or LLM-assisted validation.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><code>03b-assemble-alias-decisions.R</code></td>
+              <td>Assembles alias decisions from both rule-based determinations and LLM-reviewed batch results into a single validated alias file.</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><code>03c-apply-alias-merges.R</code></td>
+              <td>Applies validated alias merges to the supplier lookup, consolidating duplicate supplier entries under a single canonical <code>uid</code>.</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><code>04-assemble-final-datasets.R</code></td>
+              <td>Joins funder classifications, supplier lookups, and raw payment data into the final output file. Computes per-organisation summary statistics (<code>total_value_payments_to_org</code>, <code>total_number_payments_to_org</code>).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <p><strong>Note:</strong> Steps 3&ndash;5 handle the alias review pipeline. In a fully automated run, Step 3 generates candidate batches, but the LLM review must occur externally before Step 4 can assemble decisions. When reviewed batches already exist, all steps run in sequence without manual intervention.</p>
+        </div>
+      </div>
+
+      <div class="section level1">
+        <h1>A2. Funder Classification</h1>
+
+        <p>Funders are classified into eight types using a multi-layer cascade. Classification is applied independently to <code>funder_name</code> (producing <code>funder_type</code>) and <code>funder_name_alt</code> (producing <code>funder_type_alt</code>). The cascade proceeds in order; the first match wins.</p>
+
+        <h3>Classification Cascade</h3>
+
+        <h4>Pre-filter: Junk/Invalid Detection</h4>
+        <p>Entries with purely numeric names, hash-like strings, or very short names (fewer than 3 meaningful characters) are flagged as <code>Junk/Invalid</code> and excluded from subsequent cascade layers. This affects 20 records.</p>
+
+        <h4>Layer 1: Metadata Signals</h4>
+        <p>Information already present in the source data is used as the first classification signal:</p>
+        <ul>
+          <li>Funders from the <code>NHSSpend</code> data source are classified as <strong>NHS</strong></li>
+          <li>Funders from the <code>Central Government</code> data source are classified as <strong>UK Government</strong></li>
+          <li>The <code>note</code> field in the funder masterlist may contain signals such as &ldquo;ministerial&rdquo; or &ldquo;non-ministerial&rdquo;, indicating <strong>UK Government</strong></li>
+        </ul>
+
+        <h4>Layer 2: External Lookups</h4>
+        <p>Unclassified funders are matched against two external reference databases:</p>
+        <ul>
+          <li><strong><a href="https://findthatcharity.uk/" target="_blank">findthatcharity</a></strong> &mdash; a comprehensive lookup of UK organisations. The <code>organisationType</code> field is mapped to funder types (e.g., <code>nhs-trust</code> &rarr; NHS, <code>local-authority</code> &rarr; Local Government). Both exact and fuzzy matching (Jaro-Winkler, threshold &ge; 0.90) are used.</li>
+          <li><strong>TCSS Organisation Register</strong> &mdash; funders that match the Organisation Register are classified as <strong>CSO</strong> (a civil society organisation acting as a funder).</li>
+        </ul>
+
+        <h4>Layer 3: Keyword Rules</h4>
+        <p>Remaining unclassified funders are matched using pattern-matching rules applied to the funder name. Rules are applied in priority order; the first match wins:</p>
+        <ol>
+          <li><strong>NHS</strong> &mdash; names containing &ldquo;NHS&rdquo; combined with &ldquo;TRUST&rdquo;, &ldquo;CCG&rdquo;, &ldquo;ICB&rdquo;, etc.</li>
+          <li><strong>UK Government</strong> &mdash; known department abbreviations (FCDO, DFID, etc.) and patterns like &ldquo;BRITISH EMBASSY&rdquo;, &ldquo;SCOTTISH GOVERNMENT&rdquo;</li>
+          <li><strong>Local Government</strong> &mdash; names containing &ldquo;CITY COUNCIL&rdquo;, &ldquo;COUNTY COUNCIL&rdquo;, &ldquo;BOROUGH COUNCIL&rdquo;, etc.</li>
+          <li><strong>Police, Fire and Rescue</strong> &mdash; names containing &ldquo;CONSTABULARY&rdquo;, &ldquo;POLICE&rdquo;, &ldquo;FIRE&rdquo; + &ldquo;RESCUE&rdquo;</li>
+          <li><strong>Education Institution</strong> &mdash; names containing &ldquo;UNIVERSITY&rdquo;, &ldquo;COLLEGE&rdquo;, &ldquo;ACADEMY TRUST&rdquo;, school patterns</li>
+          <li><strong>CSO</strong> &mdash; names ending in &ldquo;CIC&rdquo; or containing &ldquo;TRUST&rdquo; or &ldquo;CHARITY&rdquo; (after NHS and Academy Trusts have been captured)</li>
+          <li><strong>Other</strong> &mdash; all remaining unclassified funders</li>
+        </ol>
+
+        <h3>Funder Type Taxonomy</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Funder Type</th>
+              <th>Description</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>UK Government</td>
+              <td>Central government departments, agencies, and arm&rsquo;s-length bodies</td>
+              <td>DEPARTMENT FOR EDUCATION, MINISTRY OF DEFENCE, DVLA</td>
+            </tr>
+            <tr>
+              <td>NHS</td>
+              <td>NHS trusts, clinical commissioning groups, integrated care boards</td>
+              <td>NHS ENGLAND, BARTS HEALTH NHS TRUST, NHS HRAW CCG</td>
+            </tr>
+            <tr>
+              <td>Local Government</td>
+              <td>County, district, borough, and unitary councils; combined authorities</td>
+              <td>MANCHESTER CITY COUNCIL, KENT COUNTY COUNCIL</td>
+            </tr>
+            <tr>
+              <td>Education Institution</td>
+              <td>Universities, colleges, academy trusts, schools</td>
+              <td>UNIVERSITY OF OXFORD, HARRIS FEDERATION</td>
+            </tr>
+            <tr>
+              <td>CSO</td>
+              <td>Civil society organisations acting as funders (grant-makers, intermediaries)</td>
+              <td>THE NATIONAL LOTTERY COMMUNITY FUND</td>
+            </tr>
+            <tr>
+              <td>Police, Fire and Rescue</td>
+              <td>Police forces, fire and rescue services</td>
+              <td>METROPOLITAN POLICE, LONDON FIRE BRIGADE</td>
+            </tr>
+            <tr>
+              <td>Other</td>
+              <td>Funders not classifiable into the above categories</td>
+              <td>Various unclassified public bodies</td>
+            </tr>
+            <tr>
+              <td>Junk/Invalid</td>
+              <td>Clearly erroneous entries (numeric strings, hash tokens)</td>
+              <td>3149053, 37300</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section level1">
+        <h1>A3. Supplier Matching &amp; Alias Resolution</h1>
+
+        <p>The raw spending data contains supplier names as entered by government departments &mdash; often inconsistent in spelling, abbreviation, and formatting. The pipeline matches these names to organisations in the TCSS Organisation Register to assign a standardised <code>uid</code> to each supplier.</p>
+
+        <h3>Matching Process</h3>
+        <p>Matching proceeds in two stages:</p>
+        <ol>
+          <li><strong>Exact matching</strong> &mdash; supplier names are normalised (uppercased, punctuation removed, whitespace collapsed) and matched exactly against the Organisation Register.</li>
+          <li><strong>Fuzzy matching</strong> &mdash; unmatched suppliers are compared to the Register using Jaro-Winkler string similarity. Matches with a similarity score &ge; 0.90 are accepted. This captures variations in spelling, abbreviation (e.g., &ldquo;LTD&rdquo; vs &ldquo;LIMITED&rdquo;), and minor data entry errors.</li>
+        </ol>
+
+        <h3>Alias Resolution</h3>
+        <p>After initial matching, the pipeline identifies potential aliases &mdash; cases where the same organisation appears under different supplier names. This is common when departments record the same supplier differently (e.g., &ldquo;ST LUKE&rsquo;S HOSPICE&rdquo; vs &ldquo;SAINT LUKES HOSPICE&rdquo;).</p>
+
+        <p>Alias resolution proceeds in three steps:</p>
+        <ol>
+          <li><strong>Candidate generation</strong> (Script 03a) &mdash; deterministic rules identify supplier name pairs that may refer to the same organisation, based on shared UIDs, similar names, or overlapping funder relationships.</li>
+          <li><strong>Batch review</strong> &mdash; candidate pairs are grouped into batches and reviewed using a combination of LLM-assisted classification and manual checks. Each pair is labelled as a confirmed alias or a false positive.</li>
+          <li><strong>Merge</strong> (Scripts 03b&ndash;03c) &mdash; confirmed aliases are assembled into a validated alias file, and the supplier lookup is updated to consolidate duplicate entries under a single canonical record.</li>
+        </ol>
+
+        <div class="callout callout-info">
+          <p><strong>Note:</strong> The LLM review step occurs externally between Scripts 03a and 03b. In a fully automated run where reviewed batches already exist, all scripts execute in sequence without manual intervention.</p>
+        </div>
+      </div>
+
+      <div class="section level1">
+        <h1>A4. Contracts Finder Enrichment</h1>
+
+        <p><a href="https://www.contractsfinder.service.gov.uk/" target="_blank">Contracts Finder</a> is the UK government&rsquo;s portal for public procurement opportunities. The TCSS project operates its own <a href="https://github.com/uk-third-sector-database/contracts_finder" target="_blank">Contracts Finder collector</a> that scrapes awarded contract notices from the portal&rsquo;s API.</p>
+
+        <h3>Integration Process</h3>
+        <p>Contracts Finder records are integrated into the procurement dataset through a crosswalk file (<code>contracts-finder-crosswalk.csv</code>) that links awarded contract notices to the main payment data. The crosswalk maps Contracts Finder notice identifiers and awarded amounts to the standardised format used by the rest of the dataset.</p>
+
+        <p>Unlike the payment-level data from Central Government and NHS sources, Contracts Finder provides contract-level information &mdash; each record represents an awarded contract rather than an individual payment. These records are assigned a <code>data_source</code> value of <code>Contracts Finder</code> or <code>contractsfinder</code> (reflecting different collection batches).</p>
+
+        <div class="callout callout-info">
+          <p><strong>Note:</strong> Contracts Finder records account for a relatively small share of the dataset (1.9%) but contribute a disproportionate number of unique organisations (approximately 4,400), as they capture a broader range of contract awards that may not appear in the &pound;25k+ payment transparency data.</p>
+        </div>
+      </div>
+
+      <div class="section level1">
+        <h1>A5. Linking to Other TCSS Datasets</h1>
+
+        <p>The procurement dataset can be linked to other datasets in the <a href="https://uk-third-sector-database.github.io/data/" target="_blank">UK Third and Civil Society Sector Database</a> using the <code>uid</code> field. This unique organisation identifier is consistent across all TCSS datasets, enabling researchers to enrich procurement records with organisation characteristics, financial data, and other information.</p>
+
+        <h3>Available Linkages</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>Join Key</th>
+              <th>What It Adds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://uk-third-sector-database.github.io/guidance/tcss-organisation-register-guidance.html">Organisation Register</a></td>
+              <td><code>uid</code></td>
+              <td>Organisation name, postcode, registration and removal dates, source registers, SIC codes</td>
+            </tr>
+            <tr>
+              <td><a href="https://uk-third-sector-database.github.io/guidance/tcss-charity-financial-records-guidance.html">Charity Financial Records</a></td>
+              <td><code>uid</code></td>
+              <td>Annual income, expenditure, and detailed financial breakdowns for registered charities (GB-CHC, GB-SC, GB-NIC prefixed UIDs)</td>
+            </tr>
+            <tr>
+              <td>Nonprofit Financial Records <em>(guidance forthcoming)</em></td>
+              <td><code>uid</code></td>
+              <td>Companies House accounts data &mdash; balance sheets, profit and loss, employee numbers &mdash; for nonprofit companies (GB-COH prefixed UIDs)</td>
+            </tr>
+            <tr>
+              <td><a href="https://uk-third-sector-database.github.io/guidance/tcss-cic36-forms-guidance.html">CIC 36 Forms</a></td>
+              <td><code>uid</code></td>
+              <td>Community interest statements, beneficiary descriptions, and activity summaries for Community Interest Companies</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Example: Linking to the Organisation Register</h3>
+        <pre><code>import pandas as pd
+
+# Load datasets
+procurement = pd.read_csv("tcss-procurement-records.csv")
+spine = pd.read_csv("TSCS_spine.spine.csv")
+
+# Link procurement records to organisation characteristics
+merged = procurement.merge(
+    spine[["uid", "organisationname", "postcode", "dateregistered"]],
+    on="uid",
+    how="left"
+)
+
+# Example: count procurement recipients by region (requires postcode lookup)
+print(merged.groupby("postcode").size().sort_values(ascending=False).head(10))</code></pre>
+
+        <h3>Example: Linking to Charity Financial Records</h3>
+        <pre><code>import pandas as pd
+
+# Load datasets
+procurement = pd.read_csv("tcss-procurement-records.csv")
+charity_finance = pd.read_csv("cso-spine-charity-financial-history.csv")
+
+# Filter procurement to charities only
+charity_procurement = procurement[procurement["uid"].str.startswith(("GB-CHC", "GB-SC", "GB-NIC"))]
+
+# Link to latest financial year
+latest_finance = charity_finance.sort_values("fy").groupby("uid").last().reset_index()
+merged = charity_procurement.merge(
+    latest_finance[["uid", "inc", "exp"]],
+    on="uid",
+    how="left"
+)
+
+# Example: compare procurement spend to charity income
+print(merged[["uid", "amount", "inc"]].head(10))</code></pre>
+
+        <div class="callout callout-tip">
+          <p><strong>Tip:</strong> When linking datasets, use a <code>left</code> join from the procurement data to preserve all payment records, even if some organisations are not found in the target dataset. Check for missing values after the join to assess linkage coverage.</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="report-footer">
+        <hr />
+        <p><em>Document generated: March 2026</em></p>
+        <p><em>UK Third and Civil Society Sector Database &mdash; <a href="https://uk-third-sector-database.github.io/" target="_blank">uk-third-sector-database.github.io</a></em></p>
+      </div>
+
+    </div><!-- /.toc-content -->
+</div><!-- /.main-container -->
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<!-- Bootstrap 3 JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- tocify -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  // ----------------------------------------------------------------
+  // buildTabsets: convert div.section.tabset elements into Bootstrap
+  // 3 nav-tabs.
+  // ----------------------------------------------------------------
+  function buildTabsets() {
+    var tabsetId = 0;
+
+    $("div.section.tabset").each(function () {
+      var $container = $(this);
+
+      var parentLevel = 0;
+      for (var lvl = 1; lvl <= 6; lvl++) {
+        if ($container.hasClass("level" + lvl)) {
+          parentLevel = lvl;
+          break;
+        }
+      }
+      if (parentLevel === 0) {
+        var $heading = $container.children("h1, h2, h3, h4, h5, h6").first();
+        if ($heading.length) {
+          parentLevel = parseInt($heading.prop("tagName").replace("H", ""), 10);
+        }
+      }
+      if (parentLevel === 0) {
+        parentLevel = 1;
+      }
+
+      var childLevel = parentLevel + 1;
+      var childSelector = "div.section.level" + childLevel;
+
+      var $children = $container.children(childSelector);
+
+      if ($children.length === 0) {
+        $children = $();
+        var $next = $container.next();
+        while ($next.length && $next.is(childSelector)) {
+          $children = $children.add($next);
+          $next = $next.next();
+        }
+      }
+
+      if ($children.length === 0) {
+        return;
+      }
+
+      tabsetId++;
+      var baseId = "tabset-" + tabsetId;
+
+      var $ul = $('<ul class="nav nav-tabs" role="tablist"></ul>');
+      var $tabContent = $('<div class="tab-content"></div>');
+
+      $children.each(function (idx) {
+        var $section = $(this);
+        var $heading = $section.children("h" + childLevel).first();
+        var tabTitle = $heading.length ? $heading.text() : "Tab " + (idx + 1);
+        var paneId = baseId + "-" + (idx + 1);
+        var isActive = idx === 0;
+
+        var $li = $(
+          '<li role="presentation"' +
+            (isActive ? ' class="active"' : "") +
+            ">" +
+            '<a href="#' + paneId + '" role="tab" data-toggle="tab">' +
+            tabTitle +
+            "</a>" +
+            "</li>"
+        );
+        $ul.append($li);
+
+        $heading.remove();
+
+        $section
+          .addClass("tab-pane" + (isActive ? " active" : ""))
+          .attr("id", paneId)
+          .attr("role", "tabpanel")
+          .attr("data-tab-title", tabTitle);
+
+        $tabContent.append($section);
+      });
+
+      $container.append($ul);
+      $container.append($tabContent);
+    });
+  }
+
+  // ----------------------------------------------------------------
+  // Initialise on DOM ready
+  // ----------------------------------------------------------------
+  $(document).ready(function () {
+    buildTabsets();
+
+    if ($.fn.tocify && $("#TOC").length) {
+      $("#TOC").tocify({
+        selectors: "h1:not(.toc-ignore), h2:not(.toc-ignore), h3:not(.toc-ignore)",
+        theme: "none",
+        smoothScroll: true,
+        smoothScrollSpeed: 300,
+        highlightOnScroll: true,
+        highlightOffset: 80,
+        scrollTo: 60,
+        hashGenerator: "pretty",
+        ignoreSelector: ".toc-ignore",
+        showAndHide: true,
+        showAndHideOnScroll: true,
+        extendPage: false
+      });
+    }
+  });
+})();
+
+// ----------------------------------------------------------------
+// TOC toggle
+// ----------------------------------------------------------------
+function toggleTOC() {
+  var toc = document.getElementById("TOC");
+  var overlay = document.getElementById("tocOverlay");
+  var btn = document.querySelector(".toc-toggle");
+  if (toc) {
+    toc.classList.toggle("open");
+    overlay.classList.toggle("open");
+    btn.classList.toggle("shifted");
+  }
+}
+
+// ----------------------------------------------------------------
+// Accessibility functions
+// ----------------------------------------------------------------
+function toggleA11yPanel() {
+  document.getElementById("a11yPanel").classList.toggle("open");
+}
+
+function setFontSize(size) {
+  document.body.classList.remove("font-medium", "font-large");
+  document.querySelectorAll(".size-btns button").forEach(function(b) { b.classList.remove("active"); });
+  if (size === "medium") { document.body.classList.add("font-medium"); document.getElementById("fs-medium").classList.add("active"); }
+  else if (size === "large") { document.body.classList.add("font-large"); document.getElementById("fs-large").classList.add("active"); }
+  else { document.getElementById("fs-default").classList.add("active"); }
+  localStorage.setItem("a11y-font-size", size);
+}
+
+function toggleContrast() {
+  var on = document.getElementById("contrastToggle").checked;
+  document.body.classList.toggle("high-contrast", on);
+  localStorage.setItem("a11y-high-contrast", on ? "true" : "false");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var savedSize = localStorage.getItem("a11y-font-size");
+  if (savedSize && savedSize !== "default") setFontSize(savedSize);
+  var savedContrast = localStorage.getItem("a11y-high-contrast");
+  if (savedContrast === "true") { document.getElementById("contrastToggle").checked = true; document.body.classList.add("high-contrast"); }
+});
+</script>
+
+</body>
+</html>
