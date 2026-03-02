@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Charity Financial Records — Dataset Guide</title>
+
+<!-- Google Fonts: Lora + Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Bootstrap 3 CSS -->
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
+
+<!-- jQuery UI (for tocify) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+/>
+
+<!-- tocify CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/stylesheets/jquery.tocify.min.css"
+/>
+
+<style>
+/* ================================================================
+   Base
+   ================================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #222222;
+  background: #F7F9FA;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================================================
+   Typography
+   ================================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+  color: #1A6B7C;
+  font-weight: 600;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.55em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.1em; color: #2A9D8F; }
+h5 { font-size: 1em; color: #555555; }
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #2672B0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 90%;
+  background: #F0F5F7;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #1A6B7C;
+}
+
+pre {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #dde4ea;
+  margin: 2em 0;
+}
+
+/* ================================================================
+   Layout
+   ================================================================ */
+.main-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.toc-content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* ================================================================
+   Collapsible TOC Sidebar
+   ================================================================ */
+#TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1500;
+  width: 280px;
+  background-color: #1A6B7C;
+  padding: 3.5rem 1.2rem 1.5rem 1.2rem;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#TOC.open {
+  transform: translateX(0);
+}
+
+.toc-toggle {
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1600;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #1A6B7C;
+  background: #F0F5F7;
+  color: #1A6B7C;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: left 0.3s ease, background 0.2s;
+  line-height: 1;
+}
+
+.toc-toggle:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.toc-toggle.shifted {
+  left: 292px;
+}
+
+.toc-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1400;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.toc-overlay.open {
+  display: block;
+}
+
+/* tocify overrides (dark sidebar) */
+.tocify {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tocify ul, .tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.tocify-header {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tocify-subheader {
+  font-size: 0.9em;
+  padding-left: 14px !important;
+}
+
+.tocify .tocify-item {
+  padding: 6px 12px;
+  border-left: 3px solid transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 4px;
+}
+
+.tocify .tocify-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify .tocify-item.active {
+  border-left-color: #E9C46A;
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ================================================================
+   Header / Title Block
+   ================================================================ */
+#header {
+  text-align: left;
+  padding: 30px 0 20px;
+  border-bottom: 3px solid #1A6B7C;
+  margin-bottom: 30px;
+}
+
+#header h1.title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #1A6B7C;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+#header h3.subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15em;
+  font-weight: 400;
+  color: #5A7A8A;
+  margin: 0 0 4px 0;
+}
+
+#header h4.date {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+}
+
+/* ================================================================
+   gt-style Tables
+   ================================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.92em;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+thead th {
+  background: #1A6B7C;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #1A6B7C;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #eef1f5;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #F0F5F7;
+}
+
+tbody tr:hover {
+  background: #e6eff4;
+}
+
+td.numeric, th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  caption-side: top;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #1A6B7C;
+  padding: 8px 0;
+  text-align: left;
+}
+
+/* ================================================================
+   Stat Cards
+   ================================================================ */
+.stat-cards {
+  display: flex;
+  gap: 18px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 170px;
+  background: #ffffff;
+  border-left: 4px solid #2A9D8F;
+  padding: 18px 20px;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card .number {
+  font-size: 1.9em;
+  font-weight: 700;
+  color: #1A6B7C;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.stat-card .label {
+  font-size: 0.88em;
+  color: #555555;
+  font-weight: 500;
+}
+
+/* ================================================================
+   Figure Containers
+   ================================================================ */
+.figure-container {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.figure-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.figure-caption {
+  font-size: 0.88em;
+  color: #5A7A8A;
+  margin-top: 8px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ================================================================
+   Coverage Bars
+   ================================================================ */
+.coverage-bar-container {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.coverage-item {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.coverage-item .cov-label {
+  font-size: 0.85em;
+  color: #555555;
+  margin-bottom: 8px;
+}
+
+.coverage-item .cov-bar {
+  height: 10px;
+  background: #e8eef4;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.coverage-item .cov-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1A6B7C, #2A9D8F);
+  border-radius: 5px;
+}
+
+.coverage-item .cov-pct {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #1A6B7C;
+}
+
+/* ================================================================
+   Callout Boxes
+   ================================================================ */
+.callout {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.callout-info {
+  background: #eef6fa;
+  border-left-color: #2672B0;
+  color: #1a4a6b;
+}
+
+.callout-warning {
+  background: #fef9ec;
+  border-left-color: #e6a817;
+  color: #7a5c0b;
+}
+
+.callout-tip {
+  background: #eef8f3;
+  border-left-color: #2A9D8F;
+  color: #1a5c4a;
+}
+
+/* ================================================================
+   Section Level Styles
+   ================================================================ */
+.section.level1 {
+  margin-top: 40px;
+  padding-top: 10px;
+}
+
+.section.level1 > h1 {
+  border-bottom: 3px solid #2A9D8F;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.section.level2 {
+  margin-top: 28px;
+}
+
+.section.level3 {
+  margin-top: 20px;
+}
+
+/* ================================================================
+   Footer
+   ================================================================ */
+.report-footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #dde4ea;
+  color: #555555;
+  font-size: 0.9em;
+}
+
+.report-footer em {
+  color: #5A7A8A;
+}
+
+/* ================================================================
+   Accessibility Panel
+   ================================================================ */
+.a11y-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1050;
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #F0F5F7;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.a11y-btn:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.a11y-panel {
+  position: fixed;
+  top: 62px;
+  right: 12px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  padding: 18px 20px 14px;
+  min-width: 180px;
+  display: none;
+}
+
+.a11y-panel.open {
+  display: block;
+}
+
+.a11y-panel label {
+  color: #1A6B7C;
+  font-weight: 600;
+  font-size: 0.93em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.size-btns {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.size-btns button {
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 4px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.size-btns button:hover,
+.size-btns button.active {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.contrast-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Font size classes */
+body.font-medium {
+  font-size: 18px;
+}
+body.font-medium h1 { font-size: 2.3em; }
+body.font-medium h2 { font-size: 1.75em; }
+body.font-medium h3 { font-size: 1.4em; }
+body.font-medium table { font-size: 1em; }
+
+body.font-large {
+  font-size: 22px;
+}
+body.font-large h1 { font-size: 2.5em; }
+body.font-large h2 { font-size: 1.9em; }
+body.font-large h3 { font-size: 1.55em; }
+body.font-large table { font-size: 1.1em; }
+
+/* High contrast mode */
+body.high-contrast {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast h4,
+body.high-contrast h5,
+body.high-contrast h6 {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header {
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast #header h1.title {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header h3.subtitle {
+  color: #a0c4d8;
+}
+
+body.high-contrast a {
+  color: #7ab8e0;
+}
+
+body.high-contrast table {
+  background: #242444;
+  box-shadow: none;
+}
+
+body.high-contrast thead th {
+  background: #2a3a5e;
+  color: #e0e0e0;
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast tbody td {
+  border-bottom-color: #3a3a5e;
+  color: #e0e0e0;
+}
+
+body.high-contrast tbody tr:nth-child(even) {
+  background: #2a2a4e;
+}
+
+body.high-contrast tbody tr:hover {
+  background: #3a3a6e;
+}
+
+body.high-contrast .stat-card {
+  background: #242444;
+  border-left-color: #7ab8e0;
+  box-shadow: none;
+}
+
+body.high-contrast .stat-card .number {
+  color: #7ab8e0;
+}
+
+body.high-contrast .stat-card .label {
+  color: #b0b0c0;
+}
+
+body.high-contrast .callout {
+  background: #242444;
+  color: #d0d0e0;
+}
+
+body.high-contrast .callout-info {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .coverage-item {
+  background: #242444;
+  border-color: #3a3a5e;
+}
+
+body.high-contrast .coverage-item .cov-bar {
+  background: #3a3a5e;
+}
+
+body.high-contrast .coverage-item .cov-pct {
+  color: #7ab8e0;
+}
+
+body.high-contrast #TOC {
+  background-color: #0d0d1a;
+}
+
+body.high-contrast .toc-toggle {
+  background: #252540;
+  color: #7ab8e0;
+  border-color: #7ab8e0;
+}
+
+body.high-contrast .toc-toggle:hover {
+  background: #7ab8e0;
+  color: #1a1a2e;
+}
+
+body.high-contrast .tocify .tocify-item {
+  color: #b0b0c0;
+}
+
+body.high-contrast .tocify .tocify-item:hover,
+body.high-contrast .tocify .tocify-item.active {
+  color: #7ab8e0;
+  background: #2a2a4e;
+}
+
+body.high-contrast .tocify .tocify-item.active {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .report-footer,
+body.high-contrast .report-footer em {
+  color: #a0a0b0;
+}
+
+body.high-contrast code {
+  background: #2a2a4e;
+  color: #7ab8e0;
+}
+
+body.high-contrast blockquote {
+  border-left-color: #7ab8e0;
+  color: #d0d0e0;
+}
+
+body.high-contrast .figure-caption {
+  color: #a0c4d8;
+}
+
+/* ================================================================
+   Print Styles
+   ================================================================ */
+@media print {
+  #TOC,
+  .toc-toggle,
+  .toc-overlay {
+    display: none !important;
+  }
+
+  .toc-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tab-content > .tab-pane {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .nav-tabs {
+    display: none !important;
+  }
+
+  .tab-content > .tab-pane::before {
+    content: attr(data-tab-title);
+    display: block;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #1A6B7C;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+  }
+
+  body {
+    font-size: 12px;
+    background: #fff;
+    color: #000;
+  }
+
+  table {
+    box-shadow: none;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  .stat-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .figure-container img {
+    box-shadow: none;
+    max-width: 80%;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .a11y-btn, .a11y-panel {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   Responsive
+   ================================================================ */
+@media (max-width: 767px) {
+  #header h1.title {
+    font-size: 1.6em;
+  }
+
+  .stat-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stat-card {
+    min-width: 100%;
+  }
+
+  table {
+    font-size: 0.82em;
+  }
+
+  thead th,
+  tbody td {
+    padding: 6px 8px;
+  }
+
+  .main-container {
+    padding: 0 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- TOC Toggle + Overlay -->
+<button class="toc-toggle" onclick="toggleTOC()" title="Table of contents" aria-label="Toggle table of contents">&#9776;</button>
+<div class="toc-overlay" id="tocOverlay" onclick="toggleTOC()"></div>
+<div id="TOC" class="tocify"></div>
+
+<!-- Accessibility Panel -->
+<button class="a11y-btn" onclick="toggleA11yPanel()" title="Accessibility options" aria-label="Accessibility options">Aa</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility settings">
+  <label>Text size</label>
+  <div class="size-btns">
+    <button onclick="setFontSize('default')" id="fs-default" class="active">A</button>
+    <button onclick="setFontSize('medium')" id="fs-medium">A+</button>
+    <button onclick="setFontSize('large')" id="fs-large">A++</button>
+  </div>
+  <div class="contrast-toggle">
+    <input type="checkbox" id="contrastToggle" onchange="toggleContrast()">
+    <label for="contrastToggle" style="margin:0; font-weight:500;">High contrast</label>
+  </div>
+</div>
+
+<div class="main-container">
+    <div class="toc-content">
+
+      <!-- Title Block -->
+      <div id="header">
+        <h1 class="title toc-ignore">Charity Financial Records</h1>
+        <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
+        <h4 class="date toc-ignore">March 2026</h4>
+      </div>
+
+      <!-- ============================================================
+           PART 1: DATA GUIDE
+           ============================================================ -->
+
+      <!-- Section 1: Overview -->
+      <div class="section level1">
+        <h1>1. Overview</h1>
+
+        <p>This dataset provides longitudinal financial data &mdash; total income, total expenditure, and detailed breakdowns &mdash; for registered charities across the United Kingdom. It was produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> project, which collects, processes, and links public administrative data on civil society organisations across the United Kingdom.</p>
+
+        <p>The data is drawn from the annual returns and financial reports filed by charities with their respective regulators: the Charity Commission for England and Wales (CCEW), the Office of the Scottish Charity Regulator (OSCR), and the Charity Commission for Northern Ireland (CCNI). These regulatory filings are publicly available and provide a consistent, official record of charity finances over time.</p>
+
+        <p>The dataset consolidates these three sources into a single standardised format, covering over 305,000 charities and spanning financial years from 2000 to 2025. Each record represents one charity&rsquo;s financial return for a single financial year, enabling longitudinal analysis of the UK charity sector&rsquo;s financial health at scale.</p>
+
+        <div class="stat-cards">
+          <div class="stat-card"><span class="number">3,998,722</span><span class="label">Financial Records</span></div>
+          <div class="stat-card"><span class="number">305,465</span><span class="label">Registered Charities</span></div>
+          <div class="stat-card"><span class="number">3</span><span class="label">UK Regulators</span></div>
+          <div class="stat-card"><span class="number">2000&ndash;2025</span><span class="label">Financial Years</span></div>
+        </div>
+      </div>
+
+      <!-- Section 2: What are Charity Financial Records? -->
+      <div class="section level1">
+        <h1>2. What are Charity Financial Records?</h1>
+
+        <p>Registered charities in the United Kingdom are required by law to file annual financial information with the charity regulator in their jurisdiction. The nature and detail of these filings varies by regulator and by charity size, but all returns include at minimum the charity&rsquo;s total income and total expenditure for a given financial year.</p>
+
+        <h3>England and Wales (CCEW)</h3>
+        <p>Charities registered with the <a href="https://www.gov.uk/government/organisations/charity-commission">Charity Commission for England and Wales</a> submit annual returns that include headline financial data (Part A) and, for charities with income exceeding &pound;500,000, a detailed financial breakdown (Part B). Part B provides granular information on sources of income (donations, trading, investments, etc.) and categories of expenditure (raising funds, charitable activities, governance, etc.). The source data is available from the <a href="https://register-of-charities.charitycommission.gov.uk/en/register/full-register-download" target="_blank">CCEW full register download</a>.</p>
+
+        <h3>Scotland (OSCR)</h3>
+        <p>Charities registered with the <a href="https://www.oscr.org.uk/">Office of the Scottish Charity Regulator</a> submit annual monitoring returns. OSCR publishes a rolling five-year extract of the Scottish Charity Register that includes total income and total expenditure, as well as a subset of detailed income and expenditure categories (donations and legacies, charitable activities, other trading activities, investments, other income; raising funds spending, charitable activities spending, and other spending). The source data is available from the <a href="https://www.oscr.org.uk/about-charities/search-the-register/download-the-scottish-charity-register/" target="_blank">OSCR register download</a>.</p>
+
+        <h3>Northern Ireland (CCNI)</h3>
+        <p>Charities registered with the <a href="https://www.charitycommissionni.org.uk/">Charity Commission for Northern Ireland</a> submit annual reports that include headline financial figures. Some CCNI records include detailed income and expenditure categories similar to the CCEW Part B data. CCNI publishes a current snapshot of the register and historical snapshots are archived periodically. The source data is available from the <a href="https://www.charitycommissionni.org.uk/charity-search?pageNumber=1&sortOption=Rank%3Basc" target="_blank">CCNI charity search</a>.</p>
+      </div>
+
+      <!-- Section 3: Dataset Contents -->
+      <div class="section level1">
+        <h1>3. Dataset Contents</h1>
+
+        <p>The dataset contains 3,998,722 records across 23 fields. Each row represents one charity&rsquo;s financial return for a single financial year. The fields are organised into four groups: identifiers, aggregate financials, detailed breakdowns, and metadata.</p>
+
+        <h3>Identifiers and Time Period</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>uid</code></td>
+              <td>Unique organisation identifier (e.g., <code>GB-CHC-1000000</code>, <code>GB-SC-SC012345</code>, <code>GB-NIC-100001</code>)</td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>fy</code></td>
+              <td>Financial year (integer, based on year in which the financial period ends)</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>fys</code></td>
+              <td>Financial year start date (format: <code>ddmonyyyy</code>, e.g., <code>06apr2023</code>)</td>
+              <td>Date</td>
+              <td class="numeric">99.9%</td>
+            </tr>
+            <tr>
+              <td><code>fye</code></td>
+              <td>Financial year end date (format: <code>ddmonyyyy</code>, e.g., <code>05apr2024</code>)</td>
+              <td>Date</td>
+              <td class="numeric">100%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Aggregate Financials</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>inc</code></td>
+              <td>Total gross income (&pound;)</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+            <tr>
+              <td><code>exp</code></td>
+              <td>Total gross expenditure (&pound;)</td>
+              <td>Numeric</td>
+              <td class="numeric">100%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Income Breakdown</h3>
+        <div class="callout callout-info">
+          <p><strong>Note:</strong> Detailed income and expenditure fields are available for CCEW Part B filers (charities with income exceeding &pound;500,000), OSCR records (which provide a subset of the detailed categories under different column names), and some CCNI records. These fields are populated for approximately 5&ndash;6% of all records.</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>incomefromdonationsandlegacies</code></td>
+              <td>Income from donations and legacies</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>incomefromothertradingactivities</code></td>
+              <td>Income from other trading activities</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>incomefromcharitableactivities</code></td>
+              <td>Income from charitable activities</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>incomefrominvestments</code></td>
+              <td>Income from investments</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>incomefromother</code></td>
+              <td>Other income not classified above</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>incomefromlegacies</code></td>
+              <td>Income from legacies (subset of donations and legacies)</td>
+              <td>Numeric</td>
+              <td class="numeric">5.0%</td>
+            </tr>
+            <tr>
+              <td><code>incomefromendowments</code></td>
+              <td>Income from endowments</td>
+              <td>Numeric</td>
+              <td class="numeric">5.0%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Expenditure Breakdown</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>expenditureonraisingfunds</code></td>
+              <td>Expenditure on raising funds</td>
+              <td>Numeric</td>
+              <td class="numeric">3.6%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureoncharitableactivitie</code></td>
+              <td>Expenditure on charitable activities</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureonother</code></td>
+              <td>Other expenditure not classified above</td>
+              <td>Numeric</td>
+              <td class="numeric">5.9%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureoninvestment</code></td>
+              <td>Expenditure on investment management</td>
+              <td>Numeric</td>
+              <td class="numeric">5.0%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureongrants</code></td>
+              <td>Expenditure on grants to institutions</td>
+              <td>Numeric</td>
+              <td class="numeric">5.0%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureongovernance</code></td>
+              <td>Expenditure on governance</td>
+              <td>Numeric</td>
+              <td class="numeric">5.1%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureonsupportcosts</code></td>
+              <td>Expenditure on support costs</td>
+              <td>Numeric</td>
+              <td class="numeric">5.0%</td>
+            </tr>
+            <tr>
+              <td><code>expenditureondepreciation</code></td>
+              <td>Expenditure on depreciation</td>
+              <td>Numeric</td>
+              <td class="numeric">5.0%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Metadata</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>source</code></td>
+              <td>Source regulator (<code>ccew</code>, <code>oscr</code>, or <code>ccni</code>)</td>
+              <td>Text</td>
+              <td class="numeric">99.8%</td>
+            </tr>
+            <tr>
+              <td><code>extract</code></td>
+              <td>Extraction batch identifier (e.g., <code>ccew sep2024</code>, <code>oscr 27jan2026</code>)</td>
+              <td>Text</td>
+              <td class="numeric">100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 4: Coverage & Completeness -->
+      <div class="section level1">
+        <h1>4. Coverage &amp; Completeness</h1>
+
+        <h3>Core Field Coverage</h3>
+        <p>The core fields &mdash; <code>uid</code>, <code>fy</code>, <code>fye</code>, <code>inc</code>, and <code>exp</code> &mdash; are present in virtually all records. These fields are required for inclusion in the dataset; records missing a valid charity number, financial year end date, or income value are excluded during processing.</p>
+
+        <div class="coverage-bar-container">
+          <div class="coverage-item">
+            <div class="cov-label">uid</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 100%;"></div></div>
+            <div class="cov-pct">100%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">inc</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 100%;"></div></div>
+            <div class="cov-pct">100%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">exp</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 100%;"></div></div>
+            <div class="cov-pct">100%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">fys</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 99.9%;"></div></div>
+            <div class="cov-pct">99.9%</div>
+          </div>
+        </div>
+
+        <h3>Jurisdiction Breakdown</h3>
+        <p>The dataset draws from all three UK charity regulators. England and Wales accounts for the large majority of records, reflecting the greater number of charities registered with CCEW.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Jurisdiction</th>
+              <th>Regulator</th>
+              <th class="numeric">Records</th>
+              <th class="numeric">Organisations</th>
+              <th class="numeric">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>England &amp; Wales</td>
+              <td>CCEW</td>
+              <td class="numeric">3,573,879</td>
+              <td class="numeric">262,345</td>
+              <td class="numeric">89.4%</td>
+            </tr>
+            <tr>
+              <td>Scotland</td>
+              <td>OSCR</td>
+              <td class="numeric">386,706</td>
+              <td class="numeric">34,877</td>
+              <td class="numeric">9.7%</td>
+            </tr>
+            <tr>
+              <td>Northern Ireland</td>
+              <td>CCNI</td>
+              <td class="numeric">30,739</td>
+              <td class="numeric">7,760</td>
+              <td class="numeric">0.8%</td>
+            </tr>
+            <tr>
+              <td><strong>Total</strong></td>
+              <td></td>
+              <td class="numeric"><strong>3,998,722</strong></td>
+              <td class="numeric"><strong>305,465</strong></td>
+              <td class="numeric"><strong>100%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-tip">
+          <p><strong>Note on CCNI:</strong> The total number of unique organisations (305,465) is less than the sum across jurisdictions because some charities are cross-registered in multiple jurisdictions. However, each record appears under only one source regulator.</p>
+        </div>
+
+        <h3>Year-by-Year Coverage</h3>
+        <p>The dataset covers financial years from 2000 to 2025, with peak coverage between 2015 and 2022 (170,000&ndash;181,000 records per year). Coverage in recent years declines due to reporting lag &mdash; charities have up to 10 months after their financial year end to file their annual return, so the most recent years will always be incomplete at any given extraction date.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Financial Year</th>
+              <th class="numeric">Records</th>
+              <th>Financial Year</th>
+              <th class="numeric">Records</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2000</td><td class="numeric">123,613</td>
+              <td>2013</td><td class="numeric">168,580</td>
+            </tr>
+            <tr>
+              <td>2001</td><td class="numeric">115,174</td>
+              <td>2014</td><td class="numeric">169,586</td>
+            </tr>
+            <tr>
+              <td>2002</td><td class="numeric">129,881</td>
+              <td>2015</td><td class="numeric">170,180</td>
+            </tr>
+            <tr>
+              <td>2003</td><td class="numeric">136,138</td>
+              <td>2016</td><td class="numeric">172,197</td>
+            </tr>
+            <tr>
+              <td>2004</td><td class="numeric">139,198</td>
+              <td>2017</td><td class="numeric">174,107</td>
+            </tr>
+            <tr>
+              <td>2005</td><td class="numeric">131,470</td>
+              <td>2018</td><td class="numeric">176,429</td>
+            </tr>
+            <tr>
+              <td>2006</td><td class="numeric">134,536</td>
+              <td>2019</td><td class="numeric">177,632</td>
+            </tr>
+            <tr>
+              <td>2007</td><td class="numeric">163,066</td>
+              <td>2020</td><td class="numeric">180,663</td>
+            </tr>
+            <tr>
+              <td>2008</td><td class="numeric">162,892</td>
+              <td>2021</td><td class="numeric">180,727</td>
+            </tr>
+            <tr>
+              <td>2009</td><td class="numeric">163,279</td>
+              <td>2022</td><td class="numeric">177,237</td>
+            </tr>
+            <tr>
+              <td>2010</td><td class="numeric">165,427</td>
+              <td>2023</td><td class="numeric">168,221</td>
+            </tr>
+            <tr>
+              <td>2011</td><td class="numeric">165,709</td>
+              <td>2024</td><td class="numeric">132,940</td>
+            </tr>
+            <tr>
+              <td>2012</td><td class="numeric">166,813</td>
+              <td>2025</td><td class="numeric">52,220</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Detailed Financial Data Availability</h3>
+        <p>The 15 detailed income and expenditure fields are populated for approximately 5&ndash;6% of all records. Detailed breakdowns are available from:</p>
+        <ul>
+          <li><strong>CCEW Part B filers</strong> &mdash; charities with annual income exceeding &pound;500,000, which are required to submit detailed financial breakdowns as part of their annual return. This provides the fullest set of detailed fields (all 15 columns).</li>
+          <li><strong>OSCR</strong> &mdash; the public extract includes a subset of detailed categories under different column names: 5 income categories (donations and legacies, charitable activities, other trading activities, investments, other) and 3 expenditure categories (raising funds, charitable activities, other). The remaining detailed fields (legacies, endowments, investment management, grants, governance, support costs, depreciation) are not available from OSCR.</li>
+          <li><strong>Some CCNI records</strong> &mdash; certain CCNI filings include detailed income and expenditure categories.</li>
+        </ul>
+
+        <div class="coverage-bar-container">
+          <div class="coverage-item">
+            <div class="cov-label">Detailed Income Fields</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 5.9%;"></div></div>
+            <div class="cov-pct">5.9%</div>
+          </div>
+          <div class="coverage-item">
+            <div class="cov-label">Detailed Expenditure Fields</div>
+            <div class="cov-bar"><div class="cov-fill" style="width: 5.1%;"></div></div>
+            <div class="cov-pct">5.1%</div>
+          </div>
+        </div>
+
+        <p>Although the detailed fields cover a small proportion of all records, the charities that do report detailed breakdowns tend to be the largest in the sector. The roughly 234,000 records with detailed data represent the most financially significant charities in England, Wales, Scotland, and Northern Ireland.</p>
+      </div>
+
+      <!-- Section 5: What Can You Learn? -->
+      <div class="section level1">
+        <h1>5. What Can You Learn?</h1>
+
+        <p>This dataset enables a wide range of analyses of the UK registered charity sector. Below are some illustrative use cases, several of which have already been demonstrated using this data in published research.</p>
+
+        <h3>Sector-Level Trends</h3>
+        <p>Track aggregate income and expenditure across the entire UK charity sector over 25 years. Analyse how the sector responded to economic shocks such as the 2008 financial crisis, the period of austerity, and the COVID-19 pandemic. Identify long-term growth or contraction trends in charity finances. When combined with CPI deflators, the data supports both nominal and real-terms (inflation-adjusted) time-series analysis.</p>
+
+        <div class="callout callout-tip">
+          <p><strong>Example:</strong> In real terms (2023 prices), total charity income grew from &pound;62.0 billion in 2005 to &pound;116.4 billion in 2023 &mdash; but the trajectory was not smooth. Growth stalled during the 2008 financial crisis and austerity period, and the COVID-19 pandemic caused median real income to fall from &pound;21,569 in 2019 to &pound;19,217 in 2020. The decline in charities reporting in 2024 and the apparent rise in median income reflect reporting lag: smaller charities tend to file later, so the most recent year is disproportionately composed of larger organisations.</p>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th class="numeric">Charities</th>
+              <th class="numeric">Total Income (&pound;bn)</th>
+              <th class="numeric">Total Expenditure (&pound;bn)</th>
+              <th class="numeric">Median Income (&pound;)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2005</td>
+              <td class="numeric">131,470</td>
+              <td class="numeric">62.0</td>
+              <td class="numeric">58.1</td>
+              <td class="numeric">15,834</td>
+            </tr>
+            <tr>
+              <td>2006</td>
+              <td class="numeric">134,536</td>
+              <td class="numeric">65.1</td>
+              <td class="numeric">61.9</td>
+              <td class="numeric">15,628</td>
+            </tr>
+            <tr>
+              <td>2007</td>
+              <td class="numeric">163,066</td>
+              <td class="numeric">87.0</td>
+              <td class="numeric">78.9</td>
+              <td class="numeric">15,156</td>
+            </tr>
+            <tr>
+              <td>2008</td>
+              <td class="numeric">162,892</td>
+              <td class="numeric">88.6</td>
+              <td class="numeric">81.2</td>
+              <td class="numeric">15,685</td>
+            </tr>
+            <tr>
+              <td>2009</td>
+              <td class="numeric">163,279</td>
+              <td class="numeric">91.4</td>
+              <td class="numeric">85.9</td>
+              <td class="numeric">16,505</td>
+            </tr>
+            <tr>
+              <td>2010</td>
+              <td class="numeric">165,427</td>
+              <td class="numeric">94.6</td>
+              <td class="numeric">87.6</td>
+              <td class="numeric">16,823</td>
+            </tr>
+            <tr>
+              <td>2011</td>
+              <td class="numeric">165,709</td>
+              <td class="numeric">92.5</td>
+              <td class="numeric">86.3</td>
+              <td class="numeric">17,148</td>
+            </tr>
+            <tr>
+              <td>2012</td>
+              <td class="numeric">166,813</td>
+              <td class="numeric">93.8</td>
+              <td class="numeric">90.2</td>
+              <td class="numeric">17,719</td>
+            </tr>
+            <tr>
+              <td>2013</td>
+              <td class="numeric">168,580</td>
+              <td class="numeric">97.2</td>
+              <td class="numeric">93.4</td>
+              <td class="numeric">17,915</td>
+            </tr>
+            <tr>
+              <td>2014</td>
+              <td class="numeric">169,586</td>
+              <td class="numeric">101.8</td>
+              <td class="numeric">97.3</td>
+              <td class="numeric">18,600</td>
+            </tr>
+            <tr>
+              <td>2015</td>
+              <td class="numeric">170,180</td>
+              <td class="numeric">107.4</td>
+              <td class="numeric">102.9</td>
+              <td class="numeric">19,414</td>
+            </tr>
+            <tr>
+              <td>2016</td>
+              <td class="numeric">172,197</td>
+              <td class="numeric">111.7</td>
+              <td class="numeric">107.8</td>
+              <td class="numeric">19,882</td>
+            </tr>
+            <tr>
+              <td>2017</td>
+              <td class="numeric">174,107</td>
+              <td class="numeric">113.3</td>
+              <td class="numeric">108.2</td>
+              <td class="numeric">20,251</td>
+            </tr>
+            <tr>
+              <td>2018</td>
+              <td class="numeric">176,429</td>
+              <td class="numeric">114.9</td>
+              <td class="numeric">110.8</td>
+              <td class="numeric">21,236</td>
+            </tr>
+            <tr>
+              <td>2019</td>
+              <td class="numeric">177,632</td>
+              <td class="numeric">118.3</td>
+              <td class="numeric">116.4</td>
+              <td class="numeric">21,569</td>
+            </tr>
+            <tr>
+              <td>2020</td>
+              <td class="numeric">180,663</td>
+              <td class="numeric">117.6</td>
+              <td class="numeric">113.6</td>
+              <td class="numeric">19,217</td>
+            </tr>
+            <tr>
+              <td>2021</td>
+              <td class="numeric">180,727</td>
+              <td class="numeric">116.7</td>
+              <td class="numeric">111.7</td>
+              <td class="numeric">17,865</td>
+            </tr>
+            <tr>
+              <td>2022</td>
+              <td class="numeric">177,237</td>
+              <td class="numeric">115.1</td>
+              <td class="numeric">112.2</td>
+              <td class="numeric">18,975</td>
+            </tr>
+            <tr>
+              <td>2023</td>
+              <td class="numeric">168,221</td>
+              <td class="numeric">116.4</td>
+              <td class="numeric">114.8</td>
+              <td class="numeric">23,389</td>
+            </tr>
+            <tr>
+              <td>2024</td>
+              <td class="numeric">132,940</td>
+              <td class="numeric">119.9</td>
+              <td class="numeric">117.9</td>
+              <td class="numeric">48,526</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.85em; color:#5A7A8A; margin-top:4px;"><em>Source: Charity Financial Records dataset. All values in 2023 prices, adjusted using ONS CPI (series D7BT). 2023&ndash;2024 figures are provisional due to reporting lag; the sharp rise in 2024 median income reflects incomplete filing by smaller charities.</em></p>
+
+        <h3>Financial Health Analysis</h3>
+        <p>Identify charities with declining income over consecutive years, or those where expenditure consistently exceeds income. For example, deriving a &ldquo;loss-making&rdquo; indicator (where expenditure exceeds income in a given year) enables analysis of financial distress rates across regions and over time. Annual relative growth rates can be calculated to track the year-on-year trajectory of individual charities or cohorts.</p>
+
+        <h3>Jurisdictional Comparisons</h3>
+        <p>Compare financial patterns across England and Wales, Scotland, and Northern Ireland. Examine whether charities in different jurisdictions show different income levels, growth rates, or financial resilience during economic downturns.</p>
+
+        <h3>Subsector Analysis</h3>
+        <p>When linked to the <a href="https://uk-third-sector-database.github.io/data/">TCSS Organisation Register</a>, analyse finances by charity type, activity area, or geographic region. For example, the data can be joined with the <a href="https://github.com/charity-classification/ukcat" target="_blank">UK Charity Activity Tags (UKCAT)</a> ICNPTSO classification to compare median income and expenditure trends across charity sectors such as social services, health, education, culture and recreation, and environment.</p>
+
+        <div class="callout callout-tip">
+          <p><strong>Example:</strong> The figure below, from the <a href="https://uk-third-sector-database.github.io/">TCSS project report</a>, shows the median annual relative income growth rate for charities in each <a href="https://unstats.un.org/unsd/classifications/unsdclassifications/icnptso.pdf" target="_blank">ICNPTSO</a> sector in both nominal and real (inflation-adjusted) terms. Values above 1 indicate year-on-year growth; values below 1 indicate decline. The chart reveals how the 2008 financial crisis and COVID-19 affected different parts of the sector at different times and to different degrees &mdash; with culture and recreation charities hit hardest by the pandemic, while health and social services charities were more resilient.</p>
+        </div>
+
+        <div class="figure-container">
+          <img src="../../dcms-report/figures/income-growth-by-icnptso.png" alt="Line chart showing median annual relative income growth by ICNPTSO charity sector from 2001 to 2023, with separate lines for nominal and real growth. Most sectors show growth rates around 1 (no change), with visible dips during the 2008 financial crisis and COVID-19 pandemic." />
+          <div class="figure-caption">Median annual relative income growth by ICNPTSO sector, nominal and real (2023 prices). Source: UK Third and Civil Society Sector Database.</div>
+        </div>
+
+        <h3>Donation Dependency</h3>
+        <p>For charities with detailed income breakdowns, the proportion of income from donations and legacies can be tracked over time and compared across jurisdictions. This enables analysis of how reliant different parts of the charity sector are on voluntary income, and whether that reliance has changed in response to policy or economic shifts.</p>
+
+        <h3>Geographic Analysis</h3>
+        <p>When linked to the Organisation Register&rsquo;s geographic data (postcodes, local authorities, regions), financial data can be mapped at the local authority level. This supports analysis of regional variation in charity finances, the relationship between local deprivation and charity financial health, and per-capita measures of charitable activity.</p>
+
+        <h3>Income Composition</h3>
+        <p>For the larger charities with detailed breakdowns, examine how income sources are distributed &mdash; for example, the relative importance of donations, trading income, charitable activities, and investment returns. Track whether charities have diversified their income sources over time or become more dependent on a single source.</p>
+      </div>
+
+      <!-- Section 6: Limitations & Caveats -->
+      <div class="section level1">
+        <h1>6. Limitations &amp; Caveats</h1>
+
+        <h3>Reporting Lag</h3>
+        <p>Charities file their annual returns after their financial year ends, with deadlines varying by jurisdiction (typically 10 months for CCEW). As a result, the most recent financial years in the dataset will always be incomplete at any given extraction date. The sharp decline in records for 2024 and 2025 reflects this reporting lag, not a decline in the number of active charities.</p>
+
+        <h3>Detailed Breakdowns</h3>
+        <p>The 15 detailed income and expenditure fields are only available for a subset of records (approximately 5&ndash;6%). CCEW Part B provides the fullest detail (all 15 fields), while OSCR provides a subset of 8 categories and some CCNI records include partial detail. The remaining detailed fields (e.g., legacies, endowments, governance, support costs) are only available from CCEW. Analyses using these fields cannot be considered representative of the full sector.</p>
+
+        <h3>OSCR Rolling Window</h3>
+        <p>OSCR publishes a rolling five-year extract of the Scottish Charity Register. Historical OSCR data beyond the most recent five-year window is only available if it was captured in a previous extraction. The dataset&rsquo;s OSCR coverage for earlier years depends on which baseline snapshots were available during data collection.</p>
+
+        <h3>Variable Financial Year Periods</h3>
+        <p>Charities do not all operate on the same financial year. While many use an April&ndash;March cycle, others use calendar years (January&ndash;December) or other reporting periods. The <code>fy</code> field represents the calendar year in which the financial period ends, enabling comparison across charities, but users should be aware that the actual reporting periods may not align precisely.</p>
+
+        <h3>Spine Filtering</h3>
+        <p>The dataset only includes charities that appear in the <a href="https://uk-third-sector-database.github.io/data/">TCSS Organisation Register</a> (the &ldquo;Spine&rdquo;). Some recently registered or very small charities may not yet have been added to the Spine and will therefore be absent from this dataset. The exclusion log records all filtered records and the reason for their exclusion.</p>
+
+        <h3>Currency and Inflation</h3>
+        <p>All financial values are reported in nominal terms (current prices) as filed by the charity. No inflation adjustment has been applied. Users conducting time-series analysis should apply their own deflators if real-terms comparison is needed.</p>
+
+        <h3>What is NOT in the Data</h3>
+        <p>The dataset does not include: balance sheet items (assets, liabilities, reserves), staff numbers or employment data, trustee or director details, geographic location, or activity classifications. Many of these gaps can be addressed by linking to the wider data resources of the <a href="https://uk-third-sector-database.github.io/data/" target="_blank">UK Third and Civil Society Sector Database</a>, which provides organisation registers, CIC 36 forms, and procurement data for the same organisations.</p>
+      </div>
+
+      <!-- Section 7: Citation & Licence -->
+      <div class="section level1">
+        <h1>7. Citation &amp; Licence</h1>
+
+        <div class="callout callout-info">
+          <p><strong>Licence:</strong> This dataset is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a> (CC BY 4.0). You are free to share, adapt, and build upon this data for any purpose, provided you give appropriate credit.</p>
+        </div>
+
+        <h3>Suggested Citation</h3>
+
+        <blockquote>
+          McDonnell, D., Dayson, C., Liddle, J., Sheridan, S., and Zhang, A. (2026). <em>Charity Financial Records</em>. UK Third and Civil Society Sector Database. Available at: <a href="https://uk-third-sector-database.github.io/data/">https://uk-third-sector-database.github.io/data/</a>. Licensed under CC BY 4.0.
+        </blockquote>
+
+        <p>If you would like to learn more about this dataset and how it can be applied to your project or research programme, please contact <a href="mailto:research@brawdata.com">research@brawdata.com</a>.</p>
+      </div>
+
+      <!-- Section 8: Changelog -->
+      <div class="section level1">
+        <h1>8. Changelog</h1>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.1</td>
+              <td>March 2026</td>
+              <td>OSCR detailed income and expenditure fields now populated (8 categories); coverage percentages updated</td>
+            </tr>
+            <tr>
+              <td>1.0</td>
+              <td>January 2026</td>
+              <td>Initial release: 3,998,722 records across 305,465 charities (FY 2000&ndash;2025)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ============================================================
+           PART 2: TECHNICAL ANNEX
+           ============================================================ -->
+
+      <!-- Section A1: Pipeline Architecture -->
+      <div class="section level1">
+        <h1>A1. Pipeline Architecture</h1>
+
+        <p>The charity financial records pipeline processes publicly available regulatory data from three UK charity regulators and consolidates it into a single standardised dataset. The pipeline is implemented in Python and is orchestrated through a command-line interface (<code>run_pipeline.py</code>) that supports running individual jurisdiction processors or the full workflow.</p>
+
+        <div style="text-align:center; margin:24px 0; font-family:'Inter',sans-serif; font-size:14px;">
+          <div style="display:inline-flex; align-items:center; flex-wrap:wrap; gap:8px; justify-content:center;">
+            <span style="background:#1A6B7C;color:#fff;padding:8px 16px;border-radius:6px;">CCEW Part A+B</span>
+            <span style="color:#999;">&rarr;</span>
+            <span style="background:#2A9D8F;color:#fff;padding:8px 16px;border-radius:6px;" rowspan="3">Jurisdiction Processors</span>
+            <span style="color:#999;">&rarr;</span>
+            <span style="background:#1A6B7C;color:#fff;padding:8px 16px;border-radius:6px;">Combine &amp; Deduplicate</span>
+            <span style="color:#999;">&rarr;</span>
+            <span style="background:#2A9D8F;color:#fff;padding:8px 16px;border-radius:6px;">CSV Output</span>
+          </div>
+        </div>
+        <div style="text-align:center; margin:8px 0 8px; font-family:'Inter',sans-serif; font-size:14px;">
+          <div style="display:inline-flex; align-items:center; flex-wrap:wrap; gap:8px; justify-content:center;">
+            <span style="background:#1A6B7C;color:#fff;padding:8px 16px;border-radius:6px;">OSCR 5-Year CSV</span>
+            <span style="color:#999;">&nearr;</span>
+          </div>
+        </div>
+        <div style="text-align:center; margin:8px 0 24px; font-family:'Inter',sans-serif; font-size:14px;">
+          <div style="display:inline-flex; align-items:center; flex-wrap:wrap; gap:8px; justify-content:center;">
+            <span style="background:#1A6B7C;color:#fff;padding:8px 16px;border-radius:6px;">CCNI Snapshots</span>
+            <span style="color:#999;">&nearr;</span>
+          </div>
+        </div>
+
+        <p>The pipeline operates in four phases:</p>
+
+        <ol>
+          <li><strong>Jurisdiction Processing</strong> &mdash; Each regulator&rsquo;s source data is processed by a dedicated module (<code>process_ccew.py</code>, <code>process_oscr.py</code>, <code>process_ccni.py</code>). These modules parse the raw files, validate required fields, standardise dates and financial values, construct UIDs, and deduplicate within-source records. Each module produces a jurisdiction-specific extract CSV.</li>
+          <li><strong>Combination</strong> &mdash; The three jurisdiction extracts are concatenated into a single dataset. Records are filtered against the TCSS Organisation Register (&ldquo;Spine&rdquo;) to retain only charities that appear in the cross-register lookup. This ensures consistency with other datasets in the TCSS ecosystem.</li>
+          <li><strong>Baseline Append</strong> &mdash; New records are compared against an existing baseline dataset using a composite key of <code>uid</code> + <code>fy</code>. Only genuinely new records are appended, preventing duplicate accumulation across pipeline runs.</li>
+          <li><strong>Output Validation</strong> &mdash; The final dataset is validated against the defined output schema (23 columns), sorted by <code>uid</code> and <code>fy</code>, and written to CSV.</li>
+        </ol>
+
+        <p>All excluded records are logged to an exclusion log (<code>charity-exclusion-log.csv</code>) with a timestamp, source, reason code, and descriptive detail, providing a full audit trail of data processing decisions.</p>
+      </div>
+
+      <!-- Section A2: Source Data -->
+      <div class="section level1">
+        <h1>A2. Source Data</h1>
+
+        <p>The pipeline draws on publicly available data from three regulatory sources. Each source has distinct file formats, date conventions, and field structures that are handled by dedicated processing modules.</p>
+
+        <h3>CCEW (England &amp; Wales)</h3>
+        <table>
+          <thead>
+            <tr><th>Property</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Source</td><td><a href="https://register-of-charities.charitycommission.gov.uk/en/register/full-register-download" target="_blank">CCEW Full Register Download</a></td></tr>
+            <tr><td>Format</td><td>TAB-delimited text files</td></tr>
+            <tr><td>Files</td><td>Part A (headline financials) + Part B (detailed breakdown, charities &gt;&pound;500k)</td></tr>
+            <tr><td>Date format</td><td><code>YYYY-MM-DD HH:MM:SS.NNNNNNN</code></td></tr>
+            <tr><td>UID prefix</td><td><code>GB-CHC-</code></td></tr>
+            <tr><td>Dedup strategy</td><td>By (<code>uid</code>, <code>fy</code>), keeping most recent by <code>ar_received_date</code></td></tr>
+          </tbody>
+        </table>
+
+        <h3>OSCR (Scotland)</h3>
+        <table>
+          <thead>
+            <tr><th>Property</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Source</td><td><a href="https://www.oscr.org.uk/about-charities/search-the-register/download-the-scottish-charity-register/" target="_blank">OSCR Scottish Charity Register Download</a></td></tr>
+            <tr><td>Format</td><td>CSV</td></tr>
+            <tr><td>Files</td><td>Single 5-year rolling extract</td></tr>
+            <tr><td>Date format</td><td><code>DD/MM/YYYY</code></td></tr>
+            <tr><td>UID prefix</td><td><code>GB-SC-</code></td></tr>
+            <tr><td>Detailed fields</td><td>5 income categories (<code>Donations and legacies income</code>, <code>Charitable activities income</code>, <code>Other trading activities income</code>, <code>Investments income</code>, <code>Other income</code>) and 3 expenditure categories (<code>Raising funds spending</code>, <code>Charitable activities spending</code>, <code>Other spending</code>)</td></tr>
+            <tr><td>Note</td><td>Financial year start (<code>fys</code>) derived from FYE minus 1 year plus 1 day. OSCR column names differ from CCEW and are mapped to the standardised schema during processing.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>CCNI (Northern Ireland)</h3>
+        <table>
+          <thead>
+            <tr><th>Property</th><th>Detail</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Source</td><td><a href="https://www.charitycommissionni.org.uk/charity-search?pageNumber=1&amp;sortOption=Rank%3Basc" target="_blank">CCNI Charity Search</a></td></tr>
+            <tr><td>Format</td><td>CSV (UTF-8 and Latin-1 variants)</td></tr>
+            <tr><td>Files</td><td>Current snapshot + historical snapshots</td></tr>
+            <tr><td>Date formats</td><td><code>DD/MM/YYYY</code>, <code>DD Month YYYY</code>, <code>YYYY-MM-DD</code></td></tr>
+            <tr><td>UID prefix</td><td><code>GB-NIC-</code></td></tr>
+            <tr><td>Dedup strategy</td><td>By (<code>uid</code>, <code>fy</code>), keeping most recent extract</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section A3: Deduplication & Validation -->
+      <div class="section level1">
+        <h1>A3. Deduplication &amp; Validation</h1>
+
+        <p>Data quality is maintained through a multi-stage validation and deduplication process. Each stage logs excluded records to the exclusion log with a reason code.</p>
+
+        <h3>Required Field Validation</h3>
+        <p>Every record must have:</p>
+        <ul>
+          <li>A valid charity registration number (used to construct the <code>uid</code>)</li>
+          <li>A parseable financial year end date (used to derive <code>fy</code> and <code>fye</code>)</li>
+          <li>A non-null income value (<code>inc</code>)</li>
+        </ul>
+        <p>Records failing any of these checks are excluded with reason code <code>missing_required</code> or <code>invalid_date</code>.</p>
+
+        <h3>Within-Source Deduplication</h3>
+        <p>Some source files contain duplicate records for the same charity and financial year. The deduplication strategy varies by source:</p>
+        <ul>
+          <li><strong>CCEW Part A:</strong> When multiple records exist for the same (<code>uid</code>, <code>fy</code>) pair, the record with the most recent <code>ar_received_date</code> is retained, as it reflects the latest submission.</li>
+          <li><strong>OSCR and CCNI:</strong> The first occurrence for each (<code>uid</code>, <code>fy</code>) pair is retained.</li>
+        </ul>
+        <p>Excluded duplicates are logged with reason code <code>duplicate_source</code>.</p>
+
+        <h3>Spine Filtering</h3>
+        <p>After combining the three jurisdiction extracts, records are filtered against the TCSS Organisation Register (Spine). Only charities with a UID present in the Spine are retained. This ensures the dataset is consistent with other TCSS datasets and that all records can be linked using the common <code>uid</code> field. Excluded records are logged with reason code <code>not_in_spine</code>.</p>
+
+        <h3>Baseline Deduplication</h3>
+        <p>When appending new records to the existing baseline dataset, a composite key of <code>uid</code> + <code>fy</code> is used to identify records that already exist. Only genuinely new records are appended, preventing duplicate accumulation across pipeline runs. Duplicates are logged with reason code <code>duplicate_baseline</code>.</p>
+
+        <h3>Exclusion Reason Codes</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>missing_required</code></td>
+              <td>Missing charity registration number, income, or expenditure</td>
+            </tr>
+            <tr>
+              <td><code>invalid_date</code></td>
+              <td>Could not parse financial period dates</td>
+            </tr>
+            <tr>
+              <td><code>duplicate_source</code></td>
+              <td>Duplicate within source file (most recent kept)</td>
+            </tr>
+            <tr>
+              <td><code>not_in_spine</code></td>
+              <td>Charity not found in TCSS Organisation Register</td>
+            </tr>
+            <tr>
+              <td><code>duplicate_baseline</code></td>
+              <td>Record already exists in baseline dataset (same uid + fy)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section A4: Reproducibility -->
+      <div class="section level1">
+        <h1>A4. Reproducibility</h1>
+
+        <p>The pipeline code is available in the project&rsquo;s repository, with the charity financial records pipeline located in the <code>code/charities/</code> directory.</p>
+
+        <h3>Scripts</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Script</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>run_pipeline.py</code></td>
+              <td>CLI entry point; orchestrates the full workflow with subcommands (<code>ccew</code>, <code>oscr</code>, <code>ccni</code>, <code>combine</code>, <code>all</code>, <code>coverage</code>)</td>
+            </tr>
+            <tr>
+              <td><code>config.py</code></td>
+              <td>Central configuration: paths, field mappings, output schema, exclusion reason codes</td>
+            </tr>
+            <tr>
+              <td><code>process_ccew.py</code></td>
+              <td>Processes CCEW Part A + Part B data</td>
+            </tr>
+            <tr>
+              <td><code>process_oscr.py</code></td>
+              <td>Processes OSCR 5-year rolling extract</td>
+            </tr>
+            <tr>
+              <td><code>process_ccni.py</code></td>
+              <td>Processes CCNI current and historical snapshots</td>
+            </tr>
+            <tr>
+              <td><code>combine_and_append.py</code></td>
+              <td>Combines jurisdiction extracts, validates against Spine, appends to baseline</td>
+            </tr>
+            <tr>
+              <td><code>coverage_analysis.py</code></td>
+              <td>Generates variable, organisation, and year-by-year coverage reports</td>
+            </tr>
+            <tr>
+              <td><code>dependencies.py</code></td>
+              <td>Dependency management; ensures required packages are installed</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Dependencies</h3>
+        <p>The pipeline requires Python 3.11 or later, with dependencies managed using <a href="https://docs.astral.sh/uv/">uv</a>. The only external dependency is:</p>
+        <ul>
+          <li><code>pandas</code> &mdash; for data manipulation and CSV I/O</li>
+        </ul>
+
+        <h3>Running the Pipeline</h3>
+        <p>The full pipeline can be run with a single command:</p>
+        <pre>python run_pipeline.py all</pre>
+        <p>Individual stages can also be run independently:</p>
+        <pre>python run_pipeline.py ccew      # Process CCEW data only
+python run_pipeline.py oscr      # Process OSCR data only
+python run_pipeline.py ccni      # Process CCNI data only
+python run_pipeline.py combine   # Combine and append
+python run_pipeline.py coverage  # Generate coverage reports</pre>
+
+        <h3>Input Data</h3>
+        <p>Running the pipeline requires the source data files to be downloaded from each regulator&rsquo;s website and placed in the expected directory structure under <code>data/input/financial-history/raw/</code>. The baseline dataset and Spine lookup file must also be present. All input paths are defined in <code>config.py</code>.</p>
+
+        <div class="callout callout-warning">
+          <p><strong>Note:</strong> The raw source files are not distributed with the pipeline code, as they are publicly available downloads that are updated periodically by each regulator. Users should download the latest versions from the regulator websites listed in <a href="#a2-source-data">A2. Source Data</a>.</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="report-footer">
+        <hr />
+        <p><em>Document generated: March 2026</em></p>
+        <p><em>UK Third and Civil Society Sector Database &mdash; <a href="https://uk-third-sector-database.github.io/" target="_blank">uk-third-sector-database.github.io</a></em></p>
+      </div>
+
+    </div><!-- /.toc-content -->
+</div><!-- /.main-container -->
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<!-- Bootstrap 3 JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- tocify -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  // ----------------------------------------------------------------
+  // buildTabsets: convert div.section.tabset elements into Bootstrap
+  // 3 nav-tabs.
+  // ----------------------------------------------------------------
+  function buildTabsets() {
+    var tabsetId = 0;
+
+    $("div.section.tabset").each(function () {
+      var $container = $(this);
+
+      var parentLevel = 0;
+      for (var lvl = 1; lvl <= 6; lvl++) {
+        if ($container.hasClass("level" + lvl)) {
+          parentLevel = lvl;
+          break;
+        }
+      }
+      if (parentLevel === 0) {
+        var $heading = $container.children("h1, h2, h3, h4, h5, h6").first();
+        if ($heading.length) {
+          parentLevel = parseInt($heading.prop("tagName").replace("H", ""), 10);
+        }
+      }
+      if (parentLevel === 0) {
+        parentLevel = 1;
+      }
+
+      var childLevel = parentLevel + 1;
+      var childSelector = "div.section.level" + childLevel;
+
+      var $children = $container.children(childSelector);
+
+      if ($children.length === 0) {
+        $children = $();
+        var $next = $container.next();
+        while ($next.length && $next.is(childSelector)) {
+          $children = $children.add($next);
+          $next = $next.next();
+        }
+      }
+
+      if ($children.length === 0) {
+        return;
+      }
+
+      tabsetId++;
+      var baseId = "tabset-" + tabsetId;
+
+      var $ul = $('<ul class="nav nav-tabs" role="tablist"></ul>');
+      var $tabContent = $('<div class="tab-content"></div>');
+
+      $children.each(function (idx) {
+        var $section = $(this);
+        var $heading = $section.children("h" + childLevel).first();
+        var tabTitle = $heading.length ? $heading.text() : "Tab " + (idx + 1);
+        var paneId = baseId + "-" + (idx + 1);
+        var isActive = idx === 0;
+
+        var $li = $(
+          '<li role="presentation"' +
+            (isActive ? ' class="active"' : "") +
+            ">" +
+            '<a href="#' + paneId + '" role="tab" data-toggle="tab">' +
+            tabTitle +
+            "</a>" +
+            "</li>"
+        );
+        $ul.append($li);
+
+        $heading.remove();
+
+        $section
+          .addClass("tab-pane" + (isActive ? " active" : ""))
+          .attr("id", paneId)
+          .attr("role", "tabpanel")
+          .attr("data-tab-title", tabTitle);
+
+        $tabContent.append($section);
+      });
+
+      $container.append($ul);
+      $container.append($tabContent);
+    });
+  }
+
+  // ----------------------------------------------------------------
+  // Initialise on DOM ready
+  // ----------------------------------------------------------------
+  $(document).ready(function () {
+    buildTabsets();
+
+    if ($.fn.tocify && $("#TOC").length) {
+      $("#TOC").tocify({
+        selectors: "h1:not(.toc-ignore), h2:not(.toc-ignore), h3:not(.toc-ignore)",
+        theme: "none",
+        smoothScroll: true,
+        smoothScrollSpeed: 300,
+        highlightOnScroll: true,
+        highlightOffset: 80,
+        scrollTo: 60,
+        hashGenerator: "pretty",
+        ignoreSelector: ".toc-ignore",
+        showAndHide: true,
+        showAndHideOnScroll: true,
+        extendPage: false
+      });
+    }
+  });
+})();
+
+// ----------------------------------------------------------------
+// TOC toggle
+// ----------------------------------------------------------------
+function toggleTOC() {
+  var toc = document.getElementById("TOC");
+  var overlay = document.getElementById("tocOverlay");
+  var btn = document.querySelector(".toc-toggle");
+  if (toc) {
+    toc.classList.toggle("open");
+    overlay.classList.toggle("open");
+    btn.classList.toggle("shifted");
+  }
+}
+
+// ----------------------------------------------------------------
+// Accessibility functions
+// ----------------------------------------------------------------
+function toggleA11yPanel() {
+  document.getElementById("a11yPanel").classList.toggle("open");
+}
+
+function setFontSize(size) {
+  document.body.classList.remove("font-medium", "font-large");
+  document.querySelectorAll(".size-btns button").forEach(function(b) { b.classList.remove("active"); });
+  if (size === "medium") { document.body.classList.add("font-medium"); document.getElementById("fs-medium").classList.add("active"); }
+  else if (size === "large") { document.body.classList.add("font-large"); document.getElementById("fs-large").classList.add("active"); }
+  else { document.getElementById("fs-default").classList.add("active"); }
+  localStorage.setItem("a11y-font-size", size);
+}
+
+function toggleContrast() {
+  var on = document.getElementById("contrastToggle").checked;
+  document.body.classList.toggle("high-contrast", on);
+  localStorage.setItem("a11y-high-contrast", on ? "true" : "false");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var savedSize = localStorage.getItem("a11y-font-size");
+  if (savedSize && savedSize !== "default") setFontSize(savedSize);
+  var savedContrast = localStorage.getItem("a11y-high-contrast");
+  if (savedContrast === "true") { document.getElementById("contrastToggle").checked = true; document.body.classList.add("high-contrast"); }
+});
+</script>
+
+</body>
+</html>
