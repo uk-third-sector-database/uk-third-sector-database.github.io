@@ -16,4 +16,4 @@ Welcome to the home of the UK Third and Civil Society Sector Database! We are a 
 
 This work was funded by the Economic and Social Research Council [("Improving Access to and Use of Organisation-Level Data on the Third Sector and Civil Society")](https://gtr.ukri.org/projects?ref=ES/X000524/1) and Department for Culture, Media & Sport ("Mapping and Understanding the UK Civil Society Sector").
 
-We welcome feedback and suggestions for improvements: please contact [Dr Diarmuid McDonnell](mailto:diarmuid@brawdata.com).
+We welcome feedback and suggestions for improvements: please contact [research@brawdata.com](mailto:research@brawdata.com).
