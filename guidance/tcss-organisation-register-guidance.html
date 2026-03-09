@@ -961,7 +961,7 @@ body.high-contrast .figure-caption {
             </tr>
             <tr>
               <td><code>TSCS_spine.supplementary.csv</code></td>
-              <td class="numeric">872,100</td>
+              <td class="numeric">872,084</td>
               <td>Alternative names, addresses, and dates from other source registers</td>
             </tr>
             <tr>
@@ -977,11 +977,11 @@ body.high-contrast .figure-caption {
           </tbody>
         </table>
 
-        <h3>Organisation Types</h3>
+        <h3 id="organisation-types">Organisation Types</h3>
 
-        <p>The Data Spine classifies organisations into four main types: Charity, CIC, Co-operative/Mutual, and Other. Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.3% are charities).</p>
+        <p>The <code>cso_type</code> field classifies organisations into four main types: Charity, CIC, Co-operative/Mutual, and Other. The <code>cso_subtype</code> field provides a finer-grained classification: Charities, CICs, and Co-operatives/Mutuals pass through unchanged, while the &lsquo;Other&rsquo; category is disaggregated into subtypes using Companies House SIC (Standard Industrial Classification) codes and organisation name patterns. The classification applies SIC division codes (the first two digits of the primary SIC code) alongside keyword matching on organisation names, using a priority ordering to resolve ambiguities.</p>
 
-        <p>Panel A shows the four main types. Panel B disaggregates the &lsquo;Other&rsquo; category into meaningful subtypes using Companies House SIC (Standard Industrial Classification) codes and organisation name patterns. The classification applies SIC division codes (the first two digits of the primary SIC code) alongside keyword matching on organisation names, using a priority ordering to resolve ambiguities.</p>
+        <p>Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.3% are charities).</p>
 
         <p>Property management companies account for 15.2% of all active organisations in England but less than 2% elsewhere, reflecting the prevalence of residential leasehold structures. The residual &lsquo;Other Company Limited By Guarantee&rsquo; category remains the largest subtype among dissolved organisations, particularly in Northern Ireland (23.4%).</p>
 
@@ -1247,6 +1247,16 @@ body.high-contrast .figure-caption {
                 <td>Boolean flag indicating whether the organisation is a Community Interest Company (<code>True</code>/<code>False</code>)</td>
                 <td>Boolean</td>
               </tr>
+              <tr>
+                <td><code>cso_type</code></td>
+                <td>High-level organisation type: <code>Charity</code>, <code>CIC</code>, <code>Co-operative / Mutual</code>, or <code>Other</code>. Derived from <code>source_register</code> and <code>is_cic</code></td>
+                <td>Text</td>
+              </tr>
+              <tr>
+                <td><code>cso_subtype</code></td>
+                <td>Detailed organisation subtype. Charities, CICs, and co-operatives pass through unchanged. &lsquo;Other&rsquo; is disaggregated into subtypes using SIC codes and organisation name patterns (see <a href="#organisation-types">Organisation Types</a>)</td>
+                <td>Text</td>
+              </tr>
             </tbody>
           </table>
 
@@ -1263,6 +1273,8 @@ body.high-contrast .figure-caption {
                 <th>registerdate</th>
                 <th>source_register</th>
                 <th>is_cic</th>
+                <th>cso_type</th>
+                <th>cso_subtype</th>
               </tr>
             </thead>
             <tbody>
@@ -1273,6 +1285,8 @@ body.high-contrast .figure-caption {
                 <td>17/03/1961</td>
                 <td>Charity Commission for England and Wales</td>
                 <td>False</td>
+                <td>Charity</td>
+                <td>Charity</td>
               </tr>
               <tr>
                 <td><code>GB-SC-SC000001</code></td>
@@ -1281,6 +1295,8 @@ body.high-contrast .figure-caption {
                 <td>26/06/1986</td>
                 <td>Scottish Charity Register</td>
                 <td>False</td>
+                <td>Charity</td>
+                <td>Charity</td>
               </tr>
               <tr>
                 <td><code>GB-NIC-100002</code></td>
@@ -1289,6 +1305,8 @@ body.high-contrast .figure-caption {
                 <td>04/05/2005</td>
                 <td>Charity Commission for Northern Ireland</td>
                 <td>False</td>
+                <td>Charity</td>
+                <td>Charity</td>
               </tr>
               <tr>
                 <td><code>GB-COH-00004302</code></td>
@@ -1297,6 +1315,8 @@ body.high-contrast .figure-caption {
                 <td>13/02/1869</td>
                 <td>Companies House</td>
                 <td>False</td>
+                <td>Other</td>
+                <td>Membership Organisation</td>
               </tr>
               <tr>
                 <td><code>GB-COOP-R020362</code></td>
@@ -1305,6 +1325,8 @@ body.high-contrast .figure-caption {
                 <td>31/07/2002</td>
                 <td>Co-operatives</td>
                 <td>False</td>
+                <td>Co-operative / Mutual</td>
+                <td>Co-operative / Mutual</td>
               </tr>
               <tr>
                 <td><code>GB-MPR-1231W</code></td>
@@ -1313,6 +1335,8 @@ body.high-contrast .figure-caption {
                 <td>12/04/1937</td>
                 <td>Mutuals Public Register</td>
                 <td>False</td>
+                <td>Co-operative / Mutual</td>
+                <td>Co-operative / Mutual</td>
               </tr>
               <tr>
                 <td><code>GB-SHR-275</code></td>
@@ -1321,6 +1345,8 @@ body.high-contrast .figure-caption {
                 <td></td>
                 <td>Scottish Housing Regulator</td>
                 <td>False</td>
+                <td>Other</td>
+                <td>Housing Association</td>
               </tr>
               <tr>
                 <td><code>GB-SHPE-C3489</code></td>
@@ -1329,6 +1355,8 @@ body.high-contrast .figure-caption {
                 <td>20/07/1984</td>
                 <td>Social Housing England</td>
                 <td>False</td>
+                <td>Other</td>
+                <td>Housing Association</td>
               </tr>
               <tr>
                 <td><code>GB-COH-00288977</code></td>
@@ -1337,6 +1365,8 @@ body.high-contrast .figure-caption {
                 <td>09/06/1934</td>
                 <td>Companies House</td>
                 <td>True</td>
+                <td>CIC</td>
+                <td>CIC</td>
               </tr>
               <tr>
                 <td><code>GB-CHC-518004</code></td>
@@ -1345,6 +1375,8 @@ body.high-contrast .figure-caption {
                 <td>06/10/1986</td>
                 <td>Charity Commission for England and Wales</td>
                 <td>True</td>
+                <td>CIC</td>
+                <td>CIC</td>
               </tr>
             </tbody>
           </table>
