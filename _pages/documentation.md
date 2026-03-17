@@ -25,3 +25,15 @@ Detailed guidance notes describing the contents, coverage, and production pipeli
 </div>
 
 Guidance for additional datasets will be added as they are published. See the [Data](/data/) page for the full list of available resources.
+
+## Use cases
+
+Worked examples showing how the TCSS data resources can be used in research.
+
+<div style="font-size: 1.2em;" markdown="1">
+
+| Use case | Format | |
+|----------|--------|-|
+| Sampling Frame for National Surveys | <a href="/guidance/tcss-sampling-frame-use-case.html" target="_blank">HTML</a> | <a href="/guidance/tcss-sampling-frame-use-case.pdf" target="_blank">PDF</a> |
+
+</div>

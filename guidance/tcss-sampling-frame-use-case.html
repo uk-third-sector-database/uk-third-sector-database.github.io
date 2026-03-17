@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sampling Frame for National Surveys — Use Case</title>
+
+<!-- Google Fonts: Lora + Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Bootstrap 3 CSS -->
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+/>
+
+<!-- jQuery UI (for tocify) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+/>
+
+<!-- tocify CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/stylesheets/jquery.tocify.min.css"
+/>
+
+<style>
+/* ================================================================
+   Base
+   ================================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #222222;
+  background: #F7F9FA;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================================================
+   Typography
+   ================================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', Georgia, serif;
+  color: #1A6B7C;
+  font-weight: 600;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.55em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.1em; color: #2A9D8F; }
+h5 { font-size: 1em; color: #555555; }
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #2672B0;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 90%;
+  background: #F0F5F7;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #1A6B7C;
+}
+
+pre {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #dde4ea;
+  margin: 2em 0;
+}
+
+/* ================================================================
+   Layout
+   ================================================================ */
+.main-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.toc-content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* ================================================================
+   Collapsible TOC Sidebar
+   ================================================================ */
+#TOC {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1500;
+  width: 280px;
+  background-color: #1A6B7C;
+  padding: 3.5rem 1.2rem 1.5rem 1.2rem;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#TOC.open {
+  transform: translateX(0);
+}
+
+.toc-toggle {
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1600;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #1A6B7C;
+  background: #F0F5F7;
+  color: #1A6B7C;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: left 0.3s ease, background 0.2s;
+  line-height: 1;
+}
+
+.toc-toggle:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.toc-toggle.shifted {
+  left: 292px;
+}
+
+.toc-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1400;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.toc-overlay.open {
+  display: block;
+}
+
+/* tocify overrides (dark sidebar) */
+.tocify {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tocify ul, .tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.tocify-header {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tocify-subheader {
+  font-size: 0.9em;
+  padding-left: 14px !important;
+}
+
+.tocify .tocify-item {
+  padding: 6px 12px;
+  border-left: 3px solid transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 4px;
+}
+
+.tocify .tocify-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify .tocify-item.active {
+  border-left-color: #E9C46A;
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tocify a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ================================================================
+   Header / Title Block
+   ================================================================ */
+#header {
+  text-align: left;
+  padding: 30px 0 20px;
+  border-bottom: 3px solid #1A6B7C;
+  margin-bottom: 30px;
+}
+
+#header h1.title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #1A6B7C;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+#header h3.subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15em;
+  font-weight: 400;
+  color: #5A7A8A;
+  margin: 0 0 4px 0;
+}
+
+#header h4.date {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+}
+
+/* ================================================================
+   gt-style Tables
+   ================================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.92em;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+thead th {
+  background: #1A6B7C;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #1A6B7C;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #eef1f5;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: #F0F5F7;
+}
+
+tbody tr:hover {
+  background: #e6eff4;
+}
+
+td.numeric, th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  caption-side: top;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #1A6B7C;
+  padding: 8px 0;
+  text-align: left;
+}
+
+/* ================================================================
+   Callout Boxes
+   ================================================================ */
+.callout {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.callout-info {
+  background: #eef6fa;
+  border-left-color: #2672B0;
+  color: #1a4a6b;
+}
+
+.callout-warning {
+  background: #fef9ec;
+  border-left-color: #e6a817;
+  color: #7a5c0b;
+}
+
+.callout-tip {
+  background: #eef8f3;
+  border-left-color: #2A9D8F;
+  color: #1a5c4a;
+}
+
+/* ================================================================
+   Section Level Styles
+   ================================================================ */
+.section.level1 {
+  margin-top: 40px;
+  padding-top: 10px;
+}
+
+.section.level1 > h1 {
+  border-bottom: 3px solid #2A9D8F;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.section.level2 {
+  margin-top: 28px;
+}
+
+.section.level3 {
+  margin-top: 20px;
+}
+
+/* ================================================================
+   Footer
+   ================================================================ */
+.report-footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #dde4ea;
+  color: #555555;
+  font-size: 0.9em;
+}
+
+.report-footer em {
+  color: #5A7A8A;
+}
+
+/* ================================================================
+   Accessibility Panel
+   ================================================================ */
+.a11y-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1050;
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #F0F5F7;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.a11y-btn:hover {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.a11y-panel {
+  position: fixed;
+  top: 62px;
+  right: 12px;
+  z-index: 1050;
+  background: #fff;
+  border: 1px solid #dde4ea;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  padding: 18px 20px 14px;
+  min-width: 180px;
+  display: none;
+}
+
+.a11y-panel.open {
+  display: block;
+}
+
+.a11y-panel label {
+  color: #1A6B7C;
+  font-weight: 600;
+  font-size: 0.93em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.size-btns {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.size-btns button {
+  border: 2px solid #1A6B7C;
+  color: #1A6B7C;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 4px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.size-btns button:hover,
+.size-btns button.active {
+  background: #1A6B7C;
+  color: #fff;
+}
+
+.contrast-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Font size classes */
+body.font-medium {
+  font-size: 18px;
+}
+body.font-medium h1 { font-size: 2.3em; }
+body.font-medium h2 { font-size: 1.75em; }
+body.font-medium h3 { font-size: 1.4em; }
+body.font-medium table { font-size: 1em; }
+
+body.font-large {
+  font-size: 22px;
+}
+body.font-large h1 { font-size: 2.5em; }
+body.font-large h2 { font-size: 1.9em; }
+body.font-large h3 { font-size: 1.55em; }
+body.font-large table { font-size: 1.1em; }
+
+/* High contrast mode */
+body.high-contrast {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast h4,
+body.high-contrast h5,
+body.high-contrast h6 {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header {
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast #header h1.title {
+  color: #7ab8e0;
+}
+
+body.high-contrast #header h3.subtitle {
+  color: #a0c4d8;
+}
+
+body.high-contrast a {
+  color: #7ab8e0;
+}
+
+body.high-contrast table {
+  background: #242444;
+  box-shadow: none;
+}
+
+body.high-contrast thead th {
+  background: #2a3a5e;
+  color: #e0e0e0;
+  border-bottom-color: #7ab8e0;
+}
+
+body.high-contrast tbody td {
+  border-bottom-color: #3a3a5e;
+  color: #e0e0e0;
+}
+
+body.high-contrast tbody tr:nth-child(even) {
+  background: #2a2a4e;
+}
+
+body.high-contrast tbody tr:hover {
+  background: #3a3a6e;
+}
+
+body.high-contrast .callout {
+  background: #242444;
+  color: #d0d0e0;
+}
+
+body.high-contrast .callout-info {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast #TOC {
+  background-color: #0d0d1a;
+}
+
+body.high-contrast .toc-toggle {
+  background: #252540;
+  color: #7ab8e0;
+  border-color: #7ab8e0;
+}
+
+body.high-contrast .toc-toggle:hover {
+  background: #7ab8e0;
+  color: #1a1a2e;
+}
+
+body.high-contrast .tocify .tocify-item {
+  color: #b0b0c0;
+}
+
+body.high-contrast .tocify .tocify-item:hover,
+body.high-contrast .tocify .tocify-item.active {
+  color: #7ab8e0;
+  background: #2a2a4e;
+}
+
+body.high-contrast .tocify .tocify-item.active {
+  border-left-color: #7ab8e0;
+}
+
+body.high-contrast .report-footer,
+body.high-contrast .report-footer em {
+  color: #a0a0b0;
+}
+
+body.high-contrast code {
+  background: #2a2a4e;
+  color: #7ab8e0;
+}
+
+body.high-contrast blockquote {
+  border-left-color: #7ab8e0;
+  color: #d0d0e0;
+}
+
+/* ================================================================
+   Print Styles
+   ================================================================ */
+@media print {
+  #TOC,
+  .toc-toggle,
+  .toc-overlay {
+    display: none !important;
+  }
+
+  .toc-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    font-size: 12px;
+    background: #fff;
+    color: #000;
+  }
+
+  table {
+    box-shadow: none;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .a11y-btn, .a11y-panel {
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   Responsive
+   ================================================================ */
+@media (max-width: 767px) {
+  #header h1.title {
+    font-size: 1.6em;
+  }
+
+  table {
+    font-size: 0.82em;
+  }
+
+  thead th,
+  tbody td {
+    padding: 6px 8px;
+  }
+
+  .main-container {
+    padding: 0 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- TOC Toggle + Overlay -->
+<button class="toc-toggle" onclick="toggleTOC()" title="Table of contents" aria-label="Toggle table of contents">&#9776;</button>
+<div class="toc-overlay" id="tocOverlay" onclick="toggleTOC()"></div>
+<div id="TOC" class="tocify"></div>
+
+<!-- Accessibility Panel -->
+<button class="a11y-btn" onclick="toggleA11yPanel()" title="Accessibility options" aria-label="Accessibility options">Aa</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility settings">
+  <label>Text size</label>
+  <div class="size-btns">
+    <button onclick="setFontSize('default')" id="fs-default" class="active">A</button>
+    <button onclick="setFontSize('medium')" id="fs-medium">A+</button>
+    <button onclick="setFontSize('large')" id="fs-large">A++</button>
+  </div>
+  <div class="contrast-toggle">
+    <input type="checkbox" id="contrastToggle" onchange="toggleContrast()">
+    <label for="contrastToggle" style="margin:0; font-weight:500;">High contrast</label>
+  </div>
+</div>
+
+<div class="main-container">
+    <div class="toc-content">
+
+      <!-- Title Block -->
+      <div id="header">
+        <h1 class="title toc-ignore">Sampling Frame for National Surveys</h1>
+        <h3 class="subtitle toc-ignore">A Use Case for the TCSS Organisation Register</h3>
+        <h4 class="date toc-ignore">March 2026</h4>
+      </div>
+
+      <p>The UK Third and Civil Society Sector Database&rsquo;s organisational spine offers a near-comprehensive register of civil society organisations appearing in administrative data across the UK. Several features make it a powerful sampling frame for primary research.</p>
+
+      <!-- Section 1 -->
+      <div class="section level1">
+        <h1>1. Population Coverage and Stratification</h1>
+
+        <p>For the first time, it will be possible to draw a random sample of organisations that crosses legal form and organisation-type, and is pulled from the same sampling frame. Researchers can draw samples stratified by organisational type, regulatory jurisdiction, geographic location (region, local authority, rural-urban classification, deprivation decile), industrial classification (ICNPTSO section or SIC code), or organisational age derived from registration dates. This makes it possible to design studies targeting specific sub-populations (e.g., CICs in deprived areas, or health charities in rural England) while still knowing the population from which the sample is drawn.</p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="section level1">
+        <h1>2. Temporal Dimension</h1>
+
+        <p>Registration and removal dates allow researchers to define the population at any point in time &mdash; sampling only currently active organisations, or constructing historical cohorts (e.g., all charities founded between 2010 and 2015). This supports both cross-sectional surveys and longitudinal panel designs where organisations are sampled at formation and followed up.</p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="section level1">
+        <h1>3. Size-Based Sampling</h1>
+
+        <p>The linked financial history data provides annual income and expenditure for most charities and nonprofit companies, enabling size-stratified sampling. This is particularly important given the extreme right-skew of the income distribution in civil society: a simple random sample would overwhelmingly draw micro-organisations and miss the relatively few large charities that account for the bulk of sector income and expenditure. Researchers can use income bands (aligned with standard UK charity size thresholds) to oversample larger organisations or to ensure adequate representation across the size distribution.</p>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="section level1">
+        <h1>4. Screening for Specific Characteristics</h1>
+
+        <p>The procurement data linkage identifies organisations that have received public sector contracts, enabling researchers to sample specifically from government suppliers &mdash; or to construct matched comparison groups of similar organisations that have not engaged in public procurement. Likewise, the financial variables allow screening for organisations with particular income profiles (e.g. high dependence on donations, or persistently loss-making organisations).</p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="section level1">
+        <h1>5. Practical Contact Information</h1>
+
+        <p>The spine includes organisational names, addresses, and postcodes, providing the basic contact details needed to administer postal or in-person surveys for research.</p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="section level1">
+        <h1>6. Survey Weighting</h1>
+
+        <p>The spine as a sampling frame also provides opportunities for robust survey weighting approaches, given the characteristics of the population that are known.</p>
+
+        <h3>Design weights</h3>
+
+        <p>Design weights correct for unequal selection probabilities that arise from the sampling design itself. They are the inverse of each unit&rsquo;s probability of inclusion and are determined entirely at the design stage. Because the spine contains the full population within each stratum, these probabilities are known exactly. Stratified sampling (oversampling larger organisations, rarer organisational types, or specific geographic areas) will require design weights that vary accordingly across strata.</p>
+
+        <h3>Non-response weights</h3>
+
+        <p>Non-response weights adjust for the fact that not all sampled units participate. If non-response is related to characteristics that also predict the outcome of interest, unadjusted estimates will be biased. The spine is particularly useful here because the full set of auxiliary variables &mdash; organisational type, income, age, jurisdiction, region, deprivation decile, rural-urban classification, and procurement engagement &mdash; is available for both respondents and non-respondents, enabling detailed diagnosis and modelling of non-response. Response propensities can be estimated via logistic regression on these covariates, and the inverse of the predicted response probability used as a non-response adjustment factor applied to the design weight. The richness of the spine means that meaningful predictors of non-response can be incorporated into the adjustment, reducing bias that would go undetected with a sparser sampling frame.</p>
+
+        <h3>Calibration weights</h3>
+
+        <p>Calibration (or post-stratification) weights make a final adjustment so that weighted sample totals reproduce known population margins. Where design and non-response weights bring the sample closer to representativeness, calibration explicitly benchmarks the weighted sample against external population totals &mdash; and the spine supplies these totals directly. Researchers can calibrate to the known number of organisations by type, by region, by nation, by deprivation decile, or by income band, using post-stratification. This is particularly valuable for studies producing estimates of total sector income, expenditure, or employment, where even modest deviations from the true size distribution can substantially distort weighted totals.</p>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="section level1">
+        <h1>7. Limitations as a Sampling Frame</h1>
+
+        <p>The spine is not a complete census of all civil society activity. It excludes unregistered community groups, informal associations, and organisations below regulatory thresholds (e.g., charities with income under &pound;5,000 that are not required to register with the Charity Commission in England and Wales). Coverage varies by jurisdiction: financial data is less complete for Northern Ireland, and ICNPTSO classifications are only available for registered charities. Some organisations lack postcodes or registration dates, and the deduplication process may not capture all dual-registered organisations perfectly. Researchers should also note that the spine reflects a snapshot in time and that address information may become outdated for organisations that have moved. Researchers should assess the completeness of stratification and weighting variables for their target population before finalising a design, and may need to treat organisations with missing size or classification data as a separate stratum or exclude them with appropriate documentation. Similarly, because the spine is updated periodically rather than in real time, there will be some lag between the sampling frame and the actual population at the point of data collection.</p>
+
+        <p>Despite these caveats, the spine represents the most comprehensive openly available listing of UK civil society organisations and is substantially more inclusive than relying on any single register. It is well suited to supporting probability-based sampling designs for surveys, case study selection, and as a universe definition for quantitative research on the sector.</p>
+      </div>
+
+      <!-- Footer -->
+      <div class="report-footer">
+        <p><em>Produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> project.</em></p>
+      </div>
+
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<!-- tocify -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+// ----------------------------------------------------------------
+// Build TOC
+// ----------------------------------------------------------------
+$(function() {
+  var defined = typeof $.fn.tocify !== "undefined";
+  if (defined) {
+    $("#TOC").tocify({
+      selectors: "h1:not(.toc-ignore), h3",
+      theme: "none",
+      scrollTo: 60,
+      extendPage: false,
+      hashGenerator: "pretty",
+      showAndHide: false,
+      smoothScroll: true,
+      highlightOnScroll: true
+    });
+  }
+});
+
+// ----------------------------------------------------------------
+// TOC toggle
+// ----------------------------------------------------------------
+function toggleTOC() {
+  var toc = document.getElementById("TOC");
+  var overlay = document.getElementById("tocOverlay");
+  var btn = document.querySelector(".toc-toggle");
+  if (toc) {
+    toc.classList.toggle("open");
+    overlay.classList.toggle("open");
+    btn.classList.toggle("shifted");
+  }
+}
+
+// ----------------------------------------------------------------
+// Accessibility functions
+// ----------------------------------------------------------------
+function toggleA11yPanel() {
+  document.getElementById("a11yPanel").classList.toggle("open");
+}
+
+function setFontSize(size) {
+  document.body.classList.remove("font-medium", "font-large");
+  document.querySelectorAll(".size-btns button").forEach(function(b) { b.classList.remove("active"); });
+  if (size === "medium") { document.body.classList.add("font-medium"); document.getElementById("fs-medium").classList.add("active"); }
+  else if (size === "large") { document.body.classList.add("font-large"); document.getElementById("fs-large").classList.add("active"); }
+  else { document.getElementById("fs-default").classList.add("active"); }
+  localStorage.setItem("a11y-font-size", size);
+}
+
+function toggleContrast() {
+  var on = document.getElementById("contrastToggle").checked;
+  document.body.classList.toggle("high-contrast", on);
+  localStorage.setItem("a11y-high-contrast", on ? "true" : "false");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var savedSize = localStorage.getItem("a11y-font-size");
+  if (savedSize && savedSize !== "default") setFontSize(savedSize);
+  var savedContrast = localStorage.getItem("a11y-high-contrast");
+  if (savedContrast === "true") { document.getElementById("contrastToggle").checked = true; document.body.classList.add("high-contrast"); }
+});
+</script>
+
+</body>
+</html>
