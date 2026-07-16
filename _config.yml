@@ -72,8 +72,14 @@ social:
 
 
 # Analytics
+# The "google" and "google-universal" providers below are dead: they load ga.js and
+# analytics.js, both of which Google switched off (Universal Analytics stopped
+# processing data on 1 July 2023). Do not use them. GA4 would need a new provider
+# and a cookie consent banner; GoatCounter is cookieless and needs neither.
 analytics:
-  provider               :  "google-universal" # false (default), "google", "google-universal", "custom"
+  provider               : "goatcounter" # false (default), "goatcounter", "google", "google-universal", "custom"
+  goatcounter:
+    code                 : # site code from goatcounter.com, i.e. the MYCODE in MYCODE.goatcounter.com
   google:
     tracking_id          :
 

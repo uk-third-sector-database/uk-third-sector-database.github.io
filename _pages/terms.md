@@ -1,7 +1,7 @@
 ---
 permalink: /terms/
 title: "Terms and Privacy Policy"
-modified: 2016-06-06
+modified: 2026-07-16
 ---
 
 {% include base_path %}
@@ -9,31 +9,67 @@ modified: 2016-06-06
 
 ## Privacy Policy
 
-The privacy of my visitors is extremely important. This Privacy Policy outlines the types of personal information that is received and collected and how it is used.
+This website is operated by **Braw Data Ltd**, which is the data controller for the
+purposes of UK data protection law. This policy explains what the site collects, and
+what it does not.
 
-First and foremost, I will never share your email address or any other personal information to anyone without your direct consent.
+### This site sets no cookies
 
-### Log Files
+This website does not set cookies. There is no advertising, no comment system, and no
+third-party tracking of individuals. There is nothing here to consent to and nothing to
+opt out of.
 
-Like many other websites, this site uses log files to help learn about when, from where, and how often traffic flows to this site. The information in these log files include:
+### Analytics
 
-* Internet Protocol addresses (IP)
-* Types of browser
-* Internet Service Provider (ISP)
-* Date and time stamp
-* Referring and exit pages
-* Number of clicks
+To understand how the site is used, we use [GoatCounter](https://www.goatcounter.com), a
+privacy-focused analytics service. GoatCounter is cookieless and does not identify
+individual visitors. It records aggregate information only:
 
-All of this information is not linked to anything that is personally identifiable.
+* the page visited, with the date and time
+* the referring site, if you arrived by following a link
+* your approximate country
+* your browser, operating system, and screen size
 
-### Cookies and Web Beacons
+GoatCounter does **not** retain your IP address or your browser's User-Agent string.
+These are used to derive the aggregate figures above and are then discarded. The
+resulting statistics show totals such as "40 visitors used Firefox today" — never
+information about an identifiable person, and never a profile of any individual's
+activity across pages.
 
-When you visit this site "convenience" cookies are stored on your computer when you submit a comment to help you log in faster to [Disqus](http://disqus.com) the next time you leave a comment.
+We also count when a link to one of our datasets is clicked, so we can tell which
+datasets are of most interest. This records the name of the dataset only, and nothing
+about you.
 
-Third-party advertisers may also place and read cookies on your browser and/or use web beacons to collect information. This site has no access or control over these cookies. You should review the respective privacy policies on any and all third-party ad servers for more information regarding their practices and how to opt-out.
+The lawful basis for this processing is **legitimate interest**: understanding which
+parts of the site and which datasets are useful, so that we can maintain and improve
+them. Because the processing does not identify anyone, this is balanced against a
+minimal privacy impact.
 
-If you wish to disable cookies, you may do so through your web browser options. Instructions for doing so can be found on the specific web browsers' websites.
+GoatCounter's own privacy policy is at
+[goatcounter.com/help/privacy](https://www.goatcounter.com/help/privacy).
 
-#### Google Analytics
+### Downloads and hosting
 
-Google Analytics is a web analytics tool I use to help understand how visitors engage with this website. It reports website trends using cookies and web beacons without identifying individual visitors. You can read [Google Analytics Privacy Policy](http://www.google.com/analytics/learn/privacy.html).
+Our datasets are hosted on GitHub. When you follow a download link you leave this site,
+and your request is handled by GitHub under
+[GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+We can see that a download link was clicked; we cannot see what happens after that.
+
+This site is itself published using
+[GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages),
+so GitHub serves these pages to you and may log technical information about your request,
+including your IP address, as part of operating that service. That logging is GitHub's,
+not ours, and we do not have access to it.
+
+### Your rights
+
+Because we do not collect information that identifies you, we hold no personal data about
+you to access, correct, or erase. If you have contacted us by email, that correspondence
+is held by Braw Data Ltd and you may ask us about it using the address below.
+
+### Contact
+
+Questions about this policy, or about data held by Braw Data Ltd, can be sent to
+[research@brawdata.com](mailto:research@brawdata.com).
+
+*Last updated: 16 July 2026.*
