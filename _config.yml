@@ -79,7 +79,7 @@ social:
 analytics:
   provider               : "goatcounter" # false (default), "goatcounter", "google", "google-universal", "custom"
   goatcounter:
-    code                 : # site code from goatcounter.com, i.e. the MYCODE in MYCODE.goatcounter.com
+    code                 : "brawdata" # i.e. https://brawdata.goatcounter.com
   google:
     tracking_id          :
 
