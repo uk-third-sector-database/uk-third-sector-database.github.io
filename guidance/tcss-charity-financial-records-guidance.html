@@ -884,7 +884,7 @@ body.high-contrast .figure-caption {
       <div id="header">
         <h1 class="title toc-ignore">Charity Financial Records</h1>
         <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
-        <h4 class="date toc-ignore">March 2026</h4>
+        <h4 class="date toc-ignore">July 2026</h4>
       </div>
 
       <!-- ============================================================
@@ -899,13 +899,13 @@ body.high-contrast .figure-caption {
 
         <p>The data is drawn from the annual returns and financial reports filed by charities with their respective regulators: the Charity Commission for England and Wales (CCEW), the Office of the Scottish Charity Regulator (OSCR), and the Charity Commission for Northern Ireland (CCNI). These regulatory filings are publicly available and provide a consistent, official record of charity finances over time.</p>
 
-        <p>The dataset consolidates these three sources into a single standardised format, covering over 307,000 charities and spanning financial years from 2000 to 2025. Each record represents one charity&rsquo;s financial return for a single financial year, enabling longitudinal analysis of the UK charity sector&rsquo;s financial health at scale.</p>
+        <p>The dataset consolidates these three sources into a single standardised format, covering over 308,000 charities and spanning financial years from 2000 to 2026. Each record represents one charity&rsquo;s financial return for a single financial year, enabling longitudinal analysis of the UK charity sector&rsquo;s financial health at scale.</p>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">4,025,042</span><span class="label">Financial Records</span></div>
-          <div class="stat-card"><span class="number">307,229</span><span class="label">Registered Charities</span></div>
+          <div class="stat-card"><span class="number">4,059,863</span><span class="label">Financial Records</span></div>
+          <div class="stat-card"><span class="number">308,707</span><span class="label">Registered Charities</span></div>
           <div class="stat-card"><span class="number">3</span><span class="label">UK Regulators</span></div>
-          <div class="stat-card"><span class="number">2000&ndash;2025</span><span class="label">Financial Years</span></div>
+          <div class="stat-card"><span class="number">2000&ndash;2026</span><span class="label">Financial Years</span></div>
         </div>
       </div>
 
@@ -929,7 +929,7 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1>3. Dataset Contents</h1>
 
-        <p>The dataset contains 4,025,042 records across 23 fields. Each row represents one charity&rsquo;s financial return for a single financial year. The fields are organised into four groups: identifiers, aggregate financials, detailed breakdowns, and metadata.</p>
+        <p>The dataset contains 4,059,863 records across 23 fields. Each row represents one charity&rsquo;s financial return for a single financial year. The fields are organised into four groups: identifiers, aggregate financials, detailed breakdowns, and metadata.</p>
 
         <h3>Identifiers and Time Period</h3>
         <table>
@@ -1190,36 +1190,36 @@ body.high-contrast .figure-caption {
             <tr>
               <td>England &amp; Wales</td>
               <td>CCEW</td>
-              <td class="numeric">3,591,525</td>
-              <td class="numeric">263,222</td>
-              <td class="numeric">89.2%</td>
+              <td class="numeric">3,619,195</td>
+              <td class="numeric">264,390</td>
+              <td class="numeric">89.1%</td>
             </tr>
             <tr>
               <td>Scotland</td>
               <td>OSCR</td>
-              <td class="numeric">394,317</td>
-              <td class="numeric">35,764</td>
-              <td class="numeric">9.8%</td>
+              <td class="numeric">400,144</td>
+              <td class="numeric">36,103</td>
+              <td class="numeric">9.9%</td>
             </tr>
             <tr>
               <td>Northern Ireland</td>
               <td>CCNI</td>
-              <td class="numeric">31,802</td>
-              <td class="numeric">7,764</td>
-              <td class="numeric">0.8%</td>
+              <td class="numeric">40,524</td>
+              <td class="numeric">8,214</td>
+              <td class="numeric">1.0%</td>
             </tr>
             <tr>
               <td><strong>Total</strong></td>
               <td></td>
-              <td class="numeric"><strong>4,025,042</strong></td>
-              <td class="numeric"><strong>307,229</strong></td>
+              <td class="numeric"><strong>4,059,863</strong></td>
+              <td class="numeric"><strong>308,707</strong></td>
               <td class="numeric"><strong>100%</strong></td>
             </tr>
           </tbody>
         </table>
 
         <div class="callout callout-tip">
-          <p><strong>Note on CCNI:</strong> The total number of unique organisations (307,229) is less than the sum across jurisdictions because some charities are cross-registered in multiple jurisdictions. However, each record appears under only one source regulator.</p>
+          <p><strong>Note:</strong> Each organisation&rsquo;s records appear under exactly one source regulator &mdash; cross-border charities are deduplicated to their England-and-Wales record &mdash; so the jurisdiction rows sum exactly to the dataset totals.</p>
         </div>
 
         <h3>Year-by-Year Coverage</h3>
@@ -1530,16 +1530,17 @@ body.high-contrast .figure-caption {
         <p>Analyses of the detailed fields for Scotland should therefore treat the available subset (around 10% of Scottish charity-years) as unrepresentative, particularly of the largest domestically-registered charities.</p>
 
         <h3>Cross-Border Double-Counting</h3>
-        <p>The deduplication described above depends on the Organisation Register correctly linking a charity&rsquo;s OSCR and CCEW registrations. Where that link is missing, a charity can appear twice &mdash; once under each regulator &mdash; with the same financial year reported at identical amounts under both. In the current release this affects 82 charities that are registered with both the Charity Commission for England and Wales and OSCR but are not yet linked in the Organisation Register: 188 charity-years and roughly &pound;296 million of income are counted twice. Analysts computing sector totals, or comparing Scotland with England and Wales, should be aware of this until the next release.</p>
-        <p>Most of the overlap will be removed at source. In the next release, 59 of the 82 charities (some &pound;282 million) will be resolved through an updated Organisation Register; the remaining 23 charities (around &pound;14 million) are queued for a register correction. The wider matching gap means a further 250&ndash;300 dual registrations exist that mostly do not yet file in both countries; because these will be linked in the Register as they begin to file, the overlap will be corrected upstream rather than growing unchecked.</p>
+        <p>The deduplication described above depends on the Organisation Register correctly linking a charity&rsquo;s OSCR and CCEW registrations. Where that link is missing, a charity can appear twice &mdash; once under each regulator &mdash; with the same financial year reported at identical amounts under both. A quality audit in July 2026 identified 82 such charities, accounting for 188 charity-years and roughly &pound;296 million of income counted twice. The July 2026 release resolves 59 of them (some &pound;282 million, including the largest single case): the updated Organisation Register now links their two registrations, and the dataset removes previously captured rows under a Scottish identifier once the Register deduplicates that record under the charity&rsquo;s England-and-Wales identifier. The remaining 23 charities &mdash; 69 charity-years and roughly &pound;14 million of income counted twice &mdash; are queued for a register correction and will be removed the same way once linked. Analysts computing sector totals, or comparing Scotland with England and Wales, should be aware of this residual overlap.</p>
+        <p>The wider matching gap means a further 250&ndash;300 dual registrations exist that mostly do not yet file in both countries. Because these will be linked in the Register as they begin to file &mdash; and because each data refresh now removes previously captured rows for any Scottish record the Register has since deduplicated &mdash; the overlap is corrected upstream rather than growing unchecked.</p>
 
         <h3>Implausibly Low Single-Year Figures</h3>
-        <p>A small number of charity-years in this dataset carry an income figure that is implausibly low &mdash; roughly a thousand times smaller than the same charity reports in its neighbouring years. These cases originate in the Office of the Scottish Charity Regulator&rsquo;s own published five-year export, not in our processing: every case we were able to check was already wrong in the regulator&rsquo;s source data, and we have chosen to reproduce the source faithfully rather than silently alter reported figures. The affected years number 365 charity-years across 142 charities. We publish the full list of them alongside the data (<code>tcss-charity-finhist-1000x-flags.csv</code>) so that analysts can identify and handle these years themselves &mdash; for example by excluding them, treating them as missing, or checking the charity&rsquo;s filings directly.</p>
+        <p>A small number of charity-years in this dataset carry an income figure that is implausibly low &mdash; roughly a thousand times smaller than the same charity reports in its neighbouring years. These cases originate in the Office of the Scottish Charity Regulator&rsquo;s own published five-year export, not in our processing: every case we were able to check was already wrong in the regulator&rsquo;s source data, and we have chosen to reproduce the source faithfully rather than silently alter reported figures. The affected years number 364 charity-years across 141 charities (one further case left the dataset with the cross-border deduplication described above). We publish the full list of them alongside the data (<code>tcss-charity-finhist-1000x-flags.csv</code>) so that analysts can identify and handle these years themselves &mdash; for example by excluding them, treating them as missing, or checking the charity&rsquo;s filings directly.</p>
 
         <h3>Append-Only Records and Later Corrections</h3>
-        <p>The dataset is deliberately append-only: once a charity-year has been captured it is never revised, so corrections a regulator publishes afterwards are not pulled back into the existing row. This keeps the historical record stable and reproducible, but it has three consequences worth noting.</p>
+        <p>The dataset is deliberately append-only: once a charity-year has been captured it is never revised, so corrections a regulator publishes afterwards are not pulled back into the existing row. This keeps the historical record stable and reproducible, but it has four consequences worth noting.</p>
         <ul>
-          <li><strong>Scottish breakdown backfill</strong> &mdash; From the next data refresh, a limited backfill rule fills in Scottish income and expenditure breakdown detail that OSCR published after a row was first captured, but only where the charity-year&rsquo;s headline income and expenditure are unchanged and the breakdown genuinely decomposes them. At present 41 rows qualify.</li>
+          <li><strong>Removal of deduplicated Scottish records</strong> &mdash; the one case where rows leave the dataset. When the Organisation Register links a Scottish registration to its England-and-Wales record, previously captured rows under the Scottish identifier are removed, because they duplicate the same charity&rsquo;s CCEW-side filings (see Cross-Border Double-Counting above). In the July 2026 release this removed 425 rows across 88 Scottish records. Figures within surviving rows are still never revised.</li>
+          <li><strong>Scottish breakdown backfill</strong> &mdash; From the July 2026 release, a limited backfill rule fills in Scottish income and expenditure breakdown detail that OSCR published after a row was first captured, but only where the charity-year&rsquo;s headline income and expenditure are unchanged and the breakdown genuinely decomposes them. In the July 2026 release 41 rows were filled this way.</li>
           <li><strong>Breakdowns left blank on purpose</strong> &mdash; A further 42 rows that would otherwise qualify were deliberately left unfilled because OSCR&rsquo;s breakdown fields for them carry an apparent units error &mdash; the categories sum to roughly one hundred times the agreed headline figure. These breakdowns remain blank rather than introduce a known inconsistency.</li>
           <li><strong>One known headline erratum</strong> &mdash; Queens Cross Housing Association (<code>SC036434</code>), financial year 2025, is preserved as originally filed. OSCR&rsquo;s first publication was affected by a &pound;000s slip (recorded here as income 27,700 and spending 27,042) and was later corrected by OSCR to income 32,321,000 and spending 49,613,000. The dataset keeps the original figures; analysts using this charity-year should prefer the corrected values.</li>
         </ul>
@@ -1590,6 +1591,11 @@ body.high-contrast .figure-caption {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>1.5</td>
+              <td>20 July 2026</td>
+              <td>Data re-released, rebuilt against Organisation Register v1.1 (July 2026): 4,059,863 records across 308,707 charities (FY 2000&ndash;2026), with 96,127 new charity-years added over the November 2025 baseline. A new register-deduplication step now removes previously captured rows for Scottish records the Register links to an England-and-Wales record, and re-runs on every rebuild: this release removed 425 rows across 88 Scottish records, resolving 59 of the 82 audited cross-border double-counting cases (some &pound;282 million); the remaining 23 cases (roughly &pound;14 million) stay queued for a register correction. The Scottish breakdown backfill announced in v1.4 is applied (41 rows filled); the implausibly-low-year flag list is published alongside the data (364 charity-years across 141 charities after deduplication)</td>
+            </tr>
             <tr>
               <td>1.4</td>
               <td>20 July 2026</td>
@@ -1747,6 +1753,9 @@ body.high-contrast .figure-caption {
         <h3>Baseline Deduplication</h3>
         <p>When appending new records to the existing baseline dataset, a composite key of <code>uid</code> + <code>fy</code> is used to identify records that already exist. Only genuinely new records are appended, preventing duplicate accumulation across pipeline runs. Duplicates are logged with reason code <code>duplicate_baseline</code>.</p>
 
+        <h3>Register Deduplication</h3>
+        <p>Before appending, previously captured rows are removed for organisations the current Organisation Register deduplicates under another record: the row&rsquo;s identifier is absent from the Register&rsquo;s spine file but present in its matches file as a constituent of another organisation. The removal is scoped to Scottish (<code>GB-SC-</code>) and Northern Irish (<code>GB-NIC-</code>) identifiers &mdash; the surviving record for a deduplicated cross-border charity is its England-and-Wales registration &mdash; and re-runs on every rebuild, so Register improvements propagate to the dataset automatically. Removals are logged with reason code <code>register_dedup</code>.</p>
+
         <h3>Exclusion Reason Codes</h3>
         <table>
           <thead>
@@ -1775,6 +1784,14 @@ body.high-contrast .figure-caption {
             <tr>
               <td><code>duplicate_baseline</code></td>
               <td>Record already exists in baseline dataset (same uid + fy)</td>
+            </tr>
+            <tr>
+              <td><code>implausible_year</code></td>
+              <td>Financial year before 1990, or period end after the source snapshot date (placeholder row)</td>
+            </tr>
+            <tr>
+              <td><code>register_dedup</code></td>
+              <td>Organisation deduplicated under another Register record (identifier absent from spine, present in matches)</td>
             </tr>
           </tbody>
         </table>
@@ -1857,7 +1874,7 @@ python run_pipeline.py coverage  # Generate coverage reports</pre>
       <!-- Footer -->
       <div class="report-footer">
         <hr />
-        <p><em>Document generated: March 2026</em></p>
+        <p><em>Document generated: July 2026</em></p>
         <p><em>UK Third and Civil Society Sector Database &mdash; <a href="https://uk-third-sector-database.github.io/" target="_blank">uk-third-sector-database.github.io</a></em></p>
       </div>
 
