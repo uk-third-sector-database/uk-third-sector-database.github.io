@@ -1294,7 +1294,7 @@ body.high-contrast .figure-caption {
         <p>The 15 detailed income and expenditure fields are populated for approximately 5&ndash;6% of all records. Detailed breakdowns are available from:</p>
         <ul>
           <li><strong>CCEW Part B filers</strong> &mdash; charities with annual income exceeding &pound;500,000, which are required to submit detailed financial breakdowns as part of their annual return. This provides the fullest set of detailed fields (all 15 columns).</li>
-          <li><strong>OSCR</strong> &mdash; the public extract includes a subset of detailed categories under different column names: 5 income categories (donations and legacies, charitable activities, other trading activities, investments, other) and 3 expenditure categories (raising funds, charitable activities, other). The remaining detailed fields (legacies, endowments, investment management, grants, governance, support costs, depreciation) are not available from OSCR.</li>
+          <li><strong>OSCR</strong> &mdash; the public extract includes a subset of detailed categories under different column names: 5 income categories (donations and legacies, charitable activities, other trading activities, investments, other) and 3 expenditure categories (raising funds, charitable activities, other). The remaining detailed fields (legacies, endowments, investment management, grants, governance, support costs, depreciation) are not available from OSCR. In practice only around 10% of Scottish charity-years carry a genuine breakdown: OSCR&rsquo;s export records zeros where no breakdown was supplied, and from the July 2026 release those all-zero placeholders alongside positive headline income are recorded as missing rather than kept as spurious zeros (see Limitations &amp; Caveats).</li>
           <li><strong>Some CCNI records</strong> &mdash; certain CCNI filings include detailed income and expenditure categories.</li>
         </ul>
 
@@ -1520,6 +1520,15 @@ body.high-contrast .figure-caption {
         <h3>Detailed Breakdowns</h3>
         <p>The 15 detailed income and expenditure fields are only available for a subset of records (approximately 5&ndash;6%). CCEW Part B provides the fullest detail (all 15 fields), while OSCR provides a subset of 8 categories and some CCNI records include partial detail. The remaining detailed fields (e.g., legacies, endowments, governance, support costs) are only available from CCEW. Analyses using these fields cannot be considered representative of the full sector.</p>
 
+        <h3>Scottish Breakdown Availability</h3>
+        <p>Scottish detailed breakdowns are particularly sparse, and their absence is structured rather than random. OSCR&rsquo;s export records zeros &mdash; not blanks &mdash; in every breakdown field when a charity supplied no breakdown, which affects roughly 90% of Scottish charity-years. Because an all-zero breakdown alongside positive headline income is self-contradictory (the income must arise in some category), those placeholder zeros are recorded as <em>missing</em> from the July 2026 release onwards; genuine all-zero breakdowns for zero-income charity-years are retained.</p>
+        <p>Two structural points help interpret the gap among larger Scottish charities:</p>
+        <ul>
+          <li><strong>Cross-border charities are not affected</strong> &mdash; charities registered with both OSCR and CCEW (around 1,400, including the largest charities operating in Scotland) appear in this dataset under their England-and-Wales record only, following the same deduplication used for the TCSS Organisation Register. Their financial records, including Part B breakdowns where income exceeds &pound;500,000, are found under their <code>GB-CHC</code> identifier; the Register&rsquo;s matches file links the two registrations.</li>
+          <li><strong>The gap concentrates in domestic registrants</strong> &mdash; 4,635 Scottish charities in the dataset have at least one financial year with income above &pound;250,000 but no breakdown. Most (3,605) are standard OSCR registrants; all 131 Registered Social Landlords fall in this group (their audited accounts are filed with the Scottish Housing Regulator rather than OSCR); the remainder are mostly charities no longer on the register. For these organisations the breakdown is simply not published by OSCR, and users needing it must consult the charities&rsquo; published accounts.</li>
+        </ul>
+        <p>Analyses of the detailed fields for Scotland should therefore treat the available subset (around 10% of Scottish charity-years) as unrepresentative, particularly of the largest domestically-registered charities.</p>
+
         <h3>OSCR Rolling Window</h3>
         <p>OSCR publishes a rolling five-year extract of the Scottish Charity Register. Historical OSCR data beyond the most recent five-year window is only available if it was captured in a previous extraction. The dataset&rsquo;s OSCR coverage for earlier years depends on which baseline snapshots were available during data collection.</p>
 
@@ -1566,6 +1575,11 @@ body.high-contrast .figure-caption {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>1.3</td>
+              <td>July 2026</td>
+              <td>Re-extracted with July 2026 data: 4,060,076 records across 308,710 charities (FY 2000&ndash;2026). OSCR all-zero breakdown placeholders alongside positive income are now recorded as missing rather than zero (14,885 rows); OSCR placeholder dates (1970/2027) excluded; consistent integer formatting and baseline column order restored; scripted source downloads and post-build validation added to the pipeline</td>
+            </tr>
             <tr>
               <td>1.2</td>
               <td>March 2026</td>
