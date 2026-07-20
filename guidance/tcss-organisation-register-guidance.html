@@ -945,10 +945,10 @@ body.high-contrast .figure-caption {
         <h1>3. Dataset Contents</h1>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">783,606</span><span class="label">Organisations</span></div>
+          <div class="stat-card"><span class="number">782,995</span><span class="label">Organisations</span></div>
           <div class="stat-card"><span class="number">10</span><span class="label">Source Registers</span></div>
-          <div class="stat-card"><span class="number">135,794</span><span class="label">Cross-Register Links</span></div>
-          <div class="stat-card"><span class="number">386,122</span><span class="label">Currently Active</span></div>
+          <div class="stat-card"><span class="number">136,578</span><span class="label">Cross-Register Links</span></div>
+          <div class="stat-card"><span class="number">385,515</span><span class="label">Currently Active</span></div>
         </div>
 
         <p>The register is distributed as four CSV files:</p>
@@ -964,17 +964,17 @@ body.high-contrast .figure-caption {
           <tbody>
             <tr>
               <td><code>TSCS_spine.spine.csv</code></td>
-              <td class="numeric">783,606</td>
+              <td class="numeric">782,995</td>
               <td>The deduplicated organisation register &mdash; one row per unique organisation</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.supplementary.csv</code></td>
-              <td class="numeric">1,108,256</td>
+              <td class="numeric">1,108,831</td>
               <td>Alternative names, addresses, and dates from other source registers</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.matches.csv</code></td>
-              <td class="numeric">135,794</td>
+              <td class="numeric">136,578</td>
               <td>Cross-register links between duplicate records, with match type</td>
             </tr>
             <tr>
@@ -1068,11 +1068,11 @@ body.high-contrast .figure-caption {
               </tr>
               <tr>
                 <td><em>Organisations (N)</em></td>
-                <td class="numeric"><em>312,076</em></td>
+                <td class="numeric"><em>312,079</em></td>
                 <td class="numeric"><em>10,447</em></td>
                 <td class="numeric"><em>29,405</em></td>
                 <td class="numeric"><em>14,501</em></td>
-                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>313,627</em></td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>313,624</em></td>
                 <td class="numeric"><em>4,130</em></td>
                 <td class="numeric"><em>26,862</em></td>
                 <td class="numeric"><em>15,315</em></td>
@@ -1226,7 +1226,7 @@ body.high-contrast .figure-caption {
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Organisation Register v1.1. Country is assigned from the registered-address postcode via the National Statistics Postcode Lookup; organisations without a mappable UK postcode (around 5% of records, including most housing-regulator records) are excluded from this table. Subtype labels are the values of the <code>cso_subtype</code> field.</td>
+                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Organisation Register v1.2. Country is assigned from the registered-address postcode via the National Statistics Postcode Lookup; organisations without a mappable UK postcode (around 5% of records, including most housing-regulator records) are excluded from this table. Subtype labels are the values of the <code>cso_subtype</code> field.</td>
               </tr>
             </tfoot>
           </table>
@@ -1401,10 +1401,10 @@ body.high-contrast .figure-caption {
                 <td>Housing Association</td>
               </tr>
               <tr>
-                <td><code>GB-SHPE-C3489</code></td>
-                <td>20-20 Housing Co-operative Limited</td>
+                <td><code>GB-SHPE-L0976</code></td>
+                <td>Bexley Community Housing Association Limited</td>
                 <td></td>
-                <td>20/07/1984</td>
+                <td>08/12/1975</td>
                 <td>Social Housing England</td>
                 <td>False</td>
                 <td>Other</td>
@@ -1589,7 +1589,7 @@ body.high-contrast .figure-caption {
             <tbody>
               <tr>
                 <td><code>uid</code></td>
-                <td>Final spine UID of the record that represents this matched pair in the register (the &ldquo;absorbing&rdquo; parent). Blank for association-only links, which record shared evidence between two records without consolidating either endpoint (2,420 rows in this release)</td>
+                <td>Final spine UID of the record that represents this matched pair in the register (the &ldquo;absorbing&rdquo; parent). Blank for association-only links, which record shared evidence between two records without consolidating either endpoint (2,592 rows in this release)</td>
                 <td>Text</td>
               </tr>
               <tr>
@@ -1739,6 +1739,11 @@ body.high-contrast .figure-caption {
                 <td>CQC provider&rsquo;s recorded Companies House number identifies the company directly</td>
               </tr>
               <tr>
+                <td><code>name - housing</code></td>
+                <td class="numeric">1,518</td>
+                <td>Normalised name match between housing regulators and the charity registers or the FCA Mutuals Public Register</td>
+              </tr>
+              <tr>
                 <td><code>charityno - cqc</code></td>
                 <td class="numeric">1,494</td>
                 <td>CQC provider&rsquo;s recorded charity number identifies the charity directly</td>
@@ -1752,11 +1757,6 @@ body.high-contrast .figure-caption {
                 <td><code>companyid - companyid</code></td>
                 <td class="numeric">1,305</td>
                 <td>Two records sharing the same registered company number</td>
-              </tr>
-              <tr>
-                <td><code>name - housing</code></td>
-                <td class="numeric">734</td>
-                <td>Normalised name match with housing regulators</td>
               </tr>
             </tbody>
           </table>
@@ -1802,7 +1802,7 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1>4. Coverage &amp; Composition</h1>
 
-        <p>The register covers 783,606 organisations, of which 386,122 (49.3%) are currently active (no removal date) and 397,484 (50.7%) are dissolved or removed.</p>
+        <p>The register covers 782,995 organisations, of which 385,515 (49.2%) are currently active (no removal date) and 397,480 (50.8%) are dissolved or removed.</p>
 
         <h3>Organisations by Source Register</h3>
 
@@ -1847,12 +1847,12 @@ body.high-contrast .figure-caption {
             </tr>
             <tr>
               <td>Social Housing England</td>
-              <td class="numeric">633</td>
-              <td class="numeric">0.1%</td>
+              <td class="numeric">23</td>
+              <td class="numeric">&lt;0.1%</td>
             </tr>
             <tr>
               <td>Scottish Housing Regulator</td>
-              <td class="numeric">112</td>
+              <td class="numeric">111</td>
               <td class="numeric">&lt;0.1%</td>
             </tr>
           </tbody>
@@ -1864,7 +1864,7 @@ body.high-contrast .figure-caption {
 
         <h3>Community Interest Companies</h3>
 
-        <p>Of the 783,606 organisations in the register, 78,595 (10.0%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
+        <p>Of the 782,995 organisations in the register, 78,595 (10.0%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
 
         <h3>Companies House Company Types</h3>
 
@@ -2118,6 +2118,24 @@ body.high-contrast .figure-caption {
           </thead>
           <tbody>
             <tr>
+              <td>1.2</td>
+              <td>July 2026</td>
+              <td>Matching improvement on the same July 2026 source data: the
+              <code>name - housing</code> rule now also accepts an FCA Mutuals Public Register
+              society as the counterpart for English and Scottish social-housing providers
+              (previously only a charity-register record was eligible), reflecting that many
+              registered providers of social housing are registered societies rather than
+              charities. This adds a net 784 cross-register links and consolidates 611
+              housing-register records (610 Social Housing England, 1 Scottish Housing
+              Regulator) into their existing Mutuals Public Register entries, whose names and
+              addresses are retained in the supplementary file. Six current-status corrections
+              and 35 registration-date revisions follow from the newly consolidated evidence.
+              No organisation names, classifications (<code>cso_type</code>/<code>cso_subtype</code>)
+              or CIC flags change, and the SIC file is byte-identical to v1.1.
+              782,995 organisations (385,515 active, 397,480 removed); 136,578 links;
+              1,108,831 supplementary rows; 474,843 SIC rows.</td>
+            </tr>
+            <tr>
               <td>1.1</td>
               <td>July 2026</td>
               <td>Full rebuild from refreshed register downloads (July 2026). Restores the historical
@@ -2277,13 +2295,13 @@ body.high-contrast .figure-caption {
         <ol>
           <li>The organisation is in CQC data and the matched core organisation is flagged as having a CQC registration in CCEW data</li>
           <li>The organisation is in the OSCR register and has a &ldquo;cross border&rdquo; flag indicating a match is expected with CCEW</li>
-          <li>The organisation is in the Scottish Housing Regulator or Care Inspectorate Scotland, and the normalised name matches an OSCR record</li>
-          <li>The organisation is in Social Housing England or CQC, and the normalised name matches a CCEW record</li>
+          <li>The organisation is in the Scottish Housing Regulator, and the normalised name matches an OSCR or Mutuals Public Register record; or it is in Care Inspectorate Scotland and the normalised name matches an OSCR record</li>
+          <li>The organisation is in Social Housing England, and the normalised name matches a CCEW or Mutuals Public Register record; or it is in CQC and the normalised name matches a CCEW record</li>
         </ol>
 
         <h3>Matching via Find That Charity</h3>
 
-        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 73,315 of the 135,794 total links.</p>
+        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 73,315 of the 136,578 total links.</p>
 
         <h3>Determining the Primary Organisation</h3>
 
