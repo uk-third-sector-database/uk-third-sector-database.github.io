@@ -1518,7 +1518,7 @@ body.high-contrast .figure-caption {
         <p>Charities file their annual returns after their financial year ends, with deadlines varying by jurisdiction (typically 10 months for CCEW). As a result, the most recent financial years in the dataset will always be incomplete at any given extraction date. The sharp decline in records for 2024 and 2025 reflects this reporting lag, not a decline in the number of active charities.</p>
 
         <h3>Detailed Breakdowns</h3>
-        <p>The 15 detailed income and expenditure fields are only available for a subset of records (approximately 5&ndash;6%). CCEW Part B provides the fullest detail (all 15 fields), while OSCR provides a subset of 8 categories and some CCNI records include partial detail. The remaining detailed fields (e.g., legacies, endowments, governance, support costs) are only available from CCEW. In addition, a charity&rsquo;s headline income and expenditure (taken from its Charity Commission Part A return) can occasionally disagree with its own detailed breakdown (taken from Part B), because the two parts of the return are not always internally consistent; the dataset reproduces both as filed. Analyses using these fields cannot be considered representative of the full sector.</p>
+        <p>The 15 detailed income and expenditure fields are only available for a subset of records (approximately 5&ndash;6%). CCEW Part B provides the fullest detail (all 15 fields), while OSCR provides a subset of 8 categories and some CCNI records include partial detail. The remaining detailed fields (e.g., legacies, endowments, governance, support costs) are only available from CCEW. In addition, a charity&rsquo;s headline income and expenditure (taken from its Charity Commission Part A return) can occasionally disagree with its own detailed breakdown (taken from Part B). Earlier releases attributed this wholly to inconsistency between the two parts of the filed return. That was only partly correct: a further cause was in this dataset&rsquo;s own processing. Where a charity changed its accounting year-end it filed two genuine periods ending in the same calendar year, and the breakdown was matched to the headline by year rather than by accounting period, so a headline from one set of accounts could be published beside the breakdown of another. From the July 2026 (v1.6) release the breakdown is matched by accounting period, which makes the mismatch impossible, and the 35 affected charity-years already published were corrected &mdash; 19 given the breakdown for the correct period and 16 left blank because no return for that period is available. Genuine inconsistency between a charity&rsquo;s own Part A and Part B returns does still occur, and the dataset continues to reproduce both as filed. Analyses using these fields cannot be considered representative of the full sector.</p>
 
         <h3>Scottish Breakdown Availability</h3>
         <p>Scottish detailed breakdowns are particularly sparse, and their absence is structured rather than random. OSCR&rsquo;s export records zeros &mdash; not blanks &mdash; in every breakdown field when a charity supplied no breakdown, which affects roughly 90% of Scottish charity-years. Because an all-zero breakdown alongside positive headline income is self-contradictory (the income must arise in some category), those placeholder zeros are recorded as <em>missing</em> from the July 2026 release onwards; genuine all-zero breakdowns for zero-income charity-years are retained.</p>
@@ -1591,6 +1591,11 @@ body.high-contrast .figure-caption {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>1.6</td>
+              <td>20 July 2026</td>
+              <td>Correction to the England-and-Wales detailed breakdowns, and a fuller download package. Where a charity changed its accounting year-end it files two genuine periods ending in the same calendar year; the detailed breakdown (Part B) was previously matched to the headline (Part A) by financial year rather than by accounting period, so the two could be resolved to different sets of accounts. The breakdown is now matched by accounting period, and the 35 already-published charity-years affected have been corrected: 19 now carry the breakdown for the period their headline describes, and 16 have been left blank because the Charity Commission publishes no Part B return for that period. No headline income or expenditure figure changed, no record was added or removed, and the dataset still contains 4,059,863 records across 308,707 charities. The affected charity-years are listed in the release&rsquo;s repair log. The download archive now also contains this guidance (HTML and PDF), the licence, and a <code>MANIFEST.json</code> recording the schema version, column order, row counts and a SHA-256 checksum for every file, so a download can be verified without reference to any external record</td>
+            </tr>
             <tr>
               <td>1.5</td>
               <td>20 July 2026</td>
@@ -1688,7 +1693,8 @@ body.high-contrast .figure-caption {
             <tr><td>Files</td><td>Part A (headline financials) + Part B (detailed breakdown, charities &gt;&pound;500k)</td></tr>
             <tr><td>Date format</td><td><code>YYYY-MM-DD HH:MM:SS.NNNNNNN</code></td></tr>
             <tr><td>UID prefix</td><td><code>GB-CHC-</code></td></tr>
-            <tr><td>Dedup strategy</td><td>By (<code>uid</code>, <code>fy</code>), keeping most recent by <code>ar_received_date</code></td></tr>
+            <tr><td>Dedup strategy</td><td>Part A by (<code>uid</code>, <code>fy</code>) and Part B by (<code>uid</code>, accounting period end), each keeping the most recent by <code>ar_received_date</code></td></tr>
+            <tr><td>Part A/Part B join</td><td>By (<code>uid</code>, accounting period end), so a breakdown can only describe the same accounts as the headline beside it</td></tr>
           </tbody>
         </table>
 
