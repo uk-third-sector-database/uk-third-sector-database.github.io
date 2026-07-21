@@ -895,11 +895,11 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1>1. Overview</h1>
 
-        <p>This dataset contains structured text extracted from 62,088 CIC 36 forms filed with Companies House between 2005 and 2025. It was produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> project, which collects, processes, and links public administrative data on civil society organisations across the United Kingdom.</p>
+        <p>This dataset contains structured text extracted from 62,089 CIC 36 forms filed with Companies House between 2005 and 2025. It was produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> project, which collects, processes, and links public administrative data on civil society organisations across the United Kingdom.</p>
 
         <p>Each record in the dataset captures what a Community Interest Company (CIC) pledged to do for its community at the point of incorporation. The CIC 36 form &mdash; the &ldquo;Community Interest Statement&rdquo; &mdash; requires applicants to describe who will benefit from the company&rsquo;s activities, what activities it will undertake, how those activities will benefit the community, and how any surplus will be used for community purposes.</p>
 
-        <p>The data was extracted using large language models (OpenAI gpt-4.1-mini) from scanned PDF forms, enabling researchers to analyse CIC community commitments at scale for the first time. Prior to this project, CIC 36 forms were only available as individual PDF documents on the Companies House website, making large-scale analysis impractical.</p>
+        <p>The data was extracted using large language models (primarily OpenAI gpt-5-mini, with gpt-4.1-mini for the remainder) from scanned PDF forms, enabling researchers to analyse CIC community commitments at scale for the first time. Prior to this project, CIC 36 forms were only available as individual PDF documents on the Companies House website, making large-scale analysis impractical.</p>
       </div>
 
       <!-- Section 2: What are CIC 36 Forms? -->
@@ -924,9 +924,9 @@ body.high-contrast .figure-caption {
         <h1>3. Dataset Contents</h1>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">62,088</span><span class="label">CIC Incorporations</span></div>
+          <div class="stat-card"><span class="number">62,089</span><span class="label">CIC Incorporations</span></div>
           <div class="stat-card"><span class="number">2005&ndash;2025</span><span class="label">Registration Years</span></div>
-          <div class="stat-card"><span class="number">99.8%</span><span class="label">Beneficiaries Extracted</span></div>
+          <div class="stat-card"><span class="number">99.3%</span><span class="label">Beneficiaries Extracted</span></div>
           <div class="stat-card"><span class="number">85.2%</span><span class="label">Surplus Use Present</span></div>
         </div>
 
@@ -1044,18 +1044,18 @@ body.high-contrast .figure-caption {
         <div class="coverage-bar-container">
           <div class="coverage-item">
             <div class="cov-label">Beneficiaries</div>
-            <div class="cov-bar"><div class="cov-fill" style="width:99.8%"></div></div>
-            <div class="cov-pct">99.8%</div>
+            <div class="cov-bar"><div class="cov-fill" style="width:99.3%"></div></div>
+            <div class="cov-pct">99.3%</div>
           </div>
           <div class="coverage-item">
             <div class="cov-label">Activity 1</div>
-            <div class="cov-bar"><div class="cov-fill" style="width:98.9%"></div></div>
-            <div class="cov-pct">98.9%</div>
+            <div class="cov-bar"><div class="cov-fill" style="width:98.6%"></div></div>
+            <div class="cov-pct">98.6%</div>
           </div>
           <div class="coverage-item">
             <div class="cov-label">Community Benefit 1</div>
-            <div class="cov-bar"><div class="cov-fill" style="width:98.4%"></div></div>
-            <div class="cov-pct">98.4%</div>
+            <div class="cov-bar"><div class="cov-fill" style="width:98.5%"></div></div>
+            <div class="cov-pct">98.5%</div>
           </div>
           <div class="coverage-item">
             <div class="cov-label">Surplus Use</div>
@@ -1067,7 +1067,7 @@ body.high-contrast .figure-caption {
         <p>Most CICs report 2 activities (the median), with a mean of 2.3 activities per company and a maximum of 10. Nearly half of all CICs in the dataset report exactly 2 activity/benefit pairs. The number of activities tends to be slightly higher for CICs registered in more recent years.</p>
 
         <div class="callout callout-warning">
-          <p><strong>Note:</strong> 678 rows (1.1%) have no activities extracted. These are typically heavily degraded scans where the OCR could not recover sufficient text for the language model to identify any activity/benefit pairs. These records may still contain valid <code>beneficiaries</code> and <code>surplus_use</code> fields.</p>
+          <p><strong>Note:</strong> 852 rows (1.4%) have no activities extracted. These are typically heavily degraded scans where the OCR could not recover sufficient text for the language model to identify any activity/benefit pairs. These records may still contain valid <code>beneficiaries</code> and <code>surplus_use</code> fields.</p>
         </div>
       </div>
 
@@ -1138,6 +1138,11 @@ body.high-contrast .figure-caption {
           </thead>
           <tbody>
             <tr>
+              <td>1.1</td>
+              <td>July 2026</td>
+              <td>Re-extracted with gpt-5-mini as the primary model (gpt-4.1-mini fallback for forms not yet re-processed); coverage statistics updated. Dataset scope and 26-column schema unchanged.</td>
+            </tr>
+            <tr>
               <td>1.0</td>
               <td>February 2026</td>
               <td>Initial release: 62,088 CIC incorporations (2005&ndash;2025)</td>
@@ -1173,7 +1178,7 @@ body.high-contrast .figure-caption {
         <ol>
           <li><strong>PDF Collection</strong> &mdash; CIC 36 forms are downloaded from the Companies House document filing system. Each CIC&rsquo;s incorporation documents are retrieved as multi-page PDF files.</li>
           <li><strong>Page Detection</strong> &mdash; Tesseract OCR scans each page of the PDF, identifying pages that contain CIC 36 form content using marker text detection. This reduces the input to the extraction model by approximately 91% in token count.</li>
-          <li><strong>Extraction</strong> &mdash; The identified CIC 36 pages are submitted to the OpenAI batch API (gpt-4.1-mini), which extracts structured JSON from the form content using a defined schema with few-shot examples.</li>
+          <li><strong>Extraction</strong> &mdash; The identified CIC 36 pages are rendered as images and submitted to the OpenAI batch API (gpt-5-mini for most forms, gpt-4.1-mini for the remainder), which extracts structured JSON from the form content using a defined schema with few-shot examples.</li>
           <li><strong>Quality Control</strong> &mdash; Automated heuristics detect hallucinated or low-quality extractions. Flagged records are re-submitted for extraction. A subset of results is compared against independent Gemini (Google) extractions as a ground truth check.</li>
           <li><strong>Post-Processing</strong> &mdash; Variable-length JSON extractions are reshaped into wide-format CSV (one row per CIC, with activity_1..10 and community_benefit_1..10 columns). Company numbers are joined with the project&rsquo;s organisation spine to add standardised UIDs.</li>
         </ol>
@@ -1194,7 +1199,7 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1>A3. Extraction Model</h1>
 
-        <p>The extraction stage uses OpenAI&rsquo;s gpt-4.1-mini model, chosen for its combination of cost-effectiveness and high accuracy on structured extraction tasks. All extractions are submitted through the OpenAI Batch API, which provides a 50% cost reduction compared to synchronous API calls at the cost of higher latency (results are typically available within 24 hours).</p>
+        <p>The extraction stage uses OpenAI&rsquo;s gpt-5-mini model for most forms, falling back to gpt-4.1-mini for forms gpt-5-mini has not yet processed. gpt-5-mini was selected after a blind comparison against gpt-4.1-mini on ground-truth forms, in which it produced markedly fewer hallucinations, fewer dropped or merged activities, and fewer missed surplus statements. All extractions are submitted through the OpenAI Batch API, which provides a 50% cost reduction compared to synchronous API calls at the cost of higher latency (results are typically available within 24 hours).</p>
 
         <p>The model extracts three top-level fields from each CIC 36 form using a structured output schema:</p>
 
@@ -1204,7 +1209,7 @@ body.high-contrast .figure-caption {
           <li><strong><code>surplus_use</code></strong> (string or null) &mdash; the statement on how surplus will be used for community benefit.</li>
         </ul>
 
-        <p>The extraction prompt (version 4) includes few-shot examples selected to cover challenging cases: forms with handwritten text, heavily degraded scans, and unusual layouts. For scanned documents, a two-pass pipeline is used: Pass 1 converts the page images to markdown text using the vision API, and Pass 2 extracts the structured fields from the markdown representation.</p>
+        <p>The extraction prompt (version 6) includes few-shot examples selected to cover challenging cases: forms with handwritten text, heavily degraded scans, and unusual layouts. The identified CIC 36 pages are rendered as images and passed directly to the model, which returns the structured fields in a single pass.</p>
       </div>
 
       <!-- Section A4: Quality Validation -->
@@ -1240,7 +1245,7 @@ body.high-contrast .figure-caption {
         <p>The pipeline requires Python 3.12 or later, with dependencies managed using <a href="https://docs.astral.sh/uv/">uv</a>. Key dependencies include:</p>
 
         <ul>
-          <li><code>openai</code> &mdash; for API access to gpt-4.1-mini</li>
+          <li><code>openai</code> &mdash; for API access to gpt-5-mini and gpt-4.1-mini</li>
           <li><code>PyMuPDF</code> (fitz) &mdash; for PDF page rendering</li>
           <li><code>pytesseract</code> &mdash; for OCR-based page detection</li>
           <li><code>python-dotenv</code> &mdash; for environment variable management</li>
