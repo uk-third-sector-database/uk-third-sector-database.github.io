@@ -40,6 +40,19 @@ Data resources are provided "as is" for research and analysis purposes. The proj
 
 **Limitations**: No individual contact information is included; address fields in the Organisation Register are sourced from publicly available regulatory data. Detailed use cases and limitations are provided in each dataset's guidance notes.
 
+## Data in use
+
+External organisations have used the database to build their own tools and indices. In each case, our register supplies a small-area count of third sector organisations (per 100,000 population).
+
+<div style="font-size: 1.2em;" markdown="1">
+
+| Organisation | Publication | How the database is used | Technical report |
+|--------------|-------------|--------------------------|------------------|
+| Oxford Consultants for Social Inclusion (OCSI) | UK Community Needs Index 2025 | Supplies the "third sector organisations per 100,000 population" indicator in the *Active and engaged community* domain | <a href="https://c4.ac.uk/wp-content/uploads/2026/05/CNI-Technical-Methodology-Report.pdf" target="_blank">Technical methodology paper (PDF)</a> |
+| 3ni (National Network for Neighbourhood Improvement), with OCSI | Social Capital Score (June 2026) | Supplies the "third sector organisations per 100,000 population" indicator in the *Bridging* dimension | <a href="https://3ni.co.uk/wp-content/uploads/2026/06/3ni-Social-Capital-Score-Technical-Report-1.pdf" target="_blank">Technical methodology paper (PDF)</a> |
+
+</div>
+
 ## Collaboration
 
 We welcome collaboration with researchers interested in using the data for their own analyses, or in contributing to the project's data infrastructure. If you are interested in working together, please contact [research@brawdata.com](mailto:research@brawdata.com).
