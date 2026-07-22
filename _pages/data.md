@@ -8,9 +8,18 @@ redirect_from:
   - "/data.html"
 ---
 
-## About our data
+## Uses of the data
 
-This project produces a range of open data resources that support research on the UK's third sector and civil society. These resources include a comprehensive register of organisations drawn from multiple regulatory sources, longitudinal financial records for charities and nonprofit companies, and records of public procurement contracts awarded to civil society organisations. All datasets are linked through a common organisational identifier, enabling cross-resource analysis.
+External organisations have used the database to build their own tools and indices. In each case, our register supplies a small-area count of third sector organisations (per 100,000 population).
+
+<div style="font-size: 1.2em;" markdown="1">
+
+| Organisation | Publication | How the database is used | Technical report |
+|--------------|-------------|--------------------------|------------------|
+| Oxford Consultants for Social Inclusion (OCSI) | <a href="https://c4.ac.uk/resource/community-needs-index/" target="_blank">UK Community Needs Index 2025</a> | Supplies the "third sector organisations per 100,000 population" indicator in the *Active and engaged community* domain | <a href="https://c4.ac.uk/wp-content/uploads/2026/05/CNI-Technical-Methodology-Report.pdf" target="_blank">Technical methodology paper (PDF)</a> |
+| 3ni (National Network for Neighbourhood Improvement), with OCSI | <a href="https://3ni.co.uk/the-3ni-social-capital-score/" target="_blank">Social Capital Score (June 2026)</a> | Supplies the "third sector organisations per 100,000 population" indicator in the *Bridging* dimension | <a href="https://3ni.co.uk/wp-content/uploads/2026/06/3ni-Social-Capital-Score-Technical-Report-1.pdf" target="_blank">Technical methodology paper (PDF)</a> |
+
+</div>
 
 ## Data resources
 
@@ -39,19 +48,6 @@ Data resources are provided "as is" for research and analysis purposes. The proj
 **Intended uses**: Academic research, policy analysis, understanding sector patterns (geography, finances, employment), and cross-sector linkage analysis.
 
 **Limitations**: No individual contact information is included; address fields in the Organisation Register are sourced from publicly available regulatory data. Detailed use cases and limitations are provided in each dataset's guidance notes.
-
-## Data in use
-
-External organisations have used the database to build their own tools and indices. In each case, our register supplies a small-area count of third sector organisations (per 100,000 population).
-
-<div style="font-size: 1.2em;" markdown="1">
-
-| Organisation | Publication | How the database is used | Technical report |
-|--------------|-------------|--------------------------|------------------|
-| Oxford Consultants for Social Inclusion (OCSI) | UK Community Needs Index 2025 | Supplies the "third sector organisations per 100,000 population" indicator in the *Active and engaged community* domain | <a href="https://c4.ac.uk/wp-content/uploads/2026/05/CNI-Technical-Methodology-Report.pdf" target="_blank">Technical methodology paper (PDF)</a> |
-| 3ni (National Network for Neighbourhood Improvement), with OCSI | Social Capital Score (June 2026) | Supplies the "third sector organisations per 100,000 population" indicator in the *Bridging* dimension | <a href="https://3ni.co.uk/wp-content/uploads/2026/06/3ni-Social-Capital-Score-Technical-Report-1.pdf" target="_blank">Technical methodology paper (PDF)</a> |
-
-</div>
 
 ## Collaboration
 
