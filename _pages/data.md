@@ -10,14 +10,15 @@ redirect_from:
 
 ## Uses of the data
 
-External organisations have used the database to build their own tools and indices. In each case, our register supplies a small-area count of third sector organisations (per 100,000 population).
+Others are already building on this data — here's where.
 
 <div style="font-size: 1.2em;" markdown="1">
 
-| Organisation | Publication | How the database is used | Technical report |
+| Organisation | Publication | How the database is used | More information |
 |--------------|-------------|--------------------------|------------------|
 | Oxford Consultants for Social Inclusion (OCSI) | <a href="https://c4.ac.uk/resource/community-needs-index/" target="_blank">UK Community Needs Index 2025</a> | Supplies the "third sector organisations per 100,000 population" indicator in the *Active and engaged community* domain | <a href="https://c4.ac.uk/wp-content/uploads/2026/05/CNI-Technical-Methodology-Report.pdf" target="_blank">Technical methodology paper (PDF)</a> |
 | 3ni (National Network for Neighbourhood Improvement), with OCSI | <a href="https://3ni.co.uk/the-3ni-social-capital-score/" target="_blank">Social Capital Score (June 2026)</a> | Supplies the "third sector organisations per 100,000 population" indicator in the *Bridging* dimension | <a href="https://3ni.co.uk/wp-content/uploads/2026/06/3ni-Social-Capital-Score-Technical-Report-1.pdf" target="_blank">Technical methodology paper (PDF)</a> |
+| Find that Charity | <a href="https://findthatcharity.uk/" target="_blank">Find that Charity</a> | Supplies the description shown on Community Interest Company profiles, drawn from the activities and use-of-surplus statements in our CIC 36 Forms dataset (<a href="https://findthatcharity.uk/orgid/GB-COH-16584358" target="_blank">example profile</a>) | <a href="/guidance/tcss-cic36-forms-guidance.html" target="_blank">CIC 36 Forms guidance notes</a> |
 
 </div>
 
@@ -37,7 +38,7 @@ External organisations have used the database to build their own tools and indic
 
 </div>
 
-*Last edited: 22 July 2026. TCSS = Third and Civil Society Sectors.*
+*Last edited: 23 July 2026. TCSS = Third and Civil Society Sectors.*
 
 ## Disclaimer
 
