@@ -38,7 +38,7 @@ Others are already building on this data — here's where.
 
 </div>
 
-*Last edited: 16 August 2026. TCSS = Third and Civil Society Sectors.*
+*Last edited: 18 August 2026. TCSS = Third and Civil Society Sectors.*
 
 ## Disclaimer
 
