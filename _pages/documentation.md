@@ -20,7 +20,8 @@ Detailed guidance notes describing the contents, coverage, and production pipeli
 | Charity Financial Records | <a href="/guidance/tcss-charity-financial-records-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-charity-financial-records-guidance.pdf" target="_blank">PDF</a> |
 | Nonprofit Financial Records | <a href="/guidance/tcss-nonprofit-financial-records-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-nonprofit-financial-records-guidance.pdf" target="_blank">PDF</a> |
 | CIC Founding Purposes | <a href="/guidance/tcss-cic36-forms-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-cic36-forms-guidance.pdf" target="_blank">PDF</a> |
-| TCSS Procurement Records | <a href="/guidance/tcss-procurement-records-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-procurement-records-guidance.pdf" target="_blank">PDF</a> |
+| TCSS Procurement Records (payments) | <a href="/guidance/tcss-procurement-payments-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-procurement-payments-guidance.pdf" target="_blank">PDF</a> |
+| TCSS Contracts Finder Records | <a href="/guidance/tcss-contracts-finder-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-contracts-finder-guidance.pdf" target="_blank">PDF</a> |
 | CIC Board of Directors | <a href="/guidance/tcss-board-of-directors-guidance.html" target="_blank">HTML</a> | <a href="/guidance/tcss-board-of-directors-guidance.pdf" target="_blank">PDF</a> |
 
 </div>
