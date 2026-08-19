@@ -1369,6 +1369,9 @@ body.high-contrast .figure-caption {
 
         <h3 id="organisation-register-composition">Organisation Register Composition</h3>
         <p>The <code>uid</code> prefix indicates which source register each organisation originates from in the TCSS Organisation Register. Companies House registrations dominate, reflecting the large number of companies limited by guarantee and other nonprofit company forms. About 6.6% of payment records could not be matched to a register and have no <code>uid</code>; they appear as the final row.</p>
+        <div class="callout callout-warning">
+          <p><strong>Caution &mdash; unmatched CSO-typed rows.</strong> The 62,175 records without a <code>uid</code> (1,131 suppliers) carry a civil society <code>supplier_type</code> from the project&rsquo;s earlier name-based classification but no register match. They are small in number but account for &pound;32.9 billion (18.2% of all value in the file), and on inspection some of the largest are not civil society organisations (for example a Scottish health board and a metropolitan borough council typed as charities). These suppliers are under review for the next release. Users who want a register-confirmed population should restrict to rows with a <code>uid</code>; headline totals elsewhere in this guide describe the file as published and therefore include these rows.</p>
+        </div>
 
         <table>
   <thead>
@@ -1456,7 +1459,7 @@ body.high-contrast .figure-caption {
 
         <h3 id="example-mapping-uk-civil-society-procurement">Example: Mapping UK Civil Society Procurement</h3>
 
-        <p>The procurement dataset was used in the research report <em>Mapping and Understanding the UK Civil Society Sector</em> (McDonnell et al., 2026), which analysed the payment records to characterise the flow of public money to civil society organisations. The report worked from an earlier build of the dataset; the figures and tables below have been recomputed from the current release so that they match the file you download. Key findings:</p>
+        <p>The procurement dataset was used in the research report <em>Mapping and Understanding the UK Civil Society Sector</em> (McDonnell et al., 2026), which analysed the payment records to characterise the flow of public money to civil society organisations. The report worked from an earlier build of the dataset; the figures and tables below have been recomputed from the current release so that they match the file you download; they include the unmatched CSO-typed rows discussed in <a href="#6-limitations--caveats">Section 6</a>, which inflate the charity totals. Key findings:</p>
 
         <ul>
           <li><strong>UK Government dominates</strong> &mdash; UK Government departments are the largest source of public procurement spend to civil society across all organisation types, accounting for 91.6% of records and &pound;152.6 billion of the &pound;180.6 billion recorded &mdash; far ahead of the NHS (&pound;12.5 billion) and local government (&pound;11.8 billion). Note that the Department for Education alone accounts for &pound;86.4 billion, most of it paid to academy trusts and other education bodies classified as &ldquo;Other CSO&rdquo;.</li>
@@ -1908,6 +1911,9 @@ body.high-contrast .figure-caption {
         <h3 id="nhs-coverage-gap">NHS Coverage Gap</h3>
         <p>The NHSSpend data collection concluded around April 2020. NHS procurement records after this date are not included in the dataset, creating a gap in NHS-specific coverage for 2020 onwards. Central government and Contracts Finder data continue beyond this date.</p>
 
+        <h3 id="unmatched-cso-typed-suppliers">Unmatched CSO-Typed Suppliers</h3>
+        <p>62,175 records (6.6%) from 1,131 suppliers have a civil society <code>supplier_type</code> but no <code>uid</code>. Their classification comes from the earlier name-based supplier masterlist rather than a register match, and some are misclassified: the largest single case is a Scottish health board typed as a charity. Across all such charity-typed rows the value is &pound;26.1 billion, out of &pound;81.5 billion attributed to charities, so the charity totals in Sections 4 and 5 are inflated. Until the next release corrects this, define civil society organisations by the presence of a <code>uid</code> (as the companion Contracts Finder guide does) or inspect the unmatched suppliers before using value totals.</p>
+
         <h3 id="line-break-in-the-data_source-values">Line Break in the <code>data_source</code> Values</h3>
         <p>In the published CSV the two-word source labels are stored with a line break between the words &mdash; the values are literally <code>Central\nGovernment</code> and <code>Contracts\nFinder</code> (the <code>NHSSpend</code> and <code>contractsfinder</code> values are unaffected). Standard CSV readers (pandas, R&rsquo;s <code>read.csv</code>/<code>readr</code>, Stata, Excel) handle the quoted field correctly, but a filter such as <code>data_source == "Central Government"</code> will match nothing. Either normalise the field after loading (for example <code>df["data_source"].str.replace(r"\s+", " ", regex=True)</code> in pandas) or match on the first word. This will be corrected in the next data release.</p>
 
@@ -1961,7 +1967,7 @@ body.high-contrast .figure-caption {
             <tr>
               <td>1.2</td>
               <td>August 2026</td>
-              <td>Guidance split into two standalone documents: this guide (payments dataset) and a new <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records guide</a>. Dataset unchanged from the June 2026 release. All figures re-derived from the published file; corrected the source-share percentages in Section 2, the share of records without an organisation name and the counts of implausible years and Junk/Invalid records in Section 6, and replaced the two tables in Section 5 with versions computed from the current data. Documented the line break in the <code>data_source</code> values and the Private Sector funder type. Added a &ldquo;related dataset&rdquo; note and a distinct suppliers column to the source table.</td>
+              <td>Guidance split into two standalone documents: this guide (payments dataset) and a new <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records guide</a>. Dataset unchanged from the June 2026 release. All figures re-derived from the published file; corrected the source-share percentages in Section 2, the share of records without an organisation name and the counts of implausible years and Junk/Invalid records in Section 6, and replaced the two tables in Section 5 with versions computed from the current data. Documented the line break in the <code>data_source</code> values, the Private Sector funder type, and the unmatched CSO-typed suppliers (no <code>uid</code>) that inflate value totals. Added a &ldquo;related dataset&rdquo; note and a distinct suppliers column to the source table.</td>
             </tr>
             <tr>
               <td>1.1</td>
