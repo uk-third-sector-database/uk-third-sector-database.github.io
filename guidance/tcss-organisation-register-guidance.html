@@ -901,7 +901,7 @@ body.high-contrast .figure-caption {
       <div id="header">
         <h1 class="title toc-ignore">UK Civil Society Organisation Register</h1>
         <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
-        <h4 class="date toc-ignore">July 2026</h4>
+        <h4 class="date toc-ignore">September 2026</h4>
       </div>
 
       <!-- ============================================================
@@ -945,10 +945,10 @@ body.high-contrast .figure-caption {
         <h1>3. Dataset Contents</h1>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">782,995</span><span class="label">Organisations</span></div>
+          <div class="stat-card"><span class="number">781,176</span><span class="label">Organisations</span></div>
           <div class="stat-card"><span class="number">10</span><span class="label">Source Registers</span></div>
-          <div class="stat-card"><span class="number">136,578</span><span class="label">Cross-Register Links</span></div>
-          <div class="stat-card"><span class="number">385,515</span><span class="label">Currently Active</span></div>
+          <div class="stat-card"><span class="number">139,862</span><span class="label">Cross-Register Links</span></div>
+          <div class="stat-card"><span class="number">384,096</span><span class="label">Currently Active</span></div>
         </div>
 
         <p>The register is distributed as four CSV files:</p>
@@ -964,22 +964,22 @@ body.high-contrast .figure-caption {
           <tbody>
             <tr>
               <td><code>TSCS_spine.spine.csv</code></td>
-              <td class="numeric">782,995</td>
+              <td class="numeric">781,176</td>
               <td>The deduplicated organisation register &mdash; one row per unique organisation</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.supplementary.csv</code></td>
-              <td class="numeric">1,108,831</td>
+              <td class="numeric">1,112,618</td>
               <td>Alternative names, addresses, and dates from other source registers</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.matches.csv</code></td>
-              <td class="numeric">136,578</td>
+              <td class="numeric">139,862</td>
               <td>Cross-register links between duplicate records, with match type</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.SIC_codes.csv</code></td>
-              <td class="numeric">474,843</td>
+              <td class="numeric">474,842</td>
               <td>Standard Industrial Classification codes derived from Companies House, one code per row</td>
             </tr>
           </tbody>
@@ -987,11 +987,11 @@ body.high-contrast .figure-caption {
 
         <h3 id="organisation-types">Organisation Types</h3>
 
-        <p>The <code>cso_type</code> field classifies organisations into four main types: Charity, CIC, Co-operative/Mutual, and Other. The <code>cso_subtype</code> field provides a finer-grained classification: Charities, CICs, and Co-operatives/Mutuals pass through unchanged, while the &lsquo;Other&rsquo; category is disaggregated into subtypes using Companies House SIC (Standard Industrial Classification) codes and organisation name patterns. The classification applies SIC division codes (the first two digits of the primary SIC code) alongside keyword matching on organisation names. Rules are applied in a documented first-match priority order: each organisation receives the first subtype whose rule it satisfies (dormant companies first, then SIC-division rules, then name-pattern rules). Name-pattern rules also apply when an organisation has no usable five-digit SIC code, so an organisation cannot escape classification simply because its SIC information is missing or in a legacy format.</p>
+        <p>The <code>cso_type</code> field classifies organisations into four main types: Charity, CIC, Co-operative/Mutual, and Other. The <code>cso_subtype</code> field provides a finer-grained classification: Charities, CICs, and Co-operatives/Mutuals pass through unchanged, while the &lsquo;Other&rsquo; category is disaggregated into subtypes using Companies House SIC (Standard Industrial Classification) codes and organisation name patterns. The classification applies SIC division codes (the first two digits of the primary SIC code) alongside keyword matching on organisation names. Rules are applied in a documented first-match priority order: each organisation receives the first subtype whose rule it satisfies (dormant companies first, then SIC-division rules, then name-pattern rules). Name-pattern rules also apply when an organisation has no usable five-digit SIC code, so an organisation cannot escape classification simply because its SIC information is missing or in a legacy format. Where a charity is linked to a company registered as a Community Interest Company, the register follows the Companies House record: in this release uHub Therapy Centre and RiChmusicNI are both classified as CICs rather than charities.</p>
 
-        <p>Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.3% are charities).</p>
+        <p>Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.6% are charities).</p>
 
-        <p>Property management companies dominate the &lsquo;Other&rsquo; category among active organisations in England (44.0% of active &lsquo;Other&rsquo; organisations, equivalent to about 15% of all active English organisations) and are also prominent in Wales (22.3%), reflecting the prevalence of residential leasehold structures; they are far rarer in Scotland (3.0%). The residual &lsquo;Other Company Limited By Guarantee&rsquo; category remains the largest subtype among dissolved &lsquo;Other&rsquo; organisations in every country (59&ndash;66%).</p>
+        <p>Property management companies dominate the &lsquo;Other&rsquo; category among active organisations in England (44.0% of active &lsquo;Other&rsquo; organisations, equivalent to about 15% of all active English organisations) and are also prominent in Wales (22.3%), reflecting the prevalence of residential leasehold structures; they are far rarer in Scotland (3.0%). The residual &lsquo;Other Company Limited By Guarantee&rsquo; category remains the largest subtype among dissolved &lsquo;Other&rsquo; organisations in every country (61&ndash;66%).</p>
 
         <div style="margin: 24px 0; overflow-x: auto;">
           <table style="min-width: 700px;">
@@ -1025,56 +1025,56 @@ body.high-contrast .figure-caption {
               <tr>
                 <td>Community Interest Company</td>
                 <td class="numeric">11.7%</td>
-                <td class="numeric">5.6%</td>
-                <td class="numeric">6.9%</td>
+                <td class="numeric">6.3%</td>
+                <td class="numeric">7.0%</td>
                 <td class="numeric">11.9%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">9.7%</td>
-                <td class="numeric">13.0%</td>
+                <td class="numeric">13.9%</td>
                 <td class="numeric">6.5%</td>
                 <td class="numeric">8.9%</td>
               </tr>
               <tr>
                 <td>Charity</td>
                 <td class="numeric">50.5%</td>
-                <td class="numeric">65.1%</td>
-                <td class="numeric">78.3%</td>
-                <td class="numeric">54.8%</td>
+                <td class="numeric">72.9%</td>
+                <td class="numeric">78.6%</td>
+                <td class="numeric">54.9%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">48.4%</td>
-                <td class="numeric">32.3%</td>
-                <td class="numeric">73.0%</td>
+                <td class="numeric">34.3%</td>
+                <td class="numeric">72.9%</td>
                 <td class="numeric">55.4%</td>
               </tr>
               <tr>
                 <td>Co-operative / Mutual</td>
-                <td class="numeric">3.1%</td>
-                <td class="numeric">4.3%</td>
-                <td class="numeric">2.9%</td>
+                <td class="numeric">3.0%</td>
+                <td class="numeric">4.8%</td>
+                <td class="numeric">2.5%</td>
                 <td class="numeric">5.1%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">3.7%</td>
-                <td class="numeric">2.1%</td>
+                <td class="numeric">2.2%</td>
                 <td class="numeric">2.6%</td>
                 <td class="numeric">4.6%</td>
               </tr>
               <tr>
                 <td>Other</td>
                 <td class="numeric">34.8%</td>
-                <td class="numeric">25.0%</td>
+                <td class="numeric">16.1%</td>
                 <td class="numeric">11.9%</td>
                 <td class="numeric">28.2%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">38.2%</td>
-                <td class="numeric">52.6%</td>
+                <td class="numeric">49.6%</td>
                 <td class="numeric">18.0%</td>
                 <td class="numeric">31.0%</td>
               </tr>
               <tr>
                 <td><em>Organisations (N)</em></td>
-                <td class="numeric"><em>312,079</em></td>
-                <td class="numeric"><em>10,447</em></td>
-                <td class="numeric"><em>29,405</em></td>
-                <td class="numeric"><em>14,501</em></td>
-                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>313,624</em></td>
-                <td class="numeric"><em>4,130</em></td>
-                <td class="numeric"><em>26,862</em></td>
+                <td class="numeric"><em>311,970</em></td>
+                <td class="numeric"><em>9,338</em></td>
+                <td class="numeric"><em>29,279</em></td>
+                <td class="numeric"><em>14,497</em></td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>313,500</em></td>
+                <td class="numeric"><em>3,872</em></td>
+                <td class="numeric"><em>26,855</em></td>
                 <td class="numeric"><em>15,315</em></td>
               </tr>
               <tr>
@@ -1083,55 +1083,55 @@ body.high-contrast .figure-caption {
               <tr>
                 <td>Other Company Limited By Guarantee</td>
                 <td class="numeric">29.0%</td>
-                <td class="numeric">31.2%</td>
+                <td class="numeric">31.4%</td>
                 <td class="numeric">48.0%</td>
                 <td class="numeric">37.6%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">64.6%</td>
-                <td class="numeric">58.6%</td>
+                <td class="numeric">61.4%</td>
                 <td class="numeric">65.7%</td>
                 <td class="numeric">61.1%</td>
               </tr>
               <tr>
                 <td>Property Management Company</td>
                 <td class="numeric">44.0%</td>
-                <td class="numeric">7.4%</td>
+                <td class="numeric">10.9%</td>
                 <td class="numeric">3.0%</td>
                 <td class="numeric">22.3%</td>
-                <td class="numeric" style="border-left: 2px solid #dde4ea;">5.8%</td>
-                <td class="numeric">1.9%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">5.9%</td>
+                <td class="numeric">2.1%</td>
                 <td class="numeric">1.6%</td>
                 <td class="numeric">4.8%</td>
               </tr>
               <tr>
                 <td>Education Institution</td>
                 <td class="numeric">7.3%</td>
-                <td class="numeric">14.7%</td>
+                <td class="numeric">13.1%</td>
                 <td class="numeric">9.3%</td>
                 <td class="numeric">6.3%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">9.3%</td>
-                <td class="numeric">8.8%</td>
+                <td class="numeric">8.0%</td>
                 <td class="numeric">6.2%</td>
                 <td class="numeric">8.4%</td>
               </tr>
               <tr>
                 <td>Sports Club</td>
                 <td class="numeric">5.2%</td>
-                <td class="numeric">11.3%</td>
+                <td class="numeric">14.5%</td>
                 <td class="numeric">13.0%</td>
                 <td class="numeric">15.9%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">2.6%</td>
-                <td class="numeric">5.1%</td>
+                <td class="numeric">5.2%</td>
                 <td class="numeric">5.1%</td>
                 <td class="numeric">5.1%</td>
               </tr>
               <tr>
                 <td>Arts Organisation</td>
                 <td class="numeric">2.3%</td>
-                <td class="numeric">6.5%</td>
+                <td class="numeric">6.3%</td>
                 <td class="numeric">6.8%</td>
                 <td class="numeric">4.5%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">3.3%</td>
-                <td class="numeric">5.8%</td>
+                <td class="numeric">5.3%</td>
                 <td class="numeric">6.2%</td>
                 <td class="numeric">5.1%</td>
               </tr>
@@ -1142,62 +1142,62 @@ body.high-contrast .figure-caption {
                 <td class="numeric">7.2%</td>
                 <td class="numeric">3.6%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">2.5%</td>
-                <td class="numeric">3.6%</td>
+                <td class="numeric">3.5%</td>
                 <td class="numeric">4.5%</td>
                 <td class="numeric">3.1%</td>
               </tr>
               <tr>
                 <td>Social Services Organisation</td>
                 <td class="numeric">1.8%</td>
-                <td class="numeric">6.3%</td>
+                <td class="numeric">3.7%</td>
                 <td class="numeric">2.0%</td>
                 <td class="numeric">1.7%</td>
-                <td class="numeric" style="border-left: 2px solid #dde4ea;">3.6%</td>
-                <td class="numeric">4.4%</td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;">3.5%</td>
+                <td class="numeric">3.7%</td>
                 <td class="numeric">2.1%</td>
                 <td class="numeric">3.2%</td>
               </tr>
               <tr>
                 <td>Health Organisation</td>
                 <td class="numeric">1.4%</td>
-                <td class="numeric">5.2%</td>
+                <td class="numeric">2.9%</td>
                 <td class="numeric">2.2%</td>
                 <td class="numeric">1.6%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">2.9%</td>
-                <td class="numeric">4.6%</td>
+                <td class="numeric">3.9%</td>
                 <td class="numeric">3.4%</td>
                 <td class="numeric">3.5%</td>
               </tr>
               <tr>
                 <td>Dormant Company</td>
                 <td class="numeric">2.1%</td>
-                <td class="numeric">2.1%</td>
+                <td class="numeric">3.7%</td>
                 <td class="numeric">1.9%</td>
                 <td class="numeric">3.8%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">2.3%</td>
-                <td class="numeric">3.6%</td>
+                <td class="numeric">3.8%</td>
                 <td class="numeric">2.7%</td>
                 <td class="numeric">2.6%</td>
               </tr>
               <tr>
                 <td>Religious Organisation</td>
                 <td class="numeric">1.6%</td>
-                <td class="numeric">7.1%</td>
+                <td class="numeric">4.3%</td>
                 <td class="numeric">2.0%</td>
                 <td class="numeric">0.9%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">2.0%</td>
-                <td class="numeric">2.9%</td>
+                <td class="numeric">2.4%</td>
                 <td class="numeric">1.2%</td>
                 <td class="numeric">1.0%</td>
               </tr>
               <tr>
                 <td>Professional / Trade Body</td>
                 <td class="numeric">2.2%</td>
-                <td class="numeric">1.7%</td>
+                <td class="numeric">2.8%</td>
                 <td class="numeric">4.3%</td>
                 <td class="numeric">1.8%</td>
                 <td class="numeric" style="border-left: 2px solid #dde4ea;">1.1%</td>
-                <td class="numeric">0.7%</td>
+                <td class="numeric">0.8%</td>
                 <td class="numeric">1.3%</td>
                 <td class="numeric">2.1%</td>
               </tr>
@@ -1214,19 +1214,19 @@ body.high-contrast .figure-caption {
               </tr>
               <tr>
                 <td><em>&lsquo;Other&rsquo; organisations (N)</em></td>
-                <td class="numeric"><em>108,481</em></td>
-                <td class="numeric"><em>2,611</em></td>
+                <td class="numeric"><em>108,478</em></td>
+                <td class="numeric"><em>1,499</em></td>
                 <td class="numeric"><em>3,488</em></td>
                 <td class="numeric"><em>4,083</em></td>
-                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>119,922</em></td>
-                <td class="numeric"><em>2,173</em></td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>119,837</em></td>
+                <td class="numeric"><em>1,922</em></td>
                 <td class="numeric"><em>4,826</em></td>
                 <td class="numeric"><em>4,750</em></td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Organisation Register v1.2. Country is assigned from the registered-address postcode via the National Statistics Postcode Lookup; organisations without a mappable UK postcode (around 5% of records, including most housing-regulator records) are excluded from this table. Subtype labels are the values of the <code>cso_subtype</code> field.</td>
+                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Organisation Register v1.3. Country is assigned from the registered-address postcode via the National Statistics Postcode Lookup; organisations without a mappable UK postcode (around 7% of records, including most housing-regulator records) are excluded from this table. Subtype labels are the values of the <code>cso_subtype</code> field.</td>
               </tr>
             </tfoot>
           </table>
@@ -1589,7 +1589,7 @@ body.high-contrast .figure-caption {
             <tbody>
               <tr>
                 <td><code>uid</code></td>
-                <td>Final spine UID of the record that represents this matched pair in the register (the &ldquo;absorbing&rdquo; parent). Blank for association-only links, which record shared evidence between two records without consolidating either endpoint (2,592 rows in this release)</td>
+                <td>Final spine UID of the record that represents this matched pair in the register (the &ldquo;absorbing&rdquo; parent). Blank for association-only links, which record shared evidence between two records without consolidating either endpoint (2,164 rows in this release)</td>
                 <td>Text</td>
               </tr>
               <tr>
@@ -1632,7 +1632,7 @@ body.high-contrast .figure-caption {
 
           <h3>Sample Data</h3>
 
-          <p>Each row links two organisation records from different sources (or, occasionally, the same source). The example rows below illustrate the main match types.</p>
+          <p>Each row links two organisation records from different sources (or, occasionally, the same source). The example rows below illustrate the main match types. The last row is not a match but a consolidation: Equality Period Limited (GB-NIC-108424) is linked to its Northern Irish company by name, and WIRRAL CLUB LIMITED (GB-CHC-1177821) absorbed the separate Mutuals Public Register entry GB-MPR-29858R after the Companies House record GB-COH-11092810 was found to match both of them.</p>
 
           <table>
             <thead>
@@ -1667,9 +1667,9 @@ body.high-contrast .figure-caption {
                 <td>oscr</td>
               </tr>
               <tr>
-                <td><code>GB-SC-SC033518</code></td>
-                <td>OSCR</td>
-                <td><code>GB-COOP-R009306</code></td>
+                <td><code>GB-MPR-9808</code></td>
+                <td>mutuals</td>
+                <td><code>GB-COOP-R042728</code></td>
                 <td>CoOps</td>
                 <td>companyid - coop mutual</td>
               </tr>
@@ -1694,6 +1694,20 @@ body.high-contrast .figure-caption {
                 <td>ccew</td>
                 <td>companyid - companyid</td>
               </tr>
+              <tr>
+                <td><code>GB-NIC-108424</code></td>
+                <td>ccni</td>
+                <td><code>GB-COH-NI679140</code></td>
+                <td>CH</td>
+                <td>name - ni charity</td>
+              </tr>
+              <tr>
+                <td><code>GB-CHC-1177821</code></td>
+                <td>ccew</td>
+                <td><code>GB-MPR-29858R</code></td>
+                <td>mutuals</td>
+                <td>merge via bridge</td>
+              </tr>
             </tbody>
           </table>
 
@@ -1710,17 +1724,17 @@ body.high-contrast .figure-caption {
             <tbody>
               <tr>
                 <td><code>ftc</code></td>
-                <td class="numeric">73,315</td>
+                <td class="numeric">73,307</td>
                 <td>Find That Charity lookup table (includes historic re-registrations)</td>
               </tr>
               <tr>
                 <td><code>companyid - id_in_source</code></td>
-                <td class="numeric">36,737</td>
+                <td class="numeric">37,759</td>
                 <td>Charity register links to Companies House via company number</td>
               </tr>
               <tr>
                 <td><code>companyid - coop mutual</code></td>
-                <td class="numeric">11,153</td>
+                <td class="numeric">11,198</td>
                 <td>Co-operative&rsquo;s registered society number links to the Mutuals Public Register or Companies House</td>
               </tr>
               <tr>
@@ -1730,7 +1744,7 @@ body.high-contrast .figure-caption {
               </tr>
               <tr>
                 <td><code>name - care</code></td>
-                <td class="numeric">3,329</td>
+                <td class="numeric">3,425</td>
                 <td>Normalised name match with CQC or Care Inspectorate Scotland</td>
               </tr>
               <tr>
@@ -1739,9 +1753,9 @@ body.high-contrast .figure-caption {
                 <td>CQC provider&rsquo;s recorded Companies House number identifies the company directly</td>
               </tr>
               <tr>
-                <td><code>name - housing</code></td>
-                <td class="numeric">1,518</td>
-                <td>Normalised name match between housing regulators and the charity registers or the FCA Mutuals Public Register</td>
+                <td><code>name - ni charity</code></td>
+                <td class="numeric">1,811</td>
+                <td>Northern Irish company matched to the Northern Ireland charity of the same normalised name, where that name identifies exactly one organisation on each side</td>
               </tr>
               <tr>
                 <td><code>charityno - cqc</code></td>
@@ -1754,9 +1768,19 @@ body.high-contrast .figure-caption {
                 <td>Scottish charity flagged as also registered in England &amp; Wales, matched to CCEW by name</td>
               </tr>
               <tr>
+                <td><code>name - housing</code></td>
+                <td class="numeric">1,435</td>
+                <td>Normalised name match between housing regulators and the charity registers or the FCA Mutuals Public Register</td>
+              </tr>
+              <tr>
                 <td><code>companyid - companyid</code></td>
-                <td class="numeric">1,305</td>
+                <td class="numeric">1,328</td>
                 <td>Two records sharing the same registered company number</td>
+              </tr>
+              <tr>
+                <td><code>merge via bridge</code></td>
+                <td class="numeric">378</td>
+                <td>Not a matching method but a record of consolidation: a third record matched two organisations from different registers on strong enough evidence, so the two were combined into one and this row names the record that was folded in</td>
               </tr>
             </tbody>
           </table>
@@ -1766,7 +1790,7 @@ body.high-contrast .figure-caption {
         <div class="section level2">
           <h2>3.4 SIC Codes</h2>
 
-          <p>Standard Industrial Classification (SIC) codes derived from Companies House records. Each row contains exactly one atomic SIC code: 458,698 rows carry a five-digit SIC 2007 code and 16,145 rows carry a four-digit code from older SIC taxonomies, retained as provenance. An organisation may have several codes, so the relationship to the spine is one-to-many (474,843 rows covering 359,289 organisations). SIC codes enable classification of organisations by industry sector.</p>
+          <p>Standard Industrial Classification (SIC) codes derived from Companies House records. Each row contains exactly one atomic SIC code: 458,697 rows carry a five-digit SIC 2007 code and 16,145 rows carry a four-digit code from older SIC taxonomies, retained as provenance. An organisation may have several codes, so the relationship to the spine is one-to-many (474,842 rows covering 359,287 organisations). SIC codes enable classification of organisations by industry sector.</p>
 
           <h3>Field Descriptions</h3>
 
@@ -1781,7 +1805,7 @@ body.high-contrast .figure-caption {
             <tbody>
               <tr>
                 <td><code>uid</code></td>
-                <td>Organisation UID, remapped to the final spine record. Where a company was matched to a charity or other higher-precedence record, its SIC codes are recorded under that parent UID (54,434 rows, 11.5%, carry a non-<code>GB-COH-</code> UID such as <code>GB-CHC-</code>)</td>
+                <td>Organisation UID, remapped to the final spine record. Where a company was matched to a charity or other higher-precedence record, its SIC codes are recorded under that parent UID (56,314 rows, 11.9%, carry a non-<code>GB-COH-</code> UID such as <code>GB-CHC-</code>)</td>
                 <td>Text</td>
               </tr>
               <tr>
@@ -1802,7 +1826,7 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1>4. Coverage &amp; Composition</h1>
 
-        <p>The register covers 782,995 organisations, of which 385,515 (49.2%) are currently active (no removal date) and 397,480 (50.8%) are dissolved or removed.</p>
+        <p>The register covers 781,176 organisations, of which 384,096 (49.2%) are currently active (no removal date) and 397,080 (50.8%) are dissolved or removed.</p>
 
         <h3>Organisations by Source Register</h3>
 
@@ -1818,21 +1842,21 @@ body.high-contrast .figure-caption {
             <tr>
               <td>Charity Commission for England and Wales</td>
               <td class="numeric">351,761</td>
-              <td class="numeric">44.9%</td>
+              <td class="numeric">45.0%</td>
             </tr>
             <tr>
               <td>Companies House</td>
-              <td class="numeric">335,869</td>
-              <td class="numeric">42.9%</td>
+              <td class="numeric">334,340</td>
+              <td class="numeric">42.8%</td>
             </tr>
             <tr>
               <td>Scottish Charity Register</td>
-              <td class="numeric">53,850</td>
+              <td class="numeric">53,846</td>
               <td class="numeric">6.9%</td>
             </tr>
             <tr>
               <td>Mutuals Public Register</td>
-              <td class="numeric">32,392</td>
+              <td class="numeric">32,152</td>
               <td class="numeric">4.1%</td>
             </tr>
             <tr>
@@ -1842,7 +1866,7 @@ body.high-contrast .figure-caption {
             </tr>
             <tr>
               <td>Co-operatives</td>
-              <td class="numeric">650</td>
+              <td class="numeric">604</td>
               <td class="numeric">0.1%</td>
             </tr>
             <tr>
@@ -1864,7 +1888,7 @@ body.high-contrast .figure-caption {
 
         <h3>Community Interest Companies</h3>
 
-        <p>Of the 782,995 organisations in the register, 78,595 (10.0%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
+        <p>Of the 781,176 organisations in the register, 78,595 (10.1%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
 
         <h3>Companies House Company Types</h3>
 
@@ -2041,6 +2065,8 @@ body.high-contrast .figure-caption {
         </table>
 
         <p>The first eight sources in the table above contribute primary records to the spine. The Care Inspectorate Scotland and Care Quality Commission contribute only to the matches file &mdash; they are used to link organisations to existing spine records but do not add new organisations to the register.</p>
+
+        <p>From v1.3 the Northern Ireland register&rsquo;s company-number column is read as well as its names, addresses and dates. The Charity Commission for Northern Ireland publishes the Companies House number of each charity that is also a registered company; earlier releases discarded it, so Northern Irish charities could only be linked to their companies through a small set of numbers inherited from a 2024 snapshot. These numbers are self-reported by charities and a small proportion (around 0.3%) name a different company; values that cannot be company numbers, and two verified misdeclarations, are excluded.</p>
       </div>
 
       <!-- Section 7: Limitations & Caveats -->
@@ -2050,15 +2076,17 @@ body.high-contrast .figure-caption {
         <ul>
           <li><strong>Scope.</strong> The register covers formally registered organisations only. Unregistered voluntary groups, informal associations, and community groups that do not appear on any regulatory register are not included.</li>
 
-          <li><strong>Coverage by jurisdiction.</strong> Coverage varies between jurisdictions. The CCNI register was established more recently than its counterparts in England, Wales, and Scotland, so the Northern Ireland data has less historical depth. CCNI also does not provide removal dates for deregistered charities.</li>
+          <li><strong>Coverage by jurisdiction.</strong> Coverage varies between jurisdictions. The CCNI register was established more recently than its counterparts in England, Wales, and Scotland, so the Northern Ireland data has less historical depth. CCNI also does not provide removal dates for deregistered charities. From version 1.3, Northern Irish charities are linked to their Companies House records using the charity regulator&rsquo;s own company-number field and, where no number is published, an exact name match. Northern Ireland links made by name alone agree with the company&rsquo;s registered postcode about 52% of the time, against about 78% for links confirmed by a company number &mdash; much of the difference reflects companies registered at an accountant&rsquo;s or solicitor&rsquo;s address rather than the charity&rsquo;s own.</li>
 
           <li><strong>Missing data.</strong> Some fields are incomplete. Approximately 13,200 CCEW charity records lack address information (most were removed before 1997). Around 1,800 OSCR records lack organisation names and addresses. The <code>city</code> field is frequently blank across all sources.</li>
 
           <li><strong>Multiple dates.</strong> A small proportion of CCEW records (3.6%) have more than one registration date. This can arise from data entry corrections, organisations that were removed and re-registered, or merged charities. The spine records the earliest registration date; the removal date follows the newest authoritative source record (see the Current status note below), with other date variants retained in the supplementary file.</li>
 
-          <li><strong>Matching limitations.</strong> The deduplication algorithm identifies most cross-register duplicates but cannot guarantee perfect recall. Some genuine duplicates may remain unlinked (false negatives), particularly where organisation names differ substantially between registers or where no company number link exists. Conversely, a small number of false positive matches are possible where two genuinely distinct organisations share a normalised name.</li>
+          <li><strong>Registration dates are the earliest across linked records.</strong> Where an organisation is linked across registers, the spine records the earliest registration or incorporation date found. A charity linked to an older company therefore shows the company&rsquo;s incorporation date, not the date it was entered on the charity register. This is most visible for Northern Ireland in this release, where charity&ndash;company links have increased sharply; use the source register&rsquo;s own extract where the charity registration date specifically is required.</li>
 
-          <li><strong>Point-in-time snapshot.</strong> The register reflects data as available at the time of construction. Organisations registered or removed after the data download dates will not be captured. The current release incorporates data downloaded through July 2026, plus historical register content carried forward from the previous release (see the changelog).</li>
+          <li><strong>Matching limitations.</strong> The deduplication algorithm identifies most cross-register duplicates but cannot guarantee perfect recall. Some genuine duplicates may remain unlinked (false negatives), particularly where organisation names differ substantially between registers or where no company number link exists. Conversely, a small number of false positive matches are possible where two genuinely distinct organisations share a normalised name. Two organisations that are the same body but recorded under slightly different legal-form wording may still be held apart: Clyde Valley Housing Association appears as both a Scottish charity and a Mutuals Public Register society because one record says &ldquo;Ltd&rdquo; and the other &ldquo;Limited&rdquo;.</li>
+
+          <li><strong>Point-in-time snapshot.</strong> The register reflects data as available at the time of construction. Organisations registered or removed after the data download dates will not be captured. The current release is built from the same source downloads as version 1.2 &mdash; register data downloaded through July 2026, plus historical register content carried forward from earlier releases &mdash; and differs from it only in how records are matched to one another (see the changelog).</li>
 
           <li><strong>Postcodes and geography.</strong> To link organisations to geographic areas (Local Authority, region, country), the postcode field can be joined to the National Statistics Postcode Lookup (NSPL). However, not all organisations have a valid postcode in the register.</li>
         </ul>
@@ -2117,6 +2145,51 @@ body.high-contrast .figure-caption {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>1.3</td>
+              <td>September 2026</td>
+              <td>Matching improvements on the same July 2026 source data; no register
+              data were re-downloaded. Four changes. First, the Charity Commission for
+              Northern Ireland publishes a company number for charities that are also
+              registered companies, and earlier releases discarded it: only 655 numbers,
+              inherited from a 2024 snapshot, had ever reached the matching stage. The
+              column is now read from every download, converted to the Companies House
+              <code>NI</code> format, and cleared where the published value cannot be a
+              company number (placeholders such as &ldquo;0&rdquo; and &ldquo;999999&rdquo;,
+              values too long to be company numbers, and non-numeric entries). Two
+              declarations checked against Companies House and found to name a different
+              company are excluded by name. Second, a new match type
+              <code>name - ni charity</code> (1,811 links) links a Northern Irish company to
+              the Northern Ireland charity of the same name where that name identifies exactly
+              one organisation on each side, covering the majority of the register for
+              which no company number is published. Third, a new match type
+              <code>merge via bridge</code> (378 links) records organisations that were combined
+              because a single third record matched two existing entries from different
+              registers on strong enough evidence &mdash; the same name allowing for
+              &ldquo;The&rdquo;, &ldquo;Ltd&rdquo; and &ldquo;Limited&rdquo;, or numbers
+              published by the regulators themselves. Care-regulator evidence alone cannot
+              combine two organisations, because a care provider&rsquo;s return often cites
+              a charity alongside its trustee company. Fourth, the
+              <code>companyid - coop mutual</code> rule now requires its counterpart to be
+              a Companies House or Mutuals Public Register record, correcting matches where
+              a Scottish charity number was read as an identically formatted Scottish
+              company number.
+              Consequences: the register holds 1,819 fewer rows, and every one of them is a
+              record folded into an organisation that is still present &mdash; 1,395 Northern
+              Irish companies folded into their Northern Ireland charities, and 240 Mutuals
+              Public Register societies, 134 Companies House companies, 46 co-operatives and
+              4 Scottish charities folded into a same-body organisation by the new bridge rule
+              or the co-operative fix. No organisation is lost: the names and addresses of the
+              absorbed records are retained in the supplementary file, and their identifiers
+              remain in the matches file. Registration dates move earlier for 1,604
+              organisations, because the spine records the earliest date across linked records
+              and many charities are now linked to an older company. 43 organisations are shown
+              as active again, because status follows the newest authoritative record once the
+              records are linked. Two Northern Ireland charities are now classified as
+              Community Interest Companies.
+              781,176 organisations (384,096 active, 397,080 removed); 139,862 links;
+              1,112,618 supplementary rows; 474,842 SIC rows.</td>
+            </tr>
             <tr>
               <td>1.2</td>
               <td>July 2026</td>
@@ -2285,8 +2358,9 @@ body.high-contrast .figure-caption {
         <ul>
           <li>CCEW charity records are matched to Companies House records via the company number</li>
           <li>OSCR records with a company identifier are matched to Companies House records</li>
-          <li>Co-operatives UK records with a &ldquo;Registered Number&rdquo; are matched to the Mutuals Public Register</li>
+          <li>Co-operatives UK records with a &ldquo;Registered Number&rdquo; are matched to the Mutuals Public Register or to Companies House. From v1.3 this rule requires the counterpart actually to hold that number as a Companies House or Mutuals record; previously a charity number in the same format (Scottish charity and company numbers are both <code>SC</code> followed by six digits) could be matched by mistake</li>
           <li>Where two CCEW charities share the same company number, they are linked as duplicates</li>
+          <li>From v1.3, the Charity Commission for Northern Ireland&rsquo;s own company-number field is used in the same way, linking Northern Irish charities to their <code>NI</code>-prefixed Companies House records</li>
         </ul>
 
         <h3>Matching by Normalised Name</h3>
@@ -2297,11 +2371,16 @@ body.high-contrast .figure-caption {
           <li>The organisation is in the OSCR register and has a &ldquo;cross border&rdquo; flag indicating a match is expected with CCEW</li>
           <li>The organisation is in the Scottish Housing Regulator, and the normalised name matches an OSCR or Mutuals Public Register record; or it is in Care Inspectorate Scotland and the normalised name matches an OSCR record</li>
           <li>The organisation is in Social Housing England, and the normalised name matches a CCEW or Mutuals Public Register record; or it is in CQC and the normalised name matches a CCEW record</li>
+          <li>The organisation is a Northern Irish company (Companies House number beginning <code>NI</code>) and the normalised name matches a Northern Ireland charity record. Because a shared name is weaker evidence than a shared number, this condition applies only when the name identifies exactly one organisation on each side &mdash; one charity holding that name, and one Northern Irish company holding it</li>
         </ol>
 
         <h3>Matching via Find That Charity</h3>
 
-        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 73,315 of the 136,578 total links.</p>
+        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 73,307 of the 139,862 total links.</p>
+
+        <h3>Consolidating Two Records via a Bridging Record</h3>
+
+        <p>Occasionally a single record matches two organisations that are already in the register under different source registers. From v1.3, where the evidence is strong enough, this is treated as proof that the two are one organisation and they are combined into a single record rather than left as two with a note of shared evidence between them. The combination is deliberately conservative: it applies only when the incoming record matches exactly two organisations, those two come from different registers, both are still independent records, neither link rests only on a shared company number recorded as an association, and either the two organisations carry the same name (allowing for &ldquo;The&rdquo;, &ldquo;Ltd&rdquo; and &ldquo;Limited&rdquo;) or each is identified by a number that a regulator itself publishes. The organisation from the higher-precedence register keeps the UID (see <a href="#source-precedence">Section A2</a>); the other organisation&rsquo;s name, address and dates move to the supplementary file and it appears in the matches file with match type <code>merge via bridge</code>. Care-regulator records alone cannot trigger a combination, because a care provider&rsquo;s return often cites a charity alongside its trustee company or trading subsidiary &mdash; a relationship, not an identity. This release combines 378 pairs of records in this way.</p>
 
         <h3>Determining the Primary Organisation</h3>
 
