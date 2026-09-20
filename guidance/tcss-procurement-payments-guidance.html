@@ -884,7 +884,7 @@ body.high-contrast .figure-caption {
       <div id="header">
         <h1 class="title toc-ignore">Procurement Payments</h1>
         <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
-        <h4 class="date toc-ignore">August 2026</h4>
+        <h4 class="date toc-ignore">September 2026</h4>
       </div>
 
       
@@ -897,12 +897,12 @@ body.high-contrast .figure-caption {
 
         <p>The data is drawn from three open data sources: central government transparency spending data, NHS payment records, and Contracts Finder awarded contract notices. Each payment record links a public sector funder to a civil society supplier, providing a detailed picture of how public money flows to the third sector through procurement and commissioning.</p>
 
-        <p>The dataset contains 883,816 payment records covering 11,886 organisations and 1,503 public funders, spanning the period from 2010 to 2025 and totalling &pound;148.4 billion. Together, these records offer a comprehensive view of the scale, distribution, and evolution of public procurement relationships with civil society across the UK.</p>
+        <p>The dataset contains 874,819 payment records covering 11,573 organisations and 1,418 public funders, spanning the period from 2010 to 2025 and totalling &pound;145.3 billion. Together, these records offer a comprehensive view of the scale, distribution, and evolution of public procurement relationships with civil society across the UK.</p>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">883,816</span><span class="label">Payment Records</span></div>
-          <div class="stat-card"><span class="number">11,886</span><span class="label">Organisations</span></div>
-          <div class="stat-card"><span class="number">1,503</span><span class="label">Public Funders</span></div>
+          <div class="stat-card"><span class="number">874,819</span><span class="label">Payment Records</span></div>
+          <div class="stat-card"><span class="number">11,573</span><span class="label">Organisations</span></div>
+          <div class="stat-card"><span class="number">1,418</span><span class="label">Public Funders</span></div>
           <div class="stat-card"><span class="number">2010&ndash;2025</span><span class="label">Years Covered</span></div>
         </div>
 
@@ -918,20 +918,20 @@ body.high-contrast .figure-caption {
         <p>UK public bodies are required to publish details of their spending over certain thresholds as part of government transparency commitments. This dataset draws from three open data initiatives that collect and standardise these spending records, filtered to include only payments made to civil society organisations identified in the TCSS Organisation Register.</p>
 
         <h3 id="central-government-spending">Central Government Spending</h3>
-        <p>UK government departments publish monthly CSV files of all transactions exceeding &pound;25,000 as part of HM Government&rsquo;s spending transparency commitments. These files are collected and harmonised by the <a href="https://github.com/crahal/centgovspend">centgovspend</a> project, which aggregates and cleans thousands of files from ministerial and non-ministerial departments for consistency and quality controls. Central government spending accounts for 90.7% of the records in this dataset.</p>
+        <p>UK government departments publish monthly CSV files of all transactions exceeding &pound;25,000 as part of HM Government&rsquo;s spending transparency commitments. These files are collected and harmonised by the <a href="https://github.com/crahal/centgovspend">centgovspend</a> project, which aggregates and cleans thousands of files from ministerial and non-ministerial departments for consistency and quality controls. Central government spending accounts for 90.9% of the records in this dataset.</p>
 
         <h3 id="nhs-spending">NHS Spending</h3>
-        <p>Payment records from NHS Trusts and Clinical Commissioning Groups (CCGs) are collected by the <a href="https://github.com/crahal/NHSSpend">NHSSpend</a> project. This covers payments exceeding &pound;25,000 made by NHS institutions across England, spanning January 2010 to March 2020 when data collection concluded. NHS spending accounts for 7.2% of records.</p>
+        <p>Payment records from NHS Trusts and Clinical Commissioning Groups (CCGs) are collected by the <a href="https://github.com/crahal/NHSSpend">NHSSpend</a> project. This covers payments exceeding &pound;25,000 made by NHS institutions across England, spanning January 2010 to March 2020 when data collection concluded. NHS spending accounts for 7.1% of records.</p>
 
         <h3 id="contracts-finder">Contracts Finder</h3>
-        <p><a href="https://www.contractsfinder.service.gov.uk/">Contracts Finder</a> is the UK government&rsquo;s online portal for public sector procurement opportunities and awarded contracts. Awarded contract notices are scraped by the TCSS project&rsquo;s own <a href="https://github.com/uk-third-sector-database/contracts_finder">Contracts Finder collector</a>. Unlike the payment-level data from the other two sources, Contracts Finder provides contract-level information (awarded amounts and dates), so each Contracts Finder row in this dataset is an awarded contract value rather than a cash payment. These records account for 2.1% of the dataset (18,184 rows). The full contract-level data, including contracts awarded to non-civil-society suppliers, is published separately &mdash; see the <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records guide</a>.</p>
+        <p><a href="https://www.contractsfinder.service.gov.uk/">Contracts Finder</a> is the UK government&rsquo;s online portal for public sector procurement opportunities and awarded contracts. Awarded contract notices are scraped by the TCSS project&rsquo;s own <a href="https://github.com/uk-third-sector-database/contracts_finder">Contracts Finder collector</a>. Unlike the payment-level data from the other two sources, Contracts Finder provides contract-level information (awarded amounts and dates), so each Contracts Finder row in this dataset is an awarded contract value rather than a cash payment. These records account for 1.9% of the dataset (16,940 rows). The full contract-level data, including contracts awarded to non-civil-society suppliers, is published separately &mdash; see the <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records guide</a>.</p>
       </div>
 
       <!-- Section 3: Dataset Contents -->
       <div class="section level1">
         <h1 id="3-dataset-contents">3. Dataset Contents</h1>
 
-        <p>The dataset is supplied as a single CSV file, <code>cso-procurement-dataset-refined.csv</code>, containing 883,816 records across 18 fields. Each row represents a single payment from a public sector funder to a civil society organisation. The fields are organised into four groups: identifiers, payment details, funder information, and summary statistics.</p>
+        <p>The dataset is supplied as a single CSV file, <code>cso-procurement-dataset-refined.csv</code>, containing 874,819 records across 18 fields. Each row represents a single payment from a public sector funder to a civil society organisation. The fields are organised into four groups: identifiers, payment details, funder information, and summary statistics.</p>
 
         <h3 id="identifiers--organisation-info">Identifiers &amp; Organisation Info</h3>
         <table>
@@ -1046,7 +1046,7 @@ body.high-contrast .figure-caption {
             </tr>
             <tr>
               <td><code>funder_id</code></td>
-              <td>Unique funder identifier (e.g., <code>F02683</code>). Missing (together with <code>funder_name</code>) for 16 records whose funder is classified Junk/Invalid</td>
+              <td>Unique funder identifier (e.g., <code>F02683</code>). Missing (together with <code>funder_name</code>) for 14 records whose funder is classified Junk/Invalid</td>
               <td>Text</td>
               <td class="numeric">&gt;99.9%</td>
             </tr>
@@ -1066,7 +1066,7 @@ body.high-contrast .figure-caption {
               <td><code>funder_type_alt</code></td>
               <td>Classification of the alternative funder name</td>
               <td>Text</td>
-              <td class="numeric">1.4%</td>
+              <td class="numeric">1.3%</td>
             </tr>
           </tbody>
         </table>
@@ -1107,7 +1107,7 @@ body.high-contrast .figure-caption {
         <h1 id="4-coverage--completeness">4. Coverage &amp; Completeness</h1>
 
         <h3 id="core-field-coverage">Core Field Coverage</h3>
-        <p>The core payment fields &mdash; <code>payment_date</code>, <code>amount</code>, <code>supplier_id</code> and <code>data_source</code> &mdash; are present in every record; <code>funder_name</code> and <code>funder_id</code> are missing for just 16 records, all classified Junk/Invalid. Every record carries a <code>uid</code> &mdash; from this release a payment is included only if its supplier is a register-confirmed civil society organisation &mdash; and <code>organisation_name</code> is present for 91.6% of records (where missing, recover it from the Organisation Register on <code>uid</code>).</p>
+        <p>The core payment fields &mdash; <code>payment_date</code>, <code>amount</code>, <code>supplier_id</code> and <code>data_source</code> &mdash; are present in every record; <code>funder_name</code> and <code>funder_id</code> are missing for just 14 records, all classified Junk/Invalid. Every record carries a <code>uid</code> &mdash; from this release a payment is included only if its supplier is a register-confirmed civil society organisation &mdash; and <code>organisation_name</code> is present for 91.6% of records (where missing, recover it from the Organisation Register on <code>uid</code>).</p>
 
         <div class="coverage-bar-container">
           <div class="coverage-item">
@@ -1133,7 +1133,7 @@ body.high-contrast .figure-caption {
         </div>
 
         <h3 id="data-source-breakdown">Data Source Breakdown</h3>
-        <p>The dataset draws from four data source tags. Central government spending dominates, accounting for 90.7% of all records. Contracts Finder rows (2.1% combined) are awarded-contract values rather than payments.</p>
+        <p>The dataset draws from four data source tags. Central government spending dominates, accounting for 90.9% of all records. Contracts Finder rows (1.9% combined) are awarded-contract values rather than payments.</p>
 
         <table>
   <thead>
@@ -1147,26 +1147,26 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td><code>Central Government</code></td>
-      <td class="numeric">802,029</td>
-      <td class="numeric">7,856</td>
-      <td class="numeric">90.7%</td>
+      <td class="numeric">795,465</td>
+      <td class="numeric">7,763</td>
+      <td class="numeric">90.9%</td>
     </tr>
     <tr>
       <td><code>NHSSpend</code></td>
-      <td class="numeric">63,603</td>
-      <td class="numeric">2,141</td>
-      <td class="numeric">7.2%</td>
+      <td class="numeric">62,414</td>
+      <td class="numeric">2,108</td>
+      <td class="numeric">7.1%</td>
     </tr>
     <tr>
       <td><code>Contracts Finder</code></td>
-      <td class="numeric">14,658</td>
-      <td class="numeric">4,293</td>
-      <td class="numeric">1.7%</td>
+      <td class="numeric">13,752</td>
+      <td class="numeric">4,064</td>
+      <td class="numeric">1.6%</td>
     </tr>
     <tr>
       <td><code>contractsfinder</code></td>
-      <td class="numeric">3,526</td>
-      <td class="numeric">1,679</td>
+      <td class="numeric">3,188</td>
+      <td class="numeric">1,562</td>
       <td class="numeric">0.4%</td>
     </tr>
   </tbody>
@@ -1176,7 +1176,7 @@ body.high-contrast .figure-caption {
         </div>
 
         <h3 id="funder-type-distribution">Funder Type Distribution</h3>
-        <p>Funders are classified into nine types (eight substantive types plus a Junk/Invalid catch-all) using a multi-layer cascade (see <a href="#a2-funder-classification">Appendix A2</a>). UK Government departments account for the vast majority of records (91.4%).</p>
+        <p>Funders are classified into nine types (eight substantive types plus a Junk/Invalid catch-all) using a multi-layer cascade (see <a href="#a2-funder-classification">Appendix A2</a>). UK Government departments account for the vast majority of records (91.5%).</p>
 
         <table>
   <thead>
@@ -1190,55 +1190,55 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>UK Government</td>
-      <td class="numeric">807,596</td>
-      <td class="numeric">190</td>
-      <td class="numeric">91.4%</td>
+      <td class="numeric">800,557</td>
+      <td class="numeric">175</td>
+      <td class="numeric">91.5%</td>
     </tr>
     <tr>
       <td>NHS</td>
-      <td class="numeric">65,281</td>
-      <td class="numeric">517</td>
-      <td class="numeric">7.4%</td>
+      <td class="numeric">64,003</td>
+      <td class="numeric">509</td>
+      <td class="numeric">7.3%</td>
     </tr>
     <tr>
       <td>Local Government</td>
-      <td class="numeric">8,612</td>
-      <td class="numeric">331</td>
-      <td class="numeric">1.0%</td>
+      <td class="numeric">8,185</td>
+      <td class="numeric">326</td>
+      <td class="numeric">0.9%</td>
     </tr>
     <tr>
       <td>Education Institution</td>
-      <td class="numeric">891</td>
-      <td class="numeric">136</td>
+      <td class="numeric">786</td>
+      <td class="numeric">114</td>
       <td class="numeric">0.1%</td>
     </tr>
     <tr>
       <td>CSO</td>
-      <td class="numeric">424</td>
-      <td class="numeric">138</td>
+      <td class="numeric">363</td>
+      <td class="numeric">119</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
     <tr>
       <td>Police, Fire and Rescue</td>
-      <td class="numeric">356</td>
-      <td class="numeric">72</td>
+      <td class="numeric">331</td>
+      <td class="numeric">70</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
     <tr>
       <td>Private Sector</td>
-      <td class="numeric">303</td>
-      <td class="numeric">55</td>
+      <td class="numeric">273</td>
+      <td class="numeric">47</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
     <tr>
       <td>Other</td>
-      <td class="numeric">211</td>
-      <td class="numeric">48</td>
+      <td class="numeric">190</td>
+      <td class="numeric">42</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
     <tr>
       <td>Junk/Invalid</td>
-      <td class="numeric">142</td>
+      <td class="numeric">131</td>
       <td class="numeric">16</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
@@ -1260,26 +1260,26 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>Other CSO</td>
-      <td class="numeric">606,603</td>
-      <td class="numeric">3,955</td>
-      <td class="numeric">68.6%</td>
+      <td class="numeric">605,411</td>
+      <td class="numeric">3,925</td>
+      <td class="numeric">69.2%</td>
     </tr>
     <tr>
       <td>Charity</td>
-      <td class="numeric">227,745</td>
-      <td class="numeric">6,635</td>
-      <td class="numeric">25.8%</td>
+      <td class="numeric">220,689</td>
+      <td class="numeric">6,388</td>
+      <td class="numeric">25.2%</td>
     </tr>
     <tr>
       <td>Co-operative/Mutual</td>
-      <td class="numeric">32,025</td>
-      <td class="numeric">467</td>
+      <td class="numeric">31,350</td>
+      <td class="numeric">448</td>
       <td class="numeric">3.6%</td>
     </tr>
     <tr>
       <td>CIC</td>
-      <td class="numeric">17,443</td>
-      <td class="numeric">843</td>
+      <td class="numeric">17,369</td>
+      <td class="numeric">828</td>
       <td class="numeric">2.0%</td>
     </tr>
   </tbody>
@@ -1298,79 +1298,79 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>2010</td>
-      <td class="numeric">5,274</td>
+      <td class="numeric">5,183</td>
     </tr>
     <tr>
       <td>2011</td>
-      <td class="numeric">8,085</td>
+      <td class="numeric">7,991</td>
     </tr>
     <tr>
       <td>2012</td>
-      <td class="numeric">51,936</td>
+      <td class="numeric">51,690</td>
     </tr>
     <tr>
       <td>2013</td>
-      <td class="numeric">115,708</td>
+      <td class="numeric">115,107</td>
     </tr>
     <tr>
       <td>2014</td>
-      <td class="numeric">163,872</td>
+      <td class="numeric">163,241</td>
     </tr>
     <tr>
       <td>2015</td>
-      <td class="numeric">53,517</td>
+      <td class="numeric">53,039</td>
     </tr>
     <tr>
       <td>2016</td>
-      <td class="numeric">30,321</td>
+      <td class="numeric">29,848</td>
     </tr>
     <tr>
       <td>2017</td>
-      <td class="numeric">64,876</td>
+      <td class="numeric">64,185</td>
     </tr>
     <tr>
       <td>2018</td>
-      <td class="numeric">63,030</td>
+      <td class="numeric">62,263</td>
     </tr>
     <tr>
       <td>2019</td>
-      <td class="numeric">66,280</td>
+      <td class="numeric">65,312</td>
     </tr>
     <tr>
       <td>2020</td>
-      <td class="numeric">60,566</td>
+      <td class="numeric">59,773</td>
     </tr>
     <tr>
       <td>2021</td>
-      <td class="numeric">57,887</td>
+      <td class="numeric">57,146</td>
     </tr>
     <tr>
       <td>2022</td>
-      <td class="numeric">62,960</td>
+      <td class="numeric">62,007</td>
     </tr>
     <tr>
       <td>2023</td>
-      <td class="numeric">66,690</td>
+      <td class="numeric">65,711</td>
     </tr>
     <tr>
       <td>2024</td>
-      <td class="numeric">11,400</td>
+      <td class="numeric">11,075</td>
     </tr>
     <tr>
       <td>2025</td>
-      <td class="numeric">1,380</td>
+      <td class="numeric">1,215</td>
     </tr>
   </tbody>
 </table>
 
         <div class="callout callout-warning">
-          <p><strong>Note:</strong> 34 records fall outside the 2010&ndash;2025 range shown above: 7 records dated 2005&ndash;2009 that predate the main collection period, 24 records dated 2026 from ongoing collection, and 3 records with implausible years (1900, 2027) caused by source data errors. All are retained in the dataset for transparency; users conducting temporal analysis may wish to filter to the core 2010&ndash;2025 range. The 2024 and 2025 figures are also incomplete as source data collection is ongoing.</p>
+          <p><strong>Note:</strong> 33 records fall outside the 2010&ndash;2025 range shown above: 7 records dated 2005&ndash;2009 that predate the main collection period, 23 records dated 2026 from ongoing collection, and 3 records with implausible years (1900, 2027) caused by source data errors. All are retained in the dataset for transparency; users conducting temporal analysis may wish to filter to the core 2010&ndash;2025 range. The 2024 and 2025 figures are also incomplete as source data collection is ongoing.</p>
         </div>
 
         <h3 id="organisation-register-composition">Organisation Register Composition</h3>
         <p>The <code>uid</code> prefix indicates which source register each organisation originates from in the TCSS Organisation Register. Companies House registrations dominate, reflecting the large number of companies limited by guarantee and other nonprofit company forms. Every record in this release carries a <code>uid</code>.</p>
         <div class="callout callout-info">
-          <p><strong>Change from the June 2026 release.</strong> Earlier releases also contained 62,175 records (&pound;32.9 billion, 18.2% of value) whose supplier carried a civil society <code>supplier_type</code> from the project&rsquo;s earlier name-based classification but no register match; on inspection some of the largest (for example a Scottish health board typed as a charity) were not civil society organisations. From this release the rule is <em>Spine-only</em>: a supplier is a civil society organisation only if it matches the TCSS Organisation Register (or carries a manually confirmed register identity), so those rows are no longer included and every row has a <code>uid</code>. Suppliers demoted by this rule that are in fact civil society organisations will be restored in future releases as they are matched to the Register.</p>
+          <p><strong>Change introduced in the August 2026 release.</strong> Releases up to and including June 2026 also contained 62,175 records (&pound;32.9 billion, 18.2% of value) whose supplier carried a civil society <code>supplier_type</code> from the project&rsquo;s earlier name-based classification but no register match; on inspection some of the largest (for example a Scottish health board typed as a charity) were not civil society organisations. From the August 2026 release onwards the rule is <em>Spine-only</em>: a supplier is a civil society organisation only if it matches the TCSS Organisation Register (or carries a manually confirmed register identity), so those rows are no longer included and every row has a <code>uid</code>. Suppliers demoted by this rule that are in fact civil society organisations will be restored in future releases as they are matched to the Register.</p>
         </div>
 
         <table>
@@ -1386,32 +1386,32 @@ body.high-contrast .figure-caption {
     <tr>
       <td>GB-COH</td>
       <td>Companies House</td>
-      <td class="numeric">623,380</td>
-      <td class="numeric">70.5%</td>
+      <td class="numeric">622,114</td>
+      <td class="numeric">71.1%</td>
     </tr>
     <tr>
       <td>GB-CHC</td>
       <td>Charity Commission for England &amp; Wales</td>
-      <td class="numeric">202,287</td>
-      <td class="numeric">22.9%</td>
+      <td class="numeric">196,172</td>
+      <td class="numeric">22.4%</td>
     </tr>
     <tr>
       <td>GB-SC</td>
       <td>Office of the Scottish Charity Regulator</td>
-      <td class="numeric">25,477</td>
-      <td class="numeric">2.9%</td>
+      <td class="numeric">24,537</td>
+      <td class="numeric">2.8%</td>
     </tr>
     <tr>
       <td>GB-COOP</td>
       <td>Co-operatives UK</td>
-      <td class="numeric">23,253</td>
-      <td class="numeric">2.6%</td>
+      <td class="numeric">23,247</td>
+      <td class="numeric">2.7%</td>
     </tr>
     <tr>
       <td>GB-MPR</td>
       <td>Mutuals Public Register (FCA)</td>
-      <td class="numeric">8,772</td>
-      <td class="numeric">1.0%</td>
+      <td class="numeric">8,103</td>
+      <td class="numeric">0.9%</td>
     </tr>
     <tr>
       <td>GB-SHR</td>
@@ -1422,7 +1422,7 @@ body.high-contrast .figure-caption {
     <tr>
       <td>GB-NIC</td>
       <td>Charity Commission for Northern Ireland</td>
-      <td class="numeric">294</td>
+      <td class="numeric">293</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
     <tr>
@@ -1456,8 +1456,8 @@ body.high-contrast .figure-caption {
         <p>The procurement dataset was used in the research report <em>Mapping and Understanding the UK Civil Society Sector</em> (McDonnell et al., 2026), which analysed the payment records to characterise the flow of public money to civil society organisations. The report worked from an earlier build of the dataset; the figures and tables below have been recomputed from the current release so that they match the file you download. Key findings:</p>
 
         <ul>
-          <li><strong>UK Government dominates</strong> &mdash; UK Government departments are the largest source of public procurement spend to civil society across all organisation types, accounting for 91.4% of records and &pound;123.1 billion of the &pound;148.4 billion recorded &mdash; far ahead of the NHS (&pound;12.2 billion) and local government (&pound;9.8 billion). Note that the Department for Education alone accounts for &pound;80.4 billion, most of it paid to academy trusts and other education bodies classified as &ldquo;Other CSO&rdquo;.</li>
-          <li><strong>Charities and other nonprofit companies receive most of the money</strong> &mdash; charities receive 38% of total value (26% of records) and &ldquo;Other CSO&rdquo; suppliers 55% of value (69% of records); community interest companies and co-operatives/mutuals together receive the remainder.</li>
+          <li><strong>UK Government dominates</strong> &mdash; UK Government departments are the largest source of public procurement spend to civil society across all organisation types, accounting for 91.5% of records and &pound;121.6 billion of the &pound;145.3 billion recorded &mdash; far ahead of the NHS (&pound;11.6 billion) and local government (&pound;9.2 billion). Note that the Department for Education alone accounts for &pound;79.5 billion, most of it paid to academy trusts and other education bodies classified as &ldquo;Other CSO&rdquo;.</li>
+          <li><strong>Charities and other nonprofit companies receive most of the money</strong> &mdash; charities receive 37% of total value (25% of records) and &ldquo;Other CSO&rdquo; suppliers 56% of value (69% of records); community interest companies and co-operatives/mutuals together receive the remainder.</li>
           <li><strong>Department-level variation</strong> &mdash; analysis at the individual department level reveals substantial variation in how much each department spends with different types of civil society organisation, from health-focused charities receiving NHS payments to social enterprises delivering local government contracts.</li>
         </ul>
 
@@ -1476,66 +1476,66 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td><strong>UK Government</strong></td>
-      <td class="numeric">4,326 orgs<br>180,932 payments<br>&pound;41,786.2M</td>
-      <td class="numeric">324 orgs<br>4,060 payments<br>&pound;943.1M</td>
-      <td class="numeric">268 orgs<br>25,723 payments<br>&pound;1,083.4M</td>
-      <td class="numeric">3,579 orgs<br>596,881 payments<br>&pound;79,237.7M</td>
+      <td class="numeric">4,194 orgs<br>175,534 payments<br>&pound;40,756.1M</td>
+      <td class="numeric">318 orgs<br>4,000 payments<br>&pound;938.1M</td>
+      <td class="numeric">253 orgs<br>25,182 payments<br>&pound;1,012.8M</td>
+      <td class="numeric">3,571 orgs<br>595,841 payments<br>&pound;78,912.0M</td>
     </tr>
     <tr>
       <td><strong>NHS</strong></td>
-      <td class="numeric">1,829 orgs<br>39,353 payments<br>&pound;5,686.2M</td>
-      <td class="numeric">268 orgs<br>12,503 payments<br>&pound;4,530.6M</td>
-      <td class="numeric">152 orgs<br>5,460 payments<br>&pound;920.2M</td>
-      <td class="numeric">281 orgs<br>7,965 payments<br>&pound;1,079.3M</td>
+      <td class="numeric">1,783 orgs<br>38,301 payments<br>&pound;5,118.2M</td>
+      <td class="numeric">267 orgs<br>12,502 payments<br>&pound;4,529.4M</td>
+      <td class="numeric">145 orgs<br>5,348 payments<br>&pound;916.9M</td>
+      <td class="numeric">274 orgs<br>7,852 payments<br>&pound;1,049.2M</td>
     </tr>
     <tr>
       <td><strong>Local Government</strong></td>
-      <td class="numeric">2,041 orgs<br>6,042 payments<br>&pound;6,372.7M</td>
-      <td class="numeric">374 orgs<br>715 payments<br>&pound;865.1M</td>
-      <td class="numeric">174 orgs<br>721 payments<br>&pound;1,812.6M</td>
-      <td class="numeric">446 orgs<br>1,134 payments<br>&pound;723.7M</td>
+      <td class="numeric">1,911 orgs<br>5,656 payments<br>&pound;5,816.2M</td>
+      <td class="numeric">368 orgs<br>706 payments<br>&pound;863.8M</td>
+      <td class="numeric">169 orgs<br>708 payments<br>&pound;1,822.2M</td>
+      <td class="numeric">433 orgs<br>1,115 payments<br>&pound;720.2M</td>
     </tr>
     <tr>
       <td><strong>Education Institution</strong></td>
-      <td class="numeric">205 orgs<br>489 payments<br>&pound;230.6M</td>
-      <td class="numeric">19 orgs<br>27 payments<br>&pound;2.6M</td>
-      <td class="numeric">13 orgs<br>55 payments<br>&pound;7.2M</td>
-      <td class="numeric">78 orgs<br>320 payments<br>&pound;41.1M</td>
+      <td class="numeric">170 orgs<br>398 payments<br>&pound;77.8M</td>
+      <td class="numeric">18 orgs<br>25 payments<br>&pound;2.4M</td>
+      <td class="numeric">11 orgs<br>53 payments<br>&pound;4.9M</td>
+      <td class="numeric">74 orgs<br>310 payments<br>&pound;41.7M</td>
     </tr>
     <tr>
       <td><strong>CSO</strong></td>
-      <td class="numeric">170 orgs<br>269 payments<br>&pound;466.6M</td>
-      <td class="numeric">18 orgs<br>22 payments<br>&pound;4.0M</td>
-      <td class="numeric">14 orgs<br>25 payments<br>&pound;29.7M</td>
-      <td class="numeric">69 orgs<br>108 payments<br>&pound;59.5M</td>
+      <td class="numeric">148 orgs<br>212 payments<br>&pound;246.7M</td>
+      <td class="numeric">19 orgs<br>23 payments<br>&pound;4.0M</td>
+      <td class="numeric">14 orgs<br>24 payments<br>&pound;29.5M</td>
+      <td class="numeric">65 orgs<br>104 payments<br>&pound;57.7M</td>
     </tr>
     <tr>
       <td><strong>Police, Fire and Rescue</strong></td>
-      <td class="numeric">125 orgs<br>231 payments<br>&pound;420.7M</td>
-      <td class="numeric">22 orgs<br>33 payments<br>&pound;11.3M</td>
-      <td class="numeric">6 orgs<br>7 payments<br>&pound;2.8M</td>
-      <td class="numeric">27 orgs<br>85 payments<br>&pound;25.8M</td>
+      <td class="numeric">113 orgs<br>211 payments<br>&pound;415.5M</td>
+      <td class="numeric">21 orgs<br>32 payments<br>&pound;11.2M</td>
+      <td class="numeric">5 orgs<br>6 payments<br>&pound;1.3M</td>
+      <td class="numeric">25 orgs<br>82 payments<br>&pound;25.2M</td>
     </tr>
     <tr>
       <td><strong>Private Sector</strong></td>
-      <td class="numeric">111 orgs<br>185 payments<br>&pound;686.0M</td>
-      <td class="numeric">24 orgs<br>48 payments<br>&pound;713.8M</td>
-      <td class="numeric">14 orgs<br>19 payments<br>&pound;66.1M</td>
-      <td class="numeric">37 orgs<br>51 payments<br>&pound;51.8M</td>
+      <td class="numeric">99 orgs<br>162 payments<br>&pound;644.1M</td>
+      <td class="numeric">23 orgs<br>47 payments<br>&pound;713.7M</td>
+      <td class="numeric">11 orgs<br>14 payments<br>&pound;58.2M</td>
+      <td class="numeric">36 orgs<br>50 payments<br>&pound;51.7M</td>
     </tr>
     <tr>
       <td><strong>Other</strong></td>
-      <td class="numeric">101 orgs<br>133 payments<br>&pound;357.1M</td>
-      <td class="numeric">18 orgs<br>21 payments<br>&pound;21.6M</td>
+      <td class="numeric">90 orgs<br>115 payments<br>&pound;301.9M</td>
+      <td class="numeric">17 orgs<br>20 payments<br>&pound;21.3M</td>
       <td class="numeric">9 orgs<br>13 payments<br>&pound;3.2M</td>
-      <td class="numeric">28 orgs<br>44 payments<br>&pound;17.0M</td>
+      <td class="numeric">27 orgs<br>42 payments<br>&pound;16.4M</td>
     </tr>
   </tbody>
 </table>
         <p class="figure-caption">Table 1: Procurement by funder type and CSO type. Each cell shows the number of organisations, payments, and total value. Source: TCSS Procurement Records (payments), current release.</p>
 
         <h3 id="uk-government-departments-by-cso-type">UK Government departments by CSO type</h3>
-        <p>Table 2 shows the proportion of each UK Government department&rsquo;s procurement spend with civil society that goes to each organisation type, for the 44 departments and bodies with at least &pound;10 million of such spend. Departments vary considerably in where their procurement is directed. The Department for Culture, Media &amp; Sport and the Department for International Development direct over 90% of their civil society spend to charities, while the Department for Education and the Department for Business &amp; Trade allocate 81% and 73% respectively to other nonprofit companies. The Department for Work &amp; Pensions stands out for relatively high CIC (5.8%) and co-operative/mutual (7.9%) shares compared with most other departments.</p>
+        <p>Table 2 shows the proportion of each UK Government department&rsquo;s procurement spend with civil society that goes to each organisation type, for the 42 departments and bodies with at least &pound;10 million of such spend. Departments vary considerably in where their procurement is directed. The Department for Culture, Media &amp; Sport and the Department for International Development direct over 90% of their civil society spend to charities, while the Department for Education and the Department for Business &amp; Trade allocate 82% and 74% respectively to other nonprofit companies. The Department for Work &amp; Pensions stands out for relatively high CIC (5.9%) and co-operative/mutual (8.0%) shares compared with most other departments.</p>
 
         <table>
   <thead>
@@ -1551,43 +1551,43 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>Bank of England</td>
-      <td class="numeric">55.4%</td>
+      <td class="numeric">54.7%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">44.6%</td>
-      <td class="numeric">&pound;11.5M</td>
+      <td class="numeric">45.3%</td>
+      <td class="numeric">&pound;11.3M</td>
     </tr>
     <tr>
       <td>Cabinet Office</td>
       <td class="numeric">42.7%</td>
-      <td class="numeric">41.4%</td>
+      <td class="numeric">41.5%</td>
       <td class="numeric">0.1%</td>
       <td class="numeric">15.8%</td>
-      <td class="numeric">&pound;901.7M</td>
+      <td class="numeric">&pound;900.6M</td>
     </tr>
     <tr>
       <td>Care Quality Commission</td>
-      <td class="numeric">98.8%</td>
+      <td class="numeric">98.7%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">1.2%</td>
-      <td class="numeric">&pound;24.4M</td>
+      <td class="numeric">1.3%</td>
+      <td class="numeric">&pound;24.0M</td>
     </tr>
     <tr>
       <td>Crown Commercial Service</td>
-      <td class="numeric">44.4%</td>
+      <td class="numeric">43.9%</td>
       <td class="numeric">0.2%</td>
       <td class="numeric">1.9%</td>
-      <td class="numeric">53.5%</td>
-      <td class="numeric">&pound;123.6M</td>
+      <td class="numeric">54.0%</td>
+      <td class="numeric">&pound;122.5M</td>
     </tr>
     <tr>
       <td>Department for Business &amp; Trade</td>
-      <td class="numeric">26.1%</td>
+      <td class="numeric">25.4%</td>
       <td class="numeric">0.3%</td>
       <td class="numeric">0.5%</td>
-      <td class="numeric">73.1%</td>
-      <td class="numeric">&pound;3,222.8M</td>
+      <td class="numeric">73.8%</td>
+      <td class="numeric">&pound;3,190.9M</td>
     </tr>
     <tr>
       <td>Department for Culture, Media &amp; Sport</td>
@@ -1595,119 +1595,111 @@ body.high-contrast .figure-caption {
       <td class="numeric">2.1%</td>
       <td class="numeric">0.1%</td>
       <td class="numeric">1.8%</td>
-      <td class="numeric">&pound;6,164.5M</td>
+      <td class="numeric">&pound;6,161.6M</td>
     </tr>
     <tr>
       <td>Department for Education</td>
-      <td class="numeric">18.4%</td>
+      <td class="numeric">17.9%</td>
       <td class="numeric">0.1%</td>
       <td class="numeric">0.4%</td>
-      <td class="numeric">81.1%</td>
-      <td class="numeric">&pound;80,401.5M</td>
+      <td class="numeric">81.7%</td>
+      <td class="numeric">&pound;79,518.2M</td>
     </tr>
     <tr>
       <td>Department for Energy Security &amp; Net Zero</td>
-      <td class="numeric">11.7%</td>
-      <td class="numeric">1.5%</td>
-      <td class="numeric">26.6%</td>
-      <td class="numeric">60.2%</td>
-      <td class="numeric">&pound;61.9M</td>
+      <td class="numeric">1.3%</td>
+      <td class="numeric">1.7%</td>
+      <td class="numeric">29.8%</td>
+      <td class="numeric">67.3%</td>
+      <td class="numeric">&pound;55.4M</td>
     </tr>
     <tr>
       <td>Department for Environment, Food &amp; Rural Affairs</td>
-      <td class="numeric">71.4%</td>
+      <td class="numeric">72.3%</td>
       <td class="numeric">0.9%</td>
       <td class="numeric">1.9%</td>
-      <td class="numeric">25.7%</td>
-      <td class="numeric">&pound;428.7M</td>
+      <td class="numeric">24.9%</td>
+      <td class="numeric">&pound;419.6M</td>
     </tr>
     <tr>
       <td>Department for International Development</td>
-      <td class="numeric">93.1%</td>
+      <td class="numeric">93.0%</td>
       <td class="numeric">0.1%</td>
       <td class="numeric">&lt;0.1%</td>
-      <td class="numeric">6.7%</td>
-      <td class="numeric">&pound;5,155.0M</td>
+      <td class="numeric">6.8%</td>
+      <td class="numeric">&pound;5,078.4M</td>
     </tr>
     <tr>
       <td>Department for International Trade</td>
-      <td class="numeric">9.0%</td>
+      <td class="numeric">5.7%</td>
       <td class="numeric">0.2%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">90.9%</td>
-      <td class="numeric">&pound;72.0M</td>
+      <td class="numeric">94.1%</td>
+      <td class="numeric">&pound;69.5M</td>
     </tr>
     <tr>
       <td>Department for Science, Innovation &amp; Technology</td>
-      <td class="numeric">64.3%</td>
-      <td class="numeric">2.5%</td>
+      <td class="numeric">41.4%</td>
+      <td class="numeric">4.0%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">33.2%</td>
-      <td class="numeric">&pound;42.8M</td>
+      <td class="numeric">54.6%</td>
+      <td class="numeric">&pound;25.9M</td>
     </tr>
     <tr>
       <td>Department for Transport</td>
-      <td class="numeric">9.9%</td>
+      <td class="numeric">9.3%</td>
       <td class="numeric">0.2%</td>
       <td class="numeric">1.9%</td>
-      <td class="numeric">88.0%</td>
-      <td class="numeric">&pound;4,155.2M</td>
+      <td class="numeric">88.6%</td>
+      <td class="numeric">&pound;4,129.8M</td>
     </tr>
     <tr>
       <td>Department for Work &amp; Pensions</td>
-      <td class="numeric">55.2%</td>
-      <td class="numeric">5.8%</td>
-      <td class="numeric">7.9%</td>
-      <td class="numeric">31.1%</td>
-      <td class="numeric">&pound;1,619.3M</td>
+      <td class="numeric">54.7%</td>
+      <td class="numeric">5.9%</td>
+      <td class="numeric">8.0%</td>
+      <td class="numeric">31.4%</td>
+      <td class="numeric">&pound;1,601.9M</td>
     </tr>
     <tr>
       <td>Department of Health &amp; Social Care</td>
-      <td class="numeric">63.2%</td>
-      <td class="numeric">1.7%</td>
+      <td class="numeric">63.0%</td>
+      <td class="numeric">1.6%</td>
       <td class="numeric">0.1%</td>
-      <td class="numeric">35.1%</td>
-      <td class="numeric">&pound;4,793.6M</td>
+      <td class="numeric">35.3%</td>
+      <td class="numeric">&pound;4,764.3M</td>
     </tr>
     <tr>
       <td>Driver &amp; Vehicle Licensing Agency</td>
-      <td class="numeric">20.4%</td>
+      <td class="numeric">17.3%</td>
+      <td class="numeric">0.2%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">0.0%</td>
-      <td class="numeric">79.6%</td>
-      <td class="numeric">&pound;15.5M</td>
-    </tr>
-    <tr>
-      <td>Financial Conduct Authority</td>
-      <td class="numeric">98.2%</td>
-      <td class="numeric">0.4%</td>
-      <td class="numeric">0.0%</td>
-      <td class="numeric">1.4%</td>
-      <td class="numeric">&pound;12.5M</td>
+      <td class="numeric">82.5%</td>
+      <td class="numeric">&pound;14.9M</td>
     </tr>
     <tr>
       <td>Food Standards Agency</td>
-      <td class="numeric">15.0%</td>
+      <td class="numeric">14.6%</td>
       <td class="numeric">0.5%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">84.5%</td>
-      <td class="numeric">&pound;20.3M</td>
+      <td class="numeric">84.9%</td>
+      <td class="numeric">&pound;20.2M</td>
     </tr>
     <tr>
       <td>Foreign Office</td>
-      <td class="numeric">94.0%</td>
+      <td class="numeric">93.9%</td>
       <td class="numeric">&lt;0.1%</td>
       <td class="numeric">0.2%</td>
-      <td class="numeric">5.7%</td>
-      <td class="numeric">&pound;1,744.1M</td>
+      <td class="numeric">5.8%</td>
+      <td class="numeric">&pound;1,710.4M</td>
     </tr>
     <tr>
       <td>Foreign, Commonwealth &amp; Development Office</td>
-      <td class="numeric">76.7%</td>
+      <td class="numeric">76.6%</td>
       <td class="numeric">&lt;0.1%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">23.3%</td>
-      <td class="numeric">&pound;522.5M</td>
+      <td class="numeric">23.4%</td>
+      <td class="numeric">&pound;519.9M</td>
     </tr>
     <tr>
       <td>HM Land Registry</td>
@@ -1719,18 +1711,18 @@ body.high-contrast .figure-caption {
     </tr>
     <tr>
       <td>HM Revenue &amp; Customs</td>
-      <td class="numeric">9.8%</td>
+      <td class="numeric">9.1%</td>
       <td class="numeric">&lt;0.1%</td>
       <td class="numeric">0.2%</td>
-      <td class="numeric">89.9%</td>
-      <td class="numeric">&pound;201.4M</td>
+      <td class="numeric">90.7%</td>
+      <td class="numeric">&pound;199.7M</td>
     </tr>
     <tr>
       <td>HM Treasury</td>
-      <td class="numeric">6.2%</td>
+      <td class="numeric">6.1%</td>
       <td class="numeric">0.1%</td>
       <td class="numeric">0.3%</td>
-      <td class="numeric">93.5%</td>
+      <td class="numeric">93.6%</td>
       <td class="numeric">&pound;167.4M</td>
     </tr>
     <tr>
@@ -1751,51 +1743,51 @@ body.high-contrast .figure-caption {
     </tr>
     <tr>
       <td>Highways England</td>
-      <td class="numeric">96.1%</td>
+      <td class="numeric">94.6%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">3.9%</td>
-      <td class="numeric">&pound;52.0M</td>
+      <td class="numeric">5.4%</td>
+      <td class="numeric">&pound;37.5M</td>
     </tr>
     <tr>
       <td>Home Office</td>
-      <td class="numeric">68.5%</td>
-      <td class="numeric">0.6%</td>
+      <td class="numeric">64.4%</td>
+      <td class="numeric">0.7%</td>
       <td class="numeric">0.1%</td>
-      <td class="numeric">30.8%</td>
-      <td class="numeric">&pound;590.3M</td>
+      <td class="numeric">34.9%</td>
+      <td class="numeric">&pound;521.9M</td>
     </tr>
     <tr>
       <td>Homes England</td>
-      <td class="numeric">95.2%</td>
+      <td class="numeric">95.1%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">3.3%</td>
+      <td class="numeric">3.4%</td>
       <td class="numeric">1.5%</td>
-      <td class="numeric">&pound;41.1M</td>
+      <td class="numeric">&pound;40.5M</td>
     </tr>
     <tr>
       <td>Ministry of Defence</td>
-      <td class="numeric">74.6%</td>
+      <td class="numeric">74.0%</td>
       <td class="numeric">0.7%</td>
-      <td class="numeric">5.8%</td>
-      <td class="numeric">18.9%</td>
-      <td class="numeric">&pound;1,094.2M</td>
+      <td class="numeric">6.2%</td>
+      <td class="numeric">19.1%</td>
+      <td class="numeric">&pound;1,028.1M</td>
     </tr>
     <tr>
       <td>Ministry of Housing, Communities &amp; Local Government</td>
-      <td class="numeric">54.4%</td>
+      <td class="numeric">56.0%</td>
       <td class="numeric">0.8%</td>
-      <td class="numeric">4.8%</td>
-      <td class="numeric">40.0%</td>
-      <td class="numeric">&pound;784.7M</td>
+      <td class="numeric">2.0%</td>
+      <td class="numeric">41.2%</td>
+      <td class="numeric">&pound;761.9M</td>
     </tr>
     <tr>
       <td>Ministry of Justice</td>
-      <td class="numeric">72.3%</td>
-      <td class="numeric">3.3%</td>
+      <td class="numeric">71.1%</td>
       <td class="numeric">3.5%</td>
-      <td class="numeric">20.9%</td>
-      <td class="numeric">&pound;1,176.4M</td>
+      <td class="numeric">3.6%</td>
+      <td class="numeric">21.8%</td>
+      <td class="numeric">&pound;1,126.5M</td>
     </tr>
     <tr>
       <td>Money &amp; Pensions Service</td>
@@ -1819,31 +1811,23 @@ body.high-contrast .figure-caption {
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">1.1%</td>
-      <td class="numeric">&pound;20.9M</td>
-    </tr>
-    <tr>
-      <td>National Highways</td>
-      <td class="numeric">60.5%</td>
-      <td class="numeric">1.9%</td>
-      <td class="numeric">0.0%</td>
-      <td class="numeric">37.6%</td>
-      <td class="numeric">&pound;15.3M</td>
+      <td class="numeric">&pound;20.0M</td>
     </tr>
     <tr>
       <td>Office For National Statistics</td>
-      <td class="numeric">94.6%</td>
+      <td class="numeric">94.5%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">5.4%</td>
-      <td class="numeric">&pound;15.2M</td>
+      <td class="numeric">5.5%</td>
+      <td class="numeric">&pound;15.1M</td>
     </tr>
     <tr>
       <td>Public Health England</td>
-      <td class="numeric">82.8%</td>
+      <td class="numeric">83.2%</td>
       <td class="numeric">5.3%</td>
       <td class="numeric">0.3%</td>
-      <td class="numeric">11.6%</td>
-      <td class="numeric">&pound;28.8M</td>
+      <td class="numeric">11.2%</td>
+      <td class="numeric">&pound;28.7M</td>
     </tr>
     <tr>
       <td>Scotland Office</td>
@@ -1851,47 +1835,47 @@ body.high-contrast .figure-caption {
       <td class="numeric">0.2%</td>
       <td class="numeric">3.4%</td>
       <td class="numeric">35.2%</td>
-      <td class="numeric">&pound;8,244.2M</td>
+      <td class="numeric">&pound;8,242.0M</td>
     </tr>
     <tr>
       <td>Skills Funding Agency</td>
-      <td class="numeric">50.0%</td>
+      <td class="numeric">49.7%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">50.0%</td>
-      <td class="numeric">&pound;35.6M</td>
+      <td class="numeric">50.3%</td>
+      <td class="numeric">&pound;35.4M</td>
     </tr>
     <tr>
       <td>Transport for London</td>
-      <td class="numeric">50.9%</td>
-      <td class="numeric">23.7%</td>
-      <td class="numeric">23.8%</td>
+      <td class="numeric">50.5%</td>
+      <td class="numeric">23.4%</td>
+      <td class="numeric">24.4%</td>
       <td class="numeric">1.6%</td>
-      <td class="numeric">&pound;110.5M</td>
+      <td class="numeric">&pound;107.7M</td>
     </tr>
     <tr>
       <td>UK Health Security Agency</td>
-      <td class="numeric">1.8%</td>
+      <td class="numeric">1.1%</td>
       <td class="numeric">&lt;0.1%</td>
       <td class="numeric">0.0%</td>
-      <td class="numeric">98.2%</td>
-      <td class="numeric">&pound;192.0M</td>
+      <td class="numeric">98.8%</td>
+      <td class="numeric">&pound;190.7M</td>
     </tr>
     <tr>
       <td>UK Research &amp; Innovation</td>
-      <td class="numeric">45.8%</td>
-      <td class="numeric">19.2%</td>
-      <td class="numeric">3.2%</td>
-      <td class="numeric">31.7%</td>
-      <td class="numeric">&pound;25.5M</td>
+      <td class="numeric">40.7%</td>
+      <td class="numeric">21.3%</td>
+      <td class="numeric">3.5%</td>
+      <td class="numeric">34.5%</td>
+      <td class="numeric">&pound;22.7M</td>
     </tr>
     <tr>
       <td>UK Shared Business Services</td>
-      <td class="numeric">36.9%</td>
+      <td class="numeric">35.8%</td>
       <td class="numeric">6.4%</td>
       <td class="numeric">2.4%</td>
-      <td class="numeric">54.3%</td>
-      <td class="numeric">&pound;65.6M</td>
+      <td class="numeric">55.4%</td>
+      <td class="numeric">&pound;64.2M</td>
     </tr>
     <tr>
       <td>Ukstatauth</td>
@@ -1899,7 +1883,7 @@ body.high-contrast .figure-caption {
       <td class="numeric">0.0%</td>
       <td class="numeric">0.0%</td>
       <td class="numeric">4.0%</td>
-      <td class="numeric">&pound;27.9M</td>
+      <td class="numeric">&pound;27.8M</td>
     </tr>
   </tbody>
 </table>
@@ -1924,20 +1908,20 @@ body.high-contrast .figure-caption {
         <p>A handful of records (3 in total) carry implausible payment years (1900, 2027), resulting from errors in the source data, and a further 7 pre-date 2010. These records are retained for transparency. Users conducting temporal analysis should filter to the core range of 2010&ndash;2025, and may also wish to note that the 2024 and 2025 counts are incomplete as source data collection is ongoing.</p>
 
         <h3 id="duplicate-and-reversal-entries">Duplicate and Reversal Entries</h3>
-        <p>Some records represent payment corrections or reversals, indicated by negative values in the <code>amount</code> field (2,563 records), and 2,115 records carry a zero amount. These are retained to preserve the source data faithfully. Users conducting aggregate analysis should be aware that na&iuml;ve summation of amounts may overstate or understate totals; consider filtering or handling negative amounts depending on the research question.</p>
+        <p>Some records represent payment corrections or reversals, indicated by negative values in the <code>amount</code> field (2,539 records), and 2,067 records carry a zero amount. These are retained to preserve the source data faithfully. Users conducting aggregate analysis should be aware that na&iuml;ve summation of amounts may overstate or understate totals; consider filtering or handling negative amounts depending on the research question.</p>
 
         <h3 id="nhs-coverage-gap">NHS Coverage Gap</h3>
         <p>The NHSSpend data collection concluded around April 2020. NHS procurement records after this date are not included in the dataset, creating a gap in NHS-specific coverage for 2020 onwards. Central government and Contracts Finder data continue beyond this date.</p>
 
         <h3 id="register-confirmed-membership-spine-only-rule">Register-Confirmed Membership (Spine-only rule)</h3>
-        <p>From the August 2026 release a payment is included only when its supplier matches the TCSS Organisation Register (every row has a <code>uid</code>). Earlier releases also included 62,175 records from 1,131 suppliers (&pound;32.9 billion) typed as civil society by the earlier name-based masterlist without a register match; several of the largest were misclassified public bodies or companies, so totals in earlier releases and in the June 2026 guidance are not comparable with this release. The other side of the rule is that genuine civil society organisations whose names have not yet been matched to the Register are excluded; they will be added as matching improves.</p>
+        <p>From the August 2026 release a payment is included only when its supplier matches the TCSS Organisation Register (every row has a <code>uid</code>). Releases up to and including June 2026 also included 62,175 records from 1,131 suppliers (&pound;32.9 billion) typed as civil society by the earlier name-based masterlist without a register match; several of the largest were misclassified public bodies or companies, so totals in those releases and in the June 2026 guidance are not comparable with this release. The other side of the rule is that genuine civil society organisations whose names have not yet been matched to the Register are excluded; they will be added as matching improves.</p>
 
 
         <h3 id="supplier-matching">Supplier Matching</h3>
         <p>Organisations in the raw payment data were matched to the TCSS Organisation Register using a combination of exact and fuzzy name matching (Jaro-Winkler similarity, threshold &ge; 0.90). Some false positives (incorrect matches) and false negatives (missed matches) are possible, particularly for organisations with common or ambiguous names. The alias resolution process (see <a href="#a3-supplier-matching--alias-resolution">Appendix A3</a>) mitigates but does not eliminate this issue.</p>
 
         <h3 id="funder-classification">Funder Classification</h3>
-        <p>Funders are classified using a multi-layer cascade of metadata signals, external lookups, and keyword rules (see <a href="#a2-funder-classification">Appendix A2</a>). While the cascade achieves high accuracy for well-known funder types (NHS, UK Government), edge cases &mdash; particularly funders with ambiguous names or those not present in external reference databases &mdash; may be misclassified. The <code>Junk/Invalid</code> category captures clearly erroneous funder names (16 distinct names, 142 records).</p>
+        <p>Funders are classified using a multi-layer cascade of metadata signals, external lookups, and keyword rules (see <a href="#a2-funder-classification">Appendix A2</a>). While the cascade achieves high accuracy for well-known funder types (NHS, UK Government), edge cases &mdash; particularly funders with ambiguous names or those not present in external reference databases &mdash; may be misclassified. The <code>Junk/Invalid</code> category captures clearly erroneous funder names (16 distinct names, 131 records).</p>
 
         <h3 id="whats-not-in-the-data">What&rsquo;s NOT in the Data</h3>
         <p>The dataset does not include:</p>
@@ -1981,6 +1965,11 @@ body.high-contrast .figure-caption {
           </thead>
           <tbody>
             <tr>
+              <td>1.4</td>
+              <td>September 2026</td>
+              <td>September 2026 data release (874,819 records, 11,573 organisations). Rebuilt on run 6 of the project&rsquo;s refined supplier lookup: generic-name, census-match and legal-form safeguards for name-only register matches (owner rulings D77 to D81, the last holding a match for review when the supplier name states a company form that the register record does not share) and rejection of matches inherited from register records removed before the first award. All figures and tables re-derived. <code>supplier_id</code> values are re-minted each release; use <code>uid</code> to link across releases.</td>
+            </tr>
+            <tr>
               <td>1.3</td>
               <td>August 2026</td>
               <td>August 2026 data release (883,816 records, 11,886 organisations). Supplier classification now follows the Spine-only rule: a supplier is a civil society organisation only if matched to the TCSS Organisation Register, so the 62,175 previously included records without a <code>uid</code> (&pound;32.9 billion) are removed and every row now carries a <code>uid</code>; 13 large charities whose register identities were recorded as compound identifiers (e.g. British Red Cross, RNIB, Sense, NatCen) are now correctly classified and included. All figures and tables re-derived. Caution notes about unmatched rows replaced by a description of the rule; the line break inside the <code>Central Government</code> / <code>Contracts Finder</code> source labels is fixed in the data. Supplier identifiers (<code>supplier_id</code>) are re-minted each release; use <code>uid</code> to link across releases.</td>
@@ -2023,7 +2012,7 @@ body.high-contrast .figure-caption {
             <tr>
               <td>1</td>
               <td><code>02-build-funder-lookup.R</code></td>
-              <td>Classifies the 1,503 unique funders into nine types (eight substantive types plus Junk/Invalid) using a multi-layer cascade of metadata signals, external lookups, and keyword rules. See <a href="#a2-funder-classification">Appendix A2</a>.</td>
+              <td>Classifies the 1,418 unique funders into nine types (eight substantive types plus Junk/Invalid) using a multi-layer cascade of metadata signals, external lookups, and keyword rules. See <a href="#a2-funder-classification">Appendix A2</a>.</td>
             </tr>
             <tr>
               <td>2</td>
@@ -2066,7 +2055,7 @@ body.high-contrast .figure-caption {
         <h3 id="classification-cascade">Classification Cascade</h3>
 
         <h4>Pre-filter: Junk/Invalid Detection</h4>
-        <p>Entries with purely numeric names, hash-like strings, or very short names (fewer than 3 meaningful characters) are flagged as <code>Junk/Invalid</code> and excluded from subsequent cascade layers. This affects 16 funder names (142 records).</p>
+        <p>Entries with purely numeric names, hash-like strings, or very short names (fewer than 3 meaningful characters) are flagged as <code>Junk/Invalid</code> and excluded from subsequent cascade layers. This affects 16 funder names (131 records).</p>
 
         <h4>Layer 1: Metadata Signals</h4>
         <p>Information already present in the source data is used as the first classification signal:</p>
@@ -2193,7 +2182,7 @@ body.high-contrast .figure-caption {
         <p>Unlike the payment-level data from Central Government and NHS sources, Contracts Finder provides contract-level information &mdash; each record represents an awarded contract rather than an individual payment. These records are assigned a <code>data_source</code> value of <code>Contracts Finder</code> or <code>contractsfinder</code> (reflecting different collection batches).</p>
 
         <div class="callout callout-info">
-          <p><strong>Note:</strong> Contracts Finder records account for a relatively small share of the dataset (2.1%, 18,184 rows) but contribute a disproportionate number of unique organisations (4,977 register-matched organisations), as they capture a broader range of contract awards that may not appear in the &pound;25k+ payment transparency data. The complete contract-level data &mdash; all awarded notices, including those won by non-civil-society suppliers, with full contract metadata &mdash; is published as the companion <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records</a> dataset.</p>
+          <p><strong>Note:</strong> Contracts Finder records account for a relatively small share of the dataset (1.9%, 16,940 rows) but contribute a disproportionate number of unique organisations (4,682 register-matched organisations), as they capture a broader range of contract awards that may not appear in the &pound;25k+ payment transparency data. The complete contract-level data &mdash; all awarded notices, including those won by non-civil-society suppliers, with full contract metadata &mdash; is published as the companion <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records</a> dataset.</p>
         </div>
       </div>
 
@@ -2286,7 +2275,7 @@ print(merged[["uid", "amount", "inc"]].head(10))</code></pre>
       <!-- Footer -->
       <div class="report-footer">
         <hr />
-        <p><em>Document generated: August 2026</em></p>
+        <p><em>Document generated: September 2026</em></p>
         <p><em>UK Third and Civil Society Sector Database &mdash; <a href="https://uk-third-sector-database.github.io/" target="_blank">uk-third-sector-database.github.io</a></em></p>
       </div>
 
