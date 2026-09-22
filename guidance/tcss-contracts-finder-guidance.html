@@ -897,13 +897,13 @@ body.high-contrast .figure-caption {
 
         <p>Unlike the project&rsquo;s payments dataset, this file covers contracts awarded to <em>all</em> suppliers &mdash; private companies, public bodies and individuals as well as civil society organisations. Civil society suppliers (registered charities, community interest companies, co-operatives and mutuals, and other nonprofit companies) are identified by matching the supplier name to the TCSS Organisation Register; where a match is found the record carries the organisation&rsquo;s <code>uid</code>. Retaining the non-civil-society awards is what makes it possible to measure civil society&rsquo;s share of the public contract market and to test the reliability of the buyer&rsquo;s own voluntary-sector flags.</p>
 
-        <p>The dataset contains 406,113 awarded contract notices from 4,687 public buyers, naming 107,353 distinct suppliers. 17,529 awards (4.3%) went to 4,879 register-confirmed civil society organisations. Coverage is effectively continuous from 2015, when the current version of Contracts Finder was launched, to early 2026.</p>
+        <p>The dataset contains 402,782 awarded contract notices from 4,687 public buyers, naming 107,354 distinct suppliers. 17,332 awards (4.3%) went to 4,878 register-confirmed civil society organisations. Coverage is effectively continuous from 2015, when the current version of Contracts Finder was launched, to early 2026.</p>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">406,113</span><span class="label">Awarded Contracts</span></div>
-          <div class="stat-card"><span class="number">107,353</span><span class="label">Suppliers</span></div>
+          <div class="stat-card"><span class="number">402,782</span><span class="label">Awarded Contracts</span></div>
+          <div class="stat-card"><span class="number">107,354</span><span class="label">Suppliers</span></div>
           <div class="stat-card"><span class="number">4,687</span><span class="label">Buyers</span></div>
-          <div class="stat-card"><span class="number">17,529</span><span class="label">Awards to CSOs</span></div>
+          <div class="stat-card"><span class="number">17,332</span><span class="label">Awards to CSOs</span></div>
         </div>
 
         <div class="callout callout-info">
@@ -918,7 +918,7 @@ body.high-contrast .figure-caption {
         <p>Contracts Finder is the UK government&rsquo;s free online service for publishing public sector contract opportunities and awards in England (and some UK-wide and devolved-administration notices). Since February 2015, under the Public Contracts Regulations 2015, public bodies have been required to publish on Contracts Finder any opportunity above a low-value threshold &mdash; currently &pound;12,000 including VAT for central government and &pound;30,000 for the wider public sector (&pound;10,000 and &pound;25,000 excluding VAT before 2022) &mdash; together with the subsequent award notice giving the winning supplier, the awarded value and the contract dates. A small number of older awards were back-published &ldquo;for transparency purposes&rdquo; when the current portal was launched and carry award dates before 2015.</p>
 
         <h3 id="how-the-data-were-collected">How the data were collected</h3>
-        <p>Awarded contract notices are retrieved from the Contracts Finder API by the project&rsquo;s own <a href="https://github.com/uk-third-sector-database/contracts_finder">Contracts Finder collector</a>, which pages through the published notices and stores each award with its full metadata. Every record in this dataset has <code>noticeType</code> = <em>Contract</em> and <code>noticeStatus</code> = <em>Awarded</em>; opportunities that had not yet been awarded at collection time are not included. 20.6% of records (83,704) were added by a later &ldquo;gap-fill&rdquo; collection pass (<code>is_gap</code> = TRUE) that retrieved notices missed by the initial run.</p>
+        <p>Awarded contract notices are retrieved from the Contracts Finder API by the project&rsquo;s own <a href="https://github.com/uk-third-sector-database/contracts_finder">Contracts Finder collector</a>, which pages through the published notices and stores each award with its full metadata. Every record in this dataset has <code>noticeType</code> = <em>Contract</em> and <code>noticeStatus</code> = <em>Awarded</em>; opportunities that had not yet been awarded at collection time are not included. 20.5% of records (82,618) were added by a later &ldquo;gap-fill&rdquo; collection pass (<code>is_gap</code> = TRUE) that retrieved notices missed by the initial run.</p>
 
         <h3 id="how-the-data-were-enriched">How the data were enriched</h3>
         <p>Two kinds of enrichment are added to the raw notices (see <a href="#a1-pipeline-overview">Appendix A1</a>). First, the buyer is classified into a funder type (UK Government, Local Government, NHS, and so on) using the same classification cascade as the payments dataset. Second, the supplier name is normalised and matched to the TCSS Organisation Register; where a civil society organisation is found the record receives its <code>uid</code> and a <code>supplier_type</code> (Charity, CIC, Co-operative/Mutual or Other CSO). Suppliers that do not match the register are labelled <code>Non-CSO</code>, and awards naming several suppliers at once, or carrying an unusable supplier string, are labelled <code>Excluded</code> and not matched.</p>
@@ -928,14 +928,14 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1 id="3-dataset-contents">3. Dataset Contents</h1>
 
-        <p>The dataset is supplied as a single CSV file, <code>contractsfinder-enriched-refined.csv</code>, containing 406,113 records across 52 fields. Each row is a single awarded contract notice. The fields are organised into the groups below. Field names in lower camel case (e.g., <code>awardedValue</code>) come directly from the Contracts Finder API; fields in snake case (e.g., <code>supplier_type</code>) are added by the project.</p>
+        <p>The dataset is supplied as a single CSV file, <code>contractsfinder-enriched-refined.csv</code>, containing 402,782 records across 52 fields. Each row is a single awarded contract notice. The fields are organised into the groups below. Field names in lower camel case (e.g., <code>awardedValue</code>) come directly from the Contracts Finder API; fields in snake case (e.g., <code>supplier_type</code>) are added by the project.</p>
 
         <h3 id="notice--contract-details">Notice &amp; Contract Details</h3>
         <table>
           <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
           <tbody>
             <tr><td><code>id</code></td><td>Contracts Finder internal notice identifier (unique in this dataset)</td><td>Text</td><td>100%</td></tr>
-            <tr><td><code>noticeIdentifier</code></td><td>Contracts Finder notice reference number, as shown on the portal. A small number of notices share a reference (2,063 rows); use <code>id</code> as the unique key</td><td>Text</td><td>&gt;99.9%</td></tr>
+            <tr><td><code>noticeIdentifier</code></td><td>Contracts Finder notice reference number, as shown on the portal. A small number of notices share a reference (1,703 rows); use <code>id</code> as the unique key</td><td>Text</td><td>&gt;99.9%</td></tr>
             <tr><td><code>parentId</code></td><td>Identifier of the parent notice (for call-offs under a framework or related notices)</td><td>Text</td><td>10.9%</td></tr>
             <tr><td><code>isSubNotice</code></td><td>Whether the record is a sub-notice of a parent notice (True/False)</td><td>Boolean</td><td>100%</td></tr>
             <tr><td><code>noticeType</code></td><td>Type of notice &mdash; always <em>Contract</em> in this dataset</td><td>Text</td><td>100%</td></tr>
@@ -957,10 +957,10 @@ body.high-contrast .figure-caption {
           <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
           <tbody>
             <tr><td><code>funder_name</code></td><td>Canonical (standardised, uppercase) buyer name assigned by the project; consistent with the payments dataset</td><td>Text</td><td>99.9%</td></tr>
-            <tr><td><code>funder_name_alt</code></td><td>Alternative buyer name, where applicable &mdash; typically the parent central government department of an agency (e.g., DVSA mapped to DFTRANSPORT)</td><td>Text</td><td>9.7%</td></tr>
+            <tr><td><code>funder_name_alt</code></td><td>Alternative buyer name, where applicable &mdash; typically the parent central government department of an agency (e.g., DVSA mapped to DFTRANSPORT)</td><td>Text</td><td>9.3%</td></tr>
             <tr><td><code>funder_id</code></td><td>Unique buyer identifier (e.g., F01726); consistent with the payments dataset</td><td>Text</td><td>99.9%</td></tr>
             <tr><td><code>funder_type</code></td><td>Buyer classification: UK Government, Local Government, NHS, Education Institution, CSO, Police, Fire and Rescue, Private Sector, Other, or Junk/Invalid (see <a href="#a2-buyer-classification">Appendix A2</a>)</td><td>Text</td><td>99.9%</td></tr>
-            <tr><td><code>funder_type_alt</code></td><td>Classification of the alternative buyer name</td><td>Text</td><td>15.2%</td></tr>
+            <tr><td><code>funder_type_alt</code></td><td>Classification of the alternative buyer name</td><td>Text</td><td>14.8%</td></tr>
             <tr><td><code>funder_type_detail</code></td><td>A more granular buyer classification, refining <code>funder_type</code></td><td>Text</td><td>99.9%</td></tr>
           </tbody>
         </table>
@@ -984,7 +984,7 @@ body.high-contrast .figure-caption {
         <table>
           <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
           <tbody>
-            <tr><td><code>awardedValue</code></td><td>Awarded contract value (&pound;) as entered by the buyer. Zero for 16,193 records (4.0%); see Section 6 for outliers</td><td>Numeric</td><td>100%</td></tr>
+            <tr><td><code>awardedValue</code></td><td>Awarded contract value (&pound;) as entered by the buyer. Zero for 16,058 records (4.0%); see Section 6 for outliers</td><td>Numeric</td><td>100%</td></tr>
             <tr><td><code>valueLow</code></td><td>Lower bound of the estimated contract value (&pound;)</td><td>Numeric</td><td>100%</td></tr>
             <tr><td><code>valueHigh</code></td><td>Upper bound of the estimated contract value (&pound;)</td><td>Numeric</td><td>100%</td></tr>
             <tr><td><code>publishedDate</code></td><td>Date and time the notice was published (ISO 8601, e.g., <code>2019-03-01T00:00:00Z</code>)</td><td>Date-time</td><td>100%</td></tr>
@@ -1015,10 +1015,10 @@ body.high-contrast .figure-caption {
         <table>
           <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
           <tbody>
-            <tr><td><code>postcode</code></td><td>Postcode entered on the notice (usually the contract delivery or buyer location, not the supplier&rsquo;s registered address)</td><td>Text</td><td>32.4%</td></tr>
+            <tr><td><code>postcode</code></td><td>Postcode entered on the notice (usually the contract delivery or buyer location, not the supplier&rsquo;s registered address)</td><td>Text</td><td>32.5%</td></tr>
             <tr><td><code>coordinates</code></td><td>Latitude, longitude pair associated with the notice; <code>0,0</code> (no location) for 69.3% of records</td><td>Text</td><td>100%</td></tr>
-            <tr><td><code>region</code></td><td>Region code(s) for the contract; may list several regions, or <em>Any region</em></td><td>Text</td><td>87.5%</td></tr>
-            <tr><td><code>regionText</code></td><td>Region name(s) corresponding to <code>region</code></td><td>Text</td><td>87.5%</td></tr>
+            <tr><td><code>region</code></td><td>Region code(s) for the contract; may list several regions, or <em>Any region</em></td><td>Text</td><td>87.6%</td></tr>
+            <tr><td><code>regionText</code></td><td>Region name(s) corresponding to <code>region</code></td><td>Text</td><td>87.6%</td></tr>
           </tbody>
         </table>
 
@@ -1043,7 +1043,7 @@ body.high-contrast .figure-caption {
         <h1 id="4-coverage--completeness">4. Coverage &amp; Completeness</h1>
 
         <h3 id="core-field-coverage">Core Field Coverage</h3>
-        <p>The contract fields from the portal &mdash; identifiers, title, description, CPV codes, values, dates and flags &mdash; are present in every record. The only exceptions are 74 records with no <code>awardedDate</code> and a few with no supplier name. The project&rsquo;s buyer classification is missing for a small number of records whose buyer name could not be resolved (<code>funder_id</code> for 583, 0.1%; <code>funder_type</code> for 390), and <code>supplier_type</code> for 1,346 records. The <code>uid</code> is present only for the 4.3% of awards won by a register-confirmed civil society organisation; geographic fields are the least complete.</p>
+        <p>The contract fields from the portal &mdash; identifiers, title, description, CPV codes, values, dates and flags &mdash; are present in every record. The only exceptions are 74 records with no <code>awardedDate</code> and a few with no supplier name. The project&rsquo;s buyer classification is missing for a small number of records whose buyer name could not be resolved (<code>funder_id</code> for 583, 0.1%; <code>funder_type</code> for 390), and <code>supplier_type</code> for 1,345 records. The <code>uid</code> is present only for the 4.3% of awards won by a register-confirmed civil society organisation; geographic fields are the least complete.</p>
 
         <div class="coverage-bar-container">
   <div class="coverage-item">
@@ -1068,13 +1068,13 @@ body.high-contrast .figure-caption {
   </div>
   <div class="coverage-item">
     <div class="cov-label">regionText</div>
-    <div class="cov-bar"><div class="cov-fill" style="width: 87.5%;"></div></div>
-    <div class="cov-pct">87.5%</div>
+    <div class="cov-bar"><div class="cov-fill" style="width: 87.6%;"></div></div>
+    <div class="cov-pct">87.6%</div>
   </div>
   <div class="coverage-item">
     <div class="cov-label">postcode</div>
-    <div class="cov-bar"><div class="cov-fill" style="width: 32.4%;"></div></div>
-    <div class="cov-pct">32.4%</div>
+    <div class="cov-bar"><div class="cov-fill" style="width: 32.5%;"></div></div>
+    <div class="cov-pct">32.5%</div>
   </div>
   <div class="coverage-item">
     <div class="cov-label">uid (CSO awards only)</div>
@@ -1084,7 +1084,7 @@ body.high-contrast .figure-caption {
 </div>
 
         <h3 id="who-buys-buyer-type-distribution">Who Buys: Buyer Type Distribution</h3>
-        <p>Central government departments and agencies (37% of awards) and local authorities (35%) between them publish the large majority of notices. The picture for awards to civil society organisations is different: local government is the largest buyer from civil society (49% of CSO awards), followed by UK Government (30%) and the NHS (9%).</p>
+        <p>Central government departments and agencies (36% of awards) and local authorities (35%) between them publish the large majority of notices. The picture for awards to civil society organisations is different: local government is the largest buyer from civil society (49% of CSO awards), followed by UK Government (30%) and the NHS (9%).</p>
 
         <table>
   <thead>
@@ -1099,65 +1099,65 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>UK Government</td>
-      <td class="numeric">148,977</td>
-      <td class="numeric">36.7%</td>
-      <td class="numeric">5,240</td>
-      <td class="numeric">29.9%</td>
+      <td class="numeric">146,614</td>
+      <td class="numeric">36.4%</td>
+      <td class="numeric">5,146</td>
+      <td class="numeric">29.7%</td>
     </tr>
     <tr>
       <td>Local Government</td>
-      <td class="numeric">143,085</td>
-      <td class="numeric">35.2%</td>
-      <td class="numeric">8,552</td>
-      <td class="numeric">48.8%</td>
+      <td class="numeric">142,345</td>
+      <td class="numeric">35.3%</td>
+      <td class="numeric">8,483</td>
+      <td class="numeric">48.9%</td>
     </tr>
     <tr>
       <td>NHS</td>
-      <td class="numeric">37,241</td>
+      <td class="numeric">37,148</td>
       <td class="numeric">9.2%</td>
-      <td class="numeric">1,574</td>
-      <td class="numeric">9.0%</td>
+      <td class="numeric">1,547</td>
+      <td class="numeric">8.9%</td>
     </tr>
     <tr>
       <td>Education Institution</td>
-      <td class="numeric">31,569</td>
+      <td class="numeric">31,526</td>
       <td class="numeric">7.8%</td>
-      <td class="numeric">804</td>
+      <td class="numeric">803</td>
       <td class="numeric">4.6%</td>
     </tr>
     <tr>
       <td>CSO</td>
-      <td class="numeric">16,638</td>
+      <td class="numeric">16,597</td>
       <td class="numeric">4.1%</td>
-      <td class="numeric">388</td>
+      <td class="numeric">383</td>
       <td class="numeric">2.2%</td>
     </tr>
     <tr>
       <td>Police, Fire and Rescue</td>
-      <td class="numeric">10,337</td>
-      <td class="numeric">2.5%</td>
+      <td class="numeric">10,317</td>
+      <td class="numeric">2.6%</td>
       <td class="numeric">337</td>
       <td class="numeric">1.9%</td>
     </tr>
     <tr>
       <td>Private Sector</td>
-      <td class="numeric">9,026</td>
+      <td class="numeric">9,005</td>
       <td class="numeric">2.2%</td>
       <td class="numeric">279</td>
       <td class="numeric">1.6%</td>
     </tr>
     <tr>
       <td>Other</td>
-      <td class="numeric">6,827</td>
+      <td class="numeric">6,821</td>
       <td class="numeric">1.7%</td>
       <td class="numeric">205</td>
       <td class="numeric">1.2%</td>
     </tr>
     <tr>
       <td>Junk/Invalid</td>
-      <td class="numeric">2,023</td>
+      <td class="numeric">2,019</td>
       <td class="numeric">0.5%</td>
-      <td class="numeric">147</td>
+      <td class="numeric">146</td>
       <td class="numeric">0.8%</td>
     </tr>
     <tr>
@@ -1171,7 +1171,7 @@ body.high-contrast .figure-caption {
 </table>
 
         <h3 id="who-wins-supplier-type-distribution">Who Wins: Supplier Type Distribution</h3>
-        <p>Most awards go to suppliers that do not match the TCSS Organisation Register (<code>Non-CSO</code>) &mdash; overwhelmingly private companies, with some public bodies and universities. 10,085 awards (2.5%) are <code>Excluded</code> from matching because the notice names several suppliers at once (9,708) or carries an unusable supplier string (386). Among civil society winners, charities dominate.</p>
+        <p>Most awards go to suppliers that do not match the TCSS Organisation Register (<code>Non-CSO</code>) &mdash; overwhelmingly private companies, with some public bodies and universities. 10,076 awards (2.5%) are <code>Excluded</code> from matching because the notice names several suppliers at once (9,699) or carries an unusable supplier string (386). Among civil society winners, charities dominate.</p>
 
         <table>
   <thead>
@@ -1185,43 +1185,43 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>Non-CSO</td>
-      <td class="numeric">377,153</td>
+      <td class="numeric">374,029</td>
       <td class="numeric">92.9%</td>
-      <td class="numeric">92,893</td>
+      <td class="numeric">92,894</td>
     </tr>
     <tr>
       <td>Charity</td>
-      <td class="numeric">11,409</td>
+      <td class="numeric">11,348</td>
       <td class="numeric">2.8%</td>
-      <td class="numeric">3,186</td>
+      <td class="numeric">3,185</td>
     </tr>
     <tr>
       <td>Excluded</td>
-      <td class="numeric">10,085</td>
+      <td class="numeric">10,076</td>
       <td class="numeric">2.5%</td>
       <td class="numeric">9,708</td>
     </tr>
     <tr>
       <td>Other CSO</td>
-      <td class="numeric">3,523</td>
-      <td class="numeric">0.9%</td>
+      <td class="numeric">3,417</td>
+      <td class="numeric">0.8%</td>
       <td class="numeric">883</td>
     </tr>
     <tr>
       <td>CIC</td>
-      <td class="numeric">1,465</td>
+      <td class="numeric">1,458</td>
       <td class="numeric">0.4%</td>
       <td class="numeric">596</td>
     </tr>
     <tr>
       <td>(not classified)</td>
-      <td class="numeric">1,346</td>
+      <td class="numeric">1,345</td>
       <td class="numeric">0.3%</td>
       <td class="numeric">&mdash;</td>
     </tr>
     <tr>
       <td>Co-operative/Mutual</td>
-      <td class="numeric">1,132</td>
+      <td class="numeric">1,109</td>
       <td class="numeric">0.3%</td>
       <td class="numeric">227</td>
     </tr>
@@ -1233,7 +1233,7 @@ body.high-contrast .figure-caption {
         </div>
 
         <h3 id="which-registers-the-civil-society-winners-come-from">Which Registers the Civil Society Winners Come From</h3>
-        <p>Among the 17,529 awards to register-confirmed civil society organisations, the <code>uid</code> prefix shows the source register. Registered charities in England and Wales account for 63% of CSO awards; nonprofit companies registered only at Companies House (community interest companies, companies limited by guarantee) for 28%.</p>
+        <p>Among the 17,332 awards to register-confirmed civil society organisations, the <code>uid</code> prefix shows the source register. Registered charities in England and Wales account for 64% of CSO awards; nonprofit companies registered only at Companies House (community interest companies, companies limited by guarantee) for 28%.</p>
 
         <table>
   <thead>
@@ -1249,30 +1249,30 @@ body.high-contrast .figure-caption {
     <tr>
       <td>GB-CHC</td>
       <td>Charity Commission for England &amp; Wales</td>
-      <td class="numeric">11,067</td>
-      <td class="numeric">3,101</td>
-      <td class="numeric">63.1%</td>
+      <td class="numeric">11,006</td>
+      <td class="numeric">3,100</td>
+      <td class="numeric">63.5%</td>
     </tr>
     <tr>
       <td>GB-COH</td>
       <td>Companies House</td>
-      <td class="numeric">4,976</td>
+      <td class="numeric">4,863</td>
       <td class="numeric">1,471</td>
-      <td class="numeric">28.4%</td>
+      <td class="numeric">28.1%</td>
     </tr>
     <tr>
       <td>GB-MPR</td>
       <td>Mutuals Public Register (FCA)</td>
-      <td class="numeric">709</td>
+      <td class="numeric">703</td>
       <td class="numeric">199</td>
-      <td class="numeric">4.0%</td>
+      <td class="numeric">4.1%</td>
     </tr>
     <tr>
       <td>GB-COOP</td>
       <td>Co-operatives UK</td>
-      <td class="numeric">423</td>
+      <td class="numeric">406</td>
       <td class="numeric">28</td>
-      <td class="numeric">2.4%</td>
+      <td class="numeric">2.3%</td>
     </tr>
     <tr>
       <td>GB-SC</td>
@@ -1292,7 +1292,7 @@ body.high-contrast .figure-caption {
 </table>
 
         <h3 id="year-by-year-award-counts">Year-by-Year Award Counts</h3>
-        <p>Award counts by <code>awardedDate</code> year. Coverage is effectively continuous from 2015, when the current Contracts Finder service launched and publication became mandatory, to early 2026 (collection date). The 1,666 awards dated before 2015 pre-date the current service (they were migrated from its predecessor or back-published for transparency) and should not be read as full coverage of those years; 39 records carry award dates after 2026 (source data errors), 147 fall outside 2010&ndash;2026 altogether, and 74 have no award date.</p>
+        <p>Award counts by <code>awardedDate</code> year. Coverage is effectively continuous from 2015, when the current Contracts Finder service launched and publication became mandatory, to early 2026 (collection date). The 1,633 awards dated before 2015 pre-date the current service (they were migrated from its predecessor or back-published for transparency) and should not be read as full coverage of those years; 37 records carry award dates after 2026 (source data errors), 145 fall outside 2010&ndash;2026 altogether, and 74 have no award date.</p>
 
         <table>
   <thead>
@@ -1306,111 +1306,111 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>2010</td>
-      <td class="numeric">32</td>
-      <td class="numeric">3</td>
-      <td class="numeric">9.4%</td>
-    </tr>
-    <tr>
-      <td>2011</td>
-      <td class="numeric">91</td>
-      <td class="numeric">6</td>
-      <td class="numeric">6.6%</td>
-    </tr>
-    <tr>
-      <td>2012</td>
-      <td class="numeric">108</td>
-      <td class="numeric">1</td>
-      <td class="numeric">0.9%</td>
-    </tr>
-    <tr>
-      <td>2013</td>
-      <td class="numeric">214</td>
-      <td class="numeric">14</td>
+      <td class="numeric">31</td>
+      <td class="numeric">2</td>
       <td class="numeric">6.5%</td>
     </tr>
     <tr>
+      <td>2011</td>
+      <td class="numeric">84</td>
+      <td class="numeric">6</td>
+      <td class="numeric">7.1%</td>
+    </tr>
+    <tr>
+      <td>2012</td>
+      <td class="numeric">105</td>
+      <td class="numeric">1</td>
+      <td class="numeric">1.0%</td>
+    </tr>
+    <tr>
+      <td>2013</td>
+      <td class="numeric">207</td>
+      <td class="numeric">13</td>
+      <td class="numeric">6.3%</td>
+    </tr>
+    <tr>
       <td>2014</td>
-      <td class="numeric">1,113</td>
-      <td class="numeric">63</td>
-      <td class="numeric">5.7%</td>
+      <td class="numeric">1,098</td>
+      <td class="numeric">61</td>
+      <td class="numeric">5.6%</td>
     </tr>
     <tr>
       <td>2015</td>
-      <td class="numeric">14,627</td>
-      <td class="numeric">678</td>
+      <td class="numeric">14,541</td>
+      <td class="numeric">672</td>
       <td class="numeric">4.6%</td>
     </tr>
     <tr>
       <td>2016</td>
-      <td class="numeric">22,093</td>
-      <td class="numeric">955</td>
+      <td class="numeric">22,007</td>
+      <td class="numeric">950</td>
       <td class="numeric">4.3%</td>
     </tr>
     <tr>
       <td>2017</td>
-      <td class="numeric">25,481</td>
-      <td class="numeric">1,200</td>
+      <td class="numeric">25,271</td>
+      <td class="numeric">1,188</td>
       <td class="numeric">4.7%</td>
     </tr>
     <tr>
       <td>2018</td>
-      <td class="numeric">28,787</td>
-      <td class="numeric">1,245</td>
+      <td class="numeric">28,549</td>
+      <td class="numeric">1,238</td>
       <td class="numeric">4.3%</td>
     </tr>
     <tr>
       <td>2019</td>
-      <td class="numeric">32,667</td>
-      <td class="numeric">1,357</td>
-      <td class="numeric">4.2%</td>
+      <td class="numeric">32,459</td>
+      <td class="numeric">1,343</td>
+      <td class="numeric">4.1%</td>
     </tr>
     <tr>
       <td>2020</td>
-      <td class="numeric">34,283</td>
-      <td class="numeric">1,336</td>
+      <td class="numeric">33,974</td>
+      <td class="numeric">1,324</td>
       <td class="numeric">3.9%</td>
     </tr>
     <tr>
       <td>2021</td>
-      <td class="numeric">46,914</td>
-      <td class="numeric">2,047</td>
+      <td class="numeric">46,550</td>
+      <td class="numeric">2,032</td>
       <td class="numeric">4.4%</td>
     </tr>
     <tr>
       <td>2022</td>
-      <td class="numeric">52,927</td>
-      <td class="numeric">2,443</td>
+      <td class="numeric">52,448</td>
+      <td class="numeric">2,415</td>
       <td class="numeric">4.6%</td>
     </tr>
     <tr>
       <td>2023</td>
-      <td class="numeric">55,785</td>
-      <td class="numeric">2,726</td>
+      <td class="numeric">55,407</td>
+      <td class="numeric">2,688</td>
       <td class="numeric">4.9%</td>
     </tr>
     <tr>
       <td>2024</td>
-      <td class="numeric">52,817</td>
-      <td class="numeric">2,195</td>
-      <td class="numeric">4.2%</td>
+      <td class="numeric">52,432</td>
+      <td class="numeric">2,163</td>
+      <td class="numeric">4.1%</td>
     </tr>
     <tr>
       <td>2025</td>
-      <td class="numeric">37,214</td>
-      <td class="numeric">1,226</td>
+      <td class="numeric">36,674</td>
+      <td class="numeric">1,203</td>
       <td class="numeric">3.3%</td>
     </tr>
     <tr>
       <td>2026</td>
-      <td class="numeric">738</td>
+      <td class="numeric">725</td>
       <td class="numeric">23</td>
-      <td class="numeric">3.1%</td>
+      <td class="numeric">3.2%</td>
     </tr>
   </tbody>
 </table>
 
         <h3 id="buyer-flags-versus-register-match">Buyer Flags versus Register Match</h3>
-        <p>Each notice carries four buyer-entered flags. The table compares them with the register match: how many flagged contracts actually went to a register-confirmed civil society organisation (precision), and what share of all CSO awards each flag captures (recall). The voluntary-sector flags are poor on both counts &mdash; the &ldquo;suitable for VCO&rdquo; flag is mostly attached to contracts won by other suppliers, and the &ldquo;awarded to VCSE&rdquo; flag is set on only 9,390 notices and misses most awards that did go to civil society.</p>
+        <p>Each notice carries four buyer-entered flags. The table compares them with the register match: how many flagged contracts actually went to a register-confirmed civil society organisation (precision), and what share of all CSO awards each flag captures (recall). The voluntary-sector flags are poor on both counts &mdash; the &ldquo;suitable for VCO&rdquo; flag is mostly attached to contracts won by other suppliers, and the &ldquo;awarded to VCSE&rdquo; flag is set on only 9,292 notices and misses most awards that did go to civil society.</p>
 
         <table>
   <thead>
@@ -1426,35 +1426,35 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td><code>isSuitableForVco</code> = True</td>
-      <td class="numeric">79,721</td>
+      <td class="numeric">79,008</td>
       <td class="numeric">19.6%</td>
-      <td class="numeric">8,612</td>
+      <td class="numeric">8,540</td>
       <td class="numeric">10.8%</td>
-      <td class="numeric">49.1%</td>
+      <td class="numeric">49.3%</td>
     </tr>
     <tr>
       <td><code>awardedToVcse</code> = True</td>
-      <td class="numeric">9,390</td>
+      <td class="numeric">9,292</td>
       <td class="numeric">2.3%</td>
-      <td class="numeric">3,094</td>
-      <td class="numeric">32.9%</td>
+      <td class="numeric">3,071</td>
+      <td class="numeric">33.0%</td>
       <td class="numeric">17.7%</td>
     </tr>
     <tr>
       <td><code>isSuitableForSme</code> = True</td>
-      <td class="numeric">272,403</td>
-      <td class="numeric">67.1%</td>
-      <td class="numeric">12,951</td>
-      <td class="numeric">4.8%</td>
-      <td class="numeric">73.9%</td>
+      <td class="numeric">270,011</td>
+      <td class="numeric">67.0%</td>
+      <td class="numeric">12,821</td>
+      <td class="numeric">4.7%</td>
+      <td class="numeric">74.0%</td>
     </tr>
     <tr>
       <td><code>awardedToSme</code> = True</td>
-      <td class="numeric">138,006</td>
+      <td class="numeric">136,950</td>
       <td class="numeric">34.0%</td>
-      <td class="numeric">6,514</td>
+      <td class="numeric">6,479</td>
       <td class="numeric">4.7%</td>
-      <td class="numeric">37.2%</td>
+      <td class="numeric">37.4%</td>
     </tr>
   </tbody>
 </table>
@@ -1473,37 +1473,37 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>Health and social work services</td>
-      <td class="numeric">2,823</td>
-      <td class="numeric">16.1%</td>
+      <td class="numeric">2,814</td>
+      <td class="numeric">16.2%</td>
     </tr>
     <tr>
       <td>Education and training services</td>
-      <td class="numeric">2,043</td>
+      <td class="numeric">2,036</td>
       <td class="numeric">11.7%</td>
     </tr>
     <tr>
       <td>Research and development services and related consultancy services</td>
-      <td class="numeric">590</td>
+      <td class="numeric">586</td>
       <td class="numeric">3.4%</td>
     </tr>
     <tr>
       <td>Health services</td>
-      <td class="numeric">508</td>
+      <td class="numeric">505</td>
       <td class="numeric">2.9%</td>
     </tr>
     <tr>
       <td>Other community, social and personal services</td>
-      <td class="numeric">447</td>
+      <td class="numeric">445</td>
       <td class="numeric">2.6%</td>
     </tr>
     <tr>
       <td>Social work and related services</td>
-      <td class="numeric">331</td>
+      <td class="numeric">330</td>
       <td class="numeric">1.9%</td>
     </tr>
     <tr>
       <td>Health and social work services and Other community, social and personal services</td>
-      <td class="numeric">241</td>
+      <td class="numeric">239</td>
       <td class="numeric">1.4%</td>
     </tr>
     <tr>
@@ -1513,12 +1513,12 @@ body.high-contrast .figure-caption {
     </tr>
     <tr>
       <td>Business services: law, marketing, consulting, recruitment, printing and security</td>
-      <td class="numeric">229</td>
-      <td class="numeric">1.3%</td>
+      <td class="numeric">209</td>
+      <td class="numeric">1.2%</td>
     </tr>
     <tr>
       <td>Software package and information systems</td>
-      <td class="numeric">195</td>
+      <td class="numeric">191</td>
       <td class="numeric">1.1%</td>
     </tr>
   </tbody>
@@ -1546,26 +1546,26 @@ body.high-contrast .figure-caption {
     <tr>
       <td><code>NHS ENGLAND</code></td>
       <td>NHS England</td>
-      <td class="numeric">667</td>
-      <td class="numeric">381</td>
+      <td class="numeric">662</td>
+      <td class="numeric">380</td>
     </tr>
     <tr>
       <td><code>DEFRA</code></td>
       <td>Department for Environment, Food &amp; Rural Affairs</td>
-      <td class="numeric">542</td>
+      <td class="numeric">541</td>
       <td class="numeric">190</td>
     </tr>
     <tr>
       <td><code>LEEDS CITY COUNCIL</code></td>
       <td>Leeds City Council</td>
-      <td class="numeric">451</td>
-      <td class="numeric">189</td>
+      <td class="numeric">449</td>
+      <td class="numeric">188</td>
     </tr>
     <tr>
       <td><code>DFEDUCATION</code></td>
       <td>Department for Education</td>
-      <td class="numeric">349</td>
-      <td class="numeric">162</td>
+      <td class="numeric">348</td>
+      <td class="numeric">161</td>
     </tr>
     <tr>
       <td><code>BRISTOL CITY COUNCIL</code></td>
@@ -1576,20 +1576,14 @@ body.high-contrast .figure-caption {
     <tr>
       <td><code>UK SHARED BUSINESS SERVICES LIMITED</code></td>
       <td>UK Shared Business Services</td>
-      <td class="numeric">278</td>
-      <td class="numeric">127</td>
+      <td class="numeric">275</td>
+      <td class="numeric">126</td>
     </tr>
     <tr>
       <td><code>DARLINGTON BOROUGH COUNCIL</code></td>
       <td>Darlington Borough Council</td>
-      <td class="numeric">264</td>
+      <td class="numeric">263</td>
       <td class="numeric">82</td>
-    </tr>
-    <tr>
-      <td><code>MODEF</code></td>
-      <td>Ministry of Defence</td>
-      <td class="numeric">227</td>
-      <td class="numeric">120</td>
     </tr>
     <tr>
       <td><code>UNIVERSITY OF THE WEST OF ENGLAND</code></td>
@@ -1598,10 +1592,16 @@ body.high-contrast .figure-caption {
       <td class="numeric">60</td>
     </tr>
     <tr>
+      <td><code>MODEF</code></td>
+      <td>Ministry of Defence</td>
+      <td class="numeric">223</td>
+      <td class="numeric">119</td>
+    </tr>
+    <tr>
       <td><code>DFTRANSPORT</code></td>
       <td>Department for Transport</td>
-      <td class="numeric">188</td>
-      <td class="numeric">60</td>
+      <td class="numeric">186</td>
+      <td class="numeric">59</td>
     </tr>
     <tr>
       <td><code>DOHEALTH</code></td>
@@ -1612,7 +1612,7 @@ body.high-contrast .figure-caption {
     <tr>
       <td><code>HAMPSHIRE COUNTY COUNCIL</code></td>
       <td>Hampshire County Council</td>
-      <td class="numeric">162</td>
+      <td class="numeric">160</td>
       <td class="numeric">85</td>
     </tr>
     <tr>
@@ -1631,7 +1631,7 @@ body.high-contrast .figure-caption {
 </table>
 
         <h3 id="contract-values">Contract Values</h3>
-        <p>Awarded values are entered by buyers and are highly skewed; a few framework agreements carry headline values in the tens of billions of pounds, and 4.0% of awards record a value of zero. Medians are therefore more informative than totals. The total awarded to civil society organisations is &pound;24.8 billion, of which 2 awards valued at &pound;1 billion or more contribute a large share; excluding those, the total is &pound;22.6 billion.</p>
+        <p>Awarded values are entered by buyers and are highly skewed; a few framework agreements carry headline values in the tens of billions of pounds, and 4.0% of awards record a value of zero. Medians are therefore more informative than totals. The total awarded to civil society organisations is &pound;24.5 billion, of which 2 awards valued at &pound;1 billion or more contribute a large share; excluding those, the total is &pound;22.2 billion.</p>
 
         <table>
   <thead>
@@ -1647,25 +1647,25 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>All awards</td>
-      <td class="numeric">&pound;31,199</td>
+      <td class="numeric">&pound;31,260</td>
       <td class="numeric">&pound;80,000</td>
-      <td class="numeric">&pound;296,895</td>
-      <td class="numeric">&pound;1,541,570</td>
-      <td class="numeric">2,856</td>
+      <td class="numeric">&pound;299,251</td>
+      <td class="numeric">&pound;1,559,203</td>
+      <td class="numeric">2,819</td>
     </tr>
     <tr>
       <td>Awards to CSOs</td>
-      <td class="numeric">&pound;36,494</td>
-      <td class="numeric">&pound;91,950</td>
-      <td class="numeric">&pound;354,900</td>
-      <td class="numeric">&pound;1,500,047</td>
-      <td class="numeric">24.8</td>
+      <td class="numeric">&pound;36,348</td>
+      <td class="numeric">&pound;91,503</td>
+      <td class="numeric">&pound;351,313</td>
+      <td class="numeric">&pound;1,500,000</td>
+      <td class="numeric">24.5</td>
     </tr>
   </tbody>
 </table>
 
         <h3 id="geography">Geography</h3>
-        <p>Geographic fields describe the contract (usually where it is delivered or the buyer&rsquo;s location), not the supplier. 12.5% of records have no region, 17.8% are tagged <em>Any region</em> and 20.5% list more than one region; a postcode is present for 32.4%. For supplier location, link to the TCSS Organisation Register on <code>uid</code> (see <a href="#a4-linking-to-other-tcss-datasets">Appendix A4</a>).</p>
+        <p>Geographic fields describe the contract (usually where it is delivered or the buyer&rsquo;s location), not the supplier. 12.4% of records have no region, 17.9% are tagged <em>Any region</em> and 20.3% list more than one region; a postcode is present for 32.5%. For supplier location, link to the TCSS Organisation Register on <code>uid</code> (see <a href="#a4-linking-to-other-tcss-datasets">Appendix A4</a>).</p>
 
         <table>
   <thead>
@@ -1678,77 +1678,77 @@ body.high-contrast .figure-caption {
   <tbody>
     <tr>
       <td>(more than one region listed)</td>
-      <td class="numeric">83,056</td>
-      <td class="numeric">20.5%</td>
+      <td class="numeric">81,639</td>
+      <td class="numeric">20.3%</td>
     </tr>
     <tr>
       <td>Any region</td>
-      <td class="numeric">72,249</td>
-      <td class="numeric">17.8%</td>
+      <td class="numeric">71,902</td>
+      <td class="numeric">17.9%</td>
     </tr>
     <tr>
       <td>(missing)</td>
-      <td class="numeric">50,631</td>
-      <td class="numeric">12.5%</td>
+      <td class="numeric">50,056</td>
+      <td class="numeric">12.4%</td>
     </tr>
     <tr>
       <td>London</td>
-      <td class="numeric">29,499</td>
+      <td class="numeric">29,388</td>
       <td class="numeric">7.3%</td>
     </tr>
     <tr>
       <td>Yorkshire and The Humber</td>
-      <td class="numeric">28,479</td>
+      <td class="numeric">28,384</td>
       <td class="numeric">7.0%</td>
     </tr>
     <tr>
       <td>South East</td>
-      <td class="numeric">26,042</td>
+      <td class="numeric">25,891</td>
       <td class="numeric">6.4%</td>
     </tr>
     <tr>
       <td>South West</td>
-      <td class="numeric">25,306</td>
-      <td class="numeric">6.2%</td>
+      <td class="numeric">25,214</td>
+      <td class="numeric">6.3%</td>
     </tr>
     <tr>
       <td>North East</td>
-      <td class="numeric">17,959</td>
+      <td class="numeric">17,880</td>
       <td class="numeric">4.4%</td>
     </tr>
     <tr>
       <td>North West</td>
-      <td class="numeric">17,905</td>
+      <td class="numeric">17,761</td>
       <td class="numeric">4.4%</td>
     </tr>
     <tr>
       <td>West Midlands</td>
-      <td class="numeric">17,362</td>
+      <td class="numeric">17,249</td>
       <td class="numeric">4.3%</td>
     </tr>
     <tr>
       <td>East of England</td>
-      <td class="numeric">16,359</td>
+      <td class="numeric">16,225</td>
       <td class="numeric">4.0%</td>
     </tr>
     <tr>
       <td>East Midlands</td>
-      <td class="numeric">16,162</td>
+      <td class="numeric">16,123</td>
       <td class="numeric">4.0%</td>
     </tr>
     <tr>
       <td>Wales</td>
-      <td class="numeric">2,453</td>
+      <td class="numeric">2,444</td>
       <td class="numeric">0.6%</td>
     </tr>
     <tr>
       <td>Scotland</td>
-      <td class="numeric">2,229</td>
+      <td class="numeric">2,205</td>
       <td class="numeric">0.5%</td>
     </tr>
     <tr>
       <td>Northern Ireland</td>
-      <td class="numeric">196</td>
+      <td class="numeric">195</td>
       <td class="numeric">&lt;0.1%</td>
     </tr>
   </tbody>
@@ -1772,7 +1772,7 @@ body.high-contrast .figure-caption {
         </ul>
 
         <h3 id="example-testing-the-buyer-flags">Example: Testing the Buyer Flags</h3>
-        <p>A simple first analysis is to ask whether the <code>awardedToVcse</code> flag can be trusted. Of the 9,390 awards flagged as won by a voluntary, community or social enterprise, 33% match a register-confirmed civil society organisation; conversely, of the 17,529 awards that did go to a register-confirmed organisation, only 18% carry the flag. Researchers relying on the portal&rsquo;s own flags would therefore both over-count awards to some suppliers and miss the great majority of genuine civil society awards. Section 4 gives the full comparison for all four flags.</p>
+        <p>A simple first analysis is to ask whether the <code>awardedToVcse</code> flag can be trusted. Of the 9,292 awards flagged as won by a voluntary, community or social enterprise, 33% match a register-confirmed civil society organisation; conversely, of the 17,332 awards that did go to a register-confirmed organisation, only 18% carry the flag. Researchers relying on the portal&rsquo;s own flags would therefore both over-count awards to some suppliers and miss the great majority of genuine civil society awards. Section 4 gives the full comparison for all four flags.</p>
 
         <div class="callout callout-tip">
           <p><strong>Tip:</strong> This dataset can be linked to the <a href="https://uk-third-sector-database.github.io/guidance/tcss-organisation-register-guidance.html">TCSS Organisation Register</a> using the <code>uid</code> field, enabling enrichment with organisation characteristics such as location, registration dates, and industrial classification codes. See <a href="#a4-linking-to-other-tcss-datasets">Appendix A4</a> for worked examples.</p>
@@ -1787,16 +1787,16 @@ body.high-contrast .figure-caption {
         <p>Contracts Finder captures contracts above the publication thresholds (currently &pound;12,000 for central government and &pound;30,000 for the wider public sector, including VAT) awarded by English and some UK-wide buyers. Smaller contracts, grants, and most procurement by the Scottish, Welsh and Northern Irish public sectors (which use their own portals) are not covered. Compliance with the publication duty is incomplete, so the dataset understates the true number of public contracts.</p>
 
         <h3 id="awarded-values">Awarded Values</h3>
-        <p>The <code>awardedValue</code> is entered by the buyer and is not audited. Values are sometimes the total ceiling of a multi-supplier framework rather than the amount any one supplier will receive (the largest recorded value is &pound;150 billion), sometimes zero or a placeholder, and occasionally in the wrong units. Sum values with care; use medians or trimmed totals, and treat the 16,193 zero-value awards as missing.</p>
+        <p>The <code>awardedValue</code> is entered by the buyer and is not audited. Values are sometimes the total ceiling of a multi-supplier framework rather than the amount any one supplier will receive (the largest recorded value is &pound;150 billion), sometimes zero or a placeholder, and occasionally in the wrong units. Sum values with care; use medians or trimmed totals, and treat the 16,058 zero-value awards as missing.</p>
 
         <h3 id="supplier-matching">Supplier Matching</h3>
-        <p>Supplier names were matched to the TCSS Organisation Register using exact and fuzzy name matching (Jaro-Winkler similarity, threshold &ge; 0.90) followed by alias resolution (see <a href="#a3-supplier-matching--alias-resolution">Appendix A3</a>). Some false positives (incorrect matches) and false negatives (missed matches) are possible, particularly for organisations with common or ambiguous names, trading names that differ from the registered name, or awards to consortia. Awards naming several suppliers (24,196 records, <code>is_multi_supplier</code> = TRUE) are not matched, so a civil society organisation that won a place on a multi-supplier framework will not be identified.</p>
+        <p>Supplier names were matched to the TCSS Organisation Register using exact and fuzzy name matching (Jaro-Winkler similarity, threshold &ge; 0.90) followed by alias resolution (see <a href="#a3-supplier-matching--alias-resolution">Appendix A3</a>). Some false positives (incorrect matches) and false negatives (missed matches) are possible, particularly for organisations with common or ambiguous names, trading names that differ from the registered name, or awards to consortia. Awards naming several suppliers (24,156 records, <code>is_multi_supplier</code> = TRUE) are not matched, so a civil society organisation that won a place on a multi-supplier framework will not be identified.</p>
 
         <h3 id="buyer-classification">Buyer Classification</h3>
         <p>Buyers are classified using a multi-layer cascade of metadata signals, external lookups, and keyword rules (see <a href="#a2-buyer-classification">Appendix A2</a>). The <code>organisationName</code> field is free text and the same buyer appears under many spellings (e.g., &ldquo;Ministry of Justice&rdquo; and &ldquo;Ministry of Justice.&rdquo;); use the standardised <code>funder_name</code>/<code>funder_id</code> for grouping. Edge cases may be misclassified, and 0.1% of records have no buyer classification at all.</p>
 
         <h3 id="duplicate-and-related-notices">Duplicate and Related Notices</h3>
-        <p>10.9% of records are sub-notices of a parent notice (call-offs under a framework, lots, or re-published notices); a contract may therefore appear more than once. Use <code>parentId</code> and <code>isSubNotice</code> to identify these, and <code>id</code> as the unique key.</p>
+        <p>10.9% of records are sub-notices of a parent notice (call-offs under a framework, lots, or re-published notices); a contract may therefore appear more than once. Use <code>parentId</code> and <code>isSubNotice</code> to identify these, and <code>id</code> as the unique key. From the revised September 2026 release, variation notices are collapsed onto the original award: notices from the same buyer to the same supplier whose buyer reference identifies the same contract are represented by the earliest notice, with <code>awardedValue</code> set to the highest value stated among them (see the Changelog). Variations or republications published under a different reference are not collapsed, so some double counting of contracts and values remains.</p>
 
         <h3 id="dates-outside-the-core-range">Dates Outside the Core Range</h3>
         <p>Award dates range from 1898 to 2108 because of legacy back-publication and source data errors. For time-series analysis, filter on <code>awardedDate</code> to 2015&ndash;2025 and note that 2026 is a partial year.</p>
@@ -1844,6 +1844,11 @@ body.high-contrast .figure-caption {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>1.3</td>
+              <td>September 2026</td>
+              <td>Revised September 2026 data release (402,782 notices, 17,332 awards to 4,878 register-confirmed civil society organisations). Contract variations are collapsed onto the original award (owner ruling D86). Buyers often publish a variation to an awarded contract as a further award notice, and the value on such a notice sometimes records the increment and sometimes restates the whole contract value, so one contract could previously be counted, and its value summed, several times. Notices from the same buyer to the same supplier whose buyer reference identifies the same contract, once variation wording, punctuation and leading zeros are disregarded, now form one contract family; each family is represented by its earliest notice, with <code>awardedValue</code> set to the highest value stated in the family, and the other notices are removed. The dataset falls from 406,113 to 402,782 notices. Republications under different references are not collapsed, because they cannot be distinguished from separate contracts with the same supplier. Two suppliers are also reclassified as Non-CSO by owner rulings: GATWICK AIRPORT LTD, which had acquired the register identity of the charity Gatwick Travel Care (GB-CHC-298127) when a supplier-name de-duplication step merged the two names (ruling D85); and Restore plc, a records-management company, which had acquired the register identity of The Restore Trust (GB-COH-07133624) because name cleaning removes the legal-form word &ldquo;PLC&rdquo; before matching (ruling D87). All figures and tables re-derived. <code>supplier_id</code> values are re-minted each release, and those of non-civil-society suppliers are renumbered in this release; use <code>uid</code> to link across releases.</td>
+            </tr>
             <tr>
               <td>1.2</td>
               <td>September 2026</td>
