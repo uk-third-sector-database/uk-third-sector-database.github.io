@@ -901,7 +901,7 @@ body.high-contrast .figure-caption {
       <div id="header">
         <h1 class="title toc-ignore">UK Civil Society Organisation Register</h1>
         <h3 class="subtitle toc-ignore">A Guide to the Dataset</h3>
-        <h4 class="date toc-ignore">September 2026</h4>
+        <h4 class="date toc-ignore">October 2026</h4>
       </div>
 
       <!-- ============================================================
@@ -945,10 +945,10 @@ body.high-contrast .figure-caption {
         <h1>3. Dataset Contents</h1>
 
         <div class="stat-cards">
-          <div class="stat-card"><span class="number">781,176</span><span class="label">Organisations</span></div>
+          <div class="stat-card"><span class="number">780,314</span><span class="label">Organisations</span></div>
           <div class="stat-card"><span class="number">10</span><span class="label">Source Registers</span></div>
-          <div class="stat-card"><span class="number">139,862</span><span class="label">Cross-Register Links</span></div>
-          <div class="stat-card"><span class="number">384,096</span><span class="label">Currently Active</span></div>
+          <div class="stat-card"><span class="number">140,721</span><span class="label">Cross-Register Links</span></div>
+          <div class="stat-card"><span class="number">381,727</span><span class="label">Currently Active</span></div>
         </div>
 
         <p>The register is distributed as four CSV files:</p>
@@ -964,17 +964,17 @@ body.high-contrast .figure-caption {
           <tbody>
             <tr>
               <td><code>TSCS_spine.spine.csv</code></td>
-              <td class="numeric">781,176</td>
+              <td class="numeric">780,314</td>
               <td>The deduplicated organisation register &mdash; one row per unique organisation</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.supplementary.csv</code></td>
-              <td class="numeric">1,112,294</td>
+              <td class="numeric">1,114,565</td>
               <td>Alternative names, addresses, and dates from other source registers</td>
             </tr>
             <tr>
               <td><code>TSCS_spine.matches.csv</code></td>
-              <td class="numeric">139,862</td>
+              <td class="numeric">140,721</td>
               <td>Cross-register links between duplicate records, with match type</td>
             </tr>
             <tr>
@@ -989,9 +989,10 @@ body.high-contrast .figure-caption {
 
         <p>The <code>cso_type</code> field classifies organisations into four main types: Charity, CIC, Co-operative/Mutual, and Other. The <code>cso_subtype</code> field provides a finer-grained classification: Charities, CICs, and Co-operatives/Mutuals pass through unchanged, while the &lsquo;Other&rsquo; category is disaggregated into subtypes using Companies House SIC (Standard Industrial Classification) codes and organisation name patterns. The classification applies SIC division codes (the first two digits of the primary SIC code) alongside keyword matching on organisation names. Rules are applied in a documented first-match priority order: each organisation receives the first subtype whose rule it satisfies (dormant companies first, then SIC-division rules, then name-pattern rules). Name-pattern rules also apply when an organisation has no usable five-digit SIC code, so an organisation cannot escape classification simply because its SIC information is missing or in a legacy format. Where a charity is linked to a company registered as a Community Interest Company, the register follows the Companies House record: in this release uHub Therapy Centre and RiChmusicNI are both classified as CICs rather than charities.</p>
 
-        <p>Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.6% are charities).</p>
+        <p>Table 1 shows the composition of the sector by organisation type, country, and status. Percentages are calculated within each status-country group (for example, of all active organisations in Scotland, 78.9% are charities).</p>
 
         <p>Property management companies dominate the &lsquo;Other&rsquo; category among active organisations in England (44.0% of active &lsquo;Other&rsquo; organisations, equivalent to about 15% of all active English organisations) and are also prominent in Wales (22.3%), reflecting the prevalence of residential leasehold structures; they are far rarer in Scotland (3.0%). The residual &lsquo;Other Company Limited By Guarantee&rsquo; category remains the largest subtype among dissolved &lsquo;Other&rsquo; organisations in every country (61&ndash;66%).</p>
+
 
         <div style="margin: 24px 0; overflow-x: auto;">
           <table style="min-width: 700px;">
@@ -1068,11 +1069,11 @@ body.high-contrast .figure-caption {
               </tr>
               <tr>
                 <td><em>Organisations (N)</em></td>
-                <td class="numeric"><em>310,865</em></td>
+                <td class="numeric"><em>310,862</em></td>
                 <td class="numeric"><em>9,313</em></td>
                 <td class="numeric"><em>29,183</em></td>
                 <td class="numeric"><em>14,412</em></td>
-                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>314,605</em></td>
+                <td class="numeric" style="border-left: 2px solid #dde4ea;"><em>314,603</em></td>
                 <td class="numeric"><em>3,897</em></td>
                 <td class="numeric"><em>26,951</em></td>
                 <td class="numeric"><em>15,400</em></td>
@@ -1226,7 +1227,7 @@ body.high-contrast .figure-caption {
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Organisation Register v1.3.1. Country is assigned from the registered-address postcode via the National Statistics Postcode Lookup; organisations without a mappable UK postcode (around 7% of records, including most housing-regulator records) are excluded from this table. Subtype labels are the values of the <code>cso_subtype</code> field.</td>
+                <td colspan="9" style="font-size: 0.85em; color: #5A7A8A; padding: 8px 14px; border-top: 2px solid #1A6B7C;">Source: UK Civil Society Organisation Register v1.3.2. Country is assigned from the registered-address postcode via the National Statistics Postcode Lookup; organisations without a mappable UK postcode (around 7% of records, including most housing-regulator records) are excluded from this table. Subtype labels are the values of the <code>cso_subtype</code> field.</td>
               </tr>
             </tfoot>
           </table>
@@ -1695,6 +1696,13 @@ body.high-contrast .figure-caption {
                 <td>companyid - companyid</td>
               </tr>
               <tr>
+                <td><code>GB-MPR-27793R</code></td>
+                <td>mutuals</td>
+                <td><code>GB-COH-IP27793R</code></td>
+                <td>CH</td>
+                <td>society number - companies house</td>
+              </tr>
+              <tr>
                 <td><code>GB-NIC-108424</code></td>
                 <td>ccni</td>
                 <td><code>GB-COH-NI679140</code></td>
@@ -1769,7 +1777,7 @@ body.high-contrast .figure-caption {
               </tr>
               <tr>
                 <td><code>name - housing</code></td>
-                <td class="numeric">1,435</td>
+                <td class="numeric">1,432</td>
                 <td>Normalised name match between housing regulators and the charity registers or the FCA Mutuals Public Register</td>
               </tr>
               <tr>
@@ -1778,8 +1786,13 @@ body.high-contrast .figure-caption {
                 <td>Two records sharing the same registered company number</td>
               </tr>
               <tr>
+                <td><code>society number - companies house</code></td>
+                <td class="numeric">901</td>
+                <td>Companies House copy of a registered society (<code>IP</code> or <code>RS</code> number) linked to the FCA Mutuals Public Register society with the same society number</td>
+              </tr>
+              <tr>
                 <td><code>merge via bridge</code></td>
-                <td class="numeric">378</td>
+                <td class="numeric">339</td>
                 <td>Not a matching method but a record of consolidation: a third record matched two organisations from different registers on strong enough evidence, so the two were combined into one and this row names the record that was folded in</td>
               </tr>
             </tbody>
@@ -1826,7 +1839,8 @@ body.high-contrast .figure-caption {
       <div class="section level1">
         <h1>4. Coverage &amp; Composition</h1>
 
-        <p>The register covers 781,176 organisations, of which 382,586 (49.0%) are currently active (no removal date) and 398,590 (51.0%) are dissolved or removed.</p>
+        <p>The register covers 780,314 organisations, of which 381,727 (48.9%) are currently active (no removal date) and 398,587 (51.1%) are dissolved or removed.</p>
+
 
         <h3>Organisations by Source Register</h3>
 
@@ -1842,12 +1856,12 @@ body.high-contrast .figure-caption {
             <tr>
               <td>Charity Commission for England and Wales</td>
               <td class="numeric">351,761</td>
-              <td class="numeric">45.0%</td>
+              <td class="numeric">45.1%</td>
             </tr>
             <tr>
               <td>Companies House</td>
-              <td class="numeric">334,340</td>
-              <td class="numeric">42.8%</td>
+              <td class="numeric">333,483</td>
+              <td class="numeric">42.7%</td>
             </tr>
             <tr>
               <td>Scottish Charity Register</td>
@@ -1856,7 +1870,7 @@ body.high-contrast .figure-caption {
             </tr>
             <tr>
               <td>Mutuals Public Register</td>
-              <td class="numeric">32,152</td>
+              <td class="numeric">32,147</td>
               <td class="numeric">4.1%</td>
             </tr>
             <tr>
@@ -1888,7 +1902,7 @@ body.high-contrast .figure-caption {
 
         <h3>Community Interest Companies</h3>
 
-        <p>Of the 781,176 organisations in the register, 78,595 (10.1%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
+        <p>Of the 780,314 organisations in the register, 78,595 (10.1%) are flagged as Community Interest Companies. The <code>is_cic</code> field provides a direct way to filter for this subset.</p>
 
         <h3>Companies House Company Types</h3>
 
@@ -2087,9 +2101,11 @@ body.high-contrast .figure-caption {
           <li><strong>Removal dates for co-operatives and mutuals.</strong> From version 1.3.1 the FCA Mutuals Public Register is treated as the authority for when a society ended. Where the FCA records a deregistration date, the society is shown as removed even if a linked record in another register still looks live &mdash; its Companies House entry, a Co-operatives UK entry, or a housing or care regulator entry. Companies House holds registered societies only as copies of the FCA register and never records a dissolution date for them; Co-operatives UK records dissolutions only occasionally; and the register takes no removal dates at all from the Social Housing England, Scottish Housing Regulator and Care Inspectorate Scotland files. The removal date is normally the FCA deregistration date; where a linked record was removed later, the later date is used (one society in this release). There is one exception to the rule: a society linked to an ordinary Companies House company stays active, because that usually means the society converted into a company that continues (15 societies in this release). A society that has been absorbed into a charity follows the charity&rsquo;s status instead, as does any organisation whose lead record comes from a higher-precedence register (44 FCA-deregistered societies are held within charities that are still registered).
           <br><br>How far the rule can be checked depends on what Companies House records for the society. For 647 of the 1,510 societies whose removal date was corrected in version 1.3.1, most of them deregistered from 2023 onwards, Companies House&rsquo;s own record confirms the closure: its status is &ldquo;Converted / Closed&rdquo; (or, in one case, in liquidation) when checked through the Companies House API on 23 September 2026. The Companies House website displays this status for records of type Industrial and Provident Society but not for records of type Registered Society. For 801 societies, most of them deregistered in 2022 and 2023, the Companies House record still reports the society as active or gives no status, and a further 62 have no Companies House record. For these 863 societies the FCA date is probably correct, but it cannot be verified without searching websites and archives society by society, and some organisations may carry on in another form: Mossley Hill Royal British Legion Club Limited, deregistered by the FCA in January 2023, is still listed as a branch on the Royal British Legion&rsquo;s website. Societies the FCA marks as deregistered without giving a date (430 in the July 2026 file) keep a blank <code>removeddate</code>.</li>
 
+          <li><strong>Registered societies on Companies House.</strong> From version 1.3.2 a Companies House society record is linked to its FCA society on the society number alone (see Annex A3). Names are not compared, so a wrongly recorded number on either register would link two different societies. Only the <code>IP</code> and <code>RS</code> formats are read, so Companies House society records with other prefixes (<code>SP</code>, <code>NP</code> and the rest), or with no counterpart in the July 2026 FCA file, remain separate organisations. Companies House also gives many society records a placeholder incorporation date &mdash; 1 January 1981 (about a quarter of them) or 1 January 1900 &mdash; that does not record when the society was registered. From version 1.3.2 these dates no longer override a real registration date from another register, but an organisation with no other registration date keeps the placeholder, so a <code>registerdate</code> of 01/01/1900 or 01/01/1981 on a society should be read as unknown.</li>
+
           <li><strong>Matching limitations.</strong> The deduplication algorithm identifies most cross-register duplicates but cannot guarantee perfect recall. Some genuine duplicates may remain unlinked (false negatives), particularly where organisation names differ substantially between registers or where no company number link exists. Conversely, a small number of false positive matches are possible where two genuinely distinct organisations share a normalised name. Two organisations that are the same body but recorded under slightly different legal-form wording may still be held apart: Clyde Valley Housing Association appears as both a Scottish charity and a Mutuals Public Register society because one record says &ldquo;Ltd&rdquo; and the other &ldquo;Limited&rdquo;.</li>
 
-          <li><strong>Point-in-time snapshot.</strong> The register reflects data as available at the time of construction. Organisations registered or removed after the data download dates will not be captured. The current release is built from the same source downloads as version 1.2 &mdash; register data downloaded through July 2026, plus historical register content carried forward from earlier releases &mdash; and differs from it only in how records are matched to one another and, from version 1.3.1, in how removal dates are set for FCA-registered societies (see the changelog).</li>
+          <li><strong>Point-in-time snapshot.</strong> The register reflects data as available at the time of construction. Organisations registered or removed after the data download dates will not be captured. The current release is built from the same source downloads as version 1.2 &mdash; register data downloaded through July 2026, plus historical register content carried forward from earlier releases &mdash; and differs from it only in how records are matched to one another, in how removal dates are set for FCA-registered societies (from version 1.3.1) and in how placeholder registration dates on Companies House society records are treated (from version 1.3.2) (see the changelog).</li>
 
           <li><strong>Postcodes and geography.</strong> To link organisations to geographic areas (Local Authority, region, country), the postcode field can be joined to the National Statistics Postcode Lookup (NSPL). However, not all organisations have a valid postcode in the register.</li>
         </ul>
@@ -2148,6 +2164,37 @@ body.high-contrast .figure-caption {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>1.3.2</td>
+              <td>October 2026</td>
+              <td>Correction for registered societies held twice, on the same July 2026 source
+              data as version 1.3.1. A co-operative or community benefit society is registered
+              with the FCA, and Companies House keeps a copy of its record under the same
+              society number (for example <code>GB-MPR-27793R</code> and
+              <code>GB-COH-IP27793R</code>, Greenwich Leisure Limited). No earlier matching rule
+              compared society numbers, so the two records were linked only when the Find That
+              Charity lookup listed the pair. A new match type
+              <code>society number - companies house</code> (901 links) now links a Companies
+              House society record with an <code>IP</code> or <code>RS</code> number to the FCA
+              society with the same number, on the number alone; the FCA record is the primary
+              record (see Annex A3, &ldquo;Matching Registered Societies by Society
+              Number&rdquo;). Consequences: the register holds 862 fewer rows, and every one of
+              them is a record folded into an organisation that is still present &mdash; 857
+              Companies House society records folded into their FCA society, and 5 FCA
+              societies combined with the charity of the same name by the bridging rule. No
+              organisation is lost or added, and no organisation combined in version 1.3.1 is
+              split; the names and addresses of the folded records are retained in the
+              supplementary file. Separately, Companies House gives many society records a
+              placeholder incorporation date (1 January 1900 or 1 January 1981), which no longer
+              overrides a real registration date from another register (see Section 7,
+              &ldquo;Registered societies on Companies House&rdquo;). This corrects 1,493
+              registration dates: 1,298 FCA societies carried the 1 January 1900 date in version
+              1.3.1, and none does now. Two charities are shown as active again because they are
+              now combined with an FCA society of the same name that is still registered:
+              Abbeyfield Norwich (257353) and Crosby Housing Association (259920).
+              780,314 organisations (381,727 active, 398,587 removed); 140,721 links;
+              1,114,565 supplementary rows; 474,842 SIC rows.</td>
+            </tr>
             <tr>
               <td>1.3.1</td>
               <td>September 2026</td>
@@ -2393,6 +2440,10 @@ body.high-contrast .figure-caption {
           <li>From v1.3, the Charity Commission for Northern Ireland&rsquo;s own company-number field is used in the same way, linking Northern Irish charities to their <code>NI</code>-prefixed Companies House records</li>
         </ul>
 
+        <h3>Matching Registered Societies by Society Number</h3>
+
+        <p>A registered society (a co-operative or community benefit society) is registered with the FCA, and Companies House keeps a copy of its record under the same society number written in Companies House&rsquo;s own format. From v1.3.2 a Companies House society record is linked to the FCA Mutuals Public Register society whose number it carries, with match type <code>society number - companies house</code>. Three Companies House formats are read, with leading zeros dropped: <code>IP</code> followed by digits and <code>R</code> (<code>IP27793R</code> is FCA society <code>27793R</code>), <code>IP</code> followed by six digits (<code>IP032442</code> is <code>32442R</code>), and <code>RS</code> followed by digits (<code>RS009808</code> is <code>9808</code>). Other society prefixes (<code>SP</code>, <code>NP</code> and the rest) are not read. The link rests on the number alone and names are not compared, because the two copies often differ only by a typing error or a later change of name. The FCA record is the primary record, since it carries the society&rsquo;s type, address and removal date; the Companies House record&rsquo;s name, address and dates move to the supplementary file. Two safeguards apply. The rule is not used when the Find That Charity lookup already links the Companies House record to an FCA society, because some older <code>RS</code> numbers correspond to a different FCA number form (<code>RS009788</code> is FCA society <code>9788R</code>, not <code>9788</code>). Nor is it used when the Companies House record was registered after the FCA society was removed, because a society number can later be given to an unrelated society. Links in the Find That Charity and historic OSCR lookups that name a Companies House record folded in this way are followed to the organisation that now holds it, and a name carried only by such a record is not used by the housing-register name rule. In this release the rule folds 857 Companies House society records into their FCA society; its other 44 links record pairs that version 1.3.1 had already combined through a bridging record.</p>
+
         <h3>Matching by Normalised Name</h3>
 
         <p>Where two organisations in different registers share the same normalised name, they are tentatively matched subject to an additional condition. The match is confirmed if any of the following hold:</p>
@@ -2406,11 +2457,11 @@ body.high-contrast .figure-caption {
 
         <h3>Matching via Find That Charity</h3>
 
-        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 73,307 of the 139,862 total links.</p>
+        <p>A lookup table provided by <a href="https://findthatcharity.uk/" target="_blank">Find That Charity</a> (David Kane) is used to generate additional matches. These links include historic re-registrations, allowing the dataset to be further deduplicated. This is the most common match type, accounting for 73,307 of the 140,721 total links.</p>
 
         <h3>Consolidating Two Records via a Bridging Record</h3>
 
-        <p>Occasionally a single record matches two organisations that are already in the register under different source registers. From v1.3, where the evidence is strong enough, this is treated as proof that the two are one organisation and they are combined into a single record rather than left as two with a note of shared evidence between them. The combination is deliberately conservative: it applies only when the incoming record matches exactly two organisations, those two come from different registers, both are still independent records, neither link rests only on a shared company number recorded as an association, and either the two organisations carry the same name (allowing for &ldquo;The&rdquo;, &ldquo;Ltd&rdquo; and &ldquo;Limited&rdquo;) or each is identified by a number that a regulator itself publishes. The organisation from the higher-precedence register keeps the UID (see <a href="#source-precedence">Section A2</a>); the other organisation&rsquo;s name, address and dates move to the supplementary file and it appears in the matches file with match type <code>merge via bridge</code>. Care-regulator records alone cannot trigger a combination, because a care provider&rsquo;s return often cites a charity alongside its trustee company or trading subsidiary &mdash; a relationship, not an identity. This release combines 378 pairs of records in this way.</p>
+        <p>Occasionally a single record matches two organisations that are already in the register under different source registers. From v1.3, where the evidence is strong enough, this is treated as proof that the two are one organisation and they are combined into a single record rather than left as two with a note of shared evidence between them. The combination is deliberately conservative: it applies only when the incoming record matches exactly two organisations, those two come from different registers, both are still independent records, neither link rests only on a shared company number recorded as an association, and either the two organisations carry the same name (allowing for &ldquo;The&rdquo;, &ldquo;Ltd&rdquo; and &ldquo;Limited&rdquo;) or each is identified by a number that a regulator itself publishes. The organisation from the higher-precedence register keeps the UID (see <a href="#source-precedence">Section A2</a>); the other organisation&rsquo;s name, address and dates move to the supplementary file and it appears in the matches file with match type <code>merge via bridge</code>. Care-regulator records alone cannot trigger a combination, because a care provider&rsquo;s return often cites a charity alongside its trustee company or trading subsidiary &mdash; a relationship, not an identity. This release combines 339 pairs of records in this way.</p>
 
         <h3>Determining the Primary Organisation</h3>
 
