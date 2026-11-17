@@ -40,4 +40,5 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 /* Data page: highlight the dataset row a direct link (e.g. /data/#find-a-tender) points to */
-tr:has(a:target) td { background-color: #fff3c4; }
+tr:has(a:target) td { background-color: #fff3c4; vertical-align: top; }
+a:target { scroll-margin-top: 1.5em; }
