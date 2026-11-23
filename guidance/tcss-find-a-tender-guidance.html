@@ -892,12 +892,12 @@ body.high-contrast .figure-caption {
 
 <p>This dataset provides award-level records of public contracts awarded under the <a href="https://www.legislation.gov.uk/ukpga/2023/54">Procurement Act 2023</a> and published on <a href="https://www.find-tender.service.gov.uk/">Find a Tender</a>, the UK government's central digital platform for procurement notices, enriched with the project's classification of who won each contract. It was produced by the <a href="https://uk-third-sector-database.github.io/">UK Third and Civil Society Sector Database</a> project, which collects, processes and links public administrative data on civil society organisations throughout the UK.</p>
 <p>The file covers awards to <em>all</em> suppliers. Civil society winners (registered charities, community interest companies, co-operatives and mutuals, and other nonprofit companies) are identified by matching the published registry identifier, and where none is published the supplier name and postcode, to the TCSS Organisation Register; a matched winner carries the organisation's <code>spine_uid</code>. Retaining every award is what makes it possible to measure civil society's share of the market, the procurement routes through which civil society organisations win contracts, and the competition they face.</p>
-<p>The dataset contains 60,717 awarded contracts from 2,069 public buyer organisations, naming 35,683 distinct suppliers. 5,374 awards (8.9%) have at least one winner that is a register-confirmed civil society organisation; 3,050 such organisations appear. The awards are dated from 2025-02-24 (the day the Act commenced) to 2026-11-05, drawn from the Find a Tender bulk release of 2026-11-08.</p>
+<p>The dataset contains 60,330 awarded contracts from 2,069 public buyer organisations, naming 35,628 distinct suppliers. 5,384 awards (8.9%) have at least one winner that is a register-confirmed civil society organisation; 3,050 such organisations appear. The awards are dated from 2025-02-24 (the day the Act commenced) to 2026-11-05, drawn from the Find a Tender bulk release of 2026-11-08.</p>
 <div class="stat-cards">
-<div class="stat-card"><span class="number">60,717</span><span class="label">Awarded Contracts</span></div>
-<div class="stat-card"><span class="number">35,683</span><span class="label">Suppliers</span></div>
+<div class="stat-card"><span class="number">60,330</span><span class="label">Awarded Contracts</span></div>
+<div class="stat-card"><span class="number">35,628</span><span class="label">Suppliers</span></div>
 <div class="stat-card"><span class="number">2,069</span><span class="label">Buyer Organisations</span></div>
-<div class="stat-card"><span class="number">5,374</span><span class="label">Awards with a CSO Winner</span></div>
+<div class="stat-card"><span class="number">5,384</span><span class="label">Awards with a CSO Winner</span></div>
 </div>
 <div class="callout callout-info">
 <p><strong>Related dataset.</strong> The project's <a href="https://uk-third-sector-database.github.io/guidance/tcss-contracts-finder-guidance.html">Contracts Finder Records</a> cover awards published on Contracts Finder from 2015 under the Public Contracts Regulations 2015. This dataset begins where that regime ends: the Procurement Act 2023 commenced on 24 February 2025 and its notices are published on Find a Tender. The two platforms use different notice structures, identifiers and value conventions, so the two datasets should be analysed side by side rather than appended into one series.</p>
@@ -916,18 +916,19 @@ body.high-contrast .figure-caption {
 <div class="section level1">
 <h1 id="3-dataset-contents">3. Dataset Contents</h1>
 
-<p>The dataset is supplied as two CSV files and a column manifest.</p>
+<p>The dataset is supplied as three CSV files and a column manifest. The third file, the supplier PPON crosswalk, is provisional: its identity review is pending.</p>
 <table>
 <thead><tr><th>File</th><th>Grain</th><th>Rows</th><th>Columns</th></tr></thead>
 <tbody>
-<tr><td><code>findatender-awards.csv</code></td><td>One row per awarded contract (<code>ocid</code> × <code>award_id</code>)</td><td style="text-align:right">60,717</td><td style="text-align:right">107</td></tr>
-<tr><td><code>findatender-award-suppliers.csv</code></td><td>One row per winning organisation per award (<code>ocid</code> × <code>award_id</code> × <code>supplier_id</code>)</td><td style="text-align:right">95,455</td><td style="text-align:right">21</td></tr>
-<tr><td><code>findatender-column-manifest.csv</code></td><td>One row per released column: file, position, name, internal source column, class, missingness and distinct values</td><td style="text-align:right">128</td><td style="text-align:right">8</td></tr>
+<tr><td><code>findatender-awards.csv</code></td><td>One row per awarded contract (<code>ocid</code> × <code>award_id</code>)</td><td style="text-align:right">60,330</td><td style="text-align:right">108</td></tr>
+<tr><td><code>findatender-award-suppliers.csv</code></td><td>One row per winning organisation per award (<code>ocid</code> × <code>award_id</code> × <code>supplier_id</code>)</td><td style="text-align:right">94,980</td><td style="text-align:right">21</td></tr>
+<tr><td><code>findatender-supplier-ppon-crosswalk.csv</code></td><td>One row per PPON and organisation pair (provisional: identity review pending)</td><td style="text-align:right">2,148</td><td style="text-align:right">8</td></tr>
+<tr><td><code>findatender-column-manifest.csv</code></td><td>One row per released column: file, position, name, internal source column, class, missingness and distinct values</td><td style="text-align:right">129</td><td style="text-align:right">8</td></tr>
 </tbody>
 </table>
 <p>The awards file carries the winners inline (<code>winner_supplier_ids</code>, <code>winner_supplier_names</code>, <code>winner_spine_uids</code> and the verdict counts), so most analyses need only that file. The supplier file is for work at organisation grain: who the winners are, what identifiers they published, and the evidence behind each civil society verdict. Column names are lower snake case; where a value was resolved from more than one notice object, the bare name is the value to use and its <code>_source</code> companion says which object supplied it.</p>
 <div class="callout callout-warning">
-<p><strong>Values.</strong> <code>value_gbp</code> is the gross (VAT-inclusive) value as published, in pounds, blank where no usable value was published. It is <em>not</em> spend: framework establishments carry a ceiling for the whole arrangement, multi-award processes may stamp one process total on every award (<code>value_repeat_group</code>) or divide the estimate equally among the winners (<code>value_equal_split</code>), and buyers occasionally publish a zero or a mis-keyed figure. Filter or flag before any sum; Section 6 sets out the hazards.</p>
+<p><strong>Values.</strong> <code>value_gbp</code> is the gross (VAT-inclusive) value as published, in pounds, blank where no usable value was published. It is <em>not</em> spend: framework establishments carry a ceiling for the whole arrangement, multi-award processes may stamp one process total on every award (<code>value_repeat_group</code>) or divide the estimate equally among the winners (<code>value_equal_split</code>), and buyers occasionally publish a zero or a mis-keyed figure. For any total, sum <code>value_for_sum</code>, never <code>value_gbp</code>; Section 6 sets out the hazards.</p>
 </div>
 <h2 id="awards-file">Awards file (<code>findatender-awards.csv</code>)</h2>
 <h3 id="rq4-fts-awards-release-csv-keys-and-release-metadata">Keys and release metadata</h3>
@@ -938,7 +939,7 @@ body.high-contrast .figure-caption {
 <tr><td><code>award_id</code></td><td>Award id within the process</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>award_notice_url</code></td><td><strong>Source link</strong>: the public Find a Tender notice page for this award - the award object's link, else the linked contract object's UK7 notice link (<code>contract_notice_url</code>), else an award/contract-type (UK5-UK7) link on the tender object (<code>tender_award_notice_url</code>). <code>award_notice_url_source</code> = "award" / "contract" / "tender"; both NA where no home carries a notice link</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>award_notice_url_source</code></td><td>Which notice object supplied award_notice_url: award, contract or tender</td><td>Text</td><td>100%</td></tr>
-<tr><td><code>tender_notice_url</code></td><td>The process's tender-stage notice page on Find a Tender, where one was published</td><td>Text</td><td>26.8%</td></tr>
+<tr><td><code>tender_notice_url</code></td><td>The process's tender-stage notice page on Find a Tender, where one was published</td><td>Text</td><td>26.7%</td></tr>
 <tr><td><code>tender_status</code></td><td>Tender status ("active"/"complete")</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>release_date</code></td><td>Date the compiled OCDS release was produced</td><td>Date</td><td>100%</td></tr>
 </tbody>
@@ -949,7 +950,7 @@ body.high-contrast .figure-caption {
 <tbody>
 <tr><td><code>related_process_ocids</code></td><td>ocids of related processes (for a call-off, the parent framework), ';'-joined</td><td>Text</td><td>3.8%</td></tr>
 <tr><td><code>related_process_relationships</code></td><td>Relationship type(s) to the related processes, ';'-joined; 'framework' marks the call-off link</td><td>Text</td><td>3.8%</td></tr>
-<tr><td><code>procurement_method</code></td><td>OCDS method class (open / selective / limited / direct; NA on most below-threshold-unknown rows)</td><td>Text</td><td>89.7%</td></tr>
+<tr><td><code>procurement_method</code></td><td>OCDS method class (open / selective / limited / direct; NA on most below-threshold-unknown rows)</td><td>Text</td><td>89.6%</td></tr>
 <tr><td><code>procurement_method_details</code></td><td><strong>The route taxonomy</strong> (11 values): Open procedure, Competitive flexible procedure, Direct award, Award under framework, Dynamic market, and the below-threshold classes (open / limited / without competition / under framework / by reference to dynamic market / unknown). Never NA</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>technique_framework</code></td><td>The process establishes or uses a framework agreement (FALSE where the source omits the flag)</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>technique_dynamic_market</code></td><td>Same for dynamic markets (<code>hasDynamicPurchasingSystem</code>): the procurement used a dynamic market. Admissions to a market (a UK13 dynamic market notice in the process) are dropped as cascade step 2b; TRUE on a surviving row marks a contract awarded <strong>through</strong> a dynamic market, a route to award in its own right</td><td>Boolean</td><td>100%</td></tr>
@@ -977,8 +978,8 @@ body.high-contrast .figure-caption {
 <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
 <tbody>
 <tr><td><code>has_suitability_object</code></td><td>Any lot carries the suitability checkbox object (NA when the notice types never collect it — missing is NOT false)</td><td>Boolean</td><td>100%</td></tr>
-<tr><td><code>any_lot_sme_suitable</code></td><td>Buyer marked any lot suitable for SMEs / VCSEs (NA when no suitability object)</td><td>Boolean</td><td>24.2%</td></tr>
-<tr><td><code>any_lot_vcse_suitable</code></td><td>Buyer marked any lot suitable for SMEs / VCSEs (NA when no suitability object)</td><td>Boolean</td><td>24.2%</td></tr>
+<tr><td><code>any_lot_sme_suitable</code></td><td>Buyer marked any lot suitable for SMEs / VCSEs (NA when no suitability object)</td><td>Boolean</td><td>24.0%</td></tr>
+<tr><td><code>any_lot_vcse_suitable</code></td><td>Buyer marked any lot suitable for SMEs / VCSEs (NA when no suitability object)</td><td>Boolean</td><td>24.0%</td></tr>
 <tr><td><code>reserved_participation</code></td><td>Reservation codes: <code>smeVcse</code> (below-threshold SME/VCSE reservation), <code>shelteredWorkshop</code> (s.32), <code>publicServiceMissionOrganization</code> (s.33 public-service mutuals)</td><td>Text</td><td>0.5%</td></tr>
 <tr><td><code>reserved_location_scheme</code></td><td>Geographic reservation (GB-ONS gazetteer; K02000001 = UK-wide, i.e. no restriction)</td><td>Text</td><td>1.5%</td></tr>
 <tr><td><code>reserved_location_codes</code></td><td>Geographic reservation (GB-ONS gazetteer; K02000001 = UK-wide, i.e. no restriction)</td><td>Text</td><td>1.5%</td></tr>
@@ -993,13 +994,13 @@ body.high-contrast .figure-caption {
 <tr><td><code>buyer_name</code></td><td>Buyer name as published on the notice; filled from the buyer lookup's canonical name where the notice published none</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>buyer_postcode</code></td><td>Buyer postcode as published</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>buyer_region</code></td><td>Buyer region as published</td><td>Text</td><td>100%</td></tr>
-<tr><td><code>buyer_nation</code></td><td>England / Scotland / Wales / Northern Ireland / Unknown — <strong>the England filter variable</strong> (kept as a variable at prep; England-only is an analysis-stage rule)</td><td>Text</td><td>100%</td></tr>
+<tr><td><code>buyer_nation</code></td><td>England / Scotland / Wales / Northern Ireland / Unknown — the buyer's nation. The release covers buyers in all UK nations; filter on this column for a single nation</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>buyer_type</code></td><td>Programme funder-type typology: UK Government / Local Government / NHS / Education Institution / Police, Fire and Rescue / CSO / Private Sector / Other</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>buyer_type_detail</code></td><td>Finer buyer type within buyer_type</td><td>Text</td><td>100%</td></tr>
-<tr><td><code>buyer_lg_subtype</code></td><td>Local-government subtype (county, district, London borough, unitary, combined authority, town or parish council); blank for other buyers</td><td>Text</td><td>43.1%</td></tr>
-<tr><td><code>buyer_lg_ons_code</code></td><td>ONS code of the local authority, where identified</td><td>Text</td><td>41.2%</td></tr>
+<tr><td><code>buyer_lg_subtype</code></td><td>Local-government subtype (county, district, London borough, unitary, combined authority, town or parish council); blank for other buyers</td><td>Text</td><td>43.3%</td></tr>
+<tr><td><code>buyer_lg_ons_code</code></td><td>ONS code of the local authority, where identified</td><td>Text</td><td>41.4%</td></tr>
 <tr><td><code>buyer_in_spine</code></td><td>The buyer matches the TCSS Organisation Register</td><td>Boolean</td><td>100%</td></tr>
-<tr><td><code>buyer_spine_uid</code></td><td>The buyer's register uid, where it matches</td><td>Text</td><td>11.8%</td></tr>
+<tr><td><code>buyer_spine_uid</code></td><td>The buyer's register uid, where it matches</td><td>Text</td><td>11.9%</td></tr>
 </tbody>
 </table>
 <h3 id="rq4-fts-awards-release-csv-notices-and-dates">Notices and dates</h3>
@@ -1010,18 +1011,18 @@ body.high-contrast .figure-caption {
 <tr><td><code>first_notice_published</code></td><td>Publication date of the first notice of the process</td><td>Date</td><td>100%</td></tr>
 <tr><td><code>award_date</code></td><td>The award date to use: the award object's date, else the contract signature date, else the notice publication date, else the release date</td><td>Date</td><td>100%</td></tr>
 <tr><td><code>award_date_source</code></td><td>Which date supplied award_date: award, signed, notice or release</td><td>Text</td><td>100%</td></tr>
-<tr><td><code>award_date_raw</code></td><td>The date on the award object itself, blank where the object carries none</td><td>Date</td><td>31.3%</td></tr>
-<tr><td><code>award_notice_published</code></td><td>Earliest publication date of an award notice (UK5/UK6) for the award</td><td>Date</td><td>32.2%</td></tr>
-<tr><td><code>date_signed</code></td><td>Contract signature date, where published</td><td>Date</td><td>88.7%</td></tr>
-<tr><td><code>notice_date_published</code></td><td>Publication date of the contract details notice (UK7), where one exists</td><td>Date</td><td>88.6%</td></tr>
+<tr><td><code>award_date_raw</code></td><td>The date on the award object itself, blank where the object carries none</td><td>Date</td><td>31.4%</td></tr>
+<tr><td><code>award_notice_published</code></td><td>Earliest publication date of an award notice (UK5/UK6) for the award</td><td>Date</td><td>31.9%</td></tr>
+<tr><td><code>date_signed</code></td><td>Contract signature date, where published</td><td>Date</td><td>89.1%</td></tr>
+<tr><td><code>notice_date_published</code></td><td>Publication date of the contract details notice (UK7), where one exists</td><td>Date</td><td>89.0%</td></tr>
 </tbody>
 </table>
 <h3 id="rq4-fts-awards-release-csv-contract-record-linkage">Contract record linkage</h3>
 <table>
 <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
 <tbody>
-<tr><td><code>contract_id</code></td><td>Id of the linked contract details record (UK7), where one exists</td><td>Text</td><td>89.1%</td></tr>
-<tr><td><code>contract_status</code></td><td>Status of the linked contract details record; blank where none has been published</td><td>Text</td><td>89.1%</td></tr>
+<tr><td><code>contract_id</code></td><td>Id of the linked contract details record (UK7), where one exists</td><td>Text</td><td>89.5%</td></tr>
+<tr><td><code>contract_status</code></td><td>Status of the linked contract details record; blank where none has been published</td><td>Text</td><td>89.5%</td></tr>
 <tr><td><code>contract_cancelled</code></td><td>The linked contract record is cancelled</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>contract_terminated</code></td><td>The linked contract record is terminated</td><td>Boolean</td><td>100%</td></tr>
 </tbody>
@@ -1031,20 +1032,21 @@ body.high-contrast .figure-caption {
 <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
 <tbody>
 <tr><td><code>value_gbp</code></td><td><strong>The analysis value</strong>: gross value iff resolved currency is GBP and not a reported zero; NA otherwise (no currency conversion). Strictly positive where present. Framework-ceiling interpretation stays in the separate flags</td><td>Numeric</td><td>99.2%</td></tr>
+<tr><td><code>value_for_sum</code></td><td>Summable value in GBP (ruling al): value_gbp for awards that are not framework establishments, framework call-offs or cancelled contracts, divided equally across the qualifying awards of a value_repeat_group; blank otherwise. Sum this column, not value_gbp.</td><td>Numeric</td><td>86.9%</td></tr>
 <tr><td><code>value_non_gbp</code></td><td>The resolved value is in a currency other than pounds sterling (value_gbp is then blank)</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>value_zero_reported</code></td><td>TRUE when a value IS reported and equals 0 — buyer chose not to state; treated as missing</td><td>Boolean</td><td>100%</td></tr>
-<tr><td><code>value_repeat_group</code></td><td>Same buyer + title + value + signing date appears on &gt;1 row (multi-award processes stamping one process total, framework establishments) — de-duplicate before any sum</td><td>Boolean</td><td>100%</td></tr>
+<tr><td><code>value_repeat_group</code></td><td>Same buyer + title + value + signing date appears on &gt;1 row (multi-award processes stamping one process total, framework establishments). Recomputed on the final population; summing <code>value_for_sum</code> already handles it, so no separate de-duplication is needed</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>value_equal_split</code></td><td>TRUE when the award's value is the process (or lot) estimate <strong>divided equally among the winners</strong>: all valued awards of the unit share one value, at least two awards, and n × value equals <code>tender_value_amount</code> (or <code>lot_value_amount_total</code>) within 0.5% on the published net figure. An accounting convenience, not the value of the individual contract; flagged, never altered. Logical, never NA; FALSE where <code>value_gbp</code> is NA</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>value_contract_shared</code></td><td>TRUE when the linked contract's value is carried by more than one award of the same process, so it cannot be specific to this award. Logical, never NA</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>value_contract_award_conflict</code></td><td>The award object and its linked contract object both publish a value and the two disagree; reported, not reconciled</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>value_source</code></td><td>Which object supplied the value: contract, or award where the contract value is shared across awards of the process</td><td>Text</td><td>100%</td></tr>
-<tr><td><code>tender_value_amount</code></td><td>The buyer's estimated total value for the whole process, net, as published (a published zero is blanked)</td><td>Numeric</td><td>22.7%</td></tr>
-<tr><td><code>tender_value_amount_gross</code></td><td>The buyer's estimated total value for the whole process, gross, as published</td><td>Numeric</td><td>26.6%</td></tr>
-<tr><td><code>tender_value_currency</code></td><td>Currency of the process estimate</td><td>Text</td><td>27.0%</td></tr>
-<tr><td><code>lot_value_amounts</code></td><td>Estimated value of each of the award's lots, ';'-joined in award_related_lots order, as published</td><td>Text</td><td>22.4%</td></tr>
-<tr><td><code>lot_value_amount_total</code></td><td>Sum of the related lots' estimated values (net), only where every related lot carries one</td><td>Numeric</td><td>21.9%</td></tr>
-<tr><td><code>lot_value_amount_gross_total</code></td><td>Sum of the related lots' estimated values (gross), only where every related lot carries one</td><td>Numeric</td><td>26.0%</td></tr>
-<tr><td><code>lot_value_currency</code></td><td>Currency of the related lots' estimated values</td><td>Text</td><td>26.7%</td></tr>
+<tr><td><code>tender_value_amount</code></td><td>The buyer's estimated total value for the whole process, net, as published (a published zero is blanked)</td><td>Numeric</td><td>22.6%</td></tr>
+<tr><td><code>tender_value_amount_gross</code></td><td>The buyer's estimated total value for the whole process, gross, as published</td><td>Numeric</td><td>26.5%</td></tr>
+<tr><td><code>tender_value_currency</code></td><td>Currency of the process estimate</td><td>Text</td><td>26.9%</td></tr>
+<tr><td><code>lot_value_amounts</code></td><td>Estimated value of each of the award's lots, ';'-joined in award_related_lots order, as published</td><td>Text</td><td>22.3%</td></tr>
+<tr><td><code>lot_value_amount_total</code></td><td>Sum of the related lots' estimated values (net), only where every related lot carries one</td><td>Numeric</td><td>21.7%</td></tr>
+<tr><td><code>lot_value_amount_gross_total</code></td><td>Sum of the related lots' estimated values (gross), only where every related lot carries one</td><td>Numeric</td><td>25.9%</td></tr>
+<tr><td><code>lot_value_currency</code></td><td>Currency of the related lots' estimated values</td><td>Text</td><td>26.5%</td></tr>
 <tr><td><code>n_related_lots_valued</code></td><td>How many of the award's related lots carry an estimated value</td><td>Numeric</td><td>100%</td></tr>
 <tr><td><code>estimate_zero_reported</code></td><td>TRUE when any of the four estimate columns above was published as exactly 0 — the buyer did not state an estimate; the zero is blanked in all four, exactly as <code>value_zero_reported</code> / <code>value_gbp</code>. Logical, never NA</td><td>Boolean</td><td>100%</td></tr>
 </tbody>
@@ -1053,17 +1055,17 @@ body.high-contrast .figure-caption {
 <table>
 <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
 <tbody>
-<tr><td><code>contract_period_start</code></td><td>Contract start date on the award object</td><td>Date</td><td>32.2%</td></tr>
-<tr><td><code>contract_period_end</code></td><td>Contract end date on the award object</td><td>Date</td><td>32.2%</td></tr>
-<tr><td><code>contract_period_max_extent</code></td><td>Latest possible end date including extension options, on the award object</td><td>Date</td><td>16.0%</td></tr>
-<tr><td><code>contract_period_start_c</code></td><td>Contract start date on the contract details record</td><td>Date</td><td>88.6%</td></tr>
-<tr><td><code>contract_period_end_c</code></td><td>Contract end date on the contract details record</td><td>Date</td><td>88.6%</td></tr>
-<tr><td><code>contract_period_max_extent_c</code></td><td>Latest possible end date including extension options, on the contract details record</td><td>Date</td><td>20.7%</td></tr>
+<tr><td><code>contract_period_start</code></td><td>Contract start date on the award object</td><td>Date</td><td>31.9%</td></tr>
+<tr><td><code>contract_period_end</code></td><td>Contract end date on the award object</td><td>Date</td><td>31.9%</td></tr>
+<tr><td><code>contract_period_max_extent</code></td><td>Latest possible end date including extension options, on the award object</td><td>Date</td><td>15.9%</td></tr>
+<tr><td><code>contract_period_start_c</code></td><td>Contract start date on the contract details record</td><td>Date</td><td>89.0%</td></tr>
+<tr><td><code>contract_period_end_c</code></td><td>Contract end date on the contract details record</td><td>Date</td><td>89.0%</td></tr>
+<tr><td><code>contract_period_max_extent_c</code></td><td>Latest possible end date including extension options, on the contract details record</td><td>Date</td><td>20.8%</td></tr>
 <tr><td><code>period_start</code></td><td>Contract start date to use (contract record preferred, start and end taken from the same object)</td><td>Date</td><td>100%</td></tr>
 <tr><td><code>period_end</code></td><td>Contract end date to use (same object as period_start)</td><td>Date</td><td>100%</td></tr>
 <tr><td><code>period_source</code></td><td>Which object supplied the period: contract or award</td><td>Text</td><td>100%</td></tr>
 <tr><td><code>duration_days</code></td><td>period_end minus period_start, in days</td><td>Numeric</td><td>100%</td></tr>
-<tr><td><code>duration_max_days</code></td><td>Duration to the latest possible end including extension options, in days</td><td>Numeric</td><td>25.5%</td></tr>
+<tr><td><code>duration_max_days</code></td><td>Duration to the latest possible end including extension options, in days</td><td>Numeric</td><td>25.4%</td></tr>
 <tr><td><code>duration_placeholder</code></td><td>The period is zero days long and starts on the signing date: a form date entered in both period fields</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>duration_over_10y</code></td><td>The period exceeds ten years</td><td>Boolean</td><td>100%</td></tr>
 </tbody>
@@ -1091,16 +1093,16 @@ body.high-contrast .figure-caption {
 <tr><td><code>any_sme_declared</code></td><td>≥1 winner resolves as SME (OCP rule at (<code>ocid</code>, <code>supplier_id</code>): any sme tag wins, else large; three-valued)</td><td>Boolean</td><td>100%</td></tr>
 <tr><td><code>winner_supplier_ids</code></td><td><strong>Who won, without a join</strong>: the <code>supplier_id</code> of every winner, ';'-joined where <code>n_suppliers</code> &gt; 1 (one value on single-winner awards). <code>supplier_id</code> is the organisation key of the supplier file and lookup; withheld suppliers (s.94) have no id and are omitted, so an award whose only winner is withheld is NA.</td><td>Text</td><td>99.9%</td></tr>
 <tr><td><code>winner_supplier_names</code></td><td>The published name of every winner in <code>winner_supplier_ids</code>, in the same order, ' \| '-joined (published names contain ';'); built in the same step as the ids. A winner whose published name is blank (identified by identifier only) carries the token "(name not published)". NA iff the ids are NA</td><td>Text</td><td>99.9%</td></tr>
-<tr><td><code>winner_spine_uids</code></td><td>Spine uid of every CSO winner (UK rows), ';'-joined; NA when no winner is a CSO. Joins to the TCSS Organisation Register</td><td>Text</td><td>8.8%</td></tr>
+<tr><td><code>winner_spine_uids</code></td><td>Spine uid of every CSO winner (UK rows), ';'-joined; NA when no winner is a CSO. Joins to the TCSS Organisation Register</td><td>Text</td><td>8.9%</td></tr>
 </tbody>
 </table>
 <h3 id="rq4-fts-awards-release-csv-bid-statistics-rule-based-coverage-reg-27">Bid statistics (published by rule on competed above-threshold awards)</h3>
 <table>
 <thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
 <tbody>
-<tr><td><code>bids_finalStageBids</code></td><td>Number of final-stage bids, as published (competed above-threshold awards)</td><td>Numeric</td><td>21.6%</td></tr>
-<tr><td><code>bids_smeFinalStageBids</code></td><td>Final-stage bids from SMEs, as published</td><td>Numeric</td><td>21.7%</td></tr>
-<tr><td><code>bids_vcseFinalStageBids</code></td><td>Final-stage bids from voluntary, community and social enterprises, as published</td><td>Numeric</td><td>22.0%</td></tr>
+<tr><td><code>bids_finalStageBids</code></td><td>Number of final-stage bids, as published (competed above-threshold awards)</td><td>Numeric</td><td>21.5%</td></tr>
+<tr><td><code>bids_smeFinalStageBids</code></td><td>Final-stage bids from SMEs, as published</td><td>Numeric</td><td>21.5%</td></tr>
+<tr><td><code>bids_vcseFinalStageBids</code></td><td>Final-stage bids from voluntary, community and social enterprises, as published</td><td>Numeric</td><td>21.9%</td></tr>
 </tbody>
 </table>
 <h3 id="rq4-fts-awards-release-csv-named-bidder-block-bids-details-naming-mandated-only-5m-reg-27-2-o">Named bidders (published only above £5 million)</h3>
@@ -1161,13 +1163,29 @@ body.high-contrast .figure-caption {
 <tr><td><code>supplier_sme_resolved</code></td><td>Scale resolved within (<code>ocid</code>, <code>supplier_id</code>) — any sme tag wins, else large</td><td>Boolean</td><td>100%</td></tr>
 </tbody>
 </table>
+<h2 id="crosswalk-file">Supplier PPON crosswalk file (<code>findatender-supplier-ppon-crosswalk.csv</code>)</h2>
+<p>This file is provisional: its identity review is pending. It holds civil society organisations only, one row per PPON and organisation pair.</p>
+<h3 id="rq4-fts-ppon-crosswalk-release-csv-supplier-ppon-crosswalk">Supplier PPON crosswalk</h3>
+<table>
+<thead><tr><th>Field</th><th>Description</th><th>Type</th><th>Coverage</th></tr></thead>
+<tbody>
+<tr><td><code>ppon</code></td><td>The supplier's PPON (Procurement Act organisation number) in the standard form GB-PPON-Pxxx-0000-xxxx, as published on Find a Tender notices</td><td>Text</td><td>100%</td></tr>
+<tr><td><code>spine_uid</code></td><td>The organisation's main record in the TCSS Organisation Register; a charitable company appears under its charity number. Several values ';'-joined where its rows carry more than one</td><td>Text</td><td>100%</td></tr>
+<tr><td><code>registry_ids</code></td><td>Every registry identifier other than a PPON (company, charity and other numbers) the organisation published on any of its rows, sorted and ';'-joined in SCHEME-ID form, as published by buyers; not checked against the registers</td><td>Text</td><td>74.2%</td></tr>
+<tr><td><code>link_type</code></td><td>How the PPON is tied to the organisation: 'direct' (at least one supplier row carries both the PPON and a registry identifier); 'same organisation' (no row carries both, but the organisation published a registry identifier on other rows); 'Spine name match' (no registry identifier published; the organisation was matched to the register by name)</td><td>Text</td><td>100%</td></tr>
+<tr><td><code>supplier_name</code></td><td>The name most often published with the PPON by this organisation (ties: first alphabetically)</td><td>Text</td><td>100%</td></tr>
+<tr><td><code>n_award_rows</code></td><td>Number of the organisation's award-supplier rows that carry the PPON</td><td>Numeric</td><td>100%</td></tr>
+<tr><td><code>is_ambiguous</code></td><td>TRUE where the pair is not a clean one-to-one link, for any of the reasons in ambiguity_reason</td><td>Boolean</td><td>100%</td></tr>
+<tr><td><code>ambiguity_reason</code></td><td>';'-joined reasons, blank where none: 'several organisations' (the PPON also appears with another organisation, civil society or not); 'several company numbers' (the organisation published more than one GB-COH number); 'several charity numbers' (more than one GB-CHC, GB-SC or GB-NIC number); 'several Spine records' (its rows carry more than one register uid)</td><td>Text</td><td>3.3%</td></tr>
+</tbody>
+</table>
 
 </div>
 <div class="section level1">
 <h1 id="4-coverage-and-completeness">4. Coverage &amp; Completeness</h1>
 
 <h3 id="core-field-coverage">Core Field Coverage</h3>
-<p>Keys, route, buyer type and the main CPV code are present on every award. A value is missing on 482 awards (0.8%) that published no usable figure. Bid statistics are published by rule only on competed above-threshold awards, so their coverage reflects the notice rules rather than data quality: 13,135 awards carry a final-stage bidder count and 3,901 carry a named bidder list.</p>
+<p>Keys, route, buyer type and the main CPV code are present on every award. A value is missing on 482 awards (0.8%) that published no usable figure. Bid statistics are published by rule only on competed above-threshold awards, so their coverage reflects the notice rules rather than data quality: 12,958 awards carry a final-stage bidder count and 3,844 carry a named bidder list.</p>
 <div class="coverage-bar-container">
 <div class="coverage-item"><div class="cov-label">ocid</div><div class="cov-bar"><div class="cov-fill" style="width: 100.0%;"></div></div><div class="cov-pct">100.0%</div></div>
 <div class="coverage-item"><div class="cov-label">value_gbp</div><div class="cov-bar"><div class="cov-fill" style="width: 99.2%;"></div></div><div class="cov-pct">99.2%</div></div>
@@ -1176,16 +1194,16 @@ body.high-contrast .figure-caption {
 <div class="coverage-item"><div class="cov-label">procurement_method_details</div><div class="cov-bar"><div class="cov-fill" style="width: 100.0%;"></div></div><div class="cov-pct">100.0%</div></div>
 <div class="coverage-item"><div class="cov-label">cpv</div><div class="cov-bar"><div class="cov-fill" style="width: 100.0%;"></div></div><div class="cov-pct">100.0%</div></div>
 <div class="coverage-item"><div class="cov-label">period_start</div><div class="cov-bar"><div class="cov-fill" style="width: 100.0%;"></div></div><div class="cov-pct">100.0%</div></div>
-<div class="coverage-item"><div class="cov-label">bids_finalStageBids</div><div class="cov-bar"><div class="cov-fill" style="width: 21.6%;"></div></div><div class="cov-pct">21.6%</div></div>
+<div class="coverage-item"><div class="cov-label">bids_finalStageBids</div><div class="cov-bar"><div class="cov-fill" style="width: 21.5%;"></div></div><div class="cov-pct">21.5%</div></div>
 </div>
 <h3 id="scope-by-buyer-nation">Scope by Buyer Nation</h3>
 <p>The dataset is UK-wide. Scotland and, in part, Wales and Northern Ireland run their own procurement portals under devolved rules, so their buyers appear here only where a notice was published on Find a Tender under the Act. <code>buyer_nation</code> carries the nation; an England-only analysis filters on it.</p>
 <table>
 <thead><tr><th>Buyer nation</th><th>All awards</th><th>Share</th><th>Awards with a CSO winner</th><th>CSO share within group</th><th>Share of CSO awards</th></tr></thead>
 <tbody>
-<tr><td>England</td><td style="text-align:right">55,965</td><td style="text-align:right">92.2%</td><td style="text-align:right">4,898</td><td style="text-align:right">8.8%</td><td style="text-align:right">91.1%</td></tr>
-<tr><td>Wales</td><td style="text-align:right">3,203</td><td style="text-align:right">5.3%</td><td style="text-align:right">353</td><td style="text-align:right">11.0%</td><td style="text-align:right">6.6%</td></tr>
-<tr><td>Northern Ireland</td><td style="text-align:right">1,387</td><td style="text-align:right">2.3%</td><td style="text-align:right">107</td><td style="text-align:right">7.7%</td><td style="text-align:right">2.0%</td></tr>
+<tr><td>England</td><td style="text-align:right">55,585</td><td style="text-align:right">92.1%</td><td style="text-align:right">4,885</td><td style="text-align:right">8.8%</td><td style="text-align:right">90.7%</td></tr>
+<tr><td>Wales</td><td style="text-align:right">3,198</td><td style="text-align:right">5.3%</td><td style="text-align:right">377</td><td style="text-align:right">11.8%</td><td style="text-align:right">7.0%</td></tr>
+<tr><td>Northern Ireland</td><td style="text-align:right">1,385</td><td style="text-align:right">2.3%</td><td style="text-align:right">106</td><td style="text-align:right">7.7%</td><td style="text-align:right">2.0%</td></tr>
 <tr><td>Scotland</td><td style="text-align:right">145</td><td style="text-align:right">0.2%</td><td style="text-align:right">16</td><td style="text-align:right">11.0%</td><td style="text-align:right">0.3%</td></tr>
 <tr><td>Unknown</td><td style="text-align:right">17</td><td style="text-align:right">0.0%</td><td style="text-align:right">0</td><td style="text-align:right">0.0%</td><td style="text-align:right">0.0%</td></tr>
 </tbody>
@@ -1194,14 +1212,14 @@ body.high-contrast .figure-caption {
 <table>
 <thead><tr><th>Buyer type</th><th>All awards</th><th>Share</th><th>Awards with a CSO winner</th><th>CSO share within group</th><th>Share of CSO awards</th></tr></thead>
 <tbody>
-<tr><td>Local Government</td><td style="text-align:right">26,207</td><td style="text-align:right">43.2%</td><td style="text-align:right">3,193</td><td style="text-align:right">12.2%</td><td style="text-align:right">59.4%</td></tr>
-<tr><td>UK Government</td><td style="text-align:right">12,596</td><td style="text-align:right">20.7%</td><td style="text-align:right">984</td><td style="text-align:right">7.8%</td><td style="text-align:right">18.3%</td></tr>
-<tr><td>NHS</td><td style="text-align:right">9,636</td><td style="text-align:right">15.9%</td><td style="text-align:right">587</td><td style="text-align:right">6.1%</td><td style="text-align:right">10.9%</td></tr>
-<tr><td>CSO</td><td style="text-align:right">5,110</td><td style="text-align:right">8.4%</td><td style="text-align:right">195</td><td style="text-align:right">3.8%</td><td style="text-align:right">3.6%</td></tr>
-<tr><td>Education Institution</td><td style="text-align:right">3,686</td><td style="text-align:right">6.1%</td><td style="text-align:right">211</td><td style="text-align:right">5.7%</td><td style="text-align:right">3.9%</td></tr>
-<tr><td>Police, Fire and Rescue</td><td style="text-align:right">1,877</td><td style="text-align:right">3.1%</td><td style="text-align:right">147</td><td style="text-align:right">7.8%</td><td style="text-align:right">2.7%</td></tr>
-<tr><td>Other</td><td style="text-align:right">1,318</td><td style="text-align:right">2.2%</td><td style="text-align:right">37</td><td style="text-align:right">2.8%</td><td style="text-align:right">0.7%</td></tr>
-<tr><td>Private Sector</td><td style="text-align:right">287</td><td style="text-align:right">0.5%</td><td style="text-align:right">20</td><td style="text-align:right">7.0%</td><td style="text-align:right">0.4%</td></tr>
+<tr><td>Local Government</td><td style="text-align:right">26,133</td><td style="text-align:right">43.3%</td><td style="text-align:right">3,203</td><td style="text-align:right">12.3%</td><td style="text-align:right">59.5%</td></tr>
+<tr><td>UK Government</td><td style="text-align:right">12,450</td><td style="text-align:right">20.6%</td><td style="text-align:right">991</td><td style="text-align:right">8.0%</td><td style="text-align:right">18.4%</td></tr>
+<tr><td>NHS</td><td style="text-align:right">9,533</td><td style="text-align:right">15.8%</td><td style="text-align:right">583</td><td style="text-align:right">6.1%</td><td style="text-align:right">10.8%</td></tr>
+<tr><td>CSO</td><td style="text-align:right">5,091</td><td style="text-align:right">8.4%</td><td style="text-align:right">195</td><td style="text-align:right">3.8%</td><td style="text-align:right">3.6%</td></tr>
+<tr><td>Education Institution</td><td style="text-align:right">3,668</td><td style="text-align:right">6.1%</td><td style="text-align:right">212</td><td style="text-align:right">5.8%</td><td style="text-align:right">3.9%</td></tr>
+<tr><td>Police, Fire and Rescue</td><td style="text-align:right">1,856</td><td style="text-align:right">3.1%</td><td style="text-align:right">143</td><td style="text-align:right">7.7%</td><td style="text-align:right">2.7%</td></tr>
+<tr><td>Other</td><td style="text-align:right">1,313</td><td style="text-align:right">2.2%</td><td style="text-align:right">37</td><td style="text-align:right">2.8%</td><td style="text-align:right">0.7%</td></tr>
+<tr><td>Private Sector</td><td style="text-align:right">286</td><td style="text-align:right">0.5%</td><td style="text-align:right">20</td><td style="text-align:right">7.0%</td><td style="text-align:right">0.4%</td></tr>
 </tbody>
 </table>
 <h3 id="routes-to-award">Routes to Award</h3>
@@ -1209,14 +1227,14 @@ body.high-contrast .figure-caption {
 <table>
 <thead><tr><th>Route to award</th><th>All awards</th><th>Share</th><th>Awards with a CSO winner</th><th>CSO share within group</th><th>Share of CSO awards</th></tr></thead>
 <tbody>
-<tr><td>Below threshold - without competition</td><td style="text-align:right">21,738</td><td style="text-align:right">35.8%</td><td style="text-align:right">2,220</td><td style="text-align:right">10.2%</td><td style="text-align:right">41.3%</td></tr>
-<tr><td>Below threshold - limited competition</td><td style="text-align:right">11,313</td><td style="text-align:right">18.6%</td><td style="text-align:right">381</td><td style="text-align:right">3.4%</td><td style="text-align:right">7.1%</td></tr>
-<tr><td>Open procedure</td><td style="text-align:right">8,610</td><td style="text-align:right">14.2%</td><td style="text-align:right">1,275</td><td style="text-align:right">14.8%</td><td style="text-align:right">23.7%</td></tr>
-<tr><td>Below threshold - unknown</td><td style="text-align:right">6,256</td><td style="text-align:right">10.3%</td><td style="text-align:right">418</td><td style="text-align:right">6.7%</td><td style="text-align:right">7.8%</td></tr>
-<tr><td>Below threshold - open competition</td><td style="text-align:right">5,495</td><td style="text-align:right">9.1%</td><td style="text-align:right">505</td><td style="text-align:right">9.2%</td><td style="text-align:right">9.4%</td></tr>
-<tr><td>Direct award</td><td style="text-align:right">2,880</td><td style="text-align:right">4.7%</td><td style="text-align:right">305</td><td style="text-align:right">10.6%</td><td style="text-align:right">5.7%</td></tr>
-<tr><td>Competitive flexible procedure</td><td style="text-align:right">2,305</td><td style="text-align:right">3.8%</td><td style="text-align:right">171</td><td style="text-align:right">7.4%</td><td style="text-align:right">3.2%</td></tr>
-<tr><td>Below threshold - award under framework</td><td style="text-align:right">1,191</td><td style="text-align:right">2.0%</td><td style="text-align:right">46</td><td style="text-align:right">3.9%</td><td style="text-align:right">0.9%</td></tr>
+<tr><td>Below threshold - without competition</td><td style="text-align:right">21,629</td><td style="text-align:right">35.9%</td><td style="text-align:right">2,226</td><td style="text-align:right">10.3%</td><td style="text-align:right">41.3%</td></tr>
+<tr><td>Below threshold - limited competition</td><td style="text-align:right">11,298</td><td style="text-align:right">18.7%</td><td style="text-align:right">382</td><td style="text-align:right">3.4%</td><td style="text-align:right">7.1%</td></tr>
+<tr><td>Open procedure</td><td style="text-align:right">8,512</td><td style="text-align:right">14.1%</td><td style="text-align:right">1,270</td><td style="text-align:right">14.9%</td><td style="text-align:right">23.6%</td></tr>
+<tr><td>Below threshold - unknown</td><td style="text-align:right">6,256</td><td style="text-align:right">10.4%</td><td style="text-align:right">420</td><td style="text-align:right">6.7%</td><td style="text-align:right">7.8%</td></tr>
+<tr><td>Below threshold - open competition</td><td style="text-align:right">5,444</td><td style="text-align:right">9.0%</td><td style="text-align:right">503</td><td style="text-align:right">9.2%</td><td style="text-align:right">9.3%</td></tr>
+<tr><td>Direct award</td><td style="text-align:right">2,804</td><td style="text-align:right">4.6%</td><td style="text-align:right">313</td><td style="text-align:right">11.2%</td><td style="text-align:right">5.8%</td></tr>
+<tr><td>Competitive flexible procedure</td><td style="text-align:right">2,277</td><td style="text-align:right">3.8%</td><td style="text-align:right">172</td><td style="text-align:right">7.6%</td><td style="text-align:right">3.2%</td></tr>
+<tr><td>Below threshold - award under framework</td><td style="text-align:right">1,181</td><td style="text-align:right">2.0%</td><td style="text-align:right">45</td><td style="text-align:right">3.8%</td><td style="text-align:right">0.8%</td></tr>
 <tr><td>Award under framework</td><td style="text-align:right">920</td><td style="text-align:right">1.5%</td><td style="text-align:right">53</td><td style="text-align:right">5.8%</td><td style="text-align:right">1.0%</td></tr>
 <tr><td>Below threshold - by reference to dynamic market</td><td style="text-align:right">9</td><td style="text-align:right">0.0%</td><td style="text-align:right">0</td><td style="text-align:right">0.0%</td><td style="text-align:right">0.0%</td></tr>
 </tbody>
@@ -1226,32 +1244,32 @@ body.high-contrast .figure-caption {
 <table>
 <thead><tr><th>Verdict (cso_status)</th><th>Supplier rows</th><th>Share of rows</th><th>Distinct suppliers</th></tr></thead>
 <tbody>
-<tr><td>non-CSO</td><td style="text-align:right">87,447</td><td style="text-align:right">91.6%</td><td style="text-align:right">32,350</td></tr>
-<tr><td>CSO</td><td style="text-align:right">7,132</td><td style="text-align:right">7.5%</td><td style="text-align:right">3,050</td></tr>
+<tr><td>non-CSO</td><td style="text-align:right">86,963</td><td style="text-align:right">91.6%</td><td style="text-align:right">32,300</td></tr>
+<tr><td>CSO</td><td style="text-align:right">7,151</td><td style="text-align:right">7.5%</td><td style="text-align:right">3,050</td></tr>
 <tr><td>(non-UK, no verdict)</td><td style="text-align:right">676</td><td style="text-align:right">0.7%</td><td style="text-align:right">254</td></tr>
-<tr><td>unresolved</td><td style="text-align:right">200</td><td style="text-align:right">0.2%</td><td style="text-align:right">56</td></tr>
+<tr><td>unresolved</td><td style="text-align:right">190</td><td style="text-align:right">0.2%</td><td style="text-align:right">50</td></tr>
 </tbody>
 </table>
 <h3 id="which-registers">Which Registers the Civil Society Winners Come From</h3>
 <table>
 <thead><tr><th>Prefix</th><th>Source register</th><th>CSO winner rows</th><th>Distinct organisations</th><th>Share of CSO winner rows</th></tr></thead>
 <tbody>
-<tr><td>GB-CHC</td><td>Charity Commission for England &amp; Wales</td><td style="text-align:right">4,528</td><td style="text-align:right">1,894</td><td style="text-align:right">63.5%</td></tr>
-<tr><td>GB-COH</td><td>Companies House</td><td style="text-align:right">2,051</td><td style="text-align:right">980</td><td style="text-align:right">28.8%</td></tr>
-<tr><td>GB-MPR</td><td>Mutuals Public Register (FCA)</td><td style="text-align:right">350</td><td style="text-align:right">107</td><td style="text-align:right">4.9%</td></tr>
-<tr><td>GB-SC</td><td>Office of the Scottish Charity Regulator</td><td style="text-align:right">78</td><td style="text-align:right">21</td><td style="text-align:right">1.1%</td></tr>
-<tr><td>GB-NIC</td><td>Charity Commission for Northern Ireland</td><td style="text-align:right">70</td><td style="text-align:right">38</td><td style="text-align:right">1.0%</td></tr>
-<tr><td>GB-COOP</td><td>Co-operatives UK</td><td style="text-align:right">55</td><td style="text-align:right">10</td><td style="text-align:right">0.8%</td></tr>
+<tr><td>GB-CHC</td><td>Charity Commission for England &amp; Wales</td><td style="text-align:right">4,533</td><td style="text-align:right">1,894</td><td style="text-align:right">63.4%</td></tr>
+<tr><td>GB-COH</td><td>Companies House</td><td style="text-align:right">2,066</td><td style="text-align:right">980</td><td style="text-align:right">28.9%</td></tr>
+<tr><td>GB-MPR</td><td>Mutuals Public Register (FCA)</td><td style="text-align:right">351</td><td style="text-align:right">107</td><td style="text-align:right">4.9%</td></tr>
+<tr><td>GB-SC</td><td>Office of the Scottish Charity Regulator</td><td style="text-align:right">76</td><td style="text-align:right">21</td><td style="text-align:right">1.1%</td></tr>
+<tr><td>GB-NIC</td><td>Charity Commission for Northern Ireland</td><td style="text-align:right">69</td><td style="text-align:right">38</td><td style="text-align:right">1.0%</td></tr>
+<tr><td>GB-COOP</td><td>Co-operatives UK</td><td style="text-align:right">56</td><td style="text-align:right">10</td><td style="text-align:right">0.8%</td></tr>
 </tbody>
 </table>
 <h3 id="organisation-types">Organisation Types among Civil Society Winners</h3>
 <table>
 <thead><tr><th>Organisation type (spine_cso_type)</th><th>CSO winner rows</th><th>Distinct organisations</th></tr></thead>
 <tbody>
-<tr><td>Charity</td><td style="text-align:right">4,656</td><td style="text-align:right">1,949</td></tr>
-<tr><td>Other</td><td style="text-align:right">1,214</td><td style="text-align:right">502</td></tr>
-<tr><td>CIC</td><td style="text-align:right">857</td><td style="text-align:right">482</td></tr>
-<tr><td>Co-operative / Mutual</td><td style="text-align:right">405</td><td style="text-align:right">117</td></tr>
+<tr><td>Charity</td><td style="text-align:right">4,658</td><td style="text-align:right">1,949</td></tr>
+<tr><td>Other</td><td style="text-align:right">1,231</td><td style="text-align:right">502</td></tr>
+<tr><td>CIC</td><td style="text-align:right">855</td><td style="text-align:right">482</td></tr>
+<tr><td>Co-operative / Mutual</td><td style="text-align:right">407</td><td style="text-align:right">117</td></tr>
 </tbody>
 </table>
 <h3 id="awards-by-month">Awards by Month</h3>
@@ -1260,27 +1278,27 @@ body.high-contrast .figure-caption {
 <thead><tr><th>Award month</th><th>All awards</th><th>Share</th><th>Awards with a CSO winner</th><th>CSO share within group</th><th>Share of CSO awards</th></tr></thead>
 <tbody>
 <tr><td>2025-02</td><td style="text-align:right">201</td><td style="text-align:right">0.3%</td><td style="text-align:right">17</td><td style="text-align:right">8.5%</td><td style="text-align:right">0.3%</td></tr>
-<tr><td>2025-03</td><td style="text-align:right">1,734</td><td style="text-align:right">2.9%</td><td style="text-align:right">205</td><td style="text-align:right">11.8%</td><td style="text-align:right">3.8%</td></tr>
-<tr><td>2025-04</td><td style="text-align:right">1,809</td><td style="text-align:right">3.0%</td><td style="text-align:right">188</td><td style="text-align:right">10.4%</td><td style="text-align:right">3.5%</td></tr>
-<tr><td>2025-05</td><td style="text-align:right">1,711</td><td style="text-align:right">2.8%</td><td style="text-align:right">129</td><td style="text-align:right">7.5%</td><td style="text-align:right">2.4%</td></tr>
-<tr><td>2025-06</td><td style="text-align:right">2,047</td><td style="text-align:right">3.4%</td><td style="text-align:right">140</td><td style="text-align:right">6.8%</td><td style="text-align:right">2.6%</td></tr>
-<tr><td>2025-07</td><td style="text-align:right">2,649</td><td style="text-align:right">4.4%</td><td style="text-align:right">250</td><td style="text-align:right">9.4%</td><td style="text-align:right">4.7%</td></tr>
-<tr><td>2025-08</td><td style="text-align:right">2,430</td><td style="text-align:right">4.0%</td><td style="text-align:right">227</td><td style="text-align:right">9.3%</td><td style="text-align:right">4.2%</td></tr>
-<tr><td>2025-09</td><td style="text-align:right">3,430</td><td style="text-align:right">5.6%</td><td style="text-align:right">292</td><td style="text-align:right">8.5%</td><td style="text-align:right">5.4%</td></tr>
-<tr><td>2025-10</td><td style="text-align:right">3,114</td><td style="text-align:right">5.1%</td><td style="text-align:right">242</td><td style="text-align:right">7.8%</td><td style="text-align:right">4.5%</td></tr>
-<tr><td>2025-11</td><td style="text-align:right">2,775</td><td style="text-align:right">4.6%</td><td style="text-align:right">236</td><td style="text-align:right">8.5%</td><td style="text-align:right">4.4%</td></tr>
-<tr><td>2025-12</td><td style="text-align:right">3,069</td><td style="text-align:right">5.1%</td><td style="text-align:right">260</td><td style="text-align:right">8.5%</td><td style="text-align:right">4.8%</td></tr>
-<tr><td>2026-01</td><td style="text-align:right">3,141</td><td style="text-align:right">5.2%</td><td style="text-align:right">257</td><td style="text-align:right">8.2%</td><td style="text-align:right">4.8%</td></tr>
-<tr><td>2026-02</td><td style="text-align:right">3,694</td><td style="text-align:right">6.1%</td><td style="text-align:right">327</td><td style="text-align:right">8.9%</td><td style="text-align:right">6.1%</td></tr>
-<tr><td>2026-03</td><td style="text-align:right">5,089</td><td style="text-align:right">8.4%</td><td style="text-align:right">545</td><td style="text-align:right">10.7%</td><td style="text-align:right">10.1%</td></tr>
-<tr><td>2026-04</td><td style="text-align:right">3,533</td><td style="text-align:right">5.8%</td><td style="text-align:right">400</td><td style="text-align:right">11.3%</td><td style="text-align:right">7.4%</td></tr>
-<tr><td>2026-05</td><td style="text-align:right">2,948</td><td style="text-align:right">4.9%</td><td style="text-align:right">234</td><td style="text-align:right">7.9%</td><td style="text-align:right">4.4%</td></tr>
-<tr><td>2026-06</td><td style="text-align:right">3,799</td><td style="text-align:right">6.3%</td><td style="text-align:right">314</td><td style="text-align:right">8.3%</td><td style="text-align:right">5.8%</td></tr>
-<tr><td>2026-07</td><td style="text-align:right">4,324</td><td style="text-align:right">7.1%</td><td style="text-align:right">407</td><td style="text-align:right">9.4%</td><td style="text-align:right">7.6%</td></tr>
-<tr><td>2026-08</td><td style="text-align:right">3,476</td><td style="text-align:right">5.7%</td><td style="text-align:right">287</td><td style="text-align:right">8.3%</td><td style="text-align:right">5.3%</td></tr>
-<tr><td>2026-09</td><td style="text-align:right">3,297</td><td style="text-align:right">5.4%</td><td style="text-align:right">231</td><td style="text-align:right">7.0%</td><td style="text-align:right">4.3%</td></tr>
-<tr><td>2026-10</td><td style="text-align:right">2,240</td><td style="text-align:right">3.7%</td><td style="text-align:right">165</td><td style="text-align:right">7.4%</td><td style="text-align:right">3.1%</td></tr>
-<tr><td>2026-11</td><td style="text-align:right">207</td><td style="text-align:right">0.3%</td><td style="text-align:right">21</td><td style="text-align:right">10.1%</td><td style="text-align:right">0.4%</td></tr>
+<tr><td>2025-03</td><td style="text-align:right">1,730</td><td style="text-align:right">2.9%</td><td style="text-align:right">206</td><td style="text-align:right">11.9%</td><td style="text-align:right">3.8%</td></tr>
+<tr><td>2025-04</td><td style="text-align:right">1,806</td><td style="text-align:right">3.0%</td><td style="text-align:right">188</td><td style="text-align:right">10.4%</td><td style="text-align:right">3.5%</td></tr>
+<tr><td>2025-05</td><td style="text-align:right">1,696</td><td style="text-align:right">2.8%</td><td style="text-align:right">129</td><td style="text-align:right">7.6%</td><td style="text-align:right">2.4%</td></tr>
+<tr><td>2025-06</td><td style="text-align:right">2,035</td><td style="text-align:right">3.4%</td><td style="text-align:right">139</td><td style="text-align:right">6.8%</td><td style="text-align:right">2.6%</td></tr>
+<tr><td>2025-07</td><td style="text-align:right">2,636</td><td style="text-align:right">4.4%</td><td style="text-align:right">252</td><td style="text-align:right">9.6%</td><td style="text-align:right">4.7%</td></tr>
+<tr><td>2025-08</td><td style="text-align:right">2,420</td><td style="text-align:right">4.0%</td><td style="text-align:right">225</td><td style="text-align:right">9.3%</td><td style="text-align:right">4.2%</td></tr>
+<tr><td>2025-09</td><td style="text-align:right">3,405</td><td style="text-align:right">5.6%</td><td style="text-align:right">287</td><td style="text-align:right">8.4%</td><td style="text-align:right">5.3%</td></tr>
+<tr><td>2025-10</td><td style="text-align:right">3,100</td><td style="text-align:right">5.1%</td><td style="text-align:right">240</td><td style="text-align:right">7.7%</td><td style="text-align:right">4.5%</td></tr>
+<tr><td>2025-11</td><td style="text-align:right">2,762</td><td style="text-align:right">4.6%</td><td style="text-align:right">235</td><td style="text-align:right">8.5%</td><td style="text-align:right">4.4%</td></tr>
+<tr><td>2025-12</td><td style="text-align:right">3,053</td><td style="text-align:right">5.1%</td><td style="text-align:right">261</td><td style="text-align:right">8.5%</td><td style="text-align:right">4.8%</td></tr>
+<tr><td>2026-01</td><td style="text-align:right">3,131</td><td style="text-align:right">5.2%</td><td style="text-align:right">259</td><td style="text-align:right">8.3%</td><td style="text-align:right">4.8%</td></tr>
+<tr><td>2026-02</td><td style="text-align:right">3,682</td><td style="text-align:right">6.1%</td><td style="text-align:right">330</td><td style="text-align:right">9.0%</td><td style="text-align:right">6.1%</td></tr>
+<tr><td>2026-03</td><td style="text-align:right">5,053</td><td style="text-align:right">8.4%</td><td style="text-align:right">547</td><td style="text-align:right">10.8%</td><td style="text-align:right">10.2%</td></tr>
+<tr><td>2026-04</td><td style="text-align:right">3,508</td><td style="text-align:right">5.8%</td><td style="text-align:right">405</td><td style="text-align:right">11.5%</td><td style="text-align:right">7.5%</td></tr>
+<tr><td>2026-05</td><td style="text-align:right">2,935</td><td style="text-align:right">4.9%</td><td style="text-align:right">235</td><td style="text-align:right">8.0%</td><td style="text-align:right">4.4%</td></tr>
+<tr><td>2026-06</td><td style="text-align:right">3,767</td><td style="text-align:right">6.2%</td><td style="text-align:right">314</td><td style="text-align:right">8.3%</td><td style="text-align:right">5.8%</td></tr>
+<tr><td>2026-07</td><td style="text-align:right">4,297</td><td style="text-align:right">7.1%</td><td style="text-align:right">411</td><td style="text-align:right">9.6%</td><td style="text-align:right">7.6%</td></tr>
+<tr><td>2026-08</td><td style="text-align:right">3,450</td><td style="text-align:right">5.7%</td><td style="text-align:right">293</td><td style="text-align:right">8.5%</td><td style="text-align:right">5.4%</td></tr>
+<tr><td>2026-09</td><td style="text-align:right">3,253</td><td style="text-align:right">5.4%</td><td style="text-align:right">225</td><td style="text-align:right">6.9%</td><td style="text-align:right">4.2%</td></tr>
+<tr><td>2026-10</td><td style="text-align:right">2,205</td><td style="text-align:right">3.7%</td><td style="text-align:right">165</td><td style="text-align:right">7.5%</td><td style="text-align:right">3.1%</td></tr>
+<tr><td>2026-11</td><td style="text-align:right">205</td><td style="text-align:right">0.3%</td><td style="text-align:right">21</td><td style="text-align:right">10.2%</td><td style="text-align:right">0.4%</td></tr>
 </tbody>
 </table>
 <h3 id="buyer-flags-versus-register-match">Buyer Flags versus Register Match</h3>
@@ -1288,24 +1306,24 @@ body.high-contrast .figure-caption {
 <table>
 <thead><tr><th>Signal</th><th>Awards flagged</th><th>Share of all awards</th><th>...of which register-matched CSO winner</th><th>CSO share among flagged</th><th>Share of all CSO awards captured</th></tr></thead>
 <tbody>
-<tr><td><code>any_lot_vcse_suitable</code> = TRUE (buyer marked a lot suitable for VCSEs)</td><td style="text-align:right">6,915</td><td style="text-align:right">11.4%</td><td style="text-align:right">1,616</td><td style="text-align:right">23.4%</td><td style="text-align:right">30.1%</td></tr>
-<tr><td><code>any_vcse_declared</code> = TRUE (a winner self-declared as VCSE)</td><td style="text-align:right">3,407</td><td style="text-align:right">5.6%</td><td style="text-align:right">2,397</td><td style="text-align:right">70.4%</td><td style="text-align:right">44.6%</td></tr>
+<tr><td><code>any_lot_vcse_suitable</code> = TRUE (buyer marked a lot suitable for VCSEs)</td><td style="text-align:right">6,810</td><td style="text-align:right">11.3%</td><td style="text-align:right">1,611</td><td style="text-align:right">23.7%</td><td style="text-align:right">29.9%</td></tr>
+<tr><td><code>any_vcse_declared</code> = TRUE (a winner self-declared as VCSE)</td><td style="text-align:right">3,385</td><td style="text-align:right">5.6%</td><td style="text-align:right">2,393</td><td style="text-align:right">70.7%</td><td style="text-align:right">44.4%</td></tr>
 </tbody>
 </table>
 <h3 id="what-csos-are-contracted-for">What Civil Society Organisations Are Contracted For</h3>
 <table>
 <thead><tr><th>CPV division</th><th>Division title (main CPV code)</th><th>Awards to CSOs</th><th>Share of CSO awards</th></tr></thead>
 <tbody>
-<tr><td>85</td><td>Health and social work services</td><td style="text-align:right">1,844</td><td style="text-align:right">34.3%</td></tr>
-<tr><td>80</td><td>Education and training services</td><td style="text-align:right">956</td><td style="text-align:right">17.8%</td></tr>
-<tr><td>79</td><td>Business services: law, marketing, consulting, recruitment, printing and security</td><td style="text-align:right">713</td><td style="text-align:right">13.3%</td></tr>
-<tr><td>98</td><td>Other community, social and personal services</td><td style="text-align:right">305</td><td style="text-align:right">5.7%</td></tr>
-<tr><td>73</td><td>Research and development services and related consultancy services</td><td style="text-align:right">267</td><td style="text-align:right">5.0%</td></tr>
-<tr><td>75</td><td>Administration, defence and social security services</td><td style="text-align:right">217</td><td style="text-align:right">4.0%</td></tr>
-<tr><td>71</td><td>Architectural, construction, engineering and inspection services</td><td style="text-align:right">147</td><td style="text-align:right">2.7%</td></tr>
-<tr><td>72</td><td>IT services: consulting, software development, Internet and support</td><td style="text-align:right">118</td><td style="text-align:right">2.2%</td></tr>
+<tr><td>85</td><td>Health and social work services</td><td style="text-align:right">1,850</td><td style="text-align:right">34.4%</td></tr>
+<tr><td>80</td><td>Education and training services</td><td style="text-align:right">959</td><td style="text-align:right">17.8%</td></tr>
+<tr><td>79</td><td>Business services: law, marketing, consulting, recruitment, printing and security</td><td style="text-align:right">714</td><td style="text-align:right">13.3%</td></tr>
+<tr><td>98</td><td>Other community, social and personal services</td><td style="text-align:right">314</td><td style="text-align:right">5.8%</td></tr>
+<tr><td>73</td><td>Research and development services and related consultancy services</td><td style="text-align:right">264</td><td style="text-align:right">4.9%</td></tr>
+<tr><td>75</td><td>Administration, defence and social security services</td><td style="text-align:right">211</td><td style="text-align:right">3.9%</td></tr>
+<tr><td>71</td><td>Architectural, construction, engineering and inspection services</td><td style="text-align:right">150</td><td style="text-align:right">2.8%</td></tr>
+<tr><td>72</td><td>IT services: consulting, software development, Internet and support</td><td style="text-align:right">116</td><td style="text-align:right">2.2%</td></tr>
 <tr><td>90</td><td>Sewage, refuse, cleaning and environmental services</td><td style="text-align:right">92</td><td style="text-align:right">1.7%</td></tr>
-<tr><td>92</td><td>Recreational, cultural and sporting services</td><td style="text-align:right">83</td><td style="text-align:right">1.5%</td></tr>
+<tr><td>92</td><td>Recreational, cultural and sporting services</td><td style="text-align:right">81</td><td style="text-align:right">1.5%</td></tr>
 </tbody>
 </table>
 <h3 id="largest-buyers-from-civil-society">Largest Buyers from Civil Society</h3>
@@ -1313,29 +1331,29 @@ body.high-contrast .figure-caption {
 <thead><tr><th>Buyer</th><th>Buyer type</th><th>Awards to CSOs</th><th>Distinct CSOs</th></tr></thead>
 <tbody>
 <tr><td>Bristol City Council</td><td>Local Government</td><td style="text-align:right">117</td><td style="text-align:right">39</td></tr>
-<tr><td>NHS England</td><td>NHS</td><td style="text-align:right">111</td><td style="text-align:right">68</td></tr>
-<tr><td>UK Research &amp; Innovation (UKRI)</td><td>UK Government</td><td style="text-align:right">102</td><td style="text-align:right">59</td></tr>
-<tr><td>Durham County Council</td><td>Local Government</td><td style="text-align:right">68</td><td style="text-align:right">51</td></tr>
+<tr><td>NHS England</td><td>NHS</td><td style="text-align:right">114</td><td style="text-align:right">68</td></tr>
+<tr><td>UK Research &amp; Innovation (UKRI)</td><td>UK Government</td><td style="text-align:right">103</td><td style="text-align:right">59</td></tr>
+<tr><td>Durham County Council</td><td>Local Government</td><td style="text-align:right">69</td><td style="text-align:right">51</td></tr>
 <tr><td>Norfolk County Council</td><td>Local Government</td><td style="text-align:right">63</td><td style="text-align:right">76</td></tr>
 <tr><td>Greater Manchester Combined Authority</td><td>Local Government</td><td style="text-align:right">59</td><td style="text-align:right">46</td></tr>
 <tr><td>Bath &amp; North East Somerset Council</td><td>Local Government</td><td style="text-align:right">58</td><td style="text-align:right">27</td></tr>
 <tr><td>Somerset Council</td><td>Local Government</td><td style="text-align:right">56</td><td style="text-align:right">42</td></tr>
+<tr><td>Llywodraeth Cymru / Welsh Government</td><td>UK Government</td><td style="text-align:right">55</td><td style="text-align:right">41</td></tr>
 <tr><td>Bournemouth, Christchurch and Poole Council</td><td>Local Government</td><td style="text-align:right">55</td><td style="text-align:right">49</td></tr>
-<tr><td>Llywodraeth Cymru / Welsh Government</td><td>UK Government</td><td style="text-align:right">54</td><td style="text-align:right">41</td></tr>
-<tr><td>The North Yorkshire Council</td><td>Local Government</td><td style="text-align:right">53</td><td style="text-align:right">34</td></tr>
+<tr><td>The North Yorkshire Council</td><td>Local Government</td><td style="text-align:right">53</td><td style="text-align:right">35</td></tr>
+<tr><td>City of Bradford Metropolitan District Council</td><td>Local Government</td><td style="text-align:right">50</td><td style="text-align:right">29</td></tr>
 <tr><td>Wirral Council</td><td>Local Government</td><td style="text-align:right">50</td><td style="text-align:right">31</td></tr>
-<tr><td>City of Bradford Metropolitan District Council</td><td>Local Government</td><td style="text-align:right">49</td><td style="text-align:right">28</td></tr>
-<tr><td>Staffordshire County Council</td><td>Local Government</td><td style="text-align:right">49</td><td style="text-align:right">33</td></tr>
+<tr><td>Staffordshire County Council</td><td>Local Government</td><td style="text-align:right">50</td><td style="text-align:right">34</td></tr>
 <tr><td>Ministry of Justice</td><td>UK Government</td><td style="text-align:right">47</td><td style="text-align:right">44</td></tr>
 </tbody>
 </table>
 <h3 id="contract-values">Contract Values</h3>
-<p>Values are entered by buyers and are highly skewed. The table excludes the 5,296 framework establishments, whose value is the ceiling of the arrangement rather than a contract; medians are more informative than totals even so.</p>
+<p>Values are entered by buyers and are highly skewed. The table uses <code>value_for_sum</code>, which leaves out the 5,268 framework establishments (the value is the ceiling of the arrangement), the 2,219 framework call-offs (some repeat the framework ceiling) and cancelled contracts, and divides process totals repeated across several awards equally; medians remain more informative than totals.</p>
 <table>
 <thead><tr><th></th><th>Awards with a value</th><th>25th percentile</th><th>Median</th><th>75th percentile</th><th>90th percentile</th><th>Total (£bn)</th></tr></thead>
 <tbody>
-<tr><td>All awards (framework establishments excluded)</td><td style="text-align:right">55,155</td><td style="text-align:right">£37,663</td><td style="text-align:right">£75,955</td><td style="text-align:right">£198,360</td><td style="text-align:right">£847,876</td><td style="text-align:right">107.9</td></tr>
-<tr><td>Awards with a CSO winner (same rule)</td><td style="text-align:right">4,723</td><td style="text-align:right">£47,899</td><td style="text-align:right">£101,894</td><td style="text-align:right">£335,146</td><td style="text-align:right">£1,241,100</td><td style="text-align:right">6.6</td></tr>
+<tr><td>All awards (summable value)</td><td style="text-align:right">52,432</td><td style="text-align:right">£36,000</td><td style="text-align:right">£72,000</td><td style="text-align:right">£180,000</td><td style="text-align:right">£726,272</td><td style="text-align:right">90.8</td></tr>
+<tr><td>Awards with a CSO winner (summable value)</td><td style="text-align:right">4,609</td><td style="text-align:right">£45,000</td><td style="text-align:right">£96,996</td><td style="text-align:right">£312,861</td><td style="text-align:right">£1,200,000</td><td style="text-align:right">6.3</td></tr>
 </tbody>
 </table>
 <h3 id="hazard-flags">Hazard Flags</h3>
@@ -1344,15 +1362,15 @@ body.high-contrast .figure-caption {
 <thead><tr><th>Flag</th><th>Awards flagged</th><th>Share of awards</th><th>What TRUE means</th></tr></thead>
 <tbody>
 <tr><td><code>value_zero_reported</code></td><td style="text-align:right">361</td><td style="text-align:right">0.6%</td><td><span>A value was published and equals 0: the buyer chose not to state one; value_gbp is blank</span></td></tr>
-<tr><td><code>value_repeat_group</code></td><td style="text-align:right">4,273</td><td style="text-align:right">7.0%</td><td><span>The same buyer, title, value and signing date appear on more than one award (one process total stamped on every award, or a framework ceiling); de-duplicate before any sum</span></td></tr>
-<tr><td><code>value_equal_split</code></td><td style="text-align:right">404</td><td style="text-align:right">0.7%</td><td><span>The award's value is the process or lot estimate divided equally among the winners: an accounting convenience, not the contract price</span></td></tr>
-<tr><td><code>value_contract_shared</code></td><td style="text-align:right">3,525</td><td style="text-align:right">5.8%</td><td><span>The linked contract's value is carried by more than one award of the same process, so it cannot be specific to this award</span></td></tr>
-<tr><td><code>value_contract_award_conflict</code></td><td style="text-align:right">1,465</td><td style="text-align:right">2.4%</td><td><span>The award object and its linked contract object both publish a value and the two disagree; reported, not reconciled</span></td></tr>
-<tr><td><code>estimate_zero_reported</code></td><td style="text-align:right">437</td><td style="text-align:right">0.7%</td><td><span>One of the four buyer-estimate columns was published as 0; the zero is blanked in all four</span></td></tr>
+<tr><td><code>value_repeat_group</code></td><td style="text-align:right">4,108</td><td style="text-align:right">6.8%</td><td><span>The same buyer, title, value and signing date appear on more than one award (one process total stamped on every award, or a framework ceiling); value_for_sum divides the repeated value equally among the group's qualifying awards</span></td></tr>
+<tr><td><code>value_equal_split</code></td><td style="text-align:right">409</td><td style="text-align:right">0.7%</td><td><span>The award's value is the process or lot estimate divided equally among the winners: an accounting convenience, not the contract price</span></td></tr>
+<tr><td><code>value_contract_shared</code></td><td style="text-align:right">3,436</td><td style="text-align:right">5.7%</td><td><span>The linked contract's value is carried by more than one award of the same process, so it cannot be specific to this award</span></td></tr>
+<tr><td><code>value_contract_award_conflict</code></td><td style="text-align:right">1,464</td><td style="text-align:right">2.4%</td><td><span>The award object and its linked contract object both publish a value and the two disagree; reported, not reconciled</span></td></tr>
+<tr><td><code>estimate_zero_reported</code></td><td style="text-align:right">433</td><td style="text-align:right">0.7%</td><td><span>One of the four buyer-estimate columns was published as 0; the zero is blanked in all four</span></td></tr>
 <tr><td><code>duration_placeholder</code></td><td style="text-align:right">400</td><td style="text-align:right">0.7%</td><td><span>The period is zero days long and starts on the signing date: a form date entered in both period fields</span></td></tr>
-<tr><td><code>duration_over_10y</code></td><td style="text-align:right">93</td><td style="text-align:right">0.2%</td><td><span>The period exceeds ten years</span></td></tr>
-<tr><td><code>framework_establishment</code></td><td style="text-align:right">5,296</td><td style="text-align:right">8.7%</td><td><span>The award sets up a framework agreement; its value is the ceiling of the arrangement, not spend</span></td></tr>
-<tr><td><code>framework_calloff</code></td><td style="text-align:right">2,229</td><td style="text-align:right">3.7%</td><td><span>The award is a call-off under a parent framework, identified through the related-process link</span></td></tr>
+<tr><td><code>duration_over_10y</code></td><td style="text-align:right">92</td><td style="text-align:right">0.2%</td><td><span>The period exceeds ten years</span></td></tr>
+<tr><td><code>framework_establishment</code></td><td style="text-align:right">5,268</td><td style="text-align:right">8.7%</td><td><span>The award sets up a framework agreement; its value is the ceiling of the arrangement, not spend</span></td></tr>
+<tr><td><code>framework_calloff</code></td><td style="text-align:right">2,219</td><td style="text-align:right">3.7%</td><td><span>The award is a call-off under a parent framework, identified through the related-process link</span></td></tr>
 </tbody>
 </table>
 
@@ -1380,7 +1398,7 @@ body.high-contrast .figure-caption {
 <h3 id="scope-and-regime">Scope and Regime</h3>
 <p>The dataset covers awards published on Find a Tender under the Procurement Act 2023 from 24 February 2025. Procurements that began under the Public Contracts Regulations 2015 and concluded after that date remain under the old regime and are not here; nor are awards published only on Contracts Finder, Public Contracts Scotland, Sell2Wales or eTendersNI. Below-threshold notices are included where published, but publication below the threshold is partial. Coverage of Scotland in particular is thin.</p>
 <h3 id="awarded-values">Awarded Values</h3>
-<p><code>value_gbp</code> is the published gross value. Framework establishments (5,296 awards) carry the ceiling of the whole arrangement; call-offs (2,229) carry the call-off value where published. Where several awards of one process share a value the flag <code>value_repeat_group</code> is set, and where the shared value is the process estimate divided equally among the winners <code>value_equal_split</code> is set: such a value is an accounting convenience, not the value of the individual contract. A published zero is treated as unstated and blanked, and recorded in <code>value_zero_reported</code>. Values in other currencies are left in place and <code>value_gbp</code> is blank. A small number of published values are known data-entry errors and are left as published; band or winsorise rather than trusting the extremes.</p>
+<p><code>value_gbp</code> is the published gross value; <code>value_for_sum</code> is the value to sum. <code>value_for_sum</code> carries <code>value_gbp</code> for awards that are not framework establishments, framework call-offs or cancelled contracts, divides a value repeated across a <code>value_repeat_group</code> equally among the group's qualifying awards, and is blank otherwise. Framework establishments (5,268 awards) carry the ceiling of the whole arrangement; call-offs (2,219) carry the call-off value where published. Where several awards of one process share a value the flag <code>value_repeat_group</code> is set, and where the shared value is the process estimate divided equally among the winners <code>value_equal_split</code> is set: such a value is an accounting convenience, not the value of the individual contract. A published zero is treated as unstated and blanked, and recorded in <code>value_zero_reported</code>. Values in other currencies are left in place and <code>value_gbp</code> is blank. A small number of published values are known data-entry errors and are left as published; band or winsorise rather than trusting the extremes.</p>
 <h3 id="one-award-one-row">One Award, One Row</h3>
 <p>Find a Tender publishes cumulative "roll-up" records on some processes, in which a later award notice restates the winners of an earlier one. These are de-duplicated so that each organisation's win in a lot is credited once; the columns <code>rollup_suppliers_removed</code>, <code>duplicate_rows_collapsed</code> and <code>rollup_org_suppliers_removed</code> record what was removed from each award. A process that awards the same lot to the same winner on two or three separate award objects is left as published.</p>
 <h3 id="civil-society-identification">Civil Society Identification</h3>
@@ -1421,6 +1439,7 @@ body.high-contrast .figure-caption {
 <table>
 <thead><tr><th>Version</th><th>Date</th><th>Changes</th></tr></thead>
 <tbody>
+<tr><td>1.3</td><td>November 2026</td><td>November update (60,330 awards, 94,980 winner rows) from the same Find a Tender bulk release of 2026-11-08. Duplicate award objects of one contract kept once (ruling ak); supplier verdicts shared across a PPON when the organisation is civil society elsewhere (ruling n, V2); new <code>value_for_sum</code> column, the summable value (ruling al); new PPON crosswalk file (provisional: identity review pending). One column added (<code>value_for_sum</code>); no column removed or renamed.</td></tr>
 <tr><td>1.2</td><td>November 2026</td><td>November refresh (60,717 awards, 95,455 winner rows) from the Find a Tender bulk release of 2026-11-08. Supplier and buyer identifiers are now derived from each organisation's own identifiers rather than its position in the file, so they normally persist between releases (an id changes when later notices publish a better identifier for the organisation): <code>supplier_id</code> is the TCSS Organisation Register identifier for civil society suppliers, otherwise the identifier published in the notice (for example GB-COH or GB-PPON), otherwise a name-derived identifier beginning N-; <code>buyer_org_id</code> is the buyer's PPON, otherwise another published identifier, otherwise a name-and-postcode identifier beginning N-. Identifiers in earlier versions do not carry over. Civil society suppliers are identified against Organisation Register v1.3.1 using the project's shared supplier-matching rules: merged register records are followed to the surviving record; no name match is made to a record removed before, or registered after, the award year; very short names, shortened names that many register records extend, and name matches whose legal form conflicts with the register are held; same-name register records are separated by registered postcode; Mutuals Public Register societies are matched on their society number; owner rulings take precedence over automatic matches; the trading subsidiaries Barnardo Services, UCAS Media and Cranstoun Services are attributed to their parent charities; and dormant and property-management companies on the register are retained as civil society suppliers. No column was added, removed or renamed.</td></tr>
 <tr><td>1.1</td><td>September 2026</td><td>September 2026 refresh (46,956 awards, 72,155 winner rows; bulk vintage unchanged). Rebuilt on run 6 of the project's refined supplier lookup (generic-name, census-match and legal-form safeguards for name-only register matches, owner rulings D77 to D81, and rejection of matches inherited from register records removed before the first award). No winner classification, headline or value changed: the winners file is identical to v1.0. The only change is the named-bidder count on one Plymouth City Council process, where one bidder moved from civil society to unresolved.</td></tr>
 <tr><td>1.0</td><td>September 2026</td><td>First public release: 46,956 awards and 72,155 winner rows from the Find a Tender bulk release of 2026-08-04, Procurement Act 2023 regime, UK-wide, awards dated from 24 February 2025. Civil society winners identified against the TCSS Organisation Register (Spine-only rule). Values, dates, periods and threshold position resolved by stated rules with source columns and hazard flags; roll-up records de-duplicated; dynamic-market admissions and all-non-UK awards excluded.</td></tr>
@@ -1460,12 +1479,13 @@ body.high-contrast .figure-caption {
 <tr><td>2b. drop dynamic-market admissions (UK13 dynamic market notice in the process; ruling ae)</td><td style="text-align:right">64,450</td><td style="text-align:right">324</td></tr>
 <tr><td>3. drop resolved award date before 2024 (ruling a)</td><td style="text-align:right">64,358</td><td style="text-align:right">92</td></tr>
 <tr><td>4. drop zero-supplier awards (ruling b)</td><td style="text-align:right">63,971</td><td style="text-align:right">387</td></tr>
-<tr><td>4b. drop awards emptied by roll-up de-duplication (ruling w)</td><td style="text-align:right">63,957</td><td style="text-align:right">14</td></tr>
-<tr><td>5. drop resolved award date in 2024 (ruling i)</td><td style="text-align:right">63,720</td><td style="text-align:right">237</td></tr>
-<tr><td>6. drop awards with no route (ruling s)</td><td style="text-align:right">63,719</td><td style="text-align:right">1</td></tr>
-<tr><td>7. drop resolved award date before 24 February 2025 (ruling z)</td><td style="text-align:right">63,492</td><td style="text-align:right">227</td></tr>
-<tr><td>8. drop awards emptied by the organisation-grain roll-up pass (ruling ac)</td><td style="text-align:right">63,491</td><td style="text-align:right">1</td></tr>
-<tr><td>9. drop awards whose winners are all outside the UK by published country (ruling af)</td><td style="text-align:right">60,717</td><td style="text-align:right">2,774</td></tr>
+<tr><td>4a. drop duplicate award objects of one contract (ruling ak)</td><td style="text-align:right">63,560</td><td style="text-align:right">411</td></tr>
+<tr><td>4b. drop awards emptied by roll-up de-duplication (ruling w)</td><td style="text-align:right">63,546</td><td style="text-align:right">14</td></tr>
+<tr><td>5. drop resolved award date in 2024 (ruling i)</td><td style="text-align:right">63,309</td><td style="text-align:right">237</td></tr>
+<tr><td>6. drop awards with no route (ruling s)</td><td style="text-align:right">63,308</td><td style="text-align:right">1</td></tr>
+<tr><td>7. drop resolved award date before 24 February 2025 (ruling z)</td><td style="text-align:right">63,081</td><td style="text-align:right">227</td></tr>
+<tr><td>8. drop awards emptied by the organisation-grain roll-up pass (ruling ac)</td><td style="text-align:right">63,080</td><td style="text-align:right">1</td></tr>
+<tr><td>9. drop awards whose winners are all outside the UK by published country (ruling af)</td><td style="text-align:right">60,330</td><td style="text-align:right">2,750</td></tr>
 </tbody>
 </table>
 
@@ -1490,7 +1510,7 @@ body.high-contrast .figure-caption {
 <div class="section level1">
 <h1 id="a4-linking-to-other-tcss-datasets">A4. Linking to Other TCSS Datasets</h1>
 
-<p>Civil society winners link to the rest of the UK Third and Civil Society Sector Database on <code>spine_uid</code> (the register's <code>uid</code>). The two files of this dataset join on <code>ocid</code> and <code>award_id</code>.</p>
+<p>Civil society winners link to the rest of the UK Third and Civil Society Sector Database on <code>spine_uid</code> (the register's <code>uid</code>). The awards and supplier files of this dataset join on <code>ocid</code> and <code>award_id</code>. The supplier PPON crosswalk joins to the supplier file on <code>spine_uid</code>; its <code>ppon</code> is one of the identifiers the supplier file carries in <code>identifier_scheme</code> and <code>identifier_id</code> or in <code>additional_identifiers</code>.</p>
 <table>
 <thead><tr><th>Dataset</th><th>Join key</th><th>What it adds</th></tr></thead>
 <tbody>
@@ -1528,7 +1548,7 @@ merged = cso.merge(spine[["uid", "organisationname", "postcode", "dateregistered
 print(merged.groupby(["spine_uid", "organisationname"]).size()
             .sort_values(ascending=False).head(10))</code></pre>
 <div class="callout callout-tip">
-<p><strong>Tip:</strong> Sum <code>value_gbp</code> only after excluding framework establishments and de-duplicating <code>value_repeat_group</code> rows, and treat <code>value_equal_split</code> values as a share of a process estimate rather than a contract price.</p>
+<p><strong>Tip:</strong> For any total, sum <code>value_for_sum</code>, which already leaves out framework establishments, framework call-offs and cancelled contracts and divides repeated process totals equally; never sum <code>value_gbp</code>. Treat <code>value_equal_split</code> values as a share of a process estimate rather than a contract price.</p>
 </div>
 </div>
 
